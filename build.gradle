@@ -9,8 +9,7 @@ buildscript {
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
   }
   dependencies {
-
-
+    // Tu peux mettre ici les plugins (comme Sonar ou autre) si besoin
   }
 }
 
@@ -18,7 +17,6 @@ allprojects {
   apply plugin: 'eclipse'
   apply plugin: 'idea'
 
-  // This allows you to "Build and run using IntelliJ IDEA", an option in IDEA's Settings.
   idea {
     module {
       outputDir file('build/classes/java/main')
@@ -29,40 +27,50 @@ allprojects {
 
 configure(subprojects) {
   apply plugin: 'java-library'
+  apply plugin: 'checkstyle' // ✅ Ajoute le plugin ici
+
   sourceCompatibility = 8
 
-  // From https://lyze.dev/2021/04/29/libGDX-Internal-Assets-List/
-  // The article can be helpful when using assets.txt in your project.
+  // ✅ Configuration de Checkstyle
+  checkstyle {
+    toolVersion = '10.12.1'
+    config = resources.text.fromFile("${rootDir}/config/checkstyle/checkstyle.xml")
+  }
+
+  // ✅ Rapports HTML (plus lisibles)
+  tasks.withType(Checkstyle).configureEach {
+    reports {
+      xml.required = false
+      html.required = true
+    }
+  }
+
+  project(':lwjgl3') {
+    tasks.withType(Checkstyle).configureEach {
+      enabled = false
+    }
+  }
+
+  // Génération de la liste des assets (LibGDX)
   tasks.register('generateAssetList') {
     inputs.dir("${project.rootDir}/assets/")
-    // projectFolder/assets
     File assetsFolder = new File("${project.rootDir}/assets/")
-    // projectFolder/assets/assets.txt
     File assetsFile = new File(assetsFolder, "assets.txt")
-    // delete that file in case we've already created it
     assetsFile.delete()
-
-    // iterate through all files inside that folder
-    // convert it to a relative path
-    // and append it to the file assets.txt
     fileTree(assetsFolder).collect { assetsFolder.relativePath(it) }.sort().each {
       assetsFile.append(it + "\n")
     }
   }
+
   processResources.dependsOn 'generateAssetList'
 
   compileJava {
     options.incremental = true
   }
-}
 
-subprojects {
-  version = "$projectVersion"
-  ext.appName = 'bomber7'
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
-    // You may want to remove the following line if you have errors downloading dependencies.
     mavenLocal()
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
@@ -70,4 +78,9 @@ subprojects {
   }
 }
 
-eclipse.project.name = 'bomber7' + '-parent'
+subprojects {
+  version = "$projectVersion"
+  ext.appName = 'bomber7'
+}
+
+eclipse.project.name = 'bomber7-parent'

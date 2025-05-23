@@ -36,6 +36,20 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
+    - name: Run Checkstyle
+      run: ./gradlew checkstyleMain checkstyleTest
+
+    - name: Upload Checkstyle report as artifact
+      if: always() # Even if the checkstyle fail
+      uses: actions/upload-artifact@v4
+      with:
+        name: checkstyle-report
+        path: |
+          **/build/reports/checkstyle/*.html
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew build
+
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
