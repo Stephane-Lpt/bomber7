@@ -1,6 +1,6 @@
 import java.util.List;
 
-public interface Model extends Observer {
+public interface Subject {
 
     List<Observer> getObservers();
 
@@ -14,7 +14,7 @@ public interface Model extends Observer {
     
     default void notifyObservers(){
         for (Observer observer : getObservers()) {
-            observer.refresh(Model.this);
+            observer.refresh(Subject.this);
         }
     }
 }

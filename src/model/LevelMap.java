@@ -1,8 +1,8 @@
-public class Map {
+public class LevelMap {
     
     private String fileName;
 
-    Map(String fileName) {
+    LevelMap(String fileName) {
         this.fileName = fileName;
         loadMap(fileName);
     }

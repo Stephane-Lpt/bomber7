@@ -5,9 +5,9 @@ public abstract class Character {
     private int life;
     private int speed;
     private String spriteFilePath;
-    private Map gameMap;
+    private LevelMap gameMap;
 
-    public Character(String name, int x_coord, int y_coord, int life, int speed, String spriteFilePath, Map gameMap) {
+    public Character(String name, int x_coord, int y_coord, int life, int speed, String spriteFilePath, LevelMap gameMap) {
         this.name = name;
         this.x_coord = x_coord;
         this.y_coord = y_coord;
@@ -26,7 +26,7 @@ public abstract class Character {
     }
 
 
-    private boolean checkMove(int x, int y, Map map){
+    private boolean checkMove(int x, int y, LevelMap map){
         //Check if the move is valid
         return true;
     }
