@@ -12,6 +12,7 @@ buildscript {
 }
 plugins {
   id "application"
+  id "checkstyle"
 }
 apply plugin: 'io.github.fourlastor.construo'
 
@@ -178,4 +179,12 @@ startScripts.classpath = project.tasks.jar.outputs.files
 
 if(enableGraalNative == 'true') {
   apply from: file("nativeimage.gradle")
+}
+
+checkstyle {
+    toolVersion = '10.12.7' // Specify your desired Checkstyle version
+    configFile = file('config/checkstyle/checkstyle.xml')
+    // You can set maxErrors and maxWarnings if needed
+    // maxErrors = 0
+    // maxWarnings = 0
 }
