@@ -1,5 +1,7 @@
+package com.bomber7.core.model;
+
 public class LevelMap {
-    
+
     private String fileName;
 
     LevelMap(String fileName) {

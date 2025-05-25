@@ -1,8 +1,8 @@
-package n7.bomber7.lwjgl3;
+package com.bomber7.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import n7.bomber7.Bomber7;
+import com.bomber7.core.Bomber7;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {

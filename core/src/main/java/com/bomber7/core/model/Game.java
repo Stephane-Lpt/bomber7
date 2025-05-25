@@ -1,3 +1,5 @@
+package com.bomber7.core.model;
+
 public class Game {
     // nbPlayers gotten through controller
     int nbPlayers;
@@ -14,5 +16,5 @@ public class Game {
         // Update game state
         // Perhaps pulled from game engine ?
         return 0;
-    } 
+    }
 }

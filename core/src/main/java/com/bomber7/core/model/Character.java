@@ -1,3 +1,5 @@
+package com.bomber7.core.model;
+
 public abstract class Character {
     private String name;
     private int x_coord;
