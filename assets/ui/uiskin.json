@@ -1,0 +1,12 @@
+{
+  "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+    "jersey": { "file": "../fonts/jersey.fnt" }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+    "default": {
+      "up": "button.9",
+      "down": "button.9",
+      "font": "jersey"
+    }
+  }
+}
