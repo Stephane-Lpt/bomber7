@@ -8,17 +8,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.bomber7.core.BomberGame;
+import com.bomber7.core.BomberResources;
 
 public abstract class BomberScreen implements Screen {
-    protected Skin skin;
     protected Game game;
     protected Stage stage;
-    protected I18NBundle bundle;
+    protected BomberResources resources;
 
     public BomberScreen(Game game) {
         this.game = game;
-        this.skin = ((BomberGame) game).sharedSkin;
-        this.bundle = ((BomberGame) game).bundle;
+        this.resources = ((BomberGame) game).resources;
         initializeStage();
     }
 

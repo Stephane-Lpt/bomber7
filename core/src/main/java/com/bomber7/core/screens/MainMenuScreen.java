@@ -1,12 +1,12 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.bomber7.core.components.BomberTextButton;
 
 public class MainMenuScreen extends BomberScreen {
     private Image backgroundImage;
@@ -19,7 +19,7 @@ public class MainMenuScreen extends BomberScreen {
         super(game);
 
         initView();
-        bindButtons();
+        initController();
     }
 
     public void initView() {
@@ -32,20 +32,20 @@ public class MainMenuScreen extends BomberScreen {
             Gdx.graphics.getHeight() * 0.6f
         );
 
-        playButton = new TextButton(bundle.get("play"), skin);
+        playButton = new BomberTextButton(resources.bundle.get("play"), resources);
         playButton.pack();
         playButton.setPosition(
             Gdx.graphics.getWidth() / 2f - 100,
             Gdx.graphics.getHeight() / 2f
         );
 
-        optionsButton = new TextButton(bundle.get("options"), skin);
+        optionsButton = new BomberTextButton(resources.bundle.get("options"), resources);
         optionsButton.setPosition(
             Gdx.graphics.getWidth() / 2f - 100,
             Gdx.graphics.getHeight() / 2f - 70
         );
 
-        quitButton = new TextButton(bundle.get("quit"), skin);
+        quitButton = new BomberTextButton(resources.bundle.get("quit"), resources);
         quitButton.setPosition(
             Gdx.graphics.getWidth() / 2f - 100,
             Gdx.graphics.getHeight() / 2f - 140
@@ -58,7 +58,10 @@ public class MainMenuScreen extends BomberScreen {
         stage.addActor(quitButton);
     }
 
-    public void bindButtons() {
+    public void initController() {
+        playButton.addListener(e -> {
+            return false;
+        });
     }
 
     @Override

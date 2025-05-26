@@ -1,18 +1,13 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.I18NBundle;
 import com.bomber7.core.screens.MainMenuScreen;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's Game class.
  */
 public class BomberGame extends Game {
-    public Skin sharedSkin;
-    public I18NBundle bundle;
+    public BomberResources resources;
 
     /**
      * Called once when the application is created.
@@ -20,11 +15,7 @@ public class BomberGame extends Game {
      */
     @Override
     public void create () {
-        sharedSkin = new Skin(
-            Gdx.files.internal("ui/uiskin.json"),
-            new TextureAtlas(Gdx.files.internal("ui/uiskin.atlas"))
-        );
-        bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/french"));
+        resources = new BomberResources();
         setScreen(new MainMenuScreen(this));
     }
 
@@ -34,7 +25,7 @@ public class BomberGame extends Game {
      */
     @Override
     public void dispose() {
-        sharedSkin.dispose();
+        resources.dispose();
         super.dispose();
     }
 }
