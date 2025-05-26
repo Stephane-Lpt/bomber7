@@ -1,12 +1,27 @@
 {
+  "com.badlogic.gdx.graphics.Color": {
+    "gold":     { "hex": "FEC202FF" },
+    "lightGold":     { "hex": "FEDA67FF" },
+    "darkGold": { "hex": "E1AB00FF" },
+
+    "white":    { "hex": "FCFDEBFF" },
+
+    "red":      { "hex": "F91931FF" },
+    "darkRed":  { "hex": "B70B1EFF  " },
+
+    "darkBlue": { "hex": "0A1646FF" }
+  },
   "com.badlogic.gdx.graphics.g2d.BitmapFont": {
-    "jersey": { "file": "../fonts/jersey.fnt" }
+    "pixelify-regular": { "file": "../fonts/pixelify-sans-regular.fnt" },
+    "pixelify-bold": { "file": "../fonts/pixelify-sans-bold.fnt" }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {
-      "up": "button.9",
-      "down": "button.9",
-      "font": "jersey"
+      "up": "button.light.9",
+      "over": "button.dark.9",
+      "down": "button.white.9",
+      "font": "pixelify-regular",
+      "fontColor": "white"
     }
   }
 }
