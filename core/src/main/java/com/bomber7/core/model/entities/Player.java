@@ -1,6 +1,6 @@
-package n7.bomber7.model.entities;
+package com.bomber7.core.model.entities;
 
-import n7.bomber7.model.exception.*;
+import com.bomber7.core.model.exception.IllegalBombOperationException;
 
 /**
  * Classe Player
@@ -10,9 +10,9 @@ import n7.bomber7.model.exception.*;
 public abstract class Player extends Character {
 
     protected final Integer MINBOMB = 1;
-    protected final Integer MAXBOMB = 3; 
+    protected final Integer MAXBOMB = 3;
     protected final Integer MINRADIUSBOMB = 1;
-    protected final Integer MAXRADIUSBOMB = 10; 
+    protected final Integer MAXRADIUSBOMB = 10;
     private Integer nbBomb;
     private Integer powerBomb;
     private String typeBomb;
@@ -56,7 +56,7 @@ public abstract class Player extends Character {
 
     /**
      * Player number of bomb playable setter
-     * @param newNbBomb The new nbBomb value 
+     * @param newNbBomb The new nbBomb value
      * @throws IllegalBombSetException If new number of bomb is >= 0
      */
     public void setNbBomb(int newNbBomb){
@@ -82,7 +82,7 @@ public abstract class Player extends Character {
 
     /**
      * Player type of bomb playable setter
-     * @param newTypeBomb The new type of bomb 
+     * @param newTypeBomb The new type of bomb
      * @throws IllegalBombSetException If new type of bomb is not an instance of
      */
     public void setTypeBomb(String newTypeBomb){
