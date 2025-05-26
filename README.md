@@ -1,6 +1,9 @@
 # bomber7
 
-Projet long
+## Javadoc: 
+https://stephane-lpt.github.io/bomber7/
+
+## Projet long
 
 Nous vous proposons de définir vous-mêmes le sujet du projet long sur lequel vous allez travailler. Vous trouverez ici les principales consignes et les jalons de ce projet.
 
