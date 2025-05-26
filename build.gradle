@@ -66,6 +66,12 @@ configure(subprojects) {
     options.incremental = true
   }
 
+<<<<<<< HEAD
+=======
+subprojects {
+  version = "$projectVersion"
+  ext.appName = 'test'
+>>>>>>> 8fbcd1a (update methods)
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
@@ -76,9 +82,13 @@ configure(subprojects) {
   }
 }
 
+<<<<<<< HEAD
 subprojects {
   version = "$projectVersion"
   ext.appName = 'bomber7'
 }
 
 eclipse.project.name = 'bomber7-parent'
+=======
+eclipse.project.name = 'test' + '-parent'
+>>>>>>> 8fbcd1a (update methods)
