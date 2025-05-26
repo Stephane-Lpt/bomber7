@@ -6,13 +6,45 @@ package com.bomber7.core.model;
  * an associated sprite, and is placed on a game map.
  */
 public abstract class Character {
+
+    /**
+     * The name of the character.
+     */
     private String name;
+
+    /**
+     * The horizontal position of the character on the map.
+     */
     private int xCoord;
+
+    /**
+     * The vertical position of the character on the map.
+     */
     private int yCoord;
+
+    /**
+     * The current life points of the character.
+     */
     private int life;
+
+    /**
+     * The movement speed of the character.
+     */
     private int speed;
+
+    /**
+     * The file path to the character's sprite image.
+     */
     private String spriteFilePath;
+
+    /**
+     * The game map on which the character is located.
+     */
     private LevelMap gameMap;
+
+
+
+
 
     /**
      * Constructs a new character with the specified attributes.
