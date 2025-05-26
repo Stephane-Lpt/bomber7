@@ -61,6 +61,7 @@ jobs:
         find . -name javadoc
 
     - name: Deploy JavaDoc 🚀
+      if: github.ref == 'refs/heads/main'
       uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
