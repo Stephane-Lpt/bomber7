@@ -30,29 +30,26 @@ public abstract class Player extends Character {
 
     /**
      * Player number of bomb playable getter
-     * @return tmpNbBomb Current number of bomb playable
+     * @return nbBomb Current number of bomb playable
      */
     public Integer getNbBomb(){
-        Integer tmpNbBomb = this.nbBomb;
-        return tmpNbBomb;
+        return this.nbBomb;
     }
 
     /**
      * Player bomb power getter
-     * @return tmpNbBomb Current power of a bomb
+     * @return powerBomb Current power of a bomb
      */
     public Integer getPowerBomb(){
-        Integer tmpPowerBomb = this.powerBomb;
-        return tmpPowerBomb;
+        return this.powerBomb;
     }
 
     /**
      * Player number of bomb playable getter
-     * @return tmpNbBomb Current number of bomb playable
+     * @return typeBomb Current number of bomb playable
      */
     public String getTypeBomb(){
-        String tmpTypeBomb = this.typeBomb;
-        return tmpTypeBomb;
+        return this.typeBomb;
     }
 
     /* ------[SETTERS]------------------------------------ */
@@ -60,26 +57,26 @@ public abstract class Player extends Character {
     /**
      * Player number of bomb playable setter
      * @param newNbBomb The new nbBomb value 
-     * @throws IllegalBombSetException If new number of bomb is not in range of MIN-MAX value
+     * @throws IllegalBombSetException If new number of bomb is >= 0
      */
     public void setNbBomb(int newNbBomb){
-        if ((newNbBomb >= this.MINBOMB) && (newNbBomb <= this.MAXBOMB)){
+        if (newNbBomb >= 0) {
             this.nbBomb = newNbBomb;
         } else {
-            throw new IllegalBombOperationException(this.MINLIFE + "<= nb_bomb_to_set <=" + this.MAXLIFE);
+            throw new IllegalBombOperationException("nb_bomb_to_set >= 0");
         }
     }
 
     /**
      * Bomb Power Hit Range setter
      * @param newPowerBomb The new nbBomb range of power
-     * @throws IllegalBombSetException If new power of bomb is not in range of MIN-MAX value
+     * @throws IllegalBombSetException If new power of bomb is >= 1
      */
     public void setPowerBomb(int newPowerBomb){
-        if ((newPowerBomb >= this.MINRADIUSBOMB) && (newPowerBomb <= this.MAXRADIUSBOMB)){
+        if (newPowerBomb >= 1) {
             this.powerBomb = newPowerBomb;
         } else {
-            throw new IllegalBombOperationException(this.MINRADIUSBOMB + "<= bomb_power_to_set <=" + this.MAXRADIUSBOMB);
+            throw new IllegalBombOperationException("bomb_power_to_set >= 1");
         }
     }
 
