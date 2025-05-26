@@ -12,12 +12,6 @@ public class TestHellos {
     }
 
     @Test
-    void testHello2() {
-        String msg = "Hello";
-        assertEquals("Hello2", msg);
-    }
-
-    @Test
     void testHello3() {
         String msg = "Hello";
         assertEquals("Hello", msg);
