@@ -35,9 +35,16 @@ public class Bomber7 extends Game {
      */
     @Override
     public void render() {
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+        float red = 0.15f;
+        float green = 0.15f;
+        float blue = 0.2f;
+        float alpha = 1f;
+        // Ensure the screen is cleared with a specific color before drawing.
+        ScreenUtils.clear(red, green, blue, alpha);
         batch.begin();
-        batch.draw(image, 140, 210);
+        int widthImage = 140;
+        int heightImage = 210;
+        batch.draw(image, widthImage, heightImage);
         batch.end();
     }
 

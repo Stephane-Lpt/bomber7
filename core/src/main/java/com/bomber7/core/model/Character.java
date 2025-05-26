@@ -63,8 +63,7 @@ public abstract class Character {
                      int life,
                      int speed,
                      String spriteFilePath,
-                     LevelMap gameMap)
-    {
+                     LevelMap gameMap) {
         this.name = name;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
