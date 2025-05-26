@@ -18,7 +18,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -54,6 +54,7 @@ jobs:
       run: ./gradlew javadoc
 
     - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
