@@ -9,7 +9,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "**" ]
   pull_request:
     branches: [ "main" ]
 
@@ -18,7 +18,7 @@ jobs:
 
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -50,6 +50,26 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
+    - name: Generate Javadoc
+      run: ./gradlew javadoc
+
+    - name: Debug Javadoc output
+      run: |
+        echo "Contenu de ./build/docs :"
+        ls -R ./build/docs || echo "Aucun fichier trouvé"
+        echo "Contenu global :"
+        find . -name javadoc
+
+    - name: Deploy JavaDoc 🚀
+      if: github.ref == 'refs/heads/main'
+      uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        javadoc-branch: javadoc
+        java-version: 8
+        target-folder: .
+        project: gradle
+        javadoc-source-folder: core/build/docs/javadoc
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
