@@ -80,6 +80,16 @@ jobs:
       with:
         name: junit-test-report
         path: core/build/reports/tests/test
+
+    - name: Deploy JUnit Report to GitHub Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: reports
+        publish_dir: core/build/reports/tests/test
+        destination_dir: ${{ github.ref_name }}
+
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
