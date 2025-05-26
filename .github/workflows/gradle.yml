@@ -47,15 +47,6 @@ jobs:
         path: |
           **/build/reports/checkstyle/*.html
 
-    - name: Report Checkstyle in GitHub UI
-      if: always()
-      uses: dorny/test-reporter@v1
-      with:
-        name: Checkstyle Report
-        path: '**/build/reports/checkstyle/*.xml'  # Not HTML — must be XML!
-        reporter: checkstyle
-        fail-on-error: false
-
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
