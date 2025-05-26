@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.bomber7.core"},{"l":"com.bomber7.core.model"}];updateSearchResults();
