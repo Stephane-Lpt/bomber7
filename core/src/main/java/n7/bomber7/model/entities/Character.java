@@ -9,15 +9,12 @@ import n7.bomber7.model.exception.*;
  */
 public abstract class Character {
 
-    protected final Integer MINLIFE = 1;
-    protected final Integer MAXLIFE = 3;
-    protected final Integer MINSPEED = 1;
-    protected final Integer MAXSPEED = 5;
     private final String name;
     private int speed;
     private int life;
     private int x;
     private int y;
+    private Boolean isAlive = true;
 
     /**
      * Character Constructor
@@ -35,8 +32,7 @@ public abstract class Character {
      * @return tmpName Current name
      */
     public String getName(){
-        String tmpName = this.name;
-        return tmpName;
+        return this.name;
     }
 
     /**
@@ -44,8 +40,7 @@ public abstract class Character {
      * @return tmpSpeed Current speed
      */
     public Integer getSpeed(){
-        int tmpSpeed = this.speed;
-        return tmpSpeed;
+        return this.speed;
     }
 
     /**
@@ -53,8 +48,7 @@ public abstract class Character {
      * @return tmpLife Current life
      */
     public Integer getLife(){
-        int tmpLife = this.life;
-        return tmpLife;
+        return this.life;
     }
 
     /**
@@ -62,8 +56,7 @@ public abstract class Character {
      * @return tmpX Current X-position
      */
     public Integer getPositionX(){
-        int tmpX = this.x;
-        return tmpX;
+        return this.x;
     }
 
     /**
@@ -71,8 +64,7 @@ public abstract class Character {
      * @return tmpY Current Y-position
      */
     public Integer getPositionY(){
-        int tmpY = this.y;
-        return tmpY;
+        return this.y;
     }
 
     /* ------[SETTERS]------------------------------------ */
@@ -83,25 +75,37 @@ public abstract class Character {
      * @throws IllegalSpeedOperationException If new speed value not in range of MIN-MAX value
      */
     public void setSpeed(int newSpeed){
-        if ((newSpeed >= this.MINSPEED) && (newSpeed <= this.MAXSPEED)){
-            this.life = newSpeed;
-        } else {
-            throw new IllegalSpeedOperationException(this.MINLIFE + "<= speed_value_to_set <=" + this.MAXLIFE);
+        if (newSpeed > 0){
+            this.speed = newSpeed;
+        }
+        else {
+            throw new IllegalSpeedOperationException("Speed value must be positive.");
         }
     }
 
+    
     /**
-     * Character life setter
-     * @param newLife The new life value of character
-     * @throws IllegalLifeOperationException If new life value not in range of MIN-MAX value
+     * Increases the character's life by one.
+     * This method increments the current life count of the character by one.
      */
-    public void setLife(int newLife){
-        if ((newLife >= this.MINLIFE) && (newLife <= this.MAXLIFE)){
-            this.life = newLife;
-        } else {
-            throw new IllegalLifeOperationException(this.MINLIFE + "<= life_value_to_set <=" + this.MAXLIFE);
+    public void addOneLife() {
+        this.life++;
+    }   
+
+    /**
+     * Decreases the character's life by one.
+     * This method decrements the current life count of the character by one.
+     * If the life count reaches zero, the character is marked as not alive.
+     */
+    public void removeOneLife() {
+        if (this.life > 0) {
+            this.life--;
+        }
+        if (this.life == 0) {
+            this.isAlive = false;
         }
     }
+
 
     /**
      * Character current X-Axis position setter 
