@@ -67,11 +67,17 @@ configure(subprojects) {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 subprojects {
   version = "$projectVersion"
   ext.appName = 'test'
 >>>>>>> 8fbcd1a (update methods)
+=======
+subprojects {
+  version = "$projectVersion"
+  ext.appName = 'test'
+>>>>>>> 23b2787 (update methods)
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
@@ -83,6 +89,7 @@ subprojects {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 subprojects {
   version = "$projectVersion"
   ext.appName = 'bomber7'
@@ -92,3 +99,6 @@ eclipse.project.name = 'bomber7-parent'
 =======
 eclipse.project.name = 'test' + '-parent'
 >>>>>>> 8fbcd1a (update methods)
+=======
+eclipse.project.name = 'test' + '-parent'
+>>>>>>> 23b2787 (update methods)
