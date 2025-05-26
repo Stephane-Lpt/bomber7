@@ -10,7 +10,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
  * Handles the initialization, rendering, and cleanup of game resources.
  */
 public class Bomber7 extends Game {
+    /**
+     * SpriteBatch is used for drawing 2D images and sprites.
+     */
     private SpriteBatch batch;
+    /**
+     * Texture represents a 2D image that can be drawn on the screen.
+     */
     private Texture image;
 
     /**

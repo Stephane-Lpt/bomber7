@@ -7,8 +7,8 @@ package com.bomber7.core.model;
  */
 public abstract class Character {
     private String name;
-    private int x_coord;
-    private int y_coord;
+    private int xCoord;
+    private int yCoord;
     private int life;
     private int speed;
     private String spriteFilePath;
@@ -18,17 +18,24 @@ public abstract class Character {
      * Constructs a new character with the specified attributes.
      *
      * @param name            the name of the character
-     * @param x_coord         the initial x-coordinate
-     * @param y_coord         the initial y-coordinate
+     * @param xCoord         the initial x-coordinate
+     * @param yCoord         the initial y-coordinate
      * @param life            the initial life points
      * @param speed           the movement speed of the character
      * @param spriteFilePath  the file path to the character's sprite image
      * @param gameMap         the map the character is placed on
      */
-    public Character(String name, int x_coord, int y_coord, int life, int speed, String spriteFilePath, LevelMap gameMap) {
+    public Character(String name,
+                     int xCoord,
+                     int yCoord,
+                     int life,
+                     int speed,
+                     String spriteFilePath,
+                     LevelMap gameMap)
+    {
         this.name = name;
-        this.x_coord = x_coord;
-        this.y_coord = y_coord;
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
         this.life = life;
         this.speed = speed;
         this.spriteFilePath = spriteFilePath;
@@ -43,9 +50,9 @@ public abstract class Character {
      * @param y  the change in y-coordinate
      */
     public void move(int x, int y) {
-        if(checkMove(x, y, this.gameMap)) {
-            this.x_coord += x;
-            this.y_coord += y;
+        if (checkMove(x, y, this.gameMap)) {
+            this.xCoord += x;
+            this.yCoord += y;
         }
     }
 
@@ -57,7 +64,7 @@ public abstract class Character {
      * @param map  the map to validate the movement against
      * @return true if the move is allowed, false otherwise
      */
-    private boolean checkMove(int x, int y, LevelMap map){
+    private boolean checkMove(int x, int y, LevelMap map) {
         //Check if the move is valid
         return true;
     }
@@ -77,7 +84,7 @@ public abstract class Character {
      * @return the x-coordinate
      */
     public int getX() {
-        return x_coord;
+        return xCoord;
     }
 
     /**
@@ -86,7 +93,7 @@ public abstract class Character {
      * @return the y-coordinate
      */
     public int getY() {
-        return y_coord;
+        return yCoord;
     }
 
     /**
