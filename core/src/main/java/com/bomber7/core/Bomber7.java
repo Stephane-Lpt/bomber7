@@ -11,13 +11,35 @@ import com.badlogic.gdx.utils.ScreenUtils;
  */
 public class Bomber7 extends Game {
 
+    /**
+     * Default RED color for the screen background.
+     */
     private static final float RED = 0.15f;
+
+    /**
+     * Default GREEN color for the screen background.
+     */
     private static final float GREEN = 0.15f;
+
+    /**
+     * Default BLUE color for the screen background.
+     */
     private static final float BLUE = 0.2f;
+
+    /**
+     * Default alpha value for the screen background, representing full opacity.
+     */
     private static final float ALPHA_OPAQUE = 1f;
 
-    private static final int widthLogo = 140;
-    private static final int heightLogo = 210;
+    /**
+     * Width of the logo image to be drawn on the screen.
+     */
+    private static final int WIDTH_LOGO = 140;
+
+    /**
+     * Height of the logo image to be drawn on the screen.
+     */
+    private static final int HEIGHT_LOGO = 210;
 
     /**
      * SpriteBatch is used for drawing 2D images and sprites.
@@ -47,7 +69,7 @@ public class Bomber7 extends Game {
         // Ensure the screen is cleared with a specific color before drawing.
         ScreenUtils.clear(RED, GREEN, BLUE, ALPHA_OPAQUE);
         batch.begin();
-        batch.draw(image, widthLogo, heightLogo);
+        batch.draw(image, WIDTH_LOGO, HEIGHT_LOGO);
         batch.end();
     }
 

@@ -5,8 +5,10 @@ package com.bomber7.core.model;
  * Manages the number of players, map loading, and game state updates.
  */
 public class Game {
+
     /**
-     * The number of players gotten through controller.
+     * The number of players in the game.
+     * This value is used to initialize the game state and manage player interactions.
      */
     private int nbPlayers;
     /**
