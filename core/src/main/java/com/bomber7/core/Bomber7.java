@@ -10,6 +10,15 @@ import com.badlogic.gdx.utils.ScreenUtils;
  * Handles the initialization, rendering, and cleanup of game resources.
  */
 public class Bomber7 extends Game {
+
+    private static final float RED = 0.15f;
+    private static final float GREEN = 0.15f;
+    private static final float BLUE = 0.2f;
+    private static final float ALPHA_OPAQUE = 1f;
+
+    private static final int widthLogo = 140;
+    private static final int heightLogo = 210;
+
     /**
      * SpriteBatch is used for drawing 2D images and sprites.
      */
@@ -35,16 +44,10 @@ public class Bomber7 extends Game {
      */
     @Override
     public void render() {
-        float red = 0.15f;
-        float green = 0.15f;
-        float blue = 0.2f;
-        float alpha = 1f;
         // Ensure the screen is cleared with a specific color before drawing.
-        ScreenUtils.clear(red, green, blue, alpha);
+        ScreenUtils.clear(RED, GREEN, BLUE, ALPHA_OPAQUE);
         batch.begin();
-        int widthImage = 140;
-        int heightImage = 210;
-        batch.draw(image, widthImage, heightImage);
+        batch.draw(image, widthLogo, heightLogo);
         batch.end();
     }
 
