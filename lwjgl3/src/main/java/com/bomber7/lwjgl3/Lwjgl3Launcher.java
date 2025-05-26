@@ -7,6 +7,9 @@ import com.bomber7.core.BomberGame;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
+    private static final int DESKTOP_MIN_WIDTH = 1024;
+    private static final int DESKTOP_MIN_HEIGHT = 768;
+
     public static void main(String[] args) {
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
         createApplication();
@@ -35,6 +38,12 @@ public class Lwjgl3Launcher {
 
 //        configuration.setWindowedMode(640, 480);
         configuration.setWindowedMode(displayMode.width * 2/3, displayMode.height * 2/3);
+        configuration.setWindowSizeLimits(
+            DESKTOP_MIN_WIDTH,
+            DESKTOP_MIN_HEIGHT,
+                displayMode.width,
+                displayMode.height
+        );
 //        configuration.setWindowIcon();
 
         return configuration;

@@ -6,7 +6,7 @@ import com.bomber7.core.screens.MainMenuScreen;
 /**
  * Main class of the Bomber7 game, extending LibGDX's Game class.
  */
-public class BomberGame extends Game {
+public class    BomberGame extends Game {
     public BomberResources resources;
 
     /**

@@ -1,73 +1,86 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Scaling;
 import com.bomber7.core.components.BomberTextButton;
 
 public class MainMenuScreen extends BomberScreen {
-    private Image backgroundImage;
-    private Image logoImage;
+    private final float LOGO_WIDTH = 500f * 0.6f;
+    private final float LOGO_HEIGHT = LOGO_WIDTH * 0.6f;
+    
     private TextButton playButton;
     private TextButton optionsButton;
     private TextButton quitButton;
 
     public MainMenuScreen(Game game) {
         super(game);
-
         initView();
         initController();
     }
 
     public void initView() {
-        backgroundImage = new Image(new Texture("images/background.png"));
+        Table table = new Table();
+        table.setDebug(true);
+        table.setFillParent(true);
+
+        Image backgroundImage = new Image(new Texture("images/background.png"));
         backgroundImage.setFillParent(true);
 
-        logoImage = new Image(new Texture("images/bomber7.png"));
-        logoImage.setPosition(
-            Gdx.graphics.getWidth() / 2f - logoImage.getWidth() / 2,
-            Gdx.graphics.getHeight() * 0.6f
-        );
-
+        Image logoImage = new Image(new Texture("images/logo.png"));
+        logoImage.setScaling(Scaling.fit);
         playButton = new BomberTextButton(resources.bundle.get("play"), resources);
-        playButton.pack();
-        playButton.setPosition(
-            Gdx.graphics.getWidth() / 2f - 100,
-            Gdx.graphics.getHeight() / 2f
-        );
-
         optionsButton = new BomberTextButton(resources.bundle.get("options"), resources);
-        optionsButton.setPosition(
-            Gdx.graphics.getWidth() / 2f - 100,
-            Gdx.graphics.getHeight() / 2f - 70
-        );
-
         quitButton = new BomberTextButton(resources.bundle.get("quit"), resources);
-        quitButton.setPosition(
-            Gdx.graphics.getWidth() / 2f - 100,
-            Gdx.graphics.getHeight() / 2f - 140
-        );
 
-        stage.addActor(logoImage);
-        stage.addActor(backgroundImage);
-        stage.addActor(playButton);
-        stage.addActor(optionsButton);
-        stage.addActor(quitButton);
+        table.add(logoImage)
+            .width(this.LOGO_WIDTH)
+            .height(this.LOGO_HEIGHT)
+            .spaceBottom(this.COMPONENT_SPACING * 2f)
+            .fillX()
+            .row();
+        table.add(playButton)
+            .width(this.BUTTON_WIDTH)
+            .fillX()
+            .height(this.BUTTON_HEIGHT)
+            .spaceBottom(this.COMPONENT_SPACING)
+            .row();
+        table.add(optionsButton)
+            .width(this.BUTTON_WIDTH)
+            .height(this.BUTTON_HEIGHT)
+            .spaceBottom(this.COMPONENT_SPACING)
+            .row();
+        table.add(quitButton)
+            .width(this.BUTTON_WIDTH)
+            .height(this.BUTTON_HEIGHT)
+            .row();
+
+        stage.addActor(table);
     }
 
     public void initController() {
         playButton.addListener(e -> {
             return false;
         });
+
+        quitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        super.render(delta);
         stage.act(delta);
         stage.draw();
     }
