@@ -61,7 +61,7 @@ jobs:
         find . -name javadoc
 
     - name: Deploy JavaDoc 🚀
-      if: github.ref == 'refs/heads/main'
+#      if: github.ref == 'refs/heads/main'
       uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -82,7 +82,7 @@ jobs:
         path: core/build/reports/tests/test
 
     - name: Deploy JUnit Test Report to GitHub Pages 📄
-      if: github.ref == 'refs/heads/main'
+#      if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
