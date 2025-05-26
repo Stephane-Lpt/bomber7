@@ -1,7 +1,7 @@
-package n7.bomber7.model.exception;
+package com.bomber7.core.model.exception;
 
 public class IllegalBombOperationException extends RuntimeException {
-    
+
     /**
 	 * IllegalBombOperationException Exception constructor
 	 * @param message

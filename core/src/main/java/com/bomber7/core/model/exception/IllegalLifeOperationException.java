@@ -1,4 +1,4 @@
-package n7.bomber7.model.exception;
+package com.bomber7.core.model.exception;
 
 /**
  * IllegalLifeSetException is raised if illegal value for life is tried to be set.
@@ -6,7 +6,7 @@ package n7.bomber7.model.exception;
  * @version Sprint n°1
  */
 public class IllegalLifeOperationException extends RuntimeException {
-    
+
     /**
 	 * IllegalLifeSetException Exception constructor
 	 * @param message
