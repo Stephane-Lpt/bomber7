@@ -6,7 +6,7 @@ package com.bomber7.core.model;
  */
 public class Game {
     /**
-     * The number of players gotten through controller
+     * The number of players gotten through controller.
      */
     private int nbPlayers;
     /**
