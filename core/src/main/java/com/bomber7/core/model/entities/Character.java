@@ -1,6 +1,7 @@
-package n7.bomber7.model.entities;
+package com.bomber7.core.model.entities;
 
-import n7.bomber7.model.exception.*;
+import com.bomber7.core.model.exception.IllegalPositionOperationException;
+import com.bomber7.core.model.exception.IllegalSpeedOperationException;
 
 /**
  * Classe Charater
@@ -36,7 +37,7 @@ public abstract class Character {
     }
 
     /**
-     * Character Ccurrent speed getter 
+     * Character Ccurrent speed getter
      * @return tmpSpeed Current speed
      */
     public Integer getSpeed(){
@@ -44,7 +45,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current life getter 
+     * Character current life getter
      * @return tmpLife Current life
      */
     public Integer getLife(){
@@ -52,7 +53,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current X-Axis position getter 
+     * Character current X-Axis position getter
      * @return tmpX Current X-position
      */
     public Integer getPositionX(){
@@ -60,7 +61,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current Y-Axis position getter 
+     * Character current Y-Axis position getter
      * @return tmpY Current Y-position
      */
     public Integer getPositionY(){
@@ -83,14 +84,14 @@ public abstract class Character {
         }
     }
 
-    
+
     /**
      * Increases the character's life by one.
      * This method increments the current life count of the character by one.
      */
     public void addOneLife() {
         this.life++;
-    }   
+    }
 
     /**
      * Decreases the character's life by one.
@@ -108,8 +109,8 @@ public abstract class Character {
 
 
     /**
-     * Character current X-Axis position setter 
-     * @param newX The new x-position to set 
+     * Character current X-Axis position setter
+     * @param newX The new x-position to set
      * @throws IllegalPositionOperationException If character is moving of more than 1 square
      */
     public void setPositionX(int newX){
@@ -121,7 +122,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current Y-Axis position setter 
+     * Character current Y-Axis position setter
      * @param newY The new y-position to set
      * @throws IllegalPositionOperationException If character is moving of more than 1 square
      */
@@ -135,7 +136,7 @@ public abstract class Character {
 
     /* ------[OTHER]------------------------------------ */
 
-    /** 
+    /**
      * Moving the character on the map
      * @param x X-Axis position value to set
      * @param y Y-Axis position value to set
