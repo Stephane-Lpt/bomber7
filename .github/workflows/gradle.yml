@@ -52,6 +52,15 @@ jobs:
 
     - name: Generate Javadoc
       run: ./gradlew javadoc
+
+    - name: Deploy JavaDoc 🚀
+      uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        javadoc-branch: javadoc
+        java-version: 8
+        target-folder: javadoc
+        project: gradle
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
@@ -63,19 +72,6 @@ jobs:
     # - name: Build with Gradle 8.9
     #   run: gradle build
 
-  publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write  # if you have a protection rule on your repository, you'll need to give write permission to the workflow.
-    steps:
-      - name: Deploy JavaDoc 🚀
-        uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          javadoc-branch: javadoc
-          java-version: 17
-          target-folder: javadoc
-          project: gradle
   dependency-submission:
 
     runs-on: ubuntu-latest
