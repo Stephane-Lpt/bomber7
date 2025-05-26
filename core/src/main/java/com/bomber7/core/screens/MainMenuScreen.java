@@ -14,7 +14,7 @@ import com.bomber7.core.components.BomberTextButton;
 public class MainMenuScreen extends BomberScreen {
     private final float LOGO_WIDTH = 500f * 0.6f;
     private final float LOGO_HEIGHT = LOGO_WIDTH * 0.6f;
-    
+
     private TextButton playButton;
     private TextButton optionsButton;
     private TextButton quitButton;
@@ -75,23 +75,5 @@ public class MainMenuScreen extends BomberScreen {
                 Gdx.app.exit();
             }
         });
-
-    }
-
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-        stage.act(delta);
-        stage.draw();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void dispose() {
-        super.dispose();
     }
 }

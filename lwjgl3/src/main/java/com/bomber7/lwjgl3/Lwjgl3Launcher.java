@@ -9,6 +9,7 @@ import com.bomber7.core.BomberGame;
 public class Lwjgl3Launcher {
     private static final int DESKTOP_MIN_WIDTH = 1024;
     private static final int DESKTOP_MIN_HEIGHT = 768;
+    private static final String APPLICATION_NAME = "Bomber7";
 
     public static void main(String[] args) {
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
@@ -23,7 +24,7 @@ public class Lwjgl3Launcher {
         Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
         Graphics.DisplayMode displayMode = Lwjgl3ApplicationConfiguration.getDisplayMode();
 
-        configuration.setTitle("bomber7");
+        configuration.setTitle(APPLICATION_NAME);
 
         //// Vsync limits the frames per second to what your hardware can display, and helps eliminate
         //// screen tearing. This setting doesn't always work on Linux, so the line after is a safeguard.

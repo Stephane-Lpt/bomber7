@@ -1,11 +1,11 @@
 uiskin.png
-size: 1992, 114
+size: 714, 377
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 button.dark.9
   rotate: false
-  xy: 0, 0
+  xy: 50, 0
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -13,7 +13,7 @@ button.dark.9
   index: -1
 button.light.9
   rotate: false
-  xy: 664, 0
+  xy: 0, 114
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -21,9 +21,25 @@ button.light.9
   index: -1
 button.white.9
   rotate: false
-  xy: 1328, 0
+  xy: 0, 228
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
+  offset: 0, 0
+  index: -1
+slider.9
+  rotate: false
+  xy: 0, 342
+  size: 664, 35
+  split: 166, 166, 9, 9
+  orig: 664, 35
+  offset: 0, 0
+  index: -1
+slider.knob.9
+  rotate: false
+  xy: 0, 0
+  size: 50, 50
+  split: 13, 12, 13, 12
+  orig: 50, 50
   offset: 0, 0
   index: -1

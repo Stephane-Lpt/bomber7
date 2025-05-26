@@ -12,17 +12,20 @@ import com.bomber7.core.BomberResources;
 
 public abstract class BomberScreen implements Screen {
     protected final Float COMPONENT_SPACING = 50f;
+    protected final Float LABEL_PADDING = 10f;
     protected final Float BUTTON_HEIGHT = 80f;
+    protected final Float BUTTON_HEIGHT_SM = 60f;
     protected final Float BUTTON_WIDTH = 400f;
+    protected final Float BUTTON_WIDTH_SM = 300f;
 
     protected Color backgroundColor;
-    protected Game game;
+    protected BomberGame game;
     protected Stage stage;
     protected BomberResources resources;
 
     public BomberScreen(Game game) {
-        this.game = game;
-        this.resources = ((BomberGame) game).resources;
+        this.game = (BomberGame) game;
+        this.resources = this.game.resources;
         this.backgroundColor = resources.skin.getColor("darkBlue");
         initializeStage();
     }
@@ -36,11 +39,13 @@ public abstract class BomberScreen implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
-    public void resize(int with, int height) {
-
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
