@@ -53,6 +53,13 @@ jobs:
     - name: Generate Javadoc
       run: ./gradlew javadoc
 
+    - name: Debug Javadoc output
+      run: |
+        echo "Contenu de ./build/docs :"
+        ls -R ./build/docs || echo "Aucun fichier trouvé"
+        echo "Contenu global :"
+        find . -name javadoc
+
     - name: Deploy JavaDoc 🚀
       uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
       with:
