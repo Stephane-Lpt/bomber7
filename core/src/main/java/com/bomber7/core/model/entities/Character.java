@@ -1,7 +1,7 @@
 package com.bomber7.core.model.entities;
 
-import com.bomber7.core.model.exception.IllegalPositionOperationException;
-import com.bomber7.core.model.exception.IllegalSpeedOperationException;
+import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
+import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
 
 /**
  * Classe Charater
@@ -11,16 +11,17 @@ import com.bomber7.core.model.exception.IllegalSpeedOperationException;
 public abstract class Character {
 
     private final String name;
+    private boolean isAlive;
     private int speed;
     private int life;
     private int x;
     private int y;
-    private Boolean isAlive = true;
 
     /**
      * Character Constructor
      */
     public Character(String name, int x, int y){
+        this.isAlive = true;
         this.name = name;
         this.x = x;
         this.y = y;
@@ -30,7 +31,7 @@ public abstract class Character {
 
     /**
      * Character name getter
-     * @return tmpName Current name
+     * @return name Current name
      */
     public String getName(){
         return this.name;
@@ -38,7 +39,7 @@ public abstract class Character {
 
     /**
      * Character Ccurrent speed getter
-     * @return tmpSpeed Current speed
+     * @return speed Current speed
      */
     public Integer getSpeed(){
         return this.speed;
@@ -46,15 +47,30 @@ public abstract class Character {
 
     /**
      * Character current life getter
-     * @return tmpLife Current life
+     * @return life Current life
      */
     public Integer getLife(){
         return this.life;
     }
 
     /**
+     * Character current state of life
+     * @return boolean Player state of life
+     */
+    public boolean getIsAlive(){
+        if ((this.isAlive == true) && (this.life > 0)){
+            return true;
+        } else {
+            this.isAlive = false;
+            this.life = 0;
+            return false;
+        }
+
+    }
+
+    /**
      * Character current X-Axis position getter
-     * @return tmpX Current X-position
+     * @return x Current X-position
      */
     public Integer getPositionX(){
         return this.x;
@@ -62,7 +78,7 @@ public abstract class Character {
 
     /**
      * Character current Y-Axis position getter
-     * @return tmpY Current Y-position
+     * @return y Current Y-position
      */
     public Integer getPositionY(){
         return this.y;

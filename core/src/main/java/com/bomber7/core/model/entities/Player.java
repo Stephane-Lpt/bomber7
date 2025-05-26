@@ -1,6 +1,10 @@
 package com.bomber7.core.model.entities;
 
-import com.bomber7.core.model.exception.IllegalBombOperationException;
+import com.bomber7.core.model.exceptions.*;
+
+import java.util.List;
+
+import com.bomber7.core.model.bombs.*;
 
 /**
  * Classe Player
@@ -9,21 +13,16 @@ import com.bomber7.core.model.exception.IllegalBombOperationException;
  */
 public abstract class Player extends Character {
 
-    protected final Integer MINBOMB = 1;
-    protected final Integer MAXBOMB = 3;
-    protected final Integer MINRADIUSBOMB = 1;
-    protected final Integer MAXRADIUSBOMB = 10;
-    private Integer nbBomb;
-    private Integer powerBomb;
-    private String typeBomb;
-    private Integer nbBombDropped = 0;
+    private List<Bomb> droppedBombs;
+    private Bomb typeBomb;
+    private int nbBomb;
 
     /**
      * Player Constructor
      */
     public Player(String name, int x, int y){
         super(name, x, y);
-        this.nbBomb = this.MINBOMB;
+        this.nbBomb = 1;
     }
 
     /* ------[GETTERS]------------------------------------ */
@@ -37,19 +36,15 @@ public abstract class Player extends Character {
     }
 
     /**
-     * Player bomb power getter
-     * @return powerBomb Current power of a bomb
-     */
-    public Integer getPowerBomb(){
-        return this.powerBomb;
-    }
-
-    /**
      * Player number of bomb playable getter
      * @return typeBomb Current number of bomb playable
      */
-    public String getTypeBomb(){
+    public Bomb getTypeBomb(){
         return this.typeBomb;
+    }
+
+    public Integer getNbDroppdeBomb(){
+        return this.droppedBombs.size();
     }
 
     /* ------[SETTERS]------------------------------------ */
@@ -68,28 +63,62 @@ public abstract class Player extends Character {
     }
 
     /**
-     * Bomb Power Hit Range setter
-     * @param newPowerBomb The new nbBomb range of power
-     * @throws IllegalBombSetException If new power of bomb is >= 1
-     */
-    public void setPowerBomb(int newPowerBomb){
-        if (newPowerBomb >= 1) {
-            this.powerBomb = newPowerBomb;
-        } else {
-            throw new IllegalBombOperationException("bomb_power_to_set >= 1");
-        }
-    }
-
-    /**
      * Player type of bomb playable setter
      * @param newTypeBomb The new type of bomb
      * @throws IllegalBombSetException If new type of bomb is not an instance of
      */
-    public void setTypeBomb(String newTypeBomb){
-        if (/**(newTypeBomb instanceof Bomb)*/ newTypeBomb.equals(newTypeBomb)){
+    public void setTypeBomb(Bomb newTypeBomb){
+        boolean isValidBomb = false;
+        for (Bomb.BombType type : Bomb.BombType.values()) {
+            if (type.name().equals(newTypeBomb.getClass().getSimpleName())) {
+                isValidBomb = true;
+                break;
+            }
+        }
+        if (isValidBomb) {
             this.typeBomb = newTypeBomb;
         } else {
-            throw new IllegalBombOperationException(this.MINRADIUSBOMB + "<= bomb_power_to_set <=" + this.MAXRADIUSBOMB);
+            throw new IllegalBombOperationException("Invalid bomb type: " + newTypeBomb.getClass().getSimpleName());
+        }
+    }
+
+    /* ------[OTHER]------------------------------------ */
+
+    /**
+     * Allow the Player to drop a bomb
+     * @param bombToDrop Permit to identify wich
+     */
+    public boolean dropBomb(Bomb bombToDrop){
+        boolean isValidBomb = true;
+        for (Bomb bomb : droppedBombs) {
+            if (bomb.equals(bombToDrop)){
+                isValidBomb = false;
+            }
+        }
+        if(isValidBomb == true) {
+            droppedBombs.add(bombToDrop);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Allow the Player the timer of a bomb
+     * @param bombToDrop Permit to identify wich
+     */
+    public boolean activateBomb(Bomb bombToActivate){
+        boolean isActivated = false;
+        for (Bomb bomb : droppedBombs) {
+            if (bomb.equals(bombToActivate)){
+                isActivated = true;
+            }
+        }
+        if(isActivated == true) {
+            bombToActivate.setStatusBomb(isActivated);
+            return true;
+        } else {
+            return false;
         }
     }
 

@@ -1,4 +1,4 @@
-package com.bomber7.core.model.exception;
+package com.bomber7.core.model.exceptions;
 
 /**
  * IllegalLifeSetException is raised if illegal value for life is tried to be set.
