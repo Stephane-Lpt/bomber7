@@ -47,6 +47,15 @@ jobs:
         path: |
           **/build/reports/checkstyle/*.html
 
+    - name: Report Checkstyle in GitHub UI
+      if: always()
+      uses: dorny/test-reporter@v1
+      with:
+        name: Checkstyle Report
+        path: '**/build/reports/checkstyle/*.xml'  # Not HTML — must be XML!
+        reporter: checkstyle
+        fail-on-error: false
+
     - name: Build with Gradle Wrapper
       run: ./gradlew build
 
@@ -65,7 +74,7 @@ jobs:
       uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        javadoc-branch: gh-pages
+        javadoc-branch: javadoc
         java-version: 8
         target-folder: .
         project: gradle
@@ -80,15 +89,6 @@ jobs:
       with:
         name: junit-test-report
         path: core/build/reports/tests/test
-
-    - name: Deploy JUnit Report to GitHub Pages
-      if: always()
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: core/build/reports/tests/test
-        destination_dir: ${{ github.ref_name }}
 
     - name: Render JUnit Report in GitHub UI
       if: always()
