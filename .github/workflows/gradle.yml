@@ -61,13 +61,13 @@ jobs:
         find . -name javadoc
 
     - name: Deploy JavaDoc 🚀
-      if: always()
+      if: github.ref == 'refs/heads/main'
       uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        javadoc-branch: gh-pages
+        javadoc-branch: javadoc
         java-version: 8
-        target-folder: javadoc
+        target-folder: .
         project: gradle
         javadoc-source-folder: core/build/docs/javadoc
 
@@ -80,17 +80,6 @@ jobs:
       with:
         name: junit-test-report
         path: core/build/reports/tests/test
-
-    - name: Deploy JUnit Test Report to GitHub Pages 📄
-      if: always()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: core/build/reports/tests/test
-        destination_dir: tests
-        keep_files: true  # Keep existing files in the destination directory
-
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
