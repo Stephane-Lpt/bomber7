@@ -65,7 +65,7 @@ jobs:
       uses: MathieuSoysal/Javadoc-publisher.yml@v3.0.2
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        javadoc-branch: javadoc
+        javadoc-branch: gh-pages
         java-version: 8
         target-folder: .
         project: gradle
@@ -86,7 +86,7 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: reports
+        publish_branch: gh-pages
         publish_dir: core/build/reports/tests/test
         destination_dir: ${{ github.ref_name }}
 
