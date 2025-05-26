@@ -1,4 +1,4 @@
-package com.bomber7.core.model.exception;
+package com.bomber7.core.model.exceptions;
 
 /**
  * IllegalSpeedSetException is raised if illegal value for speed is tried to be set.

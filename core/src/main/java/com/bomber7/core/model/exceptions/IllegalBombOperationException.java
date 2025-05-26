@@ -1,4 +1,4 @@
-package com.bomber7.core.model.exception;
+package com.bomber7.core.model.exceptions;
 
 public class IllegalBombOperationException extends RuntimeException {
 

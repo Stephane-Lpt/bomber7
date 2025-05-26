@@ -1,4 +1,4 @@
-package com.bomber7.core.model.exception;
+package com.bomber7.core.model.exceptions;
 
 /**
  * IllegalPositionSetException is raised if illegal value for x or y (Axis-Position) is tried to be set.
