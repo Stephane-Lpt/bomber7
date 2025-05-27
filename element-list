@@ -1,2 +1,5 @@
 com.bomber7.core
+com.bomber7.core.components
 com.bomber7.core.model
+com.bomber7.core.screens
+com.bomber7.utils
