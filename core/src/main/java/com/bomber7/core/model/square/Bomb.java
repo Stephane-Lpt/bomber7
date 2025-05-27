@@ -1,9 +1,6 @@
-package src.main.java.com.bomber7.core.model;
+package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.LevelMap;
-import com.bomber7.core.model.square.Square;
-import com.bomber7.core.model.square.UnbreakableWall;
-import com.bomber7.core.model.square.BreakableWall;
 
 public class Bomb extends Square {
 

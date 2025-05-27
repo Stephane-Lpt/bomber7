@@ -1,4 +1,4 @@
-package src.main.java.com.bomber7.core.model;
+package com.bomber7.core.model.square;
 
 public class TriggerBomb extends Bomb {
 

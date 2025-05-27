@@ -2,7 +2,7 @@ package src.test.java.com.bomber7.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import src.main.java.com.bomber7.core.model.Bomb;
+import com.bomber7.core.model.square.Bomb;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Map;
