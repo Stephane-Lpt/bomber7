@@ -8,27 +8,51 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.bomber7.core.BomberGame;
-import com.bomber7.core.BomberResources;
+import com.bomber7.utils.ResourceManager;
 
+/**
+ * An abstract Screen class that all bomber screens should inherit from.
+ */
 public abstract class BomberScreen implements Screen {
-    protected final Float COMPONENT_SPACING = 50f;
-    protected final Float LABEL_PADDING = 10f;
-    protected final Float BUTTON_HEIGHT = 80f;
-    protected final Float BUTTON_HEIGHT_SM = 60f;
-    protected final Float BUTTON_WIDTH = 400f;
-    protected final Float BUTTON_WIDTH_SM = 300f;
-
-    protected Color backgroundColor;
-    protected BomberGame game;
+    /**
+     * Background color of the app.
+     */
+    private final Color bgColor;
+    /**
+     * Game object.
+     */
+    protected final BomberGame game;
+    /**
+     * 2D Stage object.
+     */
     protected Stage stage;
-    protected BomberResources resources;
+    /**
+     * Game resources.
+     */
+    protected final ResourceManager resources;
 
+    /**
+     * Initializes the screen.
+     * @param game
+     */
     public BomberScreen(Game game) {
         this.game = (BomberGame) game;
-        this.resources = this.game.resources;
-        this.backgroundColor = resources.skin.getColor("darkBlue");
+        this.resources = this.game.getBomberResources();
+        this.bgColor = resources.getSkin().getColor("darkBlue");
         initializeStage();
+        initView();
+        initController();
     }
+
+    /**
+     * A method where all view components should be initialized & positionned.
+     */
+    public abstract void initView();
+
+    /**
+     * A method where all controls should be initialized (button clicks, etc..).
+     */
+    public abstract void initController();
 
     @Override
     public void show() {
@@ -37,7 +61,7 @@ public abstract class BomberScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+        Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
@@ -68,7 +92,10 @@ public abstract class BomberScreen implements Screen {
         stage.dispose();
     }
 
-    public void initializeStage() {
+    /**
+     * Initializes the stage.
+     */
+    private void initializeStage() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
     }

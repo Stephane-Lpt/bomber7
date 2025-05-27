@@ -1,25 +1,35 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
-import com.bomber7.core.screens.MainMenuScreen;
-import com.bomber7.core.screens.OptionsScreen;
+import com.bomber7.core.screens.SettingsScreen;
+import com.bomber7.utils.ResourceManager;
 
 /**
- * Main class of the Bomber7 game, extending LibGDX's Game class.
+ * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
+ * <p>
+ * Manages game lifecycle and resources.
+ * </p>
  */
 public class BomberGame extends Game {
-    public final int MAX_PLAYERS = 4;
 
-    public BomberResources resources;
+    /**
+     * Maximum number of human players allowed in the game.
+     */
+    public static final int MAX_PLAYERS = 4;
+
+    /**
+     * Resource manager responsible for loading and managing game assets.
+     */
+    private ResourceManager resources;
 
     /**
      * Called once when the application is created.
-     * Initializes the sprite batch and loads the initial texture.
+     * Initializes the resource manager and sets the initial screen to the main menu.
      */
     @Override
-    public void create () {
-        resources = new BomberResources();
-        setScreen(new OptionsScreen(this));
+    public void create() {
+        resources = new ResourceManager();
+        setScreen(new SettingsScreen(this));
     }
 
     /**
@@ -30,5 +40,14 @@ public class BomberGame extends Game {
     public void dispose() {
         resources.dispose();
         super.dispose();
+    }
+
+    /**
+     * Returns the {@link ResourceManager} instance used by this game.
+     *
+     * @return the resource manager for game assets
+     */
+    public ResourceManager getBomberResources() {
+        return resources;
     }
 }

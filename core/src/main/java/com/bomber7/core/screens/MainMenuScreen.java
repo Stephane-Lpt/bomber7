@@ -6,25 +6,46 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.bomber7.core.components.BomberTextButton;
+import com.bomber7.utils.Dimensions;
 
+/**
+ * Main menu screen.
+ */
 public class MainMenuScreen extends BomberScreen {
-    private final float LOGO_WIDTH = 500f * 0.6f;
-    private final float LOGO_HEIGHT = LOGO_WIDTH * 0.6f;
+    /**
+     * Main menu logo width.
+     */
+    private static final float LOGO_WIDTH = 500f * 0.6f;
+    /**
+     * Main menu logo height.
+     */
+    private static final float LOGO_HEIGHT = LOGO_WIDTH * 0.6f;
+    /**
+     * Play button that switches screen to {@link PlayerSetupScreen}.
+     */
+    private BomberTextButton playButton;
+    /**
+     * Button used to go to the settings {@link PlayerSetupScreen}.
+     */
+    private BomberTextButton optionsButton;
+    /**
+     * Button used to quit the game.
+     */
+    private BomberTextButton quitButton;
 
-    private TextButton playButton;
-    private TextButton optionsButton;
-    private TextButton quitButton;
-
+    /**
+     * Constructs a new MainMenuScreen associated with the given game.
+     *
+     * @param game the Game instance this screen belongs to
+     */
     public MainMenuScreen(Game game) {
         super(game);
-        initView();
-        initController();
     }
 
+    @Override
     public void initView() {
         Table table = new Table();
         table.setDebug(true);
@@ -35,35 +56,36 @@ public class MainMenuScreen extends BomberScreen {
 
         Image logoImage = new Image(new Texture("images/logo.png"));
         logoImage.setScaling(Scaling.fit);
-        playButton = new BomberTextButton(resources.bundle.get("play"), resources);
-        optionsButton = new BomberTextButton(resources.bundle.get("options"), resources);
-        quitButton = new BomberTextButton(resources.bundle.get("quit"), resources);
+        playButton = new BomberTextButton(resources.getString("play"), resources);
+        optionsButton = new BomberTextButton(resources.getString("options"), resources);
+        quitButton = new BomberTextButton(resources.getString("quit"), resources);
 
         table.add(logoImage)
-            .width(this.LOGO_WIDTH)
-            .height(this.LOGO_HEIGHT)
-            .spaceBottom(this.COMPONENT_SPACING * 2f)
+            .width(LOGO_WIDTH)
+            .height(LOGO_HEIGHT)
+            .spaceBottom(Dimensions.COMPONENT_SPACING * 2f)
             .fillX()
             .row();
         table.add(playButton)
-            .width(this.BUTTON_WIDTH)
+            .width(Dimensions.BUTTON_WIDTH)
             .fillX()
-            .height(this.BUTTON_HEIGHT)
-            .spaceBottom(this.COMPONENT_SPACING)
+            .height(Dimensions.BUTTON_HEIGHT)
+            .spaceBottom(Dimensions.COMPONENT_SPACING)
             .row();
         table.add(optionsButton)
-            .width(this.BUTTON_WIDTH)
-            .height(this.BUTTON_HEIGHT)
-            .spaceBottom(this.COMPONENT_SPACING)
+            .width(Dimensions.BUTTON_WIDTH)
+            .height(Dimensions.BUTTON_HEIGHT)
+            .spaceBottom(Dimensions.COMPONENT_SPACING)
             .row();
         table.add(quitButton)
-            .width(this.BUTTON_WIDTH)
-            .height(this.BUTTON_HEIGHT)
+            .width(Dimensions.BUTTON_WIDTH)
+            .height(Dimensions.BUTTON_HEIGHT)
             .row();
 
         stage.addActor(table);
     }
 
+    @Override
     public void initController() {
         playButton.addListener(e -> {
             return false;
