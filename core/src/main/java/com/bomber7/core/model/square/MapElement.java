@@ -26,10 +26,10 @@ public abstract class MapElement {
      * @param yCoord         the y-coordinate of the map element on the game grid
      */
     public MapElement(String spriteFilePath, int xCoord, int yCoord) {
-        if(spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
+        if (spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
             throw new IllegalArgumentException("Sprite file path cannot be null or empty");
         }
-        if(xCoord < 0 || yCoord < 0) {
+        if (xCoord < 0 || yCoord < 0) {
             throw new IllegalArgumentException("Coordinates cannot be negative");
         }
 
@@ -38,14 +38,29 @@ public abstract class MapElement {
         this.yCoord = yCoord;
     }
 
+    /**
+     * Returns the file path to the sprite image for this map element.
+     *
+     * @return the sprite file path
+     */
     public String getSpriteFilePath() {
         return spriteFilePath;
     }
 
+    /**
+     * Returns the x-coordinate of the map element on the game grid.
+     *
+     * @return the x-coordinate
+     */
     public int getXCoord() {
         return xCoord;
     }
 
+    /**
+     * Returns the y-coordinate of the map element on the game grid.
+     *
+     * @return the y-coordinate
+     */
     public int getYCoord() {
         return yCoord;
     }
