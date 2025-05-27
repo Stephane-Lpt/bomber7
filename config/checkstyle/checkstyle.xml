@@ -47,7 +47,7 @@
     <module name="FileLength"/>
     <module name="LineLength">
         <property name="tabWidth" value="4"/>
-        <property name="max" value="90"/>
+        <property name="max" value="130"/>
         <property name="fileExtensions" value="java"/>
     </module>
 
@@ -163,7 +163,9 @@
         <module name="FinalClass"/>
         <module name="HideUtilityClassConstructor"/>
         <module name="InterfaceIsType"/>
-        <module name="VisibilityModifier"/>
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true"/>
+        </module>
 
         <!-- Miscellaneous other checks.                   -->
         <!-- See https://checkstyle.org/config_misc.html -->
