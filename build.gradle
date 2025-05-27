@@ -8,9 +8,6 @@ buildscript {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
   }
-  dependencies {
-    // Tu peux mettre ici les plugins (comme Sonar ou autre) si besoin
-  }
 }
 
 allprojects {
@@ -27,17 +24,17 @@ allprojects {
 
 configure(subprojects) {
   apply plugin: 'java-library'
-  apply plugin: 'checkstyle' // ✅ Ajoute le plugin ici
+  apply plugin: 'checkstyle' // Add the plugin here
 
   sourceCompatibility = 8
 
-  // ✅ Configuration de Checkstyle
+  // Checkstyle configuration
   checkstyle {
     toolVersion = '10.12.1'
     config = resources.text.fromFile("${rootDir}/config/checkstyle/checkstyle.xml")
   }
 
-  // ✅ Rapports HTML (plus lisibles)
+  // Production of HTML reports for Checkstyle
   tasks.withType(Checkstyle).configureEach {
     reports {
       xml.required = false
@@ -51,7 +48,6 @@ configure(subprojects) {
     }
   }
 
-  // Génération de la liste des assets (LibGDX)
   tasks.register('generateAssetList') {
     inputs.dir("${project.rootDir}/assets/")
     File assetsFolder = new File("${project.rootDir}/assets/")
