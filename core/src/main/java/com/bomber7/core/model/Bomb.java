@@ -1,5 +1,6 @@
 package src.main.java.com.bomber7.core.model;
 
+import com.bomber7.core.model.LevelMap;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.core.model.square.BreakableWall;
@@ -17,12 +18,12 @@ public class Bomb extends Square {
         return this.power;
     }
 
-    public void onExplosion(Map m, int x, int y){
+    public void onExplosion(LevelMap m, int x, int y){
         Square sq = m.getSquare(x,y);
         // rajout effet d'explosion
     }
 
-    public void activateBomb(Map m) {
+    public void activateBomb(LevelMap m) {
 
         int bombX;
         int bombY;
@@ -42,11 +43,11 @@ public class Bomb extends Square {
                 Square potentialSquare = m.getSquare(newX, newY);
 
                 // Hors map ou Mur incassable - arrêter la propagation
-                if (potentialSquare == null || potentialSquare instanceof UnbreakableWall) {
+                if (potentialSquare == null || potentialSquare.getMapElement() instanceof UnbreakableWall) {
                     break; // va pas plus loin
                 }
 
-                if (potentialSquare instanceof BreakableWall) {
+                if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m,newX,newY);
                     break; // va pas plus loin -> car pas explosable les prochains
                 }
