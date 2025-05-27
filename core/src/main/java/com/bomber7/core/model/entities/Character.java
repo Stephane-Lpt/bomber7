@@ -178,8 +178,8 @@ public abstract class Character {
     /**
      * Move character to the right
      */
-    public void moveRight(int x, int y, LevelMap map){
-        if (checkMove(x, y, map)) {
+    public void moveRight(){
+        if (checkMove(getPositionX(), getPositionY(), getMap())) {
             this.x++;
         }
     }
@@ -187,8 +187,8 @@ public abstract class Character {
     /**
      * Move character to the right
      */
-    public void moveLeft(int x, int y, LevelMap map){
-        if (checkMove(x, y, map)) {
+    public void moveLeft(){
+        if (checkMove(getPositionX(), getPositionY(), getMap())) {
             this.x--;
         }
     }
@@ -196,8 +196,8 @@ public abstract class Character {
     /**
      * Move character Down
      */
-    public void moveDown(int x, int y, LevelMap map){
-        if (checkMove(x, y, map)) {
+    public void moveDown(){
+        if (checkMove(getPositionX(), getPositionY(), getMap())) {
             this.y++;
         }
     }
@@ -205,8 +205,8 @@ public abstract class Character {
     /**
      * Move character Up
      */
-    public void moveUp(int x, int y, LevelMap map){
-        if (checkMove(x, y, map)) {
+    public void moveUp(){
+        if (checkMove(getPositionX(), getPositionY(), getMap())) {
             this.y--;
         }
     }
