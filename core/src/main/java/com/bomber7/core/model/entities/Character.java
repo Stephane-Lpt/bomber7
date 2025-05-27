@@ -58,13 +58,7 @@ public abstract class Character {
      * @return boolean Player state of life
      */
     public boolean getIsAlive(){
-        if ((this.isAlive == true) && (this.life > 0)){
-            return true;
-        } else {
-            this.isAlive = false;
-            this.life = 0;
-            return false;
-        }
+        return this.isAlive;
 
     }
 
@@ -117,6 +111,9 @@ public abstract class Character {
     public void removeOneLife() {
         if (this.life > 0) {
             this.life--;
+        }
+        else {
+            throw new IllegalStateException("Character cannot have negative life.");
         }
         if (this.life == 0) {
             this.isAlive = false;
