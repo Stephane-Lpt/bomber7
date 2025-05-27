@@ -1,5 +1,8 @@
 package com.bomber7.utils;
 
+/**
+ * Dimension and sizing variables used in the app.
+ */
 public final class Dimensions {
 
     private Dimensions() { }

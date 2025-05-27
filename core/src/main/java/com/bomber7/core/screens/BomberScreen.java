@@ -33,7 +33,7 @@ public abstract class BomberScreen implements Screen {
 
     /**
      * Initializes the screen.
-     * @param game
+     * @param game the Game instance this screen belongs to
      */
     public BomberScreen(Game game) {
         this.game = (BomberGame) game;
@@ -45,7 +45,7 @@ public abstract class BomberScreen implements Screen {
     }
 
     /**
-     * A method where all view components should be initialized & positionned.
+     * A method where all view components should be initialized and positioned.
      */
     public abstract void initView();
 

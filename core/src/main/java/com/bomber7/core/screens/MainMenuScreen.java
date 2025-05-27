@@ -12,7 +12,7 @@ import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
 
 /**
- * Main menu screen.
+ * The main menu of the game.
  */
 public class MainMenuScreen extends BomberScreen {
     /**
