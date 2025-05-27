@@ -20,8 +20,8 @@ public abstract class Player extends Character {
     /**
      * Player Constructor
      */
-    public Player(String name, int x, int y){
-        super(name, x, y);
+    public Player(String name, int x, int y, int life, int speed, String spriteFP){
+        super(name, x, y, life, speed, spriteFP);
         this.nbBomb = 1;
     }
 
