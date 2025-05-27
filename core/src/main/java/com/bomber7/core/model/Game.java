@@ -5,9 +5,16 @@ package com.bomber7.core.model;
  * Manages the number of players, map loading, and game state updates.
  */
 public class Game {
-    // nbPlayers gotten through controller
-    int nbPlayers;
-    String mapFilepath;
+
+    /**
+     * The number of players in the game.
+     * This value is used to initialize the game state and manage player interactions.
+     */
+    private int nbPlayers;
+    /**
+     * The file path to the map used in the game.
+     */
+    private String mapFilepath;
 
     /**
      * Constructs a new Game instance with the specified number of players and map file.
@@ -15,7 +22,7 @@ public class Game {
      * @param nbPlayers     the number of players in the game
      * @param mapFilepath   the file path to the map used in the game
      */
-    Game(int nbPlayers, String mapFilepath){
+    Game(int nbPlayers, String mapFilepath) {
         this.nbPlayers = nbPlayers;
         // Load map from file
         // Initialize game state
@@ -28,7 +35,7 @@ public class Game {
      *
      * @return an integer status code representing the result of the update
      */
-    public int tick(){
+    public int tick() {
         // Update game state
         // Perhaps pulled from game engine ?
         return 0;

@@ -21,7 +21,7 @@ public interface Subject {
      *
      * @param observer the observer to be added
      */
-    default void registerObserver(Observer observer){
+    default void registerObserver(Observer observer) {
         getObservers().add(observer);
     }
 
@@ -30,14 +30,14 @@ public interface Subject {
      *
      * @param observer the observer to be removed
      */
-    default void deleteObserver(Observer observer){
+    default void deleteObserver(Observer observer) {
         getObservers().remove(observer);
     }
 
     /**
      * Notifies all registered observers of a state change.
      */
-    default void notifyObservers(){
+    default void notifyObservers() {
         for (Observer observer : getObservers()) {
             observer.refresh(Subject.this);
         }

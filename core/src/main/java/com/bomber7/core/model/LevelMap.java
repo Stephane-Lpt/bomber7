@@ -6,6 +6,9 @@ package com.bomber7.core.model;
  */
 public class LevelMap {
 
+    /**
+     * The file name or path from which the map is loaded.
+     */
     private String fileName;
 
     /**
