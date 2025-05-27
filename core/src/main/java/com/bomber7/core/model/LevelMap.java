@@ -6,6 +6,9 @@ package com.bomber7.core.model;
  */
 public class LevelMap {
 
+    public static final int SIZEX = 35;
+    public static final int SIZEY = 25;
+
     /**
      * The file name or path from which the map is loaded.
      */

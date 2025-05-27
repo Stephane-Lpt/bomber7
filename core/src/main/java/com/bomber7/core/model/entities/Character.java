@@ -1,5 +1,7 @@
 package com.bomber7.core.model.entities;
 
+import com.bomber7.core.model.LevelMap;
+import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
 
@@ -10,8 +12,10 @@ import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
  */
 public abstract class Character {
 
+    private final String spriteFP;
     private final String name;
     private boolean isAlive;
+    private LevelMap map; 
     private int speed;
     private int life;
     private int x;
@@ -19,12 +23,31 @@ public abstract class Character {
 
     /**
      * Character Constructor
+     * @throws IllegalArgumentException in case an argument is not wrong
      */
-    public Character(String name, int x, int y){
-        this.isAlive = true;
+    public Character(String name, int x, int y, int life, int speed, String spriteFP){
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name can't be null or empty");
+        }
+        if ((x < 0) || (y < 0)){
+            throw new IllegalPositionOperationException("x or y values can not be negative");
+        }
+        if (life <= 0) {
+            throw new IllegalLifeOperationException("Life initial value must be > 0");
+        }
+        if (speed <= 0) {
+            throw new IllegalSpeedOperationException("Initial speed of character > 0");
+        }
+        if (spriteFP == null || spriteFP.trim().isEmpty()) {
+            throw new IllegalArgumentException("Sprite file path can't be null or empty");
+        }
         this.name = name;
         this.x = x;
         this.y = y;
+        this.life = life;
+        this.speed = speed;
+        this.spriteFP = spriteFP;
+        this.isAlive = true;
     }
 
     /* ------[GETTERS]------------------------------------ */
@@ -35,31 +58,6 @@ public abstract class Character {
      */
     public String getName(){
         return this.name;
-    }
-
-    /**
-     * Character Ccurrent speed getter
-     * @return speed Current speed
-     */
-    public Integer getSpeed(){
-        return this.speed;
-    }
-
-    /**
-     * Character current life getter
-     * @return life Current life
-     */
-    public Integer getLife(){
-        return this.life;
-    }
-
-    /**
-     * Character current state of life
-     * @return boolean Player state of life
-     */
-    public boolean getIsAlive(){
-        return this.isAlive;
-
     }
 
     /**
@@ -78,6 +76,39 @@ public abstract class Character {
         return this.y;
     }
 
+    /**
+     * Character current life getter
+     * @return life Current life
+     */
+    public Integer getLife(){
+        return this.life;
+    }
+
+    /**
+     * Character current speed getter
+     * @return speed Current speed
+     */
+    public Integer getSpeed(){
+        return this.speed;
+    }
+
+    /**
+     * Character current sprite path file 
+     * @return spriteFP Current sprite path file 
+     */
+    public String getSpriteFP(){
+        return this.spriteFP;
+    }
+
+    /**
+     * Character current map to play on
+     * @return tmpMap Current map
+     */
+    public LevelMap getMap(){
+        LevelMap tmpMap = this.map; 
+        return tmpMap;
+    }
+
     /* ------[SETTERS]------------------------------------ */
 
     /**
@@ -94,21 +125,18 @@ public abstract class Character {
         }
     }
 
-
     /**
      * Increases the character's life by one.
-     * This method increments the current life count of the character by one.
      */
-    public void addOneLife() {
+    public void addOneLife(){
         this.life++;
     }
 
     /**
      * Decreases the character's life by one.
-     * This method decrements the current life count of the character by one.
-     * If the life count reaches zero, the character is marked as not alive.
+     * If the life count reaches zero, the character is marked as not alive (dead).
      */
-    public void removeOneLife() {
+    public void removeOneLife(){
         if (this.life > 0) {
             this.life--;
         }
@@ -120,18 +148,12 @@ public abstract class Character {
         }
     }
 
-
     /**
      * Character current X-Axis position setter
      * @param newX The new x-position to set
-     * @throws IllegalPositionOperationException If character is moving of more than 1 square
      */
     public void setPositionX(int newX){
-        if ((newX == this.x-1) || (newX == this.x) || (newX == this.x+1)) {
-            this.x = newX;
-        } else {
-            throw new IllegalPositionOperationException("Character can't move more than 1 square at a time.");
-        }
+        this.x = newX;
     }
 
     /**
@@ -140,24 +162,65 @@ public abstract class Character {
      * @throws IllegalPositionOperationException If character is moving of more than 1 square
      */
     public void setPositionY(int newY){
-        if ((newY == this.x-1) || (newY == this.x) || (newY == this.x+1)) {
-            this.x =  newY;
-        } else {
-            throw new IllegalPositionOperationException("Character can't move more than 1 square at a time.");
-        }
+        this.x =  newY;
     }
 
     /* ------[OTHER]------------------------------------ */
 
     /**
-     * Moving the character on the map
-     * @param x X-Axis position value to set
-     * @param y Y-Axis position value to set
-     * @throws IllegalPositionOperationException
+     * Character current state of life
+     * @return boolean Player state of life
      */
-    public void move(int x, int y) throws IllegalPositionOperationException {
-        setPositionX(x);
-        setPositionY(y);
+    public boolean isAlive(){
+        return this.isAlive;
+    }
+
+    /**
+     * Move character to the right
+     */
+    public void moveRight(int x, int y, LevelMap map){
+        if (checkMove(x, y, map)) {
+            this.x++;
+        }
+    }
+
+    /**
+     * Move character to the right
+     */
+    public void moveLeft(int x, int y, LevelMap map){
+        if (checkMove(x, y, map)) {
+            this.x--;
+        }
+    }
+
+    /**
+     * Move character Down
+     */
+    public void moveDown(int x, int y, LevelMap map){
+        if (checkMove(x, y, map)) {
+            this.y++;
+        }
+    }
+
+    /**
+     * Move character Up
+     */
+    public void moveUp(int x, int y, LevelMap map){
+        if (checkMove(x, y, map)) {
+            this.y--;
+        }
+    }
+
+    /**
+     * Check if the move is possible or not
+     * @param x x-position value
+     * @param y y-position value
+     * @param map The map to check
+     * @retrun boolean 
+     */
+    public boolean checkMove(int x, int y, LevelMap map){
+        //TODO : I don't know yet how to do that without the LevelMap Class Implemented
+        return true;
     }
 
 }
