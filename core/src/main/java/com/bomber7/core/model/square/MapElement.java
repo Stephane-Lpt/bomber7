@@ -26,8 +26,35 @@ public abstract class MapElement {
      * @param yCoord         the y-coordinate of the map element on the game grid
      */
     public MapElement(String spriteFilePath, int xCoord, int yCoord) {
+        if(spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
+            throw new IllegalArgumentException("Sprite file path cannot be null or empty");
+        }
+        if(xCoord < 0 || yCoord < 0) {
+            throw new IllegalArgumentException("Coordinates cannot be negative");
+        }
+
         this.spriteFilePath = spriteFilePath;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+    }
+
+    public void setXCoord(int xCoord) {
+        this.xCoord = xCoord;
+    }
+
+    public void setYCoord(int yCoord) {
+        this.yCoord = yCoord;
+    }
+
+    public String getSpriteFilePath() {
+        return spriteFilePath;
+    }
+
+    public int getXCoord() {
+        return xCoord;
+    }
+
+    public int getYCoord() {
+        return yCoord;
     }
 }

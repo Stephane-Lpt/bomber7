@@ -15,9 +15,12 @@ public class Square {
 
     /**
      * Constructs a new Square with the specified sprite file path.
-     * @param spriteFilePath
+     * @param spriteFilePath the file path to the sprite image for this square
      */
     public Square(String spriteFilePath) {
+        if(spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
+            throw new IllegalArgumentException("Sprite file path cannot be null or empty");
+        }
         this.spriteFilePath = spriteFilePath;
     }
 
@@ -27,8 +30,19 @@ public class Square {
      * @param mapElement the map element associated with this square
      */
     public Square(String spriteFilePath, MapElement mapElement) {
+        if(spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
+            throw new IllegalArgumentException("Sprite file path cannot be null or empty");
+        }
+
         this.spriteFilePath = spriteFilePath;
         this.mapElement = mapElement;
     }
 
+    public String getSpriteFilePath() {
+        return spriteFilePath;
+    }
+
+    public MapElement getMapElement() {
+        return mapElement;
+    }
 }
