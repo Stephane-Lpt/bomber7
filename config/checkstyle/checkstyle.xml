@@ -178,4 +178,9 @@
 
     </module>
 
+    <module name="SuppressionFilter">
+        <property name="file" value="./testFilter.xml"/>
+    </module>
+
+
 </module>
