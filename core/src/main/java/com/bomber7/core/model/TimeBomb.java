@@ -3,8 +3,8 @@ package src.main.java.com.bomber7.core.model;
 public class TimeBomb extends Bomb {
     private int timer;
 
-    public TimeBomb(int p, int t) {
-        super(p);
+    public TimeBomb(int p, String spriteFilePath, int t) {
+        super(p, spriteFilePath);
         this.timer = t;
     }
 

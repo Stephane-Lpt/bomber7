@@ -34,9 +34,8 @@ public class Bomb extends Square {
         int[][] directions = { {0, 1}, {0, -1}, {-1,0}, {1,0}};
 
         for (int[] direction : directions) {
-            boolean expAlreadyDone = false;
 
-            for (int i = 1; i < power; i++) {
+            for (int i = 1; i <= power; i++) {
                 int newX = bombX + direction[0] * i;
                 int newY = bombY + direction[1] * i;
 
@@ -44,15 +43,12 @@ public class Bomb extends Square {
 
                 // Hors map ou Mur incassable - arrêter la propagation
                 if (potentialSquare == null || potentialSquare instanceof UnbreakableWall) {
-                    break;
+                    break; // va pas plus loin
                 }
-                // Un bombe explose un premier mur mais pas les suivants
-                if (potentialSquare instanceof BreakableWall && !expAlreadyDone)  {
-                    break;
-                }
-                // Mur cassable
-                if ((potentialSquare instanceof BreakableWall)) {
-                    expAlreadyDone = true;
+
+                if (potentialSquare instanceof BreakableWall) {
+                    onExplosion(m,newX,newY);
+                    break; // va pas plus loin -> car pas explosable les prochains
                 }
                 onExplosion(m,newX,newY);
             }
