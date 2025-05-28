@@ -2,9 +2,11 @@ package com.bomber7.core.model;
 
 import com.bomber7.core.model.square.Square;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
+import static com.bomber7.utils.MapParser.createTextureMatrix;
 
 /**
  * Represents a level with a map in the game.
@@ -12,54 +14,29 @@ import java.io.IOException;
  */
 public class LevelMap {
 
-    /**
-     * The file name or path from which the map is loaded.
-     */
-    private static final int WIDTH = 35;
-    private static final int HEIGHT = 24;
+    private String backgroundCsvFilePath;
+    private String breakableCsvFilePath;
+    private String unbreakableCsvFilePath;
+    private List<List<Square>> map;
 
-    private String fileName;
-    private Square[][] map;
 
     /**
-     * Constructs a new LevelMap by loading it from the specified file.
+     * Constructs a LevelMap object by loading the map data from the specified CSV files.
      *
-     * @param fileName  the name or path of the file to load the map from
+     * @param backgroundCsvPath  Path to the CSV file containing the background squares placement.
+     * @param breakableCsvPath   Path to the CSV file containing breakable walls placement.
+     * @param unbreakableCsvPath Path to the CSV file containing unbreakable walls placement.
      */
-    LevelMap(String fileName) {
-        this.fileName = fileName;
-        this.map = new Square[HEIGHT][WIDTH];
-        loadMap(fileName);
+    public LevelMap(String backgroundCsvPath, String breakableCsvPath, String unbreakableCsvPath) {
+        this.backgroundCsvFilePath = backgroundCsvPath;
+        this.breakableCsvFilePath = breakableCsvPath;
+        this.unbreakableCsvFilePath = unbreakableCsvPath;
+        this.map = loadMap(backgroundCsvPath, breakableCsvPath, unbreakableCsvPath);
     }
 
-    /**
-     * Loads the map data from the given file path.
-     * The method is responsible for parsing the file and initializing the map structure.
-     *
-     * @param filepath  the path to the map file
-     */
-    private void loadMap(String filepath) {
-        try (BufferedReader br = new BufferedReader(new FileReader(this.fileName))) {
-            String ligne;
-            int numeroLigne = 0;
-
-            while ((ligne = br.readLine()) != null) {
-                // Découpe la ligne en colonnes selon la virgule
-                String[] colonnes = ligne.split(",");
-
-
-                for (int i = 0; i < colonnes.length; i++) {
-                    Square s = new Square("test.png"); // TODO: Remplacer par le sprite approprié
-                    this.map[numeroLigne][i] = s;
-
-                }
-
-                numeroLigne++;
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private List<List<Square>> loadMap(String backgroundCsvPath, String breakableCsvPath, String unbreakableCsvPath) {
+        Path jsonPath = Paths.get("../assets/textures/tileset.tsj");
+        return createTextureMatrix(backgroundCsvPath, breakableCsvPath, unbreakableCsvPath, jsonPath.toAbsolutePath().toString());
     }
 
     /**
@@ -71,11 +48,29 @@ public class LevelMap {
      * @throws IndexOutOfBoundsException if the coordinates are out of bounds
      */
     public Square getSquare(int x, int y) {
-        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) {
-            throw new IndexOutOfBoundsException("Coordinates out of bounds: (" + x + ", " + y + ") with width " + WIDTH + " and height " + HEIGHT);
+        if (y < 0 || y >= map.size()) {
+            throw new IndexOutOfBoundsException("Invalid row index y=" + y);
         }
-        return this.map[y][x];
+        if (x < 0 || x >= map.get(y).size()) {
+            throw new IndexOutOfBoundsException("Invalid column index x=" + x + " for row " + y);
+        }
+
+        return this.map.get(y).get(x);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (List<Square> row : map) {
+            for (Square square : row) {
+                sb.append(square.toString());
+            }
+            sb.append('\n');
+        }
+
+        return sb.toString();
+    }
+
 }
 
 
