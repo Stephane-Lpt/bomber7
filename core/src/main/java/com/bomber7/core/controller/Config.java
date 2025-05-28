@@ -5,26 +5,31 @@ import java.io.ObjectOutputStream;
 import com.badlogic.gdx.Input.Keys;
 
 public class Config {
-    private Keys up;
-    private Keys down;
-    private Keys left;
-    private Keys right;
-    private Keys dropBomb;
-    private Keys activateBomb;
+    private int up;
+    private int down;
+    private int left;
+    private int right;
+    private int dropBomb;
+    private int activateBomb;
 
     private FileOutputStream fileOutputStream;
 
 
-    public Config(String fileString) throws Exception {
-
-            this.fileOutputStream = new FileOutputStream(fileString);
+    public Config(String fileString, int up, int down, int left, int right, int dropBomb, int activateBomb) throws Exception {
+        this.up = up;
+        this.down = down;
+        this.left = left;
+        this.right = right;
+        this.dropBomb = dropBomb;
+        this.activateBomb = activateBomb;
+        this.fileOutputStream = new FileOutputStream(fileString);
     }
 
     /**
      * Saves the current configuration to a file.
      * @param fileString The path to the file where the configuration will be saved.
      */
-    public void saveConfig(String fileString) {
+    public void saveConfig() {
         try {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(this.fileOutputStream); 
             objectOutputStream.writeObject(this);
@@ -38,7 +43,7 @@ public class Config {
      * Sets the key for moving up.
      * @param up The key to set for moving up.
      */
-    public void setUp(Keys up) {
+    public void setUp(int up) {
         this.up = up;
     }
 
@@ -46,7 +51,7 @@ public class Config {
      * Set the key for moving down.
      * @param down the key to set for moving down
      */
-    public void setDown(Keys down) {
+    public void setDown(int down) {
         this.down = down;
     }
 
@@ -54,7 +59,7 @@ public class Config {
      * Set the key for moving left.
      * @param left the key to set for moving left
      */
-    public void setLeft(Keys left) {
+    public void setLeft(int left) {
         this.left = left;
     }
 
@@ -62,7 +67,7 @@ public class Config {
      * Set the key for moving right.
      * @param right the key to set for moving right
      */
-    public void setRight(Keys right) {
+    public void setRight(int right) {
         this.right = right;
     }
 
@@ -70,7 +75,7 @@ public class Config {
      * Set the key for dropping a bomb.
      * @param dropBomb the key to set for dropping a bomb
      */
-    public void setDropBomb(Keys dropBomb) {
+    public void setDropBomb(int dropBomb) {
         this.dropBomb = dropBomb;
     }
 
@@ -78,7 +83,7 @@ public class Config {
      * Set the key for activating a bomb.
      * @param activateBomb the key to set for activating a bomb
      */
-    public void setActivateBomb(Keys activateBomb) {
+    public void setActivateBomb(int activateBomb) {
         this.activateBomb = activateBomb;
     }
 
@@ -86,7 +91,7 @@ public class Config {
      * Get the key for moving up.
      * @return the key for moving up
      */
-    public Keys getUp() {
+    public int getUp() {
         return up;
     }
 
@@ -94,7 +99,7 @@ public class Config {
      * Get the key for moving down.
      * @return the key for moving down
      */
-    public Keys getDown() {
+    public int getDown() {
         return down;
     }
 
@@ -102,7 +107,7 @@ public class Config {
      * Get the key for moving left.
      * @return the key for moving left
      */
-    public Keys getLeft() {
+    public int getLeft() {
         return left;
     }
 
@@ -110,7 +115,7 @@ public class Config {
      * Get the key for moving right.
      * @return the key for moving right
      */
-    public Keys getRight() {
+    public int getRight() {
         return right;
     }
 
@@ -118,7 +123,7 @@ public class Config {
      * Get the key for dropping a bomb.
      * @return the key for dropping a bomb
      */
-    public Keys getDropBomb() {
+    public int getDropBomb() {
         return dropBomb;
     }
 
@@ -126,7 +131,7 @@ public class Config {
      * Get the key for activating a bomb.
      * @return the key for activating a bomb
      */
-    public Keys getActivateBomb() {
+    public int getActivateBomb() {
         return activateBomb;
     }
 }
