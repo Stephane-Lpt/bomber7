@@ -1,5 +1,7 @@
 package com.bomber7.core.model;
 
+import com.bomber7.core.model.square.Square;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
