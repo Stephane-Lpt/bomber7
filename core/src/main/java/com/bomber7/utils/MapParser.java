@@ -16,12 +16,13 @@ public class MapParser {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * Parses a CSV file and a JSON file to create a texture matrix.
-     * The CSV contains IDs that map to texture paths defined in the JSON.
+     * Creates a texture matrix from the provided CSV files and JSON file.
      *
-     * @param csvPath  Path to the CSV file containing texture IDs.
-     * @param jsonPath Path to the JSON file mapping IDs to texture paths.
-     * @return A list of lists representing the texture matrix.
+     * @param backgroundCsvPath  Path to the CSV file containing the background squares placement.
+     * @param breakableCsvPath   Path to the CSV file containing breakable walls placement.
+     * @param unbreakableCsvPath Path to the CSV file containing unbreakable walls placement.
+     * @param jsonPath Path to the JSON file containing texture mappings (id: texturePath).
+     * @return A list of lists representing the game map, where each inner list contains Square objects.
      */
     public static List<List<Square>> createTextureMatrix(String backgroundCsvPath, String breakableCsvPath, String unbreakableCsvPath, String jsonPath) {
         Map<Integer, String> textureMap = parseTextureMap(jsonPath);
@@ -106,42 +107,4 @@ public class MapParser {
         }
     }
 
-
-    // --- Test Snippet ---
-    public static void main(String[] args) {
-        // Adjust these paths if your execution directory is different
-        // or if files are located elsewhere.
-        // Assuming execution from the project root "ProjetLong"
-        String backgroundCsvFilePath = "assets/maps/foy/le_foy_Background.csv";
-        String breakableCsvFilePath = "assets/maps/foy/le_foy_Breakable.csv";
-        String unbreakableCsvFilePath = "assets/maps/foy/le_foy_Unbreakable.csv";
-        String jsonFilePath = "assets/textures/tileset.tsj";
-
-        System.out.println("Attempting to parse CSV: " + new File(backgroundCsvFilePath).getAbsolutePath());
-        System.out.println("Attempting to parse CSV: " + new File(breakableCsvFilePath).getAbsolutePath());
-        System.out.println("Attempting to parse CSV: " + new File(unbreakableCsvFilePath).getAbsolutePath());
-        System.out.println("Attempting to parse JSON: " + new File(jsonFilePath).getAbsolutePath());
-
-
-        try {
-            List<List<Square>> textureMatrix = createTextureMatrix(backgroundCsvFilePath, breakableCsvFilePath, unbreakableCsvFilePath, jsonFilePath);
-
-            System.out.println("\nSuccessfully parsed texture matrix!");
-            System.out.println("Matrix dimensions: " + textureMatrix.size() + " rows, " + (textureMatrix.isEmpty() ? 0 : textureMatrix.get(0).size()) + " cols.");
-
-            // Print a small part of the matrix to verify
-            System.out.println("\nSample of the texture matrix (first 5x5 or less):");
-            for (int i = 0; i < Math.min(5, textureMatrix.size()); i++) {
-                List<Square> row = textureMatrix.get(i);
-                for (int j = 0; j < Math.min(5, row.size()); j++) {
-                    System.out.printf("%-30s ", row.get(j).getSpriteFilePath()); // Adjust formatting as needed
-                }
-                System.out.println();
-            }
-
-        } catch (RuntimeException e) {
-            System.err.println("\nError during map parsing:");
-            e.printStackTrace();
-        }
-    }
 }
