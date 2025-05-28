@@ -5,7 +5,7 @@ import com.bomber7.core.controller.Config;
 public class HumanPlayer extends Player {
 
     private Config config;
-    private Bomb[] bombs;
+    //private Bomb[] bombs;
 
     /**
      * HumanPlayer Constructor
@@ -16,9 +16,10 @@ public class HumanPlayer extends Player {
      * @param spriteFP The file path to the player's sprite
      */
     public HumanPlayer(Config config, String name, int x, int y, String spriteFP) {
-        super(name, x, y, spriteFP);
+        super(name, x, y,1,1, spriteFP);
         this.config = config;
     }
+
 
     /**
      * Gets the configuration for the player controls.
