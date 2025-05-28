@@ -14,7 +14,7 @@ public abstract class Wall extends MapElement {
      * @param xCoord         the x-coordinate of the wall on the game grid
      * @param yCoord         the y-coordinate of the wall on the game grid
      */
-    public Wall(String spriteFilePath, int xCoord, int yCoord) {
-        super(spriteFilePath, xCoord, yCoord);
+    public Wall(String spriteFilePath) {
+        super(spriteFilePath);
     }
 }
