@@ -13,7 +13,7 @@ import com.bomber7.utils.ResourceManager;
 /**
  * An abstract Screen class that all bomber screens should inherit from.
  */
-public abstract class BomberScreen implements Screen {
+public abstract class BomberScreen extends Stage implements Screen {
     /**
      * Background color of the app.
      */
@@ -22,10 +22,6 @@ public abstract class BomberScreen implements Screen {
      * Game object.
      */
     protected final BomberGame game;
-    /**
-     * 2D Stage object.
-     */
-    protected Stage stage;
     /**
      * Game resources.
      */
@@ -36,10 +32,12 @@ public abstract class BomberScreen implements Screen {
      * @param game the Game instance this screen belongs to
      */
     public BomberScreen(Game game) {
+        super(new ScreenViewport());
+
         this.game = (BomberGame) game;
         this.resources = this.game.getBomberResources();
         this.bgColor = resources.getSkin().getColor("darkBlue");
-        initializeStage();
+
         initView();
         initController();
     }
@@ -56,47 +54,33 @@ public abstract class BomberScreen implements Screen {
 
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.act(delta);
-        stage.draw();
+        super.act(delta);
+        super.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
+        super.getViewport().update(width, height, true);
     }
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() { }
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() { }
 
     @Override
-    public void hide() {
-
-    }
+    public void hide() { }
 
     @Override
     public void dispose() {
-        stage.dispose();
-    }
-
-    /**
-     * Initializes the stage.
-     */
-    private void initializeStage() {
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+        super.dispose();
     }
 }

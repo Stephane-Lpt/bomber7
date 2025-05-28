@@ -7,13 +7,13 @@ import com.badlogic.gdx.Game;
  * Here he can define the number of players, their skins, as well as their type (human or AI)
  * as well as the difficulty of the AI.
  */
-public class LevelSetupScreen extends BomberScreen {
+public class MapSelectionScreen extends BomberScreen {
     /**
      * Constructs a new LevelSetupScreen associated with the given game.
      *
      * @param game the Game instance this screen belongs to
      */
-    public LevelSetupScreen(Game game) {
+    public MapSelectionScreen(Game game) {
         super(game);
     }
 

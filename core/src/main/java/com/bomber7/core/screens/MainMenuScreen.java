@@ -8,8 +8,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
+import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.ScreenType;
 
 /**
  * The main menu of the game.
@@ -30,7 +32,7 @@ public class MainMenuScreen extends BomberScreen {
     /**
      * Button used to go to the settings {@link PlayerSetupScreen}.
      */
-    private BomberTextButton optionsButton;
+    private BomberTextButton settingsButton;
     /**
      * Button used to quit the game.
      */
@@ -57,7 +59,7 @@ public class MainMenuScreen extends BomberScreen {
         Image logoImage = new Image(new Texture("images/logo.png"));
         logoImage.setScaling(Scaling.fit);
         playButton = new BomberTextButton(resources.getString("play"), resources);
-        optionsButton = new BomberTextButton(resources.getString("options"), resources);
+        settingsButton = new BomberTextButton(resources.getString("options"), resources);
         quitButton = new BomberTextButton(resources.getString("quit"), resources);
 
         table.add(logoImage)
@@ -72,7 +74,7 @@ public class MainMenuScreen extends BomberScreen {
             .height(Dimensions.BUTTON_HEIGHT)
             .spaceBottom(Dimensions.COMPONENT_SPACING)
             .row();
-        table.add(optionsButton)
+        table.add(settingsButton)
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
             .spaceBottom(Dimensions.COMPONENT_SPACING)
@@ -82,13 +84,20 @@ public class MainMenuScreen extends BomberScreen {
             .height(Dimensions.BUTTON_HEIGHT)
             .row();
 
-        stage.addActor(table);
+        super.addActor(table);
     }
 
     @Override
     public void initController() {
         playButton.addListener(e -> {
             return false;
+        });
+
+        settingsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ScreenManager.getInstance().showScreen(ScreenType.SETTINGS);
+            }
         });
 
         quitButton.addListener(new ClickListener() {

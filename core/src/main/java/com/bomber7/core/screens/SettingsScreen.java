@@ -1,11 +1,15 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.ScreenType;
 
 /**
  * Settings screen where the user can configure game options such as volume levels,
@@ -144,11 +148,16 @@ public class SettingsScreen extends BomberScreen {
             .padTop(Dimensions.COMPONENT_SPACING / 2f)
             .padLeft(Dimensions.COMPONENT_SPACING / 2f);
 
-        stage.addActor(table);
+        super.addActor(table);
     }
 
     @Override
     public void initController() {
-
+        goBackButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ScreenManager.getInstance().showPreviousScreen();
+            }
+        });
     }
 }
