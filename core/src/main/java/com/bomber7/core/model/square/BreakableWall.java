@@ -15,4 +15,9 @@ public class BreakableWall extends Wall {
     public BreakableWall(String spriteFilePath, int xCoord, int yCoord) {
         super(spriteFilePath, xCoord, yCoord);
     }
+
+    @Override
+    public String toString() {
+        return "BreakableWall";
+    }
 }

@@ -64,4 +64,12 @@ public class Square {
     public MapElement getMapElement() {
         return mapElement;
     }
+
+    @Override
+    public String toString() {
+        return "S{" +
+                "sFP='" + spriteFilePath.substring(0,4) + '\'' +
+                ", mE=" + (mapElement != null ? mapElement.toString().substring(0, 4) : "null") +
+                "} ";
+    }
 }
