@@ -6,9 +6,12 @@ import com.bomber7.core.model.square.UnbreakableWall;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -22,17 +25,20 @@ import java.util.Map;
  */
 public class LevelMapFactory {
 
-    private Path tilesetJsonPath;
+    private final Map<Integer, String> textureMap;
+
 
     public LevelMapFactory(Path tilesetJsonPath) {
-        this.tilesetJsonPath = tilesetJsonPath;
+        this.textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
+
     }
 
     public LevelMap createLevelMap(String mapName){
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
-        if (mapRootDirectory == null) {
-            throw new IllegalArgumentException("Map directory not found for file: " + mapName + Paths.get("./").toAbsolutePath());
+        if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
+            throw new IllegalArgumentException("Map directory not found or is empty for: " + mapName + " (cwd: " + Paths.get("./").toAbsolutePath() + ")");
         }
+
 
         File backgroundCsvFile = null;
         File breakableCsvFile = null;
@@ -40,26 +46,36 @@ public class LevelMapFactory {
 
         if (mapRootDirectory.isDirectory()) {
             File[] files = mapRootDirectory.listFiles();
+            if (files == null || files.length == 0) {
+                throw new IllegalArgumentException("Map directory is empty for: " + mapName);
+            }
 
             if (files != null) {
                 for (File file : files) {
                     if (file.isFile() && file.getName().toLowerCase().endsWith(".csv")) {
                         String name = file.getName().toLowerCase();
 
-                        if (name.contains("background") && backgroundCsvFile == null) {
+                        if (name.contains("background")) {
+                            if (backgroundCsvFile != null) {
+                                throw new IllegalArgumentException("Multiple background CSV files found in: " + mapName);
+                            }
                             backgroundCsvFile = file;
-                        } else if (name.contains("unbreakable") && unbreakableCsvFile == null) {
+                        } else if (name.contains("unbreakable")) {
+                            if (unbreakableCsvFile != null) {
+                                throw new IllegalArgumentException("Multiple unbreakable CSV files found in: " + mapName);
+                            }
                             unbreakableCsvFile = file;
-                        } else if (name.contains("breakable") && breakableCsvFile == null) {
+                        } else if (name.contains("breakable")) {
+                            if (breakableCsvFile != null) {
+                                throw new IllegalArgumentException("Multiple breakable CSV files found in: " + mapName);
+                            }
                             breakableCsvFile = file;
                         }
                     }
                 }
             }
         }
-
-        Map<Integer, String> textureMap = LevelMapFactory.parseTextureMap(this.tilesetJsonPath);
-        List<List<Square>> checkerboard = LevelMapFactory.parseCsv(backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, textureMap);
+        List<List<Square>> checkerboard = LevelMapFactory.parseCsv(backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, this.textureMap);
         return new LevelMap(checkerboard);
     }
 
@@ -104,8 +120,8 @@ public class LevelMapFactory {
             }
             return textureMap;
 
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to parse texture JSON", e);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Failed to parse texture JSON. Wrong filepath or wrong format/json content.", e);
         }
     }
 
@@ -121,7 +137,34 @@ public class LevelMapFactory {
             List<String[]> breakableRows = breakableReader.readAll();
             List<String[]> unbreakableRows = unbreakableReader.readAll();
 
+            // Verify that all CSV files have the same number of rows
+            int numRows = backgroundRows.size();
+            if (breakableRows.size() != numRows || unbreakableRows.size() != numRows) {
+                throw new IllegalArgumentException("CSV files do not have the same number of rows.");
+            }
+
             for (int i = 0; i < backgroundRows.size(); i++) {
+
+                int backgroundCols = backgroundRows.get(i).length;
+                int breakableCols = breakableRows.get(i).length;
+                int unbreakableCols = unbreakableRows.get(i).length;
+
+                // Check if all CSV files have the same number of columns in the current row
+                if (backgroundCols != breakableCols || backgroundCols != unbreakableCols) {
+                    throw new IllegalArgumentException("Row " + i + " has mismatched column counts between CSV files.");
+                }
+
+                // Check if all rows are rectangular (comparing with the first row)
+                if (backgroundCols != backgroundRows.get(0).length) {
+                    throw new IllegalArgumentException("Background CSV is not rectangular at row " + i);
+                }
+                if (breakableCols != breakableRows.get(0).length) {
+                    throw new IllegalArgumentException("Breakable CSV is not rectangular at row " + i);
+                }
+                if (unbreakableCols != unbreakableRows.get(0).length) {
+                    throw new IllegalArgumentException("Unbreakable CSV is not rectangular at row " + i);
+                }
+
                 String[] backgroundRow = backgroundRows.get(i);
                 String[] breakableRow = breakableRows.get(i);
                 String[] unbreakableRow = unbreakableRows.get(i);
@@ -133,19 +176,32 @@ public class LevelMapFactory {
                     int breakableTextureId = Integer.parseInt(breakableRow[j].trim());
                     int unbreakableTextureId = Integer.parseInt(unbreakableRow[j].trim());
 
-                    final String defaultValue = "missing_texture.png";
-                    String backgroundTexture = textureMap.getOrDefault(backgroundTextureId, defaultValue);
+                    if (!textureMap.containsKey(backgroundTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have a required background texture. Missing id: " + backgroundTextureId);
+                    }
+
+                    if (!textureMap.containsKey(breakableTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have a required breakable texture. Missing id: " + breakableTextureId);
+                    }
+
+                    if (!textureMap.containsKey(unbreakableTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have a required unbreakable texture. Missing id: " + breakableTextureId);
+                    }
+
+
+
+                    String backgroundTexture = textureMap.get(backgroundTextureId);
 
                     if(breakableTextureId != -1){
-                        String breakableTexture = textureMap.getOrDefault(breakableTextureId, defaultValue);
-                        squareRow.add(new Square(backgroundTexture, new BreakableWall(breakableTexture, j, i)));
+                        String breakableTexture = textureMap.get(breakableTextureId);
+                        squareRow.add(new Square(backgroundTexture, backgroundTextureId, new BreakableWall(breakableTexture, breakableTextureId)));
                     }
                     else if(unbreakableTextureId != -1){
-                        String unbreakableTexture = textureMap.getOrDefault(unbreakableTextureId, defaultValue);
-                        squareRow.add(new Square(backgroundTexture, new UnbreakableWall(unbreakableTexture, j, i)));
+                        String unbreakableTexture = textureMap.get(unbreakableTextureId);
+                        squareRow.add(new Square(backgroundTexture, backgroundTextureId, new UnbreakableWall(unbreakableTexture, unbreakableTextureId)));
                     }
                     else {
-                        squareRow.add(new Square(backgroundTexture));
+                        squareRow.add(new Square(backgroundTexture, backgroundTextureId));
                     }
 
                 }
@@ -154,8 +210,12 @@ public class LevelMapFactory {
             }
 
             return result;
-        } catch (Exception e) {
-            throw new RuntimeException("Error parsing CSVs. backPath: " + backgroundCsvPath + " breakPath: " + breakableCsvPath + " unbreakPath: " + unbreakableCsvPath, e);
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException("Invalid CSV filepath.", e);
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to read specified files, maybe lack of ressources", e);
+        } catch (CsvException e) {
+            throw new IllegalArgumentException("Unable to read the CSV file. Wrong format");
         }
     }
 }

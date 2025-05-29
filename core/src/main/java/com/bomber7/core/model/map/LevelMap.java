@@ -1,20 +1,8 @@
 package com.bomber7.core.model.map;
 
-import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
-import com.bomber7.core.model.square.UnbreakableWall;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.opencsv.CSVReader;
 
-import java.io.File;
-import java.io.FileReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a level with a map in the game.
@@ -58,6 +46,24 @@ public class LevelMap {
         }
 
         return sb.toString();
+    }
+
+    /**
+     * Returns the width of the checkerboard (number of columns).
+     * We look at the first row because we verify in the factory that
+     * all rows have the same number of columns.
+     * @return the width of the checkerboard
+     */
+    public int getWidth(){
+        return checkerboard.get(0).size();
+    }
+
+    /**
+     * Returns the height of the checkerboard (number of rows).
+     * @return the height of the checkerboard
+     */
+    public int getHeight(){
+        return checkerboard.size();
     }
 
 }

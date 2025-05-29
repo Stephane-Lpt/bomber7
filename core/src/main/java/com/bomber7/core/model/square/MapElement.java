@@ -1,7 +1,5 @@
 package com.bomber7.core.model.square;
 
-import com.bomber7.core.model.map.LevelMap;
-
 /**
  * Abstract class representing a map element in the game.
  */
@@ -10,21 +8,22 @@ public abstract class MapElement {
      * The file path to the sprite image for this map element.
      * Each element has coordinates and also a sprite.
      */
-    private String spriteFilePath;
-
+    private String textureFilePath;
+    private int textureId;
 
     /**
-     * Constructs a new MapElement with the specified sprite file path.
-     *
-     * @param spriteFilePath the file path to the sprite image for this map element
-     * @throws IllegalArgumentException if the sprite file path is null or empty
+     * Constructs a new Square with the specified sprite file path and texture ID.
+     * @param textureFilePath the file path to the texture image for this square
+     * @param textureId the texture ID associated with this square
+     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
-    public MapElement(String spriteFilePath) {
-        if (spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("Sprite file path cannot be null or empty");
+    public MapElement(String textureFilePath, int textureId) {
+        if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
+            throw new IllegalArgumentException("Texture file path cannot be null or empty");
         }
 
-        this.spriteFilePath = spriteFilePath;
+        this.textureFilePath = textureFilePath;
+        this.textureId = textureId;
     }
 
     /**
@@ -33,6 +32,6 @@ public abstract class MapElement {
      * @return the sprite file path
      */
     public String getSpriteFilePath() {
-        return spriteFilePath;
+        return textureFilePath;
     }
 }

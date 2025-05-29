@@ -8,13 +8,12 @@ package com.bomber7.core.model.square;
 public abstract class Wall extends MapElement {
 
     /**
-     * Constructs a Wall with the specified sprite file path and coordinates.
+     * Constructs a Wall with the specified sprite file path.
      *
-     * @param spriteFilePath the file path to the sprite image for the wall
-     * @param xCoord         the x-coordinate of the wall on the game grid
-     * @param yCoord         the y-coordinate of the wall on the game grid
+     * @param textureFilePath the file path to the sprite image for the wall
+     * @param textureId id of the texture
      */
-    public Wall(String spriteFilePath) {
-        super(spriteFilePath);
+    public Wall(String textureFilePath, int textureId) {
+        super(textureFilePath, textureId);
     }
 }
