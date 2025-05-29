@@ -6,14 +6,13 @@ package com.bomber7.core.model.square;
 public class BreakableWall extends Wall {
 
     /**
-     * Constructs a BreakableWall with the specified sprite file path and coordinates.
+     * Constructs a BreakableWall with the specified texture file path.
      *
-     * @param spriteFilePath the file path to the sprite image for the wall
-     * @param xCoord         the x-coordinate of the wall on the game grid
-     * @param yCoord         the y-coordinate of the wall on the game grid
+     * @param textureFilePath the file path to the sprite image for the wall
+     * @param textureId id of the texture
      */
-    public BreakableWall(String spriteFilePath, int xCoord, int yCoord) {
-        super(spriteFilePath, xCoord, yCoord);
+    public BreakableWall(String textureFilePath, int textureId) {
+        super(textureFilePath, textureId);
     }
 
     @Override

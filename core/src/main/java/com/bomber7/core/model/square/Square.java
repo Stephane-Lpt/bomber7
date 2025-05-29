@@ -7,45 +7,51 @@ public class Square {
     /**
      * The file path to the sprite image for this square.
      */
-    private String spriteFilePath;
+    private final String textureFilePath;
+    private final int textureId;
     /**
      * A map element associated with this square (if any). e.g. Bomb, wall, etc.
      */
-    private MapElement mapElement;
+    private final MapElement mapElement;
 
     /**
-     * Constructs a new Square with the specified sprite file path.
-     * @param spriteFilePath the file path to the sprite image for this square
+     * Constructs a new Square with the specified sprite file path and texture ID.
+     * @param textureFilePath the file path to the sprite image for this square
+     * @param textureId the texture ID associated with this square
+     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
-    public Square(String spriteFilePath) {
-        if (spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
+    public Square(String textureFilePath, int textureId) {
+        if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
             throw new IllegalArgumentException("Sprite file path cannot be null or empty");
         }
-        this.spriteFilePath = spriteFilePath;
+
+        this.textureFilePath = textureFilePath;
+        this.textureId = textureId;
         this.mapElement = null; // Initialize mapElement to null if not provided
     }
 
     /**
-     * Constructs a new Square with the specified sprite file path and map element.
-     * @param spriteFilePath the file path to the sprite image for this square
+     * Constructs a new Square with the specified texture file path and map element.
+     * @param textureFilePath the file path to the texture image for this square
      * @param mapElement the map element associated with this square
      */
-    public Square(String spriteFilePath, MapElement mapElement) {
-        if (spriteFilePath == null || spriteFilePath.isEmpty() || spriteFilePath.trim().isEmpty()) {
+    public Square(String textureFilePath, int textureId, MapElement mapElement) {
+        if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
             throw new IllegalArgumentException("Sprite file path cannot be null or empty");
         }
 
-        this.spriteFilePath = spriteFilePath;
+        this.textureFilePath = textureFilePath;
+        this.textureId = textureId;
         this.mapElement = mapElement;
     }
 
     /**
-     * Returns the file path to the sprite image for this square.
+     * Returns the file path to the texture image for this square.
      *
-     * @return the sprite file path
+     * @return the texture file path
      */
-    public String getSpriteFilePath() {
-        return spriteFilePath;
+    public String getTextureFilePath() {
+        return textureFilePath;
     }
 
     /**
@@ -65,10 +71,15 @@ public class Square {
         return mapElement;
     }
 
+    public int getTextureId() {
+        return textureId;
+    }
+
     @Override
     public String toString() {
         return "S{" +
-                "sFP='" + spriteFilePath.substring(0,4) + '\'' +
+                "tId=" + textureId + '\'' +
+                ", tFP='" + textureFilePath.substring(0,4) + '\'' +
                 ", mE=" + (mapElement != null ? mapElement.toString().substring(0, 4) : "null") +
                 "} ";
     }
