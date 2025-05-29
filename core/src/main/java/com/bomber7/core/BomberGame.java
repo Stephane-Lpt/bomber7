@@ -11,7 +11,6 @@ import com.bomber7.utils.ScreenType;
  * </p>
  */
 public class BomberGame extends Game {
-
     /**
      * Maximum number of human players allowed in the game.
      */

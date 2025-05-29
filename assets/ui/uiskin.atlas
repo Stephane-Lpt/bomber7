@@ -1,11 +1,11 @@
 uiskin.png
-size: 714, 377
+size: 2039, 1122
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 button.dark.9
   rotate: false
-  xy: 50, 0
+  xy: 1375, 504
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -13,7 +13,7 @@ button.dark.9
   index: -1
 button.light.9
   rotate: false
-  xy: 0, 114
+  xy: 0, 1008
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -21,15 +21,87 @@ button.light.9
   index: -1
 button.white.9
   rotate: false
-  xy: 0, 228
+  xy: 664, 1008
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
   offset: 0, 0
   index: -1
+character.background.add.dark.9
+  rotate: false
+  xy: 874, 0
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.add.light.9
+  rotate: false
+  xy: 1149, 0
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.add.white.9
+  rotate: false
+  xy: 1424, 0
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.locked.dark.9
+  rotate: false
+  xy: 1699, 0
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.locked.light.9
+  rotate: false
+  xy: 0, 504
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.locked.white.9
+  rotate: false
+  xy: 275, 504
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.valid.dark.9
+  rotate: false
+  xy: 550, 504
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.valid.light.9
+  rotate: false
+  xy: 825, 504
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
+character.background.valid.white.9
+  rotate: false
+  xy: 1100, 504
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
 slider.9
   rotate: false
-  xy: 0, 342
+  xy: 1328, 1008
   size: 664, 35
   split: 166, 166, 9, 9
   orig: 664, 35
@@ -37,9 +109,50 @@ slider.9
   index: -1
 slider.knob.9
   rotate: false
-  xy: 0, 0
+  xy: 7, 0
   size: 50, 50
   split: 13, 12, 13, 12
   orig: 50, 50
+  offset: 0, 0
+  index: -1
+sprite.bde
+  rotate: false
+  xy: 328, 0
+  size: 272, 409
+  split: 0, 272, 0, 409
+  orig: 272, 409
+  offset: 0, 0
+  index: -1
+sprite.graduate.9
+  rotate: false
+  xy: 600, 0
+  size: 274, 412
+  split: 0, 0, 0, 0
+  pad: 69, 68, 103, 103
+  orig: 274, 412
+  offset: 0, 0
+  index: -1
+sprite.student
+  rotate: false
+  xy: 57, 0
+  size: 271, 409
+  split: 0, 271, 0, 409
+  orig: 271, 409
+  offset: 0, 0
+  index: -1
+transparent
+  rotate: false
+  xy: 1, 0
+  size: 6, 6
+  split: 0, 6, 0, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+white.9
+  rotate: false
+  xy: 0, 0
+  size: 1, 1
+  split: 0, 0, 0, 0
+  orig: 1, 1
   offset: 0, 0
   index: -1

@@ -4,16 +4,17 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.bomber7.core.BomberGame;
+import com.bomber7.utils.MVCComponent;
 import com.bomber7.utils.ResourceManager;
 
 /**
  * An abstract Screen class that all bomber screens should inherit from.
  */
-public abstract class BomberScreen extends Stage implements Screen {
+public abstract class BomberScreen extends Stage implements Screen, MVCComponent {
     /**
      * Background color of the app.
      */
@@ -42,16 +43,6 @@ public abstract class BomberScreen extends Stage implements Screen {
         initController();
     }
 
-    /**
-     * A method where all view components should be initialized and positioned.
-     */
-    public abstract void initView();
-
-    /**
-     * A method where all controls should be initialized (button clicks, etc..).
-     */
-    public abstract void initController();
-
     @Override
     public void show() {
         Gdx.input.setInputProcessor(this);
@@ -60,7 +51,7 @@ public abstract class BomberScreen extends Stage implements Screen {
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT | GL30.GL_DEPTH_BUFFER_BIT);
         super.act(delta);
         super.draw();
     }

@@ -5,9 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bomber7.core.ScreenManager;
-import com.bomber7.core.components.BomberTextButton;
+import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.ScreenType;
 
@@ -48,18 +49,18 @@ public class SettingsScreen extends BomberScreen {
     /**
      * Buttons to configure each player's key bindings.
      */
-    private BomberTextButton[] configPlayerButtons;
+    private TextButton[] configPlayerButtons;
 
     /**
      * Button to confirm and save changes.
      */
-    private BomberTextButton confirmChangesButton;
+    private TextButton confirmChangesButton;
 
     /**
      * Button to return to the previous screen.
      * If not saved, changes will not be applied.
      */
-    private BomberTextButton goBackButton;
+    private TextButton goBackButton;
 
     /**
      * Constructs a new SettingsScreen associated with the given game.
@@ -82,18 +83,18 @@ public class SettingsScreen extends BomberScreen {
         Label keyBindingLabel = new Label(resources.getString("key_binding"), resources.getSkin(), "medium");
         Label[] playerLabels = new Label[game.MAX_PLAYERS];
 
-        configPlayerButtons = new BomberTextButton[game.MAX_PLAYERS];
+        configPlayerButtons = new TextButton[game.MAX_PLAYERS];
 
         for (int i = 0; i < game.MAX_PLAYERS; i++) {
             playerLabels[i] = new Label(resources.getString("player") + " " + (i + 1), resources.getSkin());
-            configPlayerButtons[i] = new BomberTextButton(resources.getString("configure"), resources);
+            configPlayerButtons[i] = new TextButton(resources.getString("configure"), resources.getSkin());
         }
 
         globalVolumeSlider = new Slider(VOLUME_SLIDER_MIN, VOLUME_SLIDER_MAX, VOLUME_SLIDER_STEP, false, resources.getSkin());
         musicVolumeSlider = new Slider(VOLUME_SLIDER_MIN, VOLUME_SLIDER_MAX, VOLUME_SLIDER_STEP, false, resources.getSkin());
 
-        confirmChangesButton = new BomberTextButton(resources.getString("validate"), resources);
-        goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
+        confirmChangesButton = new TextButton(resources.getString("validate"), resources.getSkin());
+        goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
 
         table.add(optionsLabels)
             .colspan(2)
@@ -153,11 +154,18 @@ public class SettingsScreen extends BomberScreen {
 
     @Override
     public void initController() {
-        goBackButton.addListener(new ClickListener() {
+        goBackButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ScreenManager.getInstance().showPreviousScreen();
             }
-        });
+        }, resources));
+
+        confirmChangesButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+
+            }
+        }, resources));
     }
 }

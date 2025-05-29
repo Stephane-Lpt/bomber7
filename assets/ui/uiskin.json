@@ -1,42 +1,95 @@
 {
   "com.badlogic.gdx.graphics.Color": {
+    "transparent": {"hex":  "FFFFFF00" },
     "gold":     { "hex": "FEC202FF" },
     "lightGold":     { "hex": "FEDA67FF" },
     "darkGold": { "hex": "E1AB00FF" },
     "white":    { "hex": "FCFDEBFF" },
     "red":      { "hex": "F91931FF" },
     "darkRed":  { "hex": "B70B1EFF  " },
-    "darkBlue": { "hex": "0A1646FF" }
+    "darkBlue": { "hex": "0A1646FF" },
+    "transparentDarkBlue": { "hex": "29a1ff88" }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable": {
+    "selection": {
+      "name": "white.9",
+      "color": "transparentDarkBlue"
+    },
+    "transparent-bg": {
+      "name": "transparent",
+      "color": "transparent"
+    },
+    "sprite-student": {
+      "name": "sprite.student",
+      "color": "white"
+    },
+    "sprite-bde": {
+      "name": "sprite.bde",
+      "color": "white"
+    },
+    "sprite-graduate": {
+      "name": "sprite.graduate.9",
+      "color": "white"
+    }
   },
   "com.badlogic.gdx.graphics.g2d.BitmapFont": {
-    "pixelify-regular-sm": { "file": "../fonts/pixelify-sans-regular-sm.fnt" },
-    "pixelify-regular-md": { "file": "../fonts/pixelify-sans-regular-md.fnt" },
-    "pixelify-regular-lg": { "file": "../fonts/pixelify-sans-regular-lg.fnt" },
-
-    "pixelify-bold-sm": { "file": "../fonts/pixelify-sans-bold-sm.fnt" },
-    "pixelify-bold-md": { "file": "../fonts/pixelify-sans-bold-md.fnt" },
-    "pixelify-bold-lg": { "file": "../fonts/pixelify-sans-bold-lg.fnt" }
+    "pixelify-sm": { "file": "../fonts/pixelify-sm.fnt" },
+    "pixelify-md": { "file": "../fonts/pixelify-md.fnt" },
+    "pixelify-lg": { "file": "../fonts/pixelify-lg.fnt" }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {
       "up": "button.light.9",
       "over": "button.dark.9",
       "down": "button.white.9",
-      "font": "pixelify-regular-sm",
+      "font": "pixelify-sm",
       "fontColor": "white"
+    },
+    "transparent-lg": {
+      "up": "transparent-bg",
+      "down": "transparent-bg",
+      "over": "transparent-bg",
+      "font": "pixelify-lg",
+      "fontColor": "white"
+    },
+    "transparent-sm": {
+      "up": "transparent-bg",
+      "down": "transparent-bg",
+      "over": "transparent-bg",
+      "font": "pixelify-sm",
+      "fontColor": "white"
+    },
+    "player-add": {
+      "up": "character.background.add.light.9",
+      "over": "character.background.add.dark.9",
+      "down": "character.background.add.white.9",
+      "font": "pixelify-sm",
+      "fontColor": "white"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
+    "character-selector-valid": {
+      "up": "character.background.valid.light.9",
+      "over": "character.background.valid.dark.9",
+      "down": "character.background.valid.white.9"
+    },
+    "character-selector-locked": {
+      "up": "character.background.locked.light.9",
+      "over": "character.background.locked.dark.9",
+      "down": "character.background.locked.white.9"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
     "default": {
-      "font": "pixelify-regular-sm",
+      "font": "pixelify-sm",
       "fontColor" : "white"
     },
     "medium": {
-      "font": "pixelify-regular-md",
+      "font": "pixelify-md",
       "fontColor" : "white"
     },
     "large": {
-      "font": "pixelify-bold-lg",
+      "font": "pixelify-lg",
       "fontColor" : "white"
     }
   },
@@ -44,6 +97,14 @@
     "default-horizontal": {
       "background": "slider.9",
       "knob": "slider.knob.9"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+    "default": {
+      "font": "pixelify-sm",
+      "fontColor" : "white",
+      "cursor": "white.9",
+      "selection": "selection"
     }
   }
 }

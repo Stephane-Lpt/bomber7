@@ -22,7 +22,7 @@ public enum ScreenType {
      */
     PLAYER_SETUP {
         public BomberScreen getScreen(Game game) {
-            return new PlayerSetupScreen(game);
+            return new PlayerSelectionScreen(game);
         }
     },
 
