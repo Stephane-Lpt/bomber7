@@ -35,10 +35,6 @@ public class PlayerBlueprint {
         return character;
     }
 
-    public boolean isHuman() {
-        return strategy == PlayerStrategy.HUMAN;
-    }
-
     /**
      * Returns whether the configured player is valid or not.
      * A player is not valid if the selected skin is locked.

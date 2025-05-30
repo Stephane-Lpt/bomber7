@@ -15,11 +15,11 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
     public static final float SELECTOR_WIDTH = 175f;
     public static final float SELECTOR_HEIGHT = 350;
 
-    private int playerIndex;
+    private final int playerIndex;
 
     private ResourceManager resources;
 
-    private PlayerBlueprintObservable playerBlueprint;
+    private final PlayerBlueprintObservable playerBlueprint;
 
     private TextField nameTextField;
     private TextButton addPlayerButton;
@@ -112,6 +112,10 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
     @Override
     public void initController() {
+        nameTextField.setTextFieldListener((textField, c) -> {
+            playerBlueprint.setName(textField.getText());
+        });
+
         // Buttons to change player's skin
         changePlayerSkinLeftButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -162,13 +166,12 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        System.out.println("update");
+        System.out.println("updating playerselector");
 
         updateCharacterBackground();
         updateNameTextField();
         updatePlayerStrategyTable();
     }
-
 
     private void updateCharacterBackground() {
         if (playerBlueprint.isDisposed()) {
@@ -231,17 +234,5 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
                     break;
             }
         }
-    }
-    /**
-     * Sets the nameTextField's text as the player name.
-     * Should be called when the player setup is finished.
-     * <p>
-     *     It was decided not to set a TextFieldListener on the text field so that the observable
-     *     doesn't trigger unnecessary updates when the user is typing (no view widgets observe the
-     *     player's name).
-     * </p>
-     */
-    public void updatePlayerName() {
-        playerBlueprint.setName(nameTextField.getText());
     }
 }

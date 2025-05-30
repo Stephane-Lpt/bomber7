@@ -12,11 +12,6 @@ import com.bomber7.utils.ScreenType;
  */
 public class BomberGame extends Game {
     /**
-     * Maximum number of human players allowed in the game.
-     */
-    public static final int MAX_PLAYERS = 4;
-
-    /**
      * Resource manager responsible for loading and managing game assets.
      */
     private ResourceManager resources;

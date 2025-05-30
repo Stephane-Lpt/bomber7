@@ -65,6 +65,11 @@
       "down": "character.background.add.white.9",
       "font": "pixelify-sm",
       "fontColor": "white"
+    },
+    "inactive": {
+      "up": "button.inactive.9",
+      "font": "pixelify-sm",
+      "fontColor": "white"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
@@ -77,6 +82,9 @@
       "up": "character.background.locked.light.9",
       "over": "character.background.locked.dark.9",
       "down": "character.background.locked.white.9"
+    },
+    "inactive": {
+      "up": "character.background.inactive"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {

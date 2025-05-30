@@ -2,6 +2,7 @@ package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -10,18 +11,21 @@ import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.PlayerSelector;
 import com.bomber7.utils.*;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * Screen where the user adds or removes players to the game he is creating.
  * Here he can define the number of players, their skins, as well as their type (human or AI)
  * as well as the difficulty of the AI.
  */
-public class PlayerSelectionScreen extends BomberScreen {
+public class PlayerSelectionScreen extends BomberScreen implements Observer {
     // TODO : unsubscribe every playerSelector from playerBlueprint on dispose
+    private PlayerSelector tempPlayerSelector;
+    private PlayerBlueprintObservable tempPlayerBlueprintObservable;
 
-    /**
-     * PlayerBlueprint list to store all the playerBlueprints
-     */
     private PlayerBlueprintObservable[] playerBlueprintObservables;
+    private PlayerSelector[] playerSelectors;
 
     /**
      * Button to continue and go to the map selection screen.
@@ -49,10 +53,11 @@ public class PlayerSelectionScreen extends BomberScreen {
         table.setFillParent(true);
 
         Label playerSelectionLabel = new Label(resources.getString("player_selection"), resources.getSkin(), "large");
-        PlayerSelector[] playerSelectors = new PlayerSelector[game.MAX_PLAYERS];
-        playerBlueprintObservables = new PlayerBlueprintObservable[game.MAX_PLAYERS];
-        goToMapSelectionButton = new TextButton(resources.getString("continue"), resources.getSkin());
+        playerSelectors = new PlayerSelector[Constants.MAX_PLAYERS];
+        playerBlueprintObservables = new PlayerBlueprintObservable[Constants.MAX_PLAYERS];
         goToMainMenuButton = new TextButton(resources.getString("go_back"), resources.getSkin());
+        goToMapSelectionButton = new TextButton(resources.getString("continue"), resources.getSkin(), "inactive");
+        goToMapSelectionButton.setTouchable(Touchable.disabled);
 
         table.add(playerSelectionLabel)
             .colspan(4)
@@ -62,6 +67,7 @@ public class PlayerSelectionScreen extends BomberScreen {
         for(int i = 0; i < playerSelectors.length; i++) {
             playerBlueprintObservables[i] = new PlayerBlueprintObservable();
             playerSelectors[i] = new PlayerSelector(resources, playerBlueprintObservables[i], i);
+            playerBlueprintObservables[i].addObserver(this);
             table.add(playerSelectors[i])
                 .padLeft(Dimensions.COMPONENT_SPACING / 4f)
                 .padRight(Dimensions.COMPONENT_SPACING / 4f);
@@ -102,5 +108,32 @@ public class PlayerSelectionScreen extends BomberScreen {
                 ScreenManager.getInstance().showScreen(ScreenType.MAP_SELECTION);
             }
         }, resources));
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        int validBlueprintsCount = 0;
+
+        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
+            if (playerBlueprintObservables[i].isValid()) {
+                validBlueprintsCount++;
+            }
+        }
+
+        changeGoToMapSelectionButtonState(validBlueprintsCount);
+    }
+
+    private void changeGoToMapSelectionButtonState(int validBlueprintsCount) {
+        if (validBlueprintsCount < Constants.MIN_PLAYERS) {
+            goToMapSelectionButton.setTouchable(Touchable.disabled);
+            goToMapSelectionButton.setStyle(
+                resources.getSkin().get("inactive", TextButton.TextButtonStyle.class
+                ));
+        } else {
+            goToMapSelectionButton.setTouchable(Touchable.enabled);
+            goToMapSelectionButton.setStyle(
+                resources.getSkin().get("default", TextButton.TextButtonStyle.class
+                ));
+        }
     }
 }

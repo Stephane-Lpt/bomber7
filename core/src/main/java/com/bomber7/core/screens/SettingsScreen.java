@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bomber7.core.ScreenManager;
 import com.bomber7.utils.ComponentsUtils;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
-import com.bomber7.utils.ScreenType;
 
 /**
  * Settings screen where the user can configure game options such as volume levels,
@@ -81,11 +81,11 @@ public class SettingsScreen extends BomberScreen {
         Label globalVolumeLabel = new Label(resources.getString("global_volume"), resources.getSkin(), "medium");
         Label musicLabel = new Label(resources.getString("music"), resources.getSkin(), "medium");
         Label keyBindingLabel = new Label(resources.getString("key_binding"), resources.getSkin(), "medium");
-        Label[] playerLabels = new Label[game.MAX_PLAYERS];
+        Label[] playerLabels = new Label[Constants.MAX_PLAYERS];
 
-        configPlayerButtons = new TextButton[game.MAX_PLAYERS];
+        configPlayerButtons = new TextButton[Constants.MAX_PLAYERS];
 
-        for (int i = 0; i < game.MAX_PLAYERS; i++) {
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             playerLabels[i] = new Label(resources.getString("player") + " " + (i + 1), resources.getSkin());
             configPlayerButtons[i] = new TextButton(resources.getString("configure"), resources.getSkin());
         }
@@ -124,7 +124,7 @@ public class SettingsScreen extends BomberScreen {
             .spaceBottom(Dimensions.LABEL_PADDING)
             .row();
 
-        for (int i = 0; i < game.MAX_PLAYERS; i++) {
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             table.add(playerLabels[i])
                 .right()
                 .padRight(Dimensions.COMPONENT_SPACING / 2f)
@@ -164,7 +164,7 @@ public class SettingsScreen extends BomberScreen {
         confirmChangesButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                // TODO
             }
         }, resources));
     }

@@ -1,17 +1,9 @@
 uiskin.png
-size: 2039, 1122
+size: 1992, 1236
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 button.dark.9
-  rotate: false
-  xy: 1375, 504
-  size: 664, 114
-  split: 166, 166, 29, 28
-  orig: 664, 114
-  offset: 0, 0
-  index: -1
-button.light.9
   rotate: false
   xy: 0, 1008
   size: 664, 114
@@ -19,9 +11,25 @@ button.light.9
   orig: 664, 114
   offset: 0, 0
   index: -1
-button.white.9
+button.inactive.9
   rotate: false
   xy: 664, 1008
+  size: 664, 114
+  split: 166, 166, 29, 28
+  orig: 664, 114
+  offset: 0, 0
+  index: -1
+button.light.9
+  rotate: false
+  xy: 1328, 1008
+  size: 664, 114
+  split: 166, 166, 29, 28
+  orig: 664, 114
+  offset: 0, 0
+  index: -1
+button.white.9
+  rotate: false
+  xy: 0, 1122
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -51,7 +59,7 @@ character.background.add.white.9
   orig: 275, 504
   offset: 0, 0
   index: -1
-character.background.locked.dark.9
+character.background.inactive
   rotate: false
   xy: 1699, 0
   size: 275, 504
@@ -59,7 +67,7 @@ character.background.locked.dark.9
   orig: 275, 504
   offset: 0, 0
   index: -1
-character.background.locked.light.9
+character.background.locked.dark.9
   rotate: false
   xy: 0, 504
   size: 275, 504
@@ -67,7 +75,7 @@ character.background.locked.light.9
   orig: 275, 504
   offset: 0, 0
   index: -1
-character.background.locked.white.9
+character.background.locked.light.9
   rotate: false
   xy: 275, 504
   size: 275, 504
@@ -75,7 +83,7 @@ character.background.locked.white.9
   orig: 275, 504
   offset: 0, 0
   index: -1
-character.background.valid.dark.9
+character.background.locked.white.9
   rotate: false
   xy: 550, 504
   size: 275, 504
@@ -83,7 +91,7 @@ character.background.valid.dark.9
   orig: 275, 504
   offset: 0, 0
   index: -1
-character.background.valid.light.9
+character.background.valid.dark.9
   rotate: false
   xy: 825, 504
   size: 275, 504
@@ -91,7 +99,7 @@ character.background.valid.light.9
   orig: 275, 504
   offset: 0, 0
   index: -1
-character.background.valid.white.9
+character.background.valid.light.9
   rotate: false
   xy: 1100, 504
   size: 275, 504
@@ -99,9 +107,17 @@ character.background.valid.white.9
   orig: 275, 504
   offset: 0, 0
   index: -1
+character.background.valid.white.9
+  rotate: false
+  xy: 1375, 504
+  size: 275, 504
+  split: 69, 69, 126, 126
+  orig: 275, 504
+  offset: 0, 0
+  index: -1
 slider.9
   rotate: false
-  xy: 1328, 1008
+  xy: 664, 1122
   size: 664, 35
   split: 166, 166, 9, 9
   orig: 664, 35

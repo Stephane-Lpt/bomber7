@@ -16,7 +16,6 @@ public class PlayerBlueprintObservable extends Observable {
 
     public void setName(String name) {
         value.setName(name);
-        this.notifyChanged();
     }
 
     public void setStrategy(PlayerStrategy strategy) {
@@ -41,10 +40,6 @@ public class PlayerBlueprintObservable extends Observable {
         return value.getCharacter();
     }
 
-    public boolean isHuman() {
-        return value.isHuman();
-    }
-
     public void dispose() {
         value = null;
         this.notifyChanged();
@@ -55,7 +50,7 @@ public class PlayerBlueprintObservable extends Observable {
     }
 
     public boolean isValid() {
-        return value.isValid();
+        return !isDisposed() && value.isValid();
     }
 
     public void notifyChanged() {
