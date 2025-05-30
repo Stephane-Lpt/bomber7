@@ -5,6 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public final class ComponentsUtils {
+    private ComponentsUtils() { }
+
     public static ClickListener addSoundEffect(ClickListener original, ResourceManager resources) {
         return new ClickListener() {
             @Override

@@ -4,6 +4,8 @@ package com.bomber7.utils;
  * Constant variables used in the app.
  */
 public final class Constants {
+    private Constants() { }
+
     public static final int MAX_PLAYER_NAME_LENGTH = 12;
     public static final int MIN_PLAYERS = 1;
     /**

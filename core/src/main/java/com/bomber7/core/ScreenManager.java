@@ -16,7 +16,7 @@ import com.bomber7.utils.ScreenType;
  * https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/
  * </p>
  */
-public class ScreenManager {
+public final class ScreenManager {
 
     /**
      * The singleton instance of the ScreenManager.
@@ -29,11 +29,11 @@ public class ScreenManager {
     private Game game;
 
     /**
-     * Type of current screen
+     * Type of current screen.
      */
     private ScreenType currentScreenType = null;
     /**
-     * Type of previous screen
+     * Type of previous screen.
      */
     private ScreenType previousScreenType = null;
 

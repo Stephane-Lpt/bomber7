@@ -2,11 +2,22 @@ package com.bomber7.core.components;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
-import com.bomber7.utils.*;
+import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.Constants;
+import com.bomber7.utils.ComponentsUtils;
+import com.bomber7.utils.PlayerBlueprintObservable;
+import com.bomber7.utils.MVCComponent;
+import com.bomber7.utils.ResourceManager;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -48,6 +59,8 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
     @Override
     public void initView() {
+        int cols = 3;
+
         strategyTable = new Table();
         nameTextField = new TextField("", resources.getSkin());
         nameTextField.setAlignment(Align.center);
@@ -77,7 +90,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         changePlayerStrategyRightButton = new TextButton(">", resources.getSkin(), "transparent-sm");
 
         this.add(nameTextField)
-            .colspan(3)
+            .colspan(cols)
             .fillX();
         this.row();
 
@@ -86,10 +99,10 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             .width(SELECTOR_WIDTH)
             .height(SELECTOR_HEIGHT)
             .pad(
-                Dimensions.COMPONENT_SPACING / 4f,
-                Dimensions.COMPONENT_SPACING / 3f,
-                Dimensions.COMPONENT_SPACING / 4f,
-                Dimensions.COMPONENT_SPACING / 3f
+                Dimensions.COMPONENT_SPACING_SM,
+                Dimensions.COMPONENT_SPACING_MD,
+                Dimensions.COMPONENT_SPACING_SM,
+                Dimensions.COMPONENT_SPACING_MD
             );
         this.add(changePlayerSkinRightButton);
         this.row();
@@ -104,7 +117,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             .fillX();
 
         this.add(strategyTable)
-            .colspan(3)
+            .colspan(cols)
             .fillX();
 
         this.row();
@@ -232,6 +245,8 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
                 case PRO:
                     strategyLabel.setText(resources.getString("strategy_pro"));
                     break;
+                default:
+                    strategyLabel.setText(resources.getString("error"));
             }
         }
     }

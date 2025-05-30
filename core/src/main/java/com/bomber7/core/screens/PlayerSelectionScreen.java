@@ -48,6 +48,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
 
     @Override
     public void initView() {
+        int cols = 4;
         Table table = new Table();
 //        table.setDebug(true);
         table.setFillParent(true);
@@ -60,17 +61,17 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         goToMapSelectionButton.setTouchable(Touchable.disabled);
 
         table.add(playerSelectionLabel)
-            .colspan(4)
-            .spaceBottom(Dimensions.COMPONENT_SPACING / 2f)
+            .colspan(cols)
+            .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
             .row();
 
-        for(int i = 0; i < playerSelectors.length; i++) {
+        for (int i = 0; i < playerSelectors.length; i++) {
             playerBlueprintObservables[i] = new PlayerBlueprintObservable();
             playerSelectors[i] = new PlayerSelector(resources, playerBlueprintObservables[i], i);
             playerBlueprintObservables[i].addObserver(this);
             table.add(playerSelectors[i])
-                .padLeft(Dimensions.COMPONENT_SPACING / 4f)
-                .padRight(Dimensions.COMPONENT_SPACING / 4f);
+                .padLeft(Dimensions.COMPONENT_SPACING_SM)
+                .padRight(Dimensions.COMPONENT_SPACING_SM);
         }
 
         table.row();
@@ -80,14 +81,14 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
             .padTop(Dimensions.COMPONENT_SPACING)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f)
+            .padRight(Dimensions.COMPONENT_SPACING_LG)
             .right();
         table.add(goToMapSelectionButton)
             .colspan(2)
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
             .padTop(Dimensions.COMPONENT_SPACING)
-            .padLeft(Dimensions.COMPONENT_SPACING / 2f)
+            .padLeft(Dimensions.COMPONENT_SPACING_LG)
             .left();
 
         super.addActor(table);
@@ -114,7 +115,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
     public void update(Observable observable, Object o) {
         int validBlueprintsCount = 0;
 
-        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             if (playerBlueprintObservables[i].isValid()) {
                 validBlueprintsCount++;
             }

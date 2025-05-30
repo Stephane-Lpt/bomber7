@@ -1,7 +1,13 @@
 package com.bomber7.utils;
 
 import com.badlogic.gdx.Game;
-import com.bomber7.core.screens.*;
+import com.bomber7.core.screens.BomberScreen;
+import com.bomber7.core.screens.MainMenuScreen;
+import com.bomber7.core.screens.PlayerSelectionScreen;
+import com.bomber7.core.screens.MapSelectionScreen;
+import com.bomber7.core.screens.PauseScreen;
+import com.bomber7.core.screens.SettingsScreen;
+import com.bomber7.core.screens.KeyBindingScreen;
 
 /**
  * Represents the various screens or states of the game user interface.
@@ -35,9 +41,9 @@ public enum ScreenType {
         }
     },
 
-    /**
-     * The main game screen where gameplay takes place.
-     */
+//    /**
+//     * The main game screen where gameplay takes place.
+//     */
 //    GAME {
 //        public BomberScreen getScreen(Game game) {
 //            return new GameScreen(game);
