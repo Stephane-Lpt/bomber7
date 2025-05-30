@@ -212,7 +212,7 @@ public class LevelMapFactoryTest {
     }
 
     @Test
-    void test_parseCsv_missingTextureInTileset() throws IOException {
+    void test_parseCsv_missingTextureForBackgroundInTileset() throws IOException {
         String[][] background = { {"33"} };
         String[][] breakable = { {"-1"} };
         String[][] unbreakable = { {"-1"} };
@@ -221,11 +221,10 @@ public class LevelMapFactoryTest {
         File f2 = writeCsv("bra", breakable);
         File f3 = writeCsv("uba", unbreakable);
 
-        // Create levelMap with an Empty texture map, should throw an error
+        // Create levelMap with an Empty texture map (Map.of()), should throw an error
         assertThrows(IllegalArgumentException.class, () ->
             LevelMapFactory.parseCsv(f1, f2, f3, Map.of())
         );
-
     }
 
     @Test
@@ -251,7 +250,7 @@ public class LevelMapFactoryTest {
         String mapName = "foy";
         LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
 
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/Background.csv");
+        File backgroundCsv = new File("../assets/maps/" + mapName + "/le_foy_Background.csv");
         assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
 
         try (CSVReader reader = new CSVReader(new FileReader(backgroundCsv))) {

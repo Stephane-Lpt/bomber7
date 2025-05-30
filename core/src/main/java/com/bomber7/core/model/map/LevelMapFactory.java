@@ -176,19 +176,9 @@ public class LevelMapFactory {
                     int breakableTextureId = Integer.parseInt(breakableRow[j].trim());
                     int unbreakableTextureId = Integer.parseInt(unbreakableRow[j].trim());
 
-                    if (!textureMap.containsKey(backgroundTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have a required background texture. Missing id: " + backgroundTextureId);
+                    if(!textureMap.containsKey(backgroundTextureId) && !textureMap.containsKey(breakableTextureId) && !textureMap.containsKey(unbreakableTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have all the required textures.");
                     }
-
-                    if (!textureMap.containsKey(breakableTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have a required breakable texture. Missing id: " + breakableTextureId);
-                    }
-
-                    if (!textureMap.containsKey(unbreakableTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have a required unbreakable texture. Missing id: " + breakableTextureId);
-                    }
-
-
 
                     String backgroundTexture = textureMap.get(backgroundTextureId);
 
@@ -200,7 +190,7 @@ public class LevelMapFactory {
                         String unbreakableTexture = textureMap.get(unbreakableTextureId);
                         squareRow.add(new Square(backgroundTexture, backgroundTextureId, new UnbreakableWall(unbreakableTexture, unbreakableTextureId)));
                     }
-                    else {
+                    else if (backgroundTextureId != -1) {
                         squareRow.add(new Square(backgroundTexture, backgroundTextureId));
                     }
 

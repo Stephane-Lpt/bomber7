@@ -22,7 +22,7 @@ public class Square {
      */
     public Square(String textureFilePath, int textureId) {
         if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("Sprite file path cannot be null or empty");
+            throw new IllegalArgumentException("Texture file path cannot be null or empty. Problematic texture id: " + textureId + ", filepath: " + textureFilePath);
         }
 
         this.textureFilePath = textureFilePath;
@@ -37,7 +37,7 @@ public class Square {
      */
     public Square(String textureFilePath, int textureId, MapElement mapElement) {
         if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("Sprite file path cannot be null or empty");
+            throw new IllegalArgumentException("Texture file path cannot be null or empty. Problematic texture id: " + textureId + ", filepath: " + textureFilePath);
         }
 
         this.textureFilePath = textureFilePath;
