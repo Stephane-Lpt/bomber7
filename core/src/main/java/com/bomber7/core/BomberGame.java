@@ -1,6 +1,8 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
+import com.bomber7.core.screens.GameScreen;
+import com.bomber7.core.screens.MainMenuScreen;
 import com.bomber7.core.screens.SettingsScreen;
 import com.bomber7.utils.ResourceManager;
 
@@ -29,7 +31,7 @@ public class BomberGame extends Game {
     @Override
     public void create() {
         resources = new ResourceManager();
-        setScreen(new SettingsScreen(this));
+        setScreen(new GameScreen(this));
     }
 
     /**
