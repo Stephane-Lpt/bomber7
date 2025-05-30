@@ -19,7 +19,7 @@ public abstract class MapElement {
      */
     public MapElement(String textureFilePath, int textureId) {
         if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("Texture file path cannot be null or empty");
+            throw new IllegalArgumentException("Texture file path cannot be null or empty. Texture file path: " + textureFilePath + ", texture id: " + textureId);
         }
 
         this.textureFilePath = textureFilePath;

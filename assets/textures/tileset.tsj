@@ -13,6 +13,12 @@
  "tileheight":32,
  "tiles":[
         {
+          "id":-1,
+          "image":"assets\/textures\/images\/invisible.png",
+          "imageheight":32,
+          "imagewidth":32
+        },
+        {
          "id":0,
          "image":"assets\/textures\/images\/azalea_top.png",
          "imageheight":32,
