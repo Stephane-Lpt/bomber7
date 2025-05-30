@@ -42,10 +42,6 @@ public abstract class Character {
      */
     private LevelMap gameMap;
 
-
-
-
-
     /**
      * Constructs a new character with the specified attributes.
      *

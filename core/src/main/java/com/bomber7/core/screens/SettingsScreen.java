@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.bomber7.core.BomberGame;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
 
@@ -78,7 +79,7 @@ public class SettingsScreen extends BomberScreen {
         Label keyBindingLabel = new Label(resources.getString("key_binding"), resources.getSkin(), "medium");
         Label[] playerLabels = new Label[game.MAX_PLAYERS];
 
-        configPlayerButtons = new BomberTextButton[game.MAX_PLAYERS];
+        configPlayerButtons = new BomberTextButton[BomberGame.MAX_PLAYERS];
 
         for (int i = 0; i < game.MAX_PLAYERS; i++) {
             playerLabels[i] = new Label(resources.getString("player") + " " + (i + 1), resources.getSkin());
