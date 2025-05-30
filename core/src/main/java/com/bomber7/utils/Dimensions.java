@@ -8,9 +8,32 @@ public final class Dimensions {
     private Dimensions() { }
 
     /**
+     * The width of the PlayerSelector component.
+     */
+    public static final float PLAYER_SELECTOR_WIDTH = 175f;
+    /**
+     * The height of the PlayerSelector component.
+     */
+    public static final float PLAYER_SELECTOR_HEIGHT = 350;
+
+    /**
      * Spacing between UI components (buttons, etc...).
      */
     public static final float COMPONENT_SPACING = 50f;
+    /**
+     * Spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_LG = COMPONENT_SPACING / 4f;
+    /**
+     * Spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_MD = COMPONENT_SPACING / 3f;
+    /**
+     * Spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_SM = COMPONENT_SPACING / 2f;
+
+
 
     /**
      * Spacing between labels and other UI components.

@@ -4,7 +4,15 @@ package com.bomber7.utils;
  * Constant variables used in the app.
  */
 public final class Constants {
+    private Constants() { }
+
+    /**
+     * The maximum length for a player name.
+     */
     public static final int MAX_PLAYER_NAME_LENGTH = 12;
+    /**
+     * Maximum number of players allowed in the game.
+     */
     public static final int MIN_PLAYERS = 1;
     /**
      * Maximum number of human players allowed in the game.

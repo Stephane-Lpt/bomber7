@@ -1,6 +1,5 @@
 package com.bomber7.core;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.bomber7.core.screens.BomberScreen;
 import com.bomber7.utils.ScreenType;
@@ -8,15 +7,17 @@ import com.bomber7.utils.ScreenType;
 /**
  * Singleton class responsible for managing screen transitions in the game.
  * <p>
- * This class holds a reference to the main {@link Game} instance and provides
+ * This class holds a reference to the main {@link BomberGame} instance and provides
  * functionality to initialize and switch between different screens based on
  * the {@link ScreenType} enum.
- *
- * The way screen changes are handled is based on this documentation :
- * https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/
+ * </p>
+ * <p>
+ * The screen transition approach is inspired by the guidelines available at
+ * <a href="https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/" target="_blank" rel="noopener noreferrer">
+ * How to Manage Screens in libGDX</a>.
  * </p>
  */
-public class ScreenManager {
+public final class ScreenManager {
 
     /**
      * The singleton instance of the ScreenManager.
@@ -26,14 +27,14 @@ public class ScreenManager {
     /**
      * Reference to the LibGDX Game object.
      */
-    private Game game;
+    private BomberGame game;
 
     /**
-     * Type of current screen
+     * Type of current screen.
      */
     private ScreenType currentScreenType = null;
     /**
-     * Type of previous screen
+     * Type of previous screen.
      */
     private ScreenType previousScreenType = null;
 
@@ -57,15 +58,15 @@ public class ScreenManager {
     }
 
     /**
-     * Initializes the screen manager with the main {@link Game} instance.
+     * Initializes the screen manager with the main {@link BomberGame} instance.
      * <p>
      * This method must be called before any screen transitions can occur.
      * </p>
      *
-     * @param game the {@code Game} instance used to manage screens.
+     * @param bomberGame the {@code Game} instance used to manage screens.
      */
-    public void initialize(Game game) {
-        this.game = game;
+    public void initialize(BomberGame bomberGame) {
+        this.game = bomberGame;
     }
 
     /**
@@ -91,6 +92,9 @@ public class ScreenManager {
         }
     }
 
+    /**
+     * Sets the previous screen as the current screen (if not null).
+     */
     public void showPreviousScreen() {
         if (previousScreenType != null) {
             showScreen(previousScreenType);

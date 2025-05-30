@@ -98,7 +98,7 @@ public class SettingsScreen extends BomberScreen {
 
         table.add(optionsLabels)
             .colspan(2)
-            .spaceBottom(Dimensions.COMPONENT_SPACING / 2f)
+            .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
             .row();
         table.add(globalVolumeLabel)
             .spaceBottom(Dimensions.LABEL_PADDING)
@@ -120,20 +120,20 @@ public class SettingsScreen extends BomberScreen {
         table.add(keyBindingLabel)
             .colspan(2)
             .left()
-            .spaceTop(Dimensions.COMPONENT_SPACING / 2f)
+            .spaceTop(Dimensions.COMPONENT_SPACING_LG)
             .spaceBottom(Dimensions.LABEL_PADDING)
             .row();
 
         for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             table.add(playerLabels[i])
                 .right()
-                .padRight(Dimensions.COMPONENT_SPACING / 2f)
-                .spaceBottom(Dimensions.COMPONENT_SPACING / 2f);
+                .padRight(Dimensions.COMPONENT_SPACING_LG)
+                .spaceBottom(Dimensions.COMPONENT_SPACING_LG);
             table.add(configPlayerButtons[i])
                 .width(Dimensions.BUTTON_WIDTH_SM)
                 .height(Dimensions.BUTTON_HEIGHT_SM)
-                .spaceBottom(Dimensions.COMPONENT_SPACING / 2f)
-                .padLeft(Dimensions.COMPONENT_SPACING / 2f)
+                .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
+                .padLeft(Dimensions.COMPONENT_SPACING_LG)
                 .left()
                 .row();
         }
@@ -141,13 +141,13 @@ public class SettingsScreen extends BomberScreen {
         table.add(goBackButton)
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f);
+            .padTop(Dimensions.COMPONENT_SPACING_LG)
+            .padRight(Dimensions.COMPONENT_SPACING_LG);
         table.add(confirmChangesButton)
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-            .padLeft(Dimensions.COMPONENT_SPACING / 2f);
+            .padTop(Dimensions.COMPONENT_SPACING_LG)
+            .padLeft(Dimensions.COMPONENT_SPACING_LG);
 
         super.addActor(table);
     }

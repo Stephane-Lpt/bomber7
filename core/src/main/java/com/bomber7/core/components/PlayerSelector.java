@@ -1,37 +1,110 @@
 package com.bomber7.core.components;
 
+import java.util.Observable;
+import java.util.Observer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
-import com.bomber7.utils.*;
+import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.Constants;
+import com.bomber7.utils.ComponentsUtils;
+import com.bomber7.utils.PlayerBlueprintObservable;
+import com.bomber7.utils.MVCComponent;
+import com.bomber7.utils.ResourceManager;
 
-import java.util.Observable;
-import java.util.Observer;
-
+/**
+ * A component used in {@link com.bomber7.core.screens.PlayerSelectionScreen} to add / remove / setup
+ * players in a game.
+ * It observes the {@link PlayerBlueprintObservable} that is linked to it and also modifies it
+ * based on user's interactions (changing the name, skin, strategy...)
+ */
 public class PlayerSelector extends Table implements MVCComponent, Observer {
-    public static final float SELECTOR_WIDTH = 175f;
-    public static final float SELECTOR_HEIGHT = 350;
-
+    /**
+     * The index of the player this selector represents.
+     */
     private final int playerIndex;
 
-    private ResourceManager resources;
+    /**
+     * Manages access to localized strings and graphical resources.
+     * */
+    private final ResourceManager resources;
 
+    /**
+     * Observable blueprint containing player configuration and strategy.
+     */
     private final PlayerBlueprintObservable playerBlueprint;
 
-    private TextField nameTextField;
-    private TextButton addPlayerButton;
-    private Label strategyLabel;
-    private ImageButton characterBackgroundButton;
-    private Image characterImage;
+    /**
+     Table containing strategyLabel and changePlayerStrategyButtons.
+     */
     private Table strategyTable;
+
+    /**
+     * TextField to edit the player's name.
+     */
+    private TextField nameTextField;
+
+    /**
+     * Button that appears when a player is not added.
+     */
+    private TextButton addPlayerButton;
+
+    /**
+     * Label displaying the current player's strategy.
+     */
+    private Label strategyLabel;
+
+    /**
+     * ImageButton that shows the character's skin background (when the player is added).
+     */
+    private ImageButton characterBackgroundButton;
+
+    /**
+     * ImageButton that shows the character's skin (when the player is added).
+     */
+    private Image characterImage;
+
+    /**
+     * Button to cycle to the previous character skin.
+     */
     private TextButton changePlayerSkinLeftButton;
+
+    /**
+     * Button to cycle to the next character skin.
+     */
     private TextButton changePlayerSkinRightButton;
+
+    /**
+     * Button to switch to the previous strategy.
+     */
     private TextButton changePlayerStrategyLeftButton;
+
+    /**
+     * Button to switch to the next strategy.
+     */
     private TextButton changePlayerStrategyRightButton;
 
+
+    /**
+     * Constructs a new {@code PlayerSelector} which provides a UI component for configuring a player's settings.
+     *
+     * @param r the {@link ResourceManager} the game resources.
+     * @param o the {@link PlayerBlueprintObservable} the player blueprint that the selector will be linked to.
+     * @param i the index of the player.
+     * <p>
+     * Initializes the view and controller components, registers this selector as an observer of the player blueprint,
+     * and triggers an initial update to sync the UI with the player's current state.
+     * </p>
+     */
     public PlayerSelector(ResourceManager r, PlayerBlueprintObservable o, int i) {
 //        this.setDebug(true);
 
@@ -48,6 +121,8 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
     @Override
     public void initView() {
+        final int cols = 3;
+
         strategyTable = new Table();
         nameTextField = new TextField("", resources.getSkin());
         nameTextField.setAlignment(Align.center);
@@ -59,12 +134,12 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         characterImage = new Image(resources.getSkin().getDrawable("transparent-bg"));
         characterImage.setTouchable(Touchable.disabled);
 
-        addPlayerButton.setWidth(SELECTOR_WIDTH);
-        addPlayerButton.setHeight(SELECTOR_HEIGHT);
-        characterImage.setWidth(SELECTOR_WIDTH);
+        addPlayerButton.setWidth(Dimensions.PLAYER_SELECTOR_WIDTH);
+        addPlayerButton.setHeight(Dimensions.PLAYER_SELECTOR_HEIGHT);
+        characterImage.setWidth(Dimensions.PLAYER_SELECTOR_WIDTH);
         characterImage.setScaling(Scaling.fit);
-        characterBackgroundButton.setWidth(SELECTOR_WIDTH);
-        characterBackgroundButton.setHeight(SELECTOR_HEIGHT);
+        characterBackgroundButton.setWidth(Dimensions.PLAYER_SELECTOR_WIDTH);
+        characterBackgroundButton.setHeight(Dimensions.PLAYER_SELECTOR_HEIGHT);
 
         Stack stack = new Stack();
         stack.add(addPlayerButton);
@@ -77,19 +152,19 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         changePlayerStrategyRightButton = new TextButton(">", resources.getSkin(), "transparent-sm");
 
         this.add(nameTextField)
-            .colspan(3)
+            .colspan(cols)
             .fillX();
         this.row();
 
         this.add(changePlayerSkinLeftButton);
         this.add(stack)
-            .width(SELECTOR_WIDTH)
-            .height(SELECTOR_HEIGHT)
+            .width(Dimensions.PLAYER_SELECTOR_WIDTH)
+            .height(Dimensions.PLAYER_SELECTOR_HEIGHT)
             .pad(
-                Dimensions.COMPONENT_SPACING / 4f,
-                Dimensions.COMPONENT_SPACING / 3f,
-                Dimensions.COMPONENT_SPACING / 4f,
-                Dimensions.COMPONENT_SPACING / 3f
+                Dimensions.COMPONENT_SPACING_SM,
+                Dimensions.COMPONENT_SPACING_MD,
+                Dimensions.COMPONENT_SPACING_SM,
+                Dimensions.COMPONENT_SPACING_MD
             );
         this.add(changePlayerSkinRightButton);
         this.row();
@@ -104,7 +179,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             .fillX();
 
         this.add(strategyTable)
-            .colspan(3)
+            .colspan(cols)
             .fillX();
 
         this.row();
@@ -112,9 +187,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
     @Override
     public void initController() {
-        nameTextField.setTextFieldListener((textField, c) -> {
-            playerBlueprint.setName(textField.getText());
-        });
+        nameTextField.setTextFieldListener((textField, c) -> playerBlueprint.setName(textField.getText()));
 
         // Buttons to change player's skin
         changePlayerSkinLeftButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
@@ -166,13 +239,19 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        System.out.println("updating playerselector");
-
         updateCharacterBackground();
         updateNameTextField();
         updatePlayerStrategyTable();
     }
 
+    /**
+     * Updates the character background accordingly to the linked {@link PlayerBlueprintObservable} state.
+     * <p>
+     *     If the player blueprint is disposed, the button "add" is shown and other buttons are hidden.
+     *     If it is not, the current skin of the player appears, as well as two buttons to cycle through
+     *     existing skins. If the selected skin has yet to be unlocked, the background appears in red.
+     * </p>
+     */
     private void updateCharacterBackground() {
         if (playerBlueprint.isDisposed()) {
             addPlayerButton.setVisible(true);
@@ -189,7 +268,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             changePlayerSkinLeftButton.setVisible(true);
             changePlayerSkinRightButton.setVisible(true);
 
-            characterImage.setDrawable(resources.getSkin().getDrawable(playerBlueprint.getCharacter().drawableName()));
+            characterImage.setDrawable(resources.getSkin().getDrawable(playerBlueprint.getCharacter().getDrawableName()));
 
             if (playerBlueprint.isValid()) {
                 characterBackgroundButton.setStyle(
@@ -203,6 +282,12 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         }
     }
 
+    /**
+     * Updates the player name field accordingly to the linked {@link PlayerBlueprintObservable} state.
+     * <p>
+     *     If the player blueprint is disposed, the name field is hidden. If not, is it visible.
+     * </p>
+     */
     private void updateNameTextField() {
         if (playerBlueprint.isDisposed()) {
             nameTextField.setVisible(false);
@@ -213,6 +298,13 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         }
     }
 
+    /**
+     * Updates the player strategy table accordingly to the linked {@link PlayerBlueprintObservable} state.
+     * <p>
+     *     If the player blueprint is disposed, the table is hidden.
+     *     If it is not disposed, the table is visible and strategyLabel shows the current strategy.
+     * </p>
+     */
     private void updatePlayerStrategyTable() {
         if (playerBlueprint.isDisposed()) {
             strategyTable.setVisible(false);
@@ -232,6 +324,8 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
                 case PRO:
                     strategyLabel.setText(resources.getString("strategy_pro"));
                     break;
+                default:
+                    strategyLabel.setText(resources.getString("error"));
             }
         }
     }

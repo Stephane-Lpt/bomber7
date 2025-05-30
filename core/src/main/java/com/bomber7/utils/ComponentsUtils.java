@@ -4,7 +4,28 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+/**
+ * Utility class for enhancing UI components with additional behaviors.
+ * <p>
+ * This class is non-instantiable and provides only static helper methods.
+ */
 public final class ComponentsUtils {
+    /**
+     * Private constructor to prevent instantiation of utility class.
+     */
+    private ComponentsUtils() { }
+
+    /**
+     * Wraps an existing {@link ClickListener} to add a click sound effect when the user presses down on a component.
+     * <p>
+     * The original listener's behavior is preserved, and the sound is played via the provided {@link ResourceManager}
+     * using the {@link SoundType#CLICK} sound type.
+     *
+     * @param original the original {@code ClickListener} to wrap.
+     * @param resources the {@code ResourceManager} used to play the sound.
+     * @return a new {@code ClickListener} that adds a sound effect to the {@code touchDown} event,
+     *         while delegating all events to the original listener.
+     */
     public static ClickListener addSoundEffect(ClickListener original, ResourceManager resources) {
         return new ClickListener() {
             @Override

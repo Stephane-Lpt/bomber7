@@ -9,7 +9,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.PlayerSelector;
-import com.bomber7.utils.*;
+import com.bomber7.utils.ComponentsUtils;
+import com.bomber7.utils.ScreenType;
+import com.bomber7.utils.Constants;
+import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.PlayerBlueprintObservable;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -20,12 +24,10 @@ import java.util.Observer;
  * as well as the difficulty of the AI.
  */
 public class PlayerSelectionScreen extends BomberScreen implements Observer {
-    // TODO : unsubscribe every playerSelector from playerBlueprint on dispose
-    private PlayerSelector tempPlayerSelector;
-    private PlayerBlueprintObservable tempPlayerBlueprintObservable;
-
+    /**
+     * List of {@link PlayerBlueprintObservable} components.
+     */
     private PlayerBlueprintObservable[] playerBlueprintObservables;
-    private PlayerSelector[] playerSelectors;
 
     /**
      * Button to continue and go to the map selection screen.
@@ -48,29 +50,30 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
 
     @Override
     public void initView() {
+        final int cols = 4;
         Table table = new Table();
 //        table.setDebug(true);
         table.setFillParent(true);
 
+        PlayerSelector[] playerSelectors = new PlayerSelector[Constants.MAX_PLAYERS];
         Label playerSelectionLabel = new Label(resources.getString("player_selection"), resources.getSkin(), "large");
-        playerSelectors = new PlayerSelector[Constants.MAX_PLAYERS];
         playerBlueprintObservables = new PlayerBlueprintObservable[Constants.MAX_PLAYERS];
         goToMainMenuButton = new TextButton(resources.getString("go_back"), resources.getSkin());
         goToMapSelectionButton = new TextButton(resources.getString("continue"), resources.getSkin(), "inactive");
         goToMapSelectionButton.setTouchable(Touchable.disabled);
 
         table.add(playerSelectionLabel)
-            .colspan(4)
-            .spaceBottom(Dimensions.COMPONENT_SPACING / 2f)
+            .colspan(cols)
+            .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
             .row();
 
-        for(int i = 0; i < playerSelectors.length; i++) {
+        for (int i = 0; i < playerSelectors.length; i++) {
             playerBlueprintObservables[i] = new PlayerBlueprintObservable();
             playerSelectors[i] = new PlayerSelector(resources, playerBlueprintObservables[i], i);
             playerBlueprintObservables[i].addObserver(this);
             table.add(playerSelectors[i])
-                .padLeft(Dimensions.COMPONENT_SPACING / 4f)
-                .padRight(Dimensions.COMPONENT_SPACING / 4f);
+                .padLeft(Dimensions.COMPONENT_SPACING_SM)
+                .padRight(Dimensions.COMPONENT_SPACING_SM);
         }
 
         table.row();
@@ -80,14 +83,14 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
             .padTop(Dimensions.COMPONENT_SPACING)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f)
+            .padRight(Dimensions.COMPONENT_SPACING_LG)
             .right();
         table.add(goToMapSelectionButton)
             .colspan(2)
             .width(Dimensions.BUTTON_WIDTH)
             .height(Dimensions.BUTTON_HEIGHT)
             .padTop(Dimensions.COMPONENT_SPACING)
-            .padLeft(Dimensions.COMPONENT_SPACING / 2f)
+            .padLeft(Dimensions.COMPONENT_SPACING_LG)
             .left();
 
         super.addActor(table);
@@ -114,7 +117,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
     public void update(Observable observable, Object o) {
         int validBlueprintsCount = 0;
 
-        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             if (playerBlueprintObservables[i].isValid()) {
                 validBlueprintsCount++;
             }
@@ -123,6 +126,11 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         changeGoToMapSelectionButtonState(validBlueprintsCount);
     }
 
+    /**
+     * Enabled or disabled the button that allows the user to go to the next screen (configuring map).
+     * At least {@link Constants#MIN_PLAYERS} players should be valid for the button to be active.
+     * @param validBlueprintsCount the number of valid players.
+     */
     private void changeGoToMapSelectionButtonState(int validBlueprintsCount) {
         if (validBlueprintsCount < Constants.MIN_PLAYERS) {
             goToMapSelectionButton.setTouchable(Touchable.disabled);
