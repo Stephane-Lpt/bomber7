@@ -1,5 +1,7 @@
 package com.bomber7.core.model.square;
 
+import java.nio.file.Path;
+
 /**
  * Abstract class representing a wall in the game.
  * Useful for defining common properties and behaviors of walls in the future.
@@ -13,7 +15,7 @@ public abstract class Wall extends MapElement {
      * @param textureFilePath the file path to the sprite image for the wall
      * @param textureId id of the texture
      */
-    public Wall(String textureFilePath, int textureId) {
+    public Wall(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId);
     }
 }

@@ -1,5 +1,7 @@
 package com.bomber7.core.model.square;
 
+import java.nio.file.Path;
+
 /**
  * Represents a breakable wall in the game.
  */
@@ -11,7 +13,7 @@ public class BreakableWall extends Wall {
      * @param textureFilePath the file path to the sprite image for the wall
      * @param textureId id of the texture
      */
-    public BreakableWall(String textureFilePath, int textureId) {
+    public BreakableWall(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId);
     }
 

@@ -2,6 +2,8 @@ package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.texture.ElementTexture;
 
+import java.nio.file.Path;
+
 /**
  * Represents a square in the game, which can be a wall, a bomb, or any other future map element.
  */
@@ -17,7 +19,7 @@ public class Square extends ElementTexture {
      * @param textureId the texture ID associated with this square
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
-    public Square(String textureFilePath, int textureId) {
+    public Square(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId);
         this.mapElement = null; // Initialize mapElement to null if not provided
     }
@@ -27,7 +29,7 @@ public class Square extends ElementTexture {
      * @param textureFilePath the file path to the texture image for this square
      * @param mapElement the map element associated with this square
      */
-    public Square(String textureFilePath, int textureId, MapElement mapElement) {
+    public Square(Path textureFilePath, int textureId, MapElement mapElement) {
         super(textureFilePath, textureId);
         this.mapElement = mapElement;
     }
@@ -53,7 +55,7 @@ public class Square extends ElementTexture {
     public String toString() {
         return "S{" +
                 "tId=" + this.getTextureId() + '\'' +
-                ", tFP='" + this.getTextureFilePath().substring(0,4) + '\'' +
+                ", tFP='" + this.getTextureFilePath().toString().substring(0,4) + '\'' +
                 ", mE=" + (mapElement != null ? mapElement.toString().substring(0, 4) : "null") +
                 "} ";
     }

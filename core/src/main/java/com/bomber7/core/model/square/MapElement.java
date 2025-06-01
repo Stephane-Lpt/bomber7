@@ -2,6 +2,8 @@ package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.texture.ElementTexture;
 
+import java.nio.file.Path;
+
 /**
  * Abstract class representing a map element in the game.
  */
@@ -12,7 +14,7 @@ public abstract class MapElement extends ElementTexture {
      * @param textureId the texture ID associated with this square
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
-    public MapElement(String textureFilePath, int textureId) {
+    public MapElement(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId);
     }
 }
