@@ -14,6 +14,10 @@ public abstract class ElementTexture {
      */
     private int textureId;
 
+    private boolean verticalFlip;
+    private boolean horizontalFlip;
+    private boolean diagonalFlip;
+
     /**
      * Constructs a new Square with the specified sprite file path and texture ID.
      * @param textureFilePath the file path to the texture image for this square
@@ -23,6 +27,10 @@ public abstract class ElementTexture {
     public ElementTexture(Path textureFilePath, int textureId) {
         if (textureFilePath == null || textureFilePath.toString().trim().isEmpty()) {
             throw new IllegalArgumentException("Texture file path cannot be null or empty. Texture file path: " + textureFilePath + ", texture id: " + textureId);
+        }
+
+        if(textureId < -1){
+            throw new IllegalArgumentException("Texture id cannot be less than -1. Texture id: " + textureId);
         }
 
         this.textureFilePath = textureFilePath;
