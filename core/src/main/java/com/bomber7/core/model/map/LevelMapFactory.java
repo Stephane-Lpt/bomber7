@@ -180,14 +180,22 @@ public class LevelMapFactory {
                         throw new IllegalArgumentException("textureMap doesnt have all the required textures.");
                     }
 
-                    String backgroundTexture = textureMap.get(backgroundTextureId);
+                    Path backgroundTexture = Paths.get(textureMap.get(backgroundTextureId));
 
-                    if(breakableTextureId != -1){
-                        String breakableTexture = textureMap.get(breakableTextureId);
+                    if(breakableTextureId != -1) {
+                        if(breakableTextureId < -1) {
+                            throw new IllegalArgumentException("breakableTextureId is negative");
+                        }
+                        System.out.println(textureMap.get(breakableTextureId));
+                        System.out.println(breakableTextureId);
+                        Path breakableTexture = Paths.get(textureMap.get(breakableTextureId));
                         squareRow.add(new Square(backgroundTexture, backgroundTextureId, new BreakableWall(breakableTexture, breakableTextureId)));
                     }
                     else if(unbreakableTextureId != -1){
-                        String unbreakableTexture = textureMap.get(unbreakableTextureId);
+                        if(unbreakableTextureId < -1) {
+                            throw new IllegalArgumentException("breakableTextureId is negative");
+                        }
+                        Path unbreakableTexture = Paths.get(textureMap.get(unbreakableTextureId));
                         squareRow.add(new Square(backgroundTexture, backgroundTextureId, new UnbreakableWall(unbreakableTexture, unbreakableTextureId)));
                     }
                     else if (backgroundTextureId != -1) {
