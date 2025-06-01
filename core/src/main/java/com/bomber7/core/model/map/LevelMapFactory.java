@@ -190,7 +190,9 @@ public class LevelMapFactory {
                         Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId)));
                     }
-                    squareRow.add(new Square(backgroundTexturePath, backgroundTextureId));
+                    else{
+                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId));
+                    }
 
                 }
 
