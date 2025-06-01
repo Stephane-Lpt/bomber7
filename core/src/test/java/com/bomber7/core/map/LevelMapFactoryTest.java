@@ -126,7 +126,7 @@ public class LevelMapFactoryTest {
             assertEquals("assets/textures/images/spruce_planks.png", square.getTextureFilePath());
 
             // id = 44
-            assertEquals("assets/textures/images/pressure_plate.png", square.getMapElement().getSpriteFilePath());
+            assertEquals("assets/textures/images/pressure_plate.png", square.getMapElement().getTextureFilePath());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
