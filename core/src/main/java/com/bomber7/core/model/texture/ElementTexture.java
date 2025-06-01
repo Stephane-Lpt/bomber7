@@ -14,10 +14,6 @@ public abstract class ElementTexture {
      */
     private int textureId;
 
-    private boolean verticalFlip;
-    private boolean horizontalFlip;
-    private boolean diagonalFlip;
-
     /**
      * Constructs a new Square with the specified sprite file path and texture ID.
      * @param textureFilePath the file path to the texture image for this square
