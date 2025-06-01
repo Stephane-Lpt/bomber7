@@ -1,14 +1,11 @@
 package com.bomber7.core.model.square;
 
+import com.bomber7.core.model.texture.ElementTexture;
+
 /**
  * Represents a square in the game, which can be a wall, a bomb, or any other future map element.
  */
-public class Square {
-    /**
-     * The file path to the sprite image for this square.
-     */
-    private final String textureFilePath;
-    private final int textureId;
+public class Square extends ElementTexture {
     /**
      * A map element associated with this square (if any). e.g. Bomb, wall, etc.
      */
@@ -21,12 +18,7 @@ public class Square {
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
     public Square(String textureFilePath, int textureId) {
-        if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("Texture file path cannot be null or empty. Problematic texture id: " + textureId + ", filepath: " + textureFilePath);
-        }
-
-        this.textureFilePath = textureFilePath;
-        this.textureId = textureId;
+        super(textureFilePath, textureId);
         this.mapElement = null; // Initialize mapElement to null if not provided
     }
 
@@ -36,22 +28,8 @@ public class Square {
      * @param mapElement the map element associated with this square
      */
     public Square(String textureFilePath, int textureId, MapElement mapElement) {
-        if (textureFilePath == null || textureFilePath.isEmpty() || textureFilePath.trim().isEmpty()) {
-            throw new IllegalArgumentException("Texture file path cannot be null or empty. Problematic texture id: " + textureId + ", filepath: " + textureFilePath);
-        }
-
-        this.textureFilePath = textureFilePath;
-        this.textureId = textureId;
+        super(textureFilePath, textureId);
         this.mapElement = mapElement;
-    }
-
-    /**
-     * Returns the file path to the texture image for this square.
-     *
-     * @return the texture file path
-     */
-    public String getTextureFilePath() {
-        return textureFilePath;
     }
 
     /**
@@ -71,15 +49,11 @@ public class Square {
         return mapElement;
     }
 
-    public int getTextureId() {
-        return textureId;
-    }
-
     @Override
     public String toString() {
         return "S{" +
-                "tId=" + textureId + '\'' +
-                ", tFP='" + textureFilePath.substring(0,4) + '\'' +
+                "tId=" + this.getTextureId() + '\'' +
+                ", tFP='" + this.getTextureFilePath().substring(0,4) + '\'' +
                 ", mE=" + (mapElement != null ? mapElement.toString().substring(0, 4) : "null") +
                 "} ";
     }
