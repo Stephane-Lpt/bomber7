@@ -176,31 +176,21 @@ public class LevelMapFactory {
                     int breakableTextureId = Integer.parseInt(breakableRow[j].trim());
                     int unbreakableTextureId = Integer.parseInt(unbreakableRow[j].trim());
 
-                    if(!textureMap.containsKey(backgroundTextureId) && !textureMap.containsKey(breakableTextureId) && !textureMap.containsKey(unbreakableTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have all the required textures.");
+                    if(!textureMap.containsKey(backgroundTextureId) || !textureMap.containsKey(breakableTextureId) || !textureMap.containsKey(unbreakableTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + backgroundTextureId + ", break:" + breakableTextureId + ", unbreak:" + unbreakableTextureId);
                     }
 
-                    Path backgroundTexture = Paths.get(textureMap.get(backgroundTextureId));
+                    Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
 
                     if(breakableTextureId != -1) {
-                        if(breakableTextureId < -1) {
-                            throw new IllegalArgumentException("breakableTextureId is negative");
-                        }
-                        System.out.println(textureMap.get(breakableTextureId));
-                        System.out.println(breakableTextureId);
-                        Path breakableTexture = Paths.get(textureMap.get(breakableTextureId));
-                        squareRow.add(new Square(backgroundTexture, backgroundTextureId, new BreakableWall(breakableTexture, breakableTextureId)));
+                        Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
+                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId)));
                     }
                     else if(unbreakableTextureId != -1){
-                        if(unbreakableTextureId < -1) {
-                            throw new IllegalArgumentException("breakableTextureId is negative");
-                        }
-                        Path unbreakableTexture = Paths.get(textureMap.get(unbreakableTextureId));
-                        squareRow.add(new Square(backgroundTexture, backgroundTextureId, new UnbreakableWall(unbreakableTexture, unbreakableTextureId)));
+                        Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
+                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId)));
                     }
-                    else if (backgroundTextureId != -1) {
-                        squareRow.add(new Square(backgroundTexture, backgroundTextureId));
-                    }
+                    squareRow.add(new Square(backgroundTexturePath, backgroundTextureId));
 
                 }
 
