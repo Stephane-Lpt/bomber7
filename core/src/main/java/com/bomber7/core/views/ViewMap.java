@@ -8,7 +8,7 @@ import com.bomber7.utils.ResourceManager;
 public class ViewMap {
 
     /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk) */
-    private Square[][] mapGrid;
+    private LevelMap mapGrid;
 
     /** The ressourceManager needed for sprites */
     private ResourceManager resourceManager;
@@ -21,7 +21,7 @@ public class ViewMap {
      * @param mapGrid the 2D array of Square objects representing the map
      * @param resourceManager the ResourceManager to manage textures and resources
      */
-    public ViewMap(Square[][] mapGrid, ResourceManager resourceManager) {
+    public ViewMap(LevelMap mapGrid, ResourceManager resourceManager) {
         this.mapGrid = mapGrid;
         this.resourceManager = resourceManager;
         this.spriteBatch = new SpriteBatch();
