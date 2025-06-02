@@ -13,7 +13,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class LevelMapTest {
 
@@ -39,7 +42,7 @@ public class LevelMapTest {
      * Getters to compare actual squares with the ones added to the map.
      */
     @Test
-    void testGetSquare_validCoordinates_returnsCorrectSquare() {
+    void testGetSquareValidCoordinatesReturnsCorrectSquare() {
         final int textureId1 = 101;
         final int textureId2 = 102;
         // Create squares with map elements
@@ -85,7 +88,7 @@ public class LevelMapTest {
     }
 
     @Test
-    void testGetSquare_invalidCoordinates_throwsException() {
+    void testGetSquareInvalidCoordinatesThrowsException() {
         // Create a 1x1 map with one square
         Square square = new Square(
             Paths.get("assets/texture.png"),
