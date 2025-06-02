@@ -13,8 +13,8 @@ public class UnbreakableWall extends Wall {
      * @param textureFilePath the file path to the sprite image for the unbreakable wall
      * @param textureId id of the texture
      */
-    public UnbreakableWall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId);
+    public UnbreakableWall(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
+        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     @Override

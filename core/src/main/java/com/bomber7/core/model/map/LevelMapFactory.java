@@ -25,6 +25,10 @@ import java.util.Map;
  */
 public class LevelMapFactory {
 
+    public static final int FLIP_H = 0x80000000;
+    public static final int FLIP_V = 0x40000000;
+    public static final int FLIP_D = 0x20000000;
+
     private final Map<Integer, String> textureMap;
 
 
@@ -176,24 +180,70 @@ public class LevelMapFactory {
                     int breakableTextureId = Integer.parseInt(breakableRow[j].trim());
                     int unbreakableTextureId = Integer.parseInt(unbreakableRow[j].trim());
 
-                    if(!textureMap.containsKey(backgroundTextureId) || !textureMap.containsKey(breakableTextureId) || !textureMap.containsKey(unbreakableTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + backgroundTextureId + ", break:" + breakableTextureId + ", unbreak:" + unbreakableTextureId);
+                    // Process negatives ids TODO: Refacto with function ?
+                    boolean backgroundVerticalFlip = false;
+                    boolean backgroundHorizontalFlip = false;
+                    boolean backgroundDiagonalFlip = false;
+                    if(backgroundTextureId < -1){
+                        // The 3 high bits are used for flipping:
+                        // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
+                        // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
+                        // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
+                        backgroundVerticalFlip = (backgroundTextureId & FLIP_H) != 0;
+                        backgroundHorizontalFlip   = (backgroundTextureId & FLIP_V) != 0;
+                        backgroundDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
+                        int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
+                        backgroundTextureId = backgroundTextureId & idMask;
                     }
 
                     Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
 
                     if(breakableTextureId != -1) {
-                        Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
-                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId)));
+                        // Process negatives ids TODO: Refacto with function ?
+                        boolean breakableVerticalFlip = false;
+                        boolean breakableHorizontalFlip = false;
+                        boolean breakableDiagonalFlip = false;
+                        // The 3 high bits are used for flipping:
+                        // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
+                        // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
+                        // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
+                        breakableVerticalFlip = (backgroundTextureId & FLIP_H) != 0;
+                        breakableHorizontalFlip   = (backgroundTextureId & FLIP_V) != 0;
+                        breakableDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
+                        int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
+                        breakableTextureId = backgroundTextureId & idMask;
+
+                    System.out.println(breakableTextureId);
+
+                    Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
+                    squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId, breakableVerticalFlip, breakableHorizontalFlip, breakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
                     else if(unbreakableTextureId != -1){
+                        // Process negatives ids TODO: Refacto with function ?
+                        boolean unbreakableVerticalFlip = false;
+                        boolean unbreakableHorizontalFlip = false;
+                        boolean unbreakableDiagonalFlip = false;
+                        // The 3 high bits are used for flipping:
+                        // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
+                        // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
+                        // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
+                        unbreakableVerticalFlip = (backgroundTextureId & FLIP_H) != 0;
+                        unbreakableHorizontalFlip   = (backgroundTextureId & FLIP_V) != 0;
+                        unbreakableDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
+                        int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
+                        System.out.println(unbreakableTextureId);
+                        unbreakableTextureId = backgroundTextureId & idMask;
+                        System.out.println(unbreakableTextureId);
                         Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
-                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId)));
+                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId, unbreakableVerticalFlip, unbreakableHorizontalFlip, unbreakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
                     else{
-                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId));
+                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
 
+                    if(!textureMap.containsKey(backgroundTextureId) || !textureMap.containsKey(breakableTextureId) || !textureMap.containsKey(unbreakableTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + backgroundTextureId + ", break:" + breakableTextureId + ", unbreak:" + unbreakableTextureId);
+                    }
                 }
 
                 result.add(squareRow);
