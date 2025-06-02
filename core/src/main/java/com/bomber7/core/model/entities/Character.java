@@ -192,7 +192,7 @@ public abstract class Character {
      */
     public void moveRight() {
         if (checkMove(getPositionX() + 10, getPositionY())) {
-            this.x++;
+            this.x += 10;
         }
     }
 
