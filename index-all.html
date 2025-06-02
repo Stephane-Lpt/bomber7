@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="com/bomber7/core/components/BomberTextButton.html#addListener(com.badlogic.gdx.scenes.scene2d.EventListener)" class="member-name-link">addListener(EventListener)</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/BomberTextButton.html" title="class in com.bomber7.core.components">BomberTextButton</a></dt>
@@ -82,6 +82,18 @@ loadScripts(document, 'script');</script>
 <div class="block">Creates a new <code>BomberTextButton</code> with the
  specified label text and resource manager.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/BreakableWall.html" class="type-name-link" title="class in com.bomber7.core.model.square">BreakableWall</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents a breakable wall in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BreakableWall.html#%3Cinit%3E(java.nio.file.Path,int)" class="member-name-link">BreakableWall(Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></dt>
+<dd>
+<div class="block">Constructs a BreakableWall without specifying flip options.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BreakableWall.html#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">BreakableWall(Path, int, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></dt>
+<dd>
+<div class="block">Constructs a BreakableWall with the specified texture file path.</div>
+</dd>
 <dt><a href="com/bomber7/utils/Dimensions.html#BUTTON_HEIGHT" class="member-name-link">BUTTON_HEIGHT</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
 <dd>
 <div class="block">Medium button height.</div>
@@ -105,9 +117,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Abstract class representing a character in the game.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/Character.html#%3Cinit%3E(java.lang.String,int,int,int,int,java.lang.String,com.bomber7.core.model.LevelMap)" class="member-name-link">Character(String, int, int, int, int, String, LevelMap)</a> - Constructor for class com.bomber7.core.model.<a href="com/bomber7/core/model/Character.html" title="class in com.bomber7.core.model">Character</a></dt>
+<dt><a href="com/bomber7/core/model/Character.html#%3Cinit%3E(java.lang.String,int,int,int,int,java.lang.String,com.bomber7.core.model.map.LevelMap)" class="member-name-link">Character(String, int, int, int, int, String, LevelMap)</a> - Constructor for class com.bomber7.core.model.<a href="com/bomber7/core/model/Character.html" title="class in com.bomber7.core.model">Character</a></dt>
 <dd>
 <div class="block">Constructs a new character with the specified attributes.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#clearMapElement()" class="member-name-link">clearMapElement()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Clears the map element associated with this square.</div>
 </dd>
 <dt><a href="com/bomber7/utils/SoundType.html#CLICK" class="member-name-link">CLICK</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
 <dd>
@@ -118,6 +134,12 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/components/package-summary.html">com.bomber7.core.components</a> - package com.bomber7.core.components</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/model/package-summary.html">com.bomber7.core.model</a> - package com.bomber7.core.model</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/map/package-summary.html">com.bomber7.core.model.map</a> - package com.bomber7.core.model.map</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a> - package com.bomber7.core.model.square</dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/texture/package-summary.html">com.bomber7.core.model.texture</a> - package com.bomber7.core.model.texture</dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a> - package com.bomber7.core.screens</dt>
 <dd>&nbsp;</dd>
@@ -136,6 +158,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/BomberGame.html#create()" class="member-name-link">create()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
 <dd>
 <div class="block">Called once when the application is created.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMapFactory.html#createLevelMap(java.lang.String)" class="member-name-link">createLevelMap(String)</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMapFactory.html" title="class in com.bomber7.core.model.map">LevelMapFactory</a></dt>
+<dd>
+<div class="block">Creates a LevelMap instance based on the specified map name.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:D">D</h2>
@@ -163,6 +189,32 @@ loadScripts(document, 'script');</script>
 <div class="block">Disposes of the sound resources to free memory.</div>
 </dd>
 </dl>
+<h2 class="title" id="I:E">E</h2>
+<dl class="index">
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html" class="type-name-link" title="class in com.bomber7.core.model.texture">ElementTexture</a> - Class in <a href="com/bomber7/core/model/texture/package-summary.html">com.bomber7.core.model.texture</a></dt>
+<dd>
+<div class="block">Abstract class representing a texture for an element in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">ElementTexture(Path, int, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Constructs a new Square with the specified sprite file path and texture ID.</div>
+</dd>
+</dl>
+<h2 class="title" id="I:F">F</h2>
+<dl class="index">
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#FLIP_D" class="member-name-link">FLIP_D</a> - Static variable in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">FLIP_D - Flip Mask diagonally.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#FLIP_H" class="member-name-link">FLIP_H</a> - Static variable in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">FLIP_H - Flip Mask horizontally.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#FLIP_V" class="member-name-link">FLIP_V</a> - Static variable in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">FLIP_V - Flip Mask vertically.</div>
+</dd>
+</dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#game" class="member-name-link">game</a> - Variable in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
@@ -177,9 +229,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the <a href="com/bomber7/utils/ResourceManager.html" title="class in com.bomber7.utils"><code>ResourceManager</code></a> instance used by this game.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#getHeight()" class="member-name-link">getHeight()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Returns the height of the checkerboard (number of rows).</div>
+</dd>
 <dt><a href="com/bomber7/core/model/Character.html#getLife()" class="member-name-link">getLife()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/Character.html" title="class in com.bomber7.core.model">Character</a></dt>
 <dd>
 <div class="block">Returns the current life points of the character.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#getMapElement()" class="member-name-link">getMapElement()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Returns the map element associated with this square.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/Character.html#getName()" class="member-name-link">getName()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/Character.html" title="class in com.bomber7.core.model">Character</a></dt>
 <dd>
@@ -201,10 +261,26 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the movement speed of the character.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#getSquare(int,int)" class="member-name-link">getSquare(int, int)</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Returns the square at the specified coordinates.</div>
+</dd>
 <dt><a href="com/bomber7/utils/ResourceManager.html#getString(java.lang.String)" class="member-name-link">getString(String)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/ResourceManager.html" title="class in com.bomber7.utils">ResourceManager</a></dt>
 <dd>
 <div class="block">Returns the localized string associated with the specified key
  from the internationalized string bundle.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#getTextureFilePath()" class="member-name-link">getTextureFilePath()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Returns the file path to the texture image for this element.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#getTextureId()" class="member-name-link">getTextureId()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Returns the texture id for this element.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#getWidth()" class="member-name-link">getWidth()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Returns the width of the checkerboard (number of columns).</div>
 </dd>
 <dt><a href="com/bomber7/core/model/Character.html#getX()" class="member-name-link">getX()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/Character.html" title="class in com.bomber7.core.model">Character</a></dt>
 <dd>
@@ -217,6 +293,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:H">H</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/square/Square.html#hasMapElement()" class="member-name-link">hasMapElement()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Checks if this square has an associated map element.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#hide()" class="member-name-link">hide()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/utils/SoundType.html#HOVER" class="member-name-link">HOVER</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
@@ -226,6 +306,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#ID_MASK" class="member-name-link">ID_MASK</a> - Static variable in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">ID_MASK - Mask to extract the texture ID from the combined flags.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>
 <div class="block">A method where all controls should be initialized (button clicks, etc..).</div>
@@ -258,11 +342,25 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/SettingsScreen.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#isDiagonalFlip()" class="member-name-link">isDiagonalFlip()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Checks if the texture should be flipped diagonally.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#isHorizontalFlip()" class="member-name-link">isHorizontalFlip()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Checks if the texture should be flipped horizontally.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#isVerticalFlip()" class="member-name-link">isVerticalFlip()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Checks if the texture should be flipped vertically.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:K">K</h2>
 <dl class="index">
 <dt><a href="com/bomber7/core/screens/KeyBindingScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">KeyBindingScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents a key binding screen in the Bomber game.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/KeyBindingScreen.html#%3Cinit%3E(com.badlogic.gdx.Game)" class="member-name-link">KeyBindingScreen(Game)</a> - Constructor for class com.bomber7.core.screens.<a href="com/bomber7/core/screens/KeyBindingScreen.html" title="class in com.bomber7.core.screens">KeyBindingScreen</a></dt>
 <dd>
 <div class="block">Constructs a new KeyBindingScreen associated with the given game.</div>
@@ -274,9 +372,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Spacing between labels and other UI components.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/LevelMap.html" class="type-name-link" title="class in com.bomber7.core.model">LevelMap</a> - Class in <a href="com/bomber7/core/model/package-summary.html">com.bomber7.core.model</a></dt>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html" class="type-name-link" title="class in com.bomber7.core.model.map">LevelMap</a> - Class in <a href="com/bomber7/core/model/map/package-summary.html">com.bomber7.core.model.map</a></dt>
 <dd>
 <div class="block">Represents a level with a map in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#%3Cinit%3E(java.util.List)" class="member-name-link">LevelMap(List&lt;List&lt;Square&gt;&gt;)</a> - Constructor for class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Constructs a LevelMap with the specified checkerboard.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMapFactory.html" class="type-name-link" title="class in com.bomber7.core.model.map">LevelMapFactory</a> - Class in <a href="com/bomber7/core/model/map/package-summary.html">com.bomber7.core.model.map</a></dt>
+<dd>
+<div class="block">Factory class for creating LevelMap instances.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMapFactory.html#%3Cinit%3E(java.nio.file.Path)" class="member-name-link">LevelMapFactory(Path)</a> - Constructor for class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMapFactory.html" title="class in com.bomber7.core.model.map">LevelMapFactory</a></dt>
+<dd>
+<div class="block">Constructs a LevelMapFactory with the specified path to the tileset JSON file.</div>
 </dd>
 <dt><a href="com/bomber7/core/screens/LevelSetupScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">LevelSetupScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
 <dd>
@@ -298,6 +408,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/screens/MainMenuScreen.html#%3Cinit%3E(com.badlogic.gdx.Game)" class="member-name-link">MainMenuScreen(Game)</a> - Constructor for class com.bomber7.core.screens.<a href="com/bomber7/core/screens/MainMenuScreen.html" title="class in com.bomber7.core.screens">MainMenuScreen</a></dt>
 <dd>
 <div class="block">Constructs a new MainMenuScreen associated with the given game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/MapElement.html" class="type-name-link" title="class in com.bomber7.core.model.square">MapElement</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Abstract class representing a map element in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/MapElement.html#%3Cinit%3E(java.nio.file.Path,int)" class="member-name-link">MapElement(Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/MapElement.html" title="class in com.bomber7.core.model.square">MapElement</a></dt>
+<dd>
+<div class="block">Constructs a MapElement without specifying flip options (false by default).</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/MapElement.html#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">MapElement(Path, int, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/MapElement.html" title="class in com.bomber7.core.model.square">MapElement</a></dt>
+<dd>
+<div class="block">Constructs a new Square with the specified texture file path and texture ID.</div>
 </dd>
 <dt><a href="com/bomber7/core/BomberGame.html#MAX_PLAYERS" class="member-name-link">MAX_PLAYERS</a> - Static variable in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
 <dd>
@@ -324,10 +446,20 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/map/LevelMapFactory.html#parseCsv(java.io.File,java.io.File,java.io.File,java.util.Map)" class="member-name-link">parseCsv(File, File, File, Map&lt;Integer, String&gt;)</a> - Static method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMapFactory.html" title="class in com.bomber7.core.model.map">LevelMapFactory</a></dt>
+<dd>
+<div class="block">Parses the CSV files to create a list of lists of Square objects (the checkerboard).</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMapFactory.html#parseTextureMap(java.nio.file.Path)" class="member-name-link">parseTextureMap(Path)</a> - Static method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMapFactory.html" title="class in com.bomber7.core.model.map">LevelMapFactory</a></dt>
+<dd>
+<div class="block">Parses the JSON file to create a mapping of texture IDs to their file paths.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#pause()" class="member-name-link">pause()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/PauseScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">PauseScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Represents a pause screen in the Bomber game.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/PauseScreen.html#%3Cinit%3E(com.badlogic.gdx.Game)" class="member-name-link">PauseScreen(Game)</a> - Constructor for class com.bomber7.core.screens.<a href="com/bomber7/core/screens/PauseScreen.html" title="class in com.bomber7.core.screens">PauseScreen</a></dt>
 <dd>
 <div class="block">Constructs a new PauseScreen associated with the given game.</div>
@@ -376,6 +508,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/map/LevelMapFactory.html#searchMapFilesRootDirectory(java.lang.String)" class="member-name-link">searchMapFilesRootDirectory(String)</a> - Static method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMapFactory.html" title="class in com.bomber7.core.model.map">LevelMapFactory</a></dt>
+<dd>
+<div class="block">Searches for a subdirectory inside "assets/maps" that contains a file with the specified name.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#setMapElement(com.bomber7.core.model.square.MapElement)" class="member-name-link">setMapElement(MapElement)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Sets the map element associated with this square.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/SettingsScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">SettingsScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
 <dd>
 <div class="block">Settings screen where the user can configure game options such as volume levels,
@@ -399,6 +539,26 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Enum representing different types of sounds used in the game.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/Square.html" class="type-name-link" title="class in com.bomber7.core.model.square">Square</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents a square in the game, which can be a wall, a bomb, or any other future map element.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#%3Cinit%3E(java.nio.file.Path,int)" class="member-name-link">Square(Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Constructs a new Square with the specified texture file path and texture ID.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">Square(Path, int, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Constructs a new Square with the specified sprite file path and texture ID.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#%3Cinit%3E(java.nio.file.Path,int,com.bomber7.core.model.square.MapElement)" class="member-name-link">Square(Path, int, MapElement)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Constructs a new Square with the specified texture file path and map element.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#%3Cinit%3E(java.nio.file.Path,int,com.bomber7.core.model.square.MapElement,boolean,boolean,boolean)" class="member-name-link">Square(Path, int, MapElement, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>
+<div class="block">Constructs a new Square with the specified texture file path and map element.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#stage" class="member-name-link">stage</a> - Variable in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>
 <div class="block">2D Stage object.</div>
@@ -414,6 +574,29 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Updates the game state.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/BreakableWall.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/Square.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/UnbreakableWall.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/UnbreakableWall.html" title="class in com.bomber7.core.model.square">UnbreakableWall</a></dt>
+<dd>&nbsp;</dd>
+</dl>
+<h2 class="title" id="I:U">U</h2>
+<dl class="index">
+<dt><a href="com/bomber7/core/model/square/UnbreakableWall.html" class="type-name-link" title="class in com.bomber7.core.model.square">UnbreakableWall</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents an unbreakable wall in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/UnbreakableWall.html#%3Cinit%3E(java.nio.file.Path,int)" class="member-name-link">UnbreakableWall(Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/UnbreakableWall.html" title="class in com.bomber7.core.model.square">UnbreakableWall</a></dt>
+<dd>
+<div class="block">Constructs an UnbreakbleWall without specifying flip options.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/UnbreakableWall.html#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">UnbreakableWall(Path, int, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/UnbreakableWall.html" title="class in com.bomber7.core.model.square">UnbreakableWall</a></dt>
+<dd>
+<div class="block">Constructs an UnbreakableWall with the specified texture file path.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
@@ -427,7 +610,22 @@ loadScripts(document, 'script');</script>
 the order they are declared.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:V">V</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
+<h2 class="title" id="I:W">W</h2>
+<dl class="index">
+<dt><a href="com/bomber7/core/model/square/Wall.html" class="type-name-link" title="class in com.bomber7.core.model.square">Wall</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Abstract class representing a wall in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Wall.html#%3Cinit%3E(java.nio.file.Path,int)" class="member-name-link">Wall(Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Wall.html" title="class in com.bomber7.core.model.square">Wall</a></dt>
+<dd>
+<div class="block">Constructs a Wall without specifying flip options.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Wall.html#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">Wall(Path, int, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Wall.html" title="class in com.bomber7.core.model.square">Wall</a></dt>
+<dd>
+<div class="block">Constructs a Wall with the specified texture file path.</div>
+</dd>
+</dl>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
 </div>
 </div>
 </body>
