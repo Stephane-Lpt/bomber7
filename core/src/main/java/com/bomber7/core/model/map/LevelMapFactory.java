@@ -41,7 +41,7 @@ public class LevelMapFactory {
      * @return A LevelMap instance representing the specified map.
      * @throws IllegalArgumentException if the map directory is not found or is empty, or if there are multiple CSV files of the same type.
      */
-    public LevelMap createLevelMap(String mapName){
+    public LevelMap createLevelMap(String mapName) {
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
         if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
             throw new IllegalArgumentException("Map directory not found or is empty for: " + mapName + " (cwd: " + Paths.get("./").toAbsolutePath() + ")");
@@ -83,7 +83,9 @@ public class LevelMapFactory {
                 }
             }
         }
-        List<List<Square>> checkerboard = LevelMapFactory.parseCsv(backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, this.textureMap);
+        List<List<Square>> checkerboard = LevelMapFactory.parseCsv(
+            backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, this.textureMap
+        );
         return new LevelMap(checkerboard);
     }
 
@@ -100,7 +102,7 @@ public class LevelMapFactory {
         if (subdirs == null) return null;
 
         for (File dir : subdirs) {
-            if(dir.getName().equals(filename)) {
+            if (dir.getName().equals(filename)) {
                 return dir;
             }
         }
@@ -168,7 +170,9 @@ public class LevelMapFactory {
 
                 // Check if all CSV files have the same number of columns in the current row
                 if (backgroundCols != breakableCols || backgroundCols != unbreakableCols) {
-                    throw new IllegalArgumentException("Row " + i + " has mismatched column counts between CSV files.");
+                    throw new IllegalArgumentException(
+                        "Row " + i + " has mismatched column counts between CSV files."
+                    );
                 }
 
                 // Check if all rows are rectangular (comparing with the first row)
@@ -209,12 +213,14 @@ public class LevelMapFactory {
                         backgroundTextureId = backgroundTextureId & ElementTexture.ID_MASK;
                     }
 
-                    if(!textureMap.containsKey(backgroundTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + backgroundTextureId);
+                    if (!textureMap.containsKey(backgroundTextureId)) {
+                        throw new IllegalArgumentException(
+                            "textureMap doesnt have all the required textures: back:" + backgroundTextureId
+                        );
                     }
                     Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
 
-                    if(breakableTextureId != -1) {
+                    if (breakableTextureId != -1) {
                         // Process negatives ids TODO: Refacto with function ?
                         // The 3 high bits are used for flipping:
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
@@ -225,14 +231,15 @@ public class LevelMapFactory {
                         boolean breakableDiagonalFlip   = (breakableTextureId & ElementTexture.FLIP_D) != 0;
                         breakableTextureId = breakableTextureId & ElementTexture.ID_MASK;
 
-                        if(!textureMap.containsKey(breakableTextureId)) {
-                            throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + breakableTextureId);
+                        if (!textureMap.containsKey(breakableTextureId)) {
+                            throw new IllegalArgumentException(
+                                "textureMap doesnt have all the required textures: back:" + breakableTextureId
+                            );
                         }
                         Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId, breakableVerticalFlip, breakableHorizontalFlip, breakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
-                    else if(unbreakableTextureId != -1){
-                        // Process negatives ids TODO: Refacto with function ?
+                    else if (unbreakableTextureId != -1) {
                         // The 3 high bits are used for flipping:
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
@@ -242,14 +249,14 @@ public class LevelMapFactory {
                         boolean unbreakableDiagonalFlip   = (unbreakableTextureId & ElementTexture.FLIP_D) != 0;
                         unbreakableTextureId = unbreakableTextureId & ElementTexture.ID_MASK;
 
-                        if(!textureMap.containsKey(unbreakableTextureId)) {
+                        if (!textureMap.containsKey(unbreakableTextureId)) {
                             throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + unbreakableTextureId);
                         }
 
                         Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId, unbreakableVerticalFlip, unbreakableHorizontalFlip, unbreakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
-                    else{
+                    else {
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
                 }
