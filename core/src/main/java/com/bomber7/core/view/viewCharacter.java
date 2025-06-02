@@ -16,7 +16,7 @@ public class viewCharacter implements Observer {
      */
     public viewCharacter(Character character) {
         this.character = character;
-        this.texture = new Texture(character.getTexturePath());
+        this.texture = new Texture(Gdx.files.internal(character.getSpriteFP()));
         // character.addObserver(this); add in the right place
     }
 
