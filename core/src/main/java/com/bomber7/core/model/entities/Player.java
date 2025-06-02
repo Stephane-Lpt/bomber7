@@ -34,8 +34,8 @@ public abstract class Player extends Character {
      * @param speed    Speed of the player
      * @param spriteFP File path to the player's sprite
      */
-    public Player(String name, int x, int y, int life, int speed, String spriteFP) {
-        super(name, x, y, life, speed, spriteFP);
+    public Player(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
+        super(name, map, x, y, life, speed, spriteFP);
         this.nbBomb = 1;
         this.droppedBombs = new java.util.ArrayList<>();
     }

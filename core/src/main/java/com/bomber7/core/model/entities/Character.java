@@ -10,6 +10,17 @@ import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
  */
 public abstract class Character {
 
+    /** Standing still status constant. */
+    private static final int STANDING_STILL = 0;
+    /** Moving UP status constant. */
+    private static final int MOVING_UP = 1;
+    /** Moving DOWN status constant. */
+    private static final int MOVING_DOWN = 2;
+    /** Moving LEFT status constant. */
+    private static final int MOVING_LEFT = 3;
+    /** Moving RIGHT status constant. */
+    private static final int MOVING_RIGHT = 4;
+
     /** The file path to the character's sprite image. */
     private final String spriteFP;
     /** The name of the character. */
@@ -26,6 +37,8 @@ public abstract class Character {
     private int x;
     /** The Y-axis position of the character on the map. */
     private int y;
+    /** Moving status of player, needed for sprite animation */
+    private int movingStatus;
 
     /**
      * Character Constructor.
@@ -37,7 +50,7 @@ public abstract class Character {
      * @param speed    The initial speed of the character
      * @param spriteFP The file path to the character's sprite image
      */
-    public Character(String name, int x, int y, int life, int speed, String spriteFP) {
+    public Character(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name can't be null or empty");
         }
@@ -60,6 +73,8 @@ public abstract class Character {
         this.speed = speed;
         this.spriteFP = spriteFP;
         this.isAlive = true;
+        this.map = map;
+        this.movingStatus = STANDING_STILL;
     }
 
     /* ------[GETTERS]------------------------------------ */
@@ -187,12 +202,20 @@ public abstract class Character {
         return this.isAlive;
     }
 
+    /** 
+     * Caracter is standing still. 
+     */
+    public void setStandingStill() {
+        this.movingStatus = STANDING_STILL;
+    }
+
     /**
      * Move character to the right.
      */
     public void moveRight() {
         if (checkMove(getPositionX() + 10, getPositionY())) {
             this.x += 10;
+            this.movingStatus = MOVING_RIGHT;
         }
     }
 
@@ -202,6 +225,7 @@ public abstract class Character {
     public void moveLeft() {
         if (checkMove(getPositionX() - 10, getPositionY())) {
             this.x--;
+            this.movingStatus = MOVING_LEFT;
         }
     }
 
@@ -211,6 +235,7 @@ public abstract class Character {
     public void moveDown() {
         if (checkMove(getPositionX(), getPositionY() + 10)) {
             this.y++;
+            this.movingStatus = MOVING_DOWN;
         }
     }
 
@@ -220,6 +245,7 @@ public abstract class Character {
     public void moveUp() {
         if (checkMove(getPositionX(), getPositionY() - 10)) {
             this.y--;
+            this.movingStatus = MOVING_UP;
         }
     }
 

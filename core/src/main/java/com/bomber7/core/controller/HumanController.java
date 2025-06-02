@@ -50,6 +50,9 @@ public class HumanController {
         if (Gdx.input.isKeyPressed(this.playerConfig.getRight())) {
             this.player.moveRight();
         }
+        else {
+            this.player.setStandingStill();
+        }
     }
 
 }
