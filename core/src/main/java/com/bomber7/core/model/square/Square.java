@@ -17,7 +17,7 @@ public class Square extends ElementTexture {
      * Constructs a new Square with the specified texture file path and texture ID.
      * @param textureFilePath the file path to the texture image for this square
      * @param textureId the texture ID associated with this square
-     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
+     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
     public Square(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId, false, false, false);
@@ -31,7 +31,7 @@ public class Square extends ElementTexture {
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
      * @param diagonalFlip whether to flip the texture diagonally
-     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
+     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
     public Square(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);

@@ -30,8 +30,8 @@ public class UnbreakableWall extends Wall {
      * Constructs an UnbreakbleWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureFilePath
-     * @param textureId
+     * @param textureFilePath the file path to the texture image for the unbreakable wall
+     * @param textureId id of the texture
      */
     public UnbreakableWall(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId);

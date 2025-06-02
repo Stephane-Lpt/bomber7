@@ -15,7 +15,7 @@ public abstract class MapElement extends ElementTexture {
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
      * @param diagonalFlip whether to flip the texture diagonally
-     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
+     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
     public MapElement(
         Path textureFilePath,
