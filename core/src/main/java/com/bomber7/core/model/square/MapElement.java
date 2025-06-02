@@ -17,4 +17,8 @@ public abstract class MapElement extends ElementTexture {
     public MapElement(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
+
+    public MapElement(Path textureFilePath, int textureId) {
+        super(textureFilePath, textureId, false, false, false);
+    }
 }

@@ -17,6 +17,17 @@ public class BreakableWall extends Wall {
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
+    /**
+     * Constructs a BreakableWall without specifying flip options.
+     * This constructor uses default flip options (no flips).
+     *
+     * @param textureFilePath the file path to the sprite image for the wall
+     * @param textureId id of the texture
+     */
+    public BreakableWall(Path textureFilePath, int textureId) {
+        super(textureFilePath, textureId);
+    }
+
     @Override
     public String toString() {
         return "BreakableWall";

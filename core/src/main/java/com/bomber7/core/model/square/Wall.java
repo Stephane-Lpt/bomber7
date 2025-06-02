@@ -18,4 +18,15 @@ public abstract class Wall extends MapElement {
     public Wall(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
+
+    /**
+     * Constructs a Wall without specifying flip options.
+     * This constructor uses default flip options (no flips).
+     *
+     * @param textureFilePath the file path to the sprite image for the wall
+     * @param textureId id of the texture
+     */
+    public Wall(Path textureFilePath, int textureId) {
+        super(textureFilePath, textureId, false, false, false);
+    }
 }

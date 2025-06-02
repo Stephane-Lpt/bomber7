@@ -17,6 +17,17 @@ public class UnbreakableWall extends Wall {
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
+    /**
+     * Constructs an UnbreakbleWall without specifying flip options.
+     * This constructor uses default flip options (no flips).
+     * 
+     * @param textureFilePath
+     * @param textureId
+     */
+    public UnbreakableWall(Path textureFilePath, int textureId) {
+        super(textureFilePath, textureId);
+    }
+
     @Override
     public String toString() {
         return "UnbreakableWall";
