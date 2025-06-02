@@ -10,14 +10,13 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
 
-
 import java.util.List;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test class for Bomb functionality, including scenarios with BreakableWall and UnbreakableWall.
+ * Test class for Bomb functionality, including 2 scenarios with BreakableWall and UnbreakableWall.
  */
 public class BombTest {
 
@@ -35,47 +34,43 @@ public class BombTest {
     }
 
     /**
-     * Test that a bomb explodes correctly and affects nearby BreakableWalls but stops at UnbreakableWalls.
+     * A bomb should explodes correctly and affects nearby BreakableWalls
+     * but stops at UnbreakableWalls.
      */
     @Test
     void testBombExplosionWithWalls() {
-        // Create a Bomb at position (2, 2) with explosion power 3
-        Bomb bomb = new Bomb(
-            2, 2, // x, y position
-            3, // power
-            Paths.get("assets/textures/bomb.png"),
-            101, // texture ID
-            false, false, false
-        );
+        // Create a Bomb at (x : 2, y : 2) with explosion power 3
+        Bomb bomb = new Bomb(3, 2, 2, Paths.get("assets/textures/bomb.png"), 101, false, false, false);
 
-        // Place the bomb in the LevelMap
+        // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(2, 2);
         bombSquare.setMapElement(bomb);
 
         // Activate the bomb
         bomb.activateBomb(levelMap);
 
-        // Assertions for affected squares
-        // BreakableWall at (2, 3) should be destroyed
-        assertFalse(levelMap.getSquare(2, 3).hasMapElement());
+        // Testing explosions on a map which contains both BreakableWalls and UnbreakablesWalls.
 
-        // UnbreakableWall at (2, 4) should not be affected
-        assertTrue(levelMap.getSquare(2, 4).hasMapElement());
+        // The bomb should be cleared after the explosion
+        assertNull(levelMap.getSquare(2, 2).getMapElement());
+
+        // BreakableWall at these positions should be destroyed.
+        assertNull(levelMap.getSquare(2, 1).getMapElement());
+        assertNull(levelMap.getSquare(3, 2).getMapElement());
+
+        // UnbreakableWall at these positions should not be affected
+        assertTrue(levelMap.getSquare(1, 1).getMapElement() instanceof UnbreakableWall);
         assertTrue(levelMap.getSquare(2, 4).getMapElement() instanceof UnbreakableWall);
 
-        // BreakableWall at (3, 2) should be destroyed
-        assertFalse(levelMap.getSquare(3, 2).hasMapElement());
 
-        // BreakableWall at (4, 2) should not be destroyed, since it is outside the explosion range
-        assertTrue(levelMap.getSquare(4, 2).hasMapElement());
-        assertTrue(levelMap.getSquare(4, 2).getMapElement() instanceof BreakableWall);
+        // Walls placed outside the explosion range
+        assertNull(levelMap.getSquare(0, 2).getMapElement()); // Empty Square
+        assertTrue(levelMap.getSquare(4, 3).getMapElement() instanceof BreakableWall); // Just behind another bloc
+        assertTrue(levelMap.getSquare(2, 0).getMapElement() instanceof BreakableWall);
     }
 
     /**
-     * Helper method to create a large LevelMap for testing explosions.
-     * The map contains both BreakableWalls and UnbreakableWalls in various configurations.
-     * Example layout (5x5):
-     *
+     *  Map used in my TEST :
      *    U U B . .
      *    . U B . .
      *    . . B B U
@@ -92,23 +87,23 @@ public class BombTest {
         row0.add(new Square(Paths.get("assets/texture1.png"), 101, new UnbreakableWall(Paths.get("assets/unbreakable.png"), 1)));
         row0.add(new Square(Paths.get("assets/texture1.png"), 101, new UnbreakableWall(Paths.get("assets/unbreakable.png"), 1)));
         row0.add(new Square(Paths.get("assets/texture2.png"), 102, new BreakableWall(Paths.get("assets/breakable.png"), 2)));
-        row0.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row0.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row0.add(new Square(Paths.get("assets/empty.png"), 103));
+        row0.add(new Square(Paths.get("assets/empty.png"), 103));
         grid.add(row0);
 
         // Row 1
         List<Square> row1 = new ArrayList<>();
-        row1.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row1.add(new Square(Paths.get("assets/empty.png"), 103));
         row1.add(new Square(Paths.get("assets/texture1.png"), 101, new UnbreakableWall(Paths.get("assets/unbreakable.png"), 1)));
         row1.add(new Square(Paths.get("assets/texture2.png"), 102, new BreakableWall(Paths.get("assets/breakable.png"), 2)));
-        row1.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row1.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row1.add(new Square(Paths.get("assets/empty.png"), 103));
+        row1.add(new Square(Paths.get("assets/empty.png"), 103));
         grid.add(row1);
 
         // Row 2
         List<Square> row2 = new ArrayList<>();
-        row2.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row2.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row2.add(new Square(Paths.get("assets/empty.png"), 103));
+        row2.add(new Square(Paths.get("assets/empty.png"), 103));
         row2.add(new Square(Paths.get("assets/texture2.png"), 102, new BreakableWall(Paths.get("assets/breakable.png"), 2)));
         row2.add(new Square(Paths.get("assets/texture2.png"), 102, new BreakableWall(Paths.get("assets/breakable.png"), 2)));
         row2.add(new Square(Paths.get("assets/texture1.png"), 101, new UnbreakableWall(Paths.get("assets/unbreakable.png"), 1)));
@@ -116,22 +111,29 @@ public class BombTest {
 
         // Row 3
         List<Square> row3 = new ArrayList<>();
-        row3.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row3.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row3.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row3.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row3.add(new Square(Paths.get("assets/empty.png"), 103));
+        row3.add(new Square(Paths.get("assets/empty.png"), 103));
+        row3.add(new Square(Paths.get("assets/empty.png"), 103));
+        row3.add(new Square(Paths.get("assets/empty.png"), 103));
         row3.add(new Square(Paths.get("assets/texture2.png"), 102, new BreakableWall(Paths.get("assets/breakable.png"), 2)));
         grid.add(row3);
 
         // Row 4
         List<Square> row4 = new ArrayList<>();
-        row4.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row4.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row4.add(new Square(Paths.get("assets/empty.png"), 103));
+        row4.add(new Square(Paths.get("assets/empty.png"), 103));
         row4.add(new Square(Paths.get("assets/texture1.png"), 101, new UnbreakableWall(Paths.get("assets/unbreakable.png"), 1)));
-        row4.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
-        row4.add(new Square(Paths.get("assets/empty.png"), 103)); // Empty square
+        row4.add(new Square(Paths.get("assets/empty.png"), 103));
+        row4.add(new Square(Paths.get("assets/empty.png"), 103));
         grid.add(row4);
 
         return new LevelMap(grid);
+    }
+
+    @Test
+    void testNullPointerException() {
+        this.levelMap = null;
+        Bomb bomb = new Bomb(2,-1,0,Paths.get("path/to/texture"),1,false,false,false);
+        assertThrows(NullPointerException.class, () -> bomb.activateBomb(this.levelMap));
     }
 }

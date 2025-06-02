@@ -49,8 +49,9 @@ public class Bomb extends MapElement {
      */
     public void onExplosion(LevelMap m, int x, int y) {
         Square sq = m.getSquare(x, y); // Get the square
-        sq.clearMapElement();
-        // effects
+        if (sq != null) {
+            sq.clearMapElement();
+        }
     }
     /**
      * Activates the bomb, causing it to explode and affect surrounding squares.
@@ -59,20 +60,24 @@ public class Bomb extends MapElement {
      * @param m the LevelMap where the bomb is activated
      */
     public void activateBomb(LevelMap m) {
-
+        if (m == null) {
+            throw new NullPointerException("LevelMap cannot be null");
+        }
         // Explosion at the bomb's position
-        int bombX = this.x;
-        int bombY = this.y;
-        onExplosion(m,bombX,bombY);
+        onExplosion(m,this.x,this.y);
 
-        // Explosion propagation in all four directions
+            // Explosion propagation in all four directions
         int[][] directions = { {0, 1}, {0, -1}, {-1,0}, {1,0}};
 
         for (int[] direction : directions) {
 
             for (int i = 1; i <= power; i++) {
-                int newX = bombX + direction[0] * i;
-                int newY = bombY + direction[1] * i;
+                int newX = this.x + direction[0] * i;
+                int newY = this.y + direction[1] * i;
+
+                if (newX < 0 || newX >= m.getWidth() || newY < 0 || newY >= m.getHeight()) {
+                    break;
+                }
 
                 Square potentialSquare = m.getSquare(newX, newY);
 
@@ -83,11 +88,11 @@ public class Bomb extends MapElement {
 
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
-                    onExplosion(m,newX,newY);
+                    onExplosion(m, newX, newY);
                     break;
                 }
                 // Regular propagation
-                onExplosion(m,newX,newY);
+                onExplosion(m, newX, newY);
             }
         }
     }

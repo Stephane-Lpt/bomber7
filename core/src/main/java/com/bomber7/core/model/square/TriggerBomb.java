@@ -17,7 +17,6 @@ public class TriggerBomb extends Bomb {
         super(power, x, y, textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
-
     /**
      * Manually triggers the bomb to activate its explosion on the specified map.
      * @param map the map on which the bomb is activated
