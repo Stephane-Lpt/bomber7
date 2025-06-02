@@ -55,7 +55,7 @@ public class GameScreen extends BomberScreen {
 
         /** =======[MAP VIEW]=============================================== */
 
-        viewMap = new ViewMap(resources.getBomberResources().getMapGrid(), resources);
+        viewMap = new ViewMap(LevelMapFactory.createLevelMap(), resources);
         MapActor mapActor = new MapActor(viewMap);
 
         Table viewMapTable = new Table();
@@ -72,9 +72,7 @@ public class GameScreen extends BomberScreen {
      * Game controller initialization
      */
     @Override
-    public void initController() {
-
-    }
+    public void initController() {}
 
     /**
      * Update the game screen for each frame
