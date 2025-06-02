@@ -1,60 +1,79 @@
+/**
+ * Classe Player.
+ */
+
 package com.bomber7.core.model.entities;
 
-import com.bomber7.core.model.exceptions.*;
+import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 
 import java.util.List;
 
-import com.bomber7.core.model.bombs.*;
+import com.bomber7.core.model.bombs.Bomb;
 
-/**
- * Classe Player
- * @author Pierre Chaveroux
- * @version Sprint n°1
- */
 public abstract class Player extends Character {
 
+    /**
+     * List of dropped bombs by the player.
+     */
     private List<Bomb> droppedBombs;
+    /**
+     * Type of bomb used by the player.
+     */
     private Bomb typeBomb;
+    /**
+     * Number of bombs the player can drop.
+     */
     private int nbBomb;
 
     /**
-     * Player Constructor
+     * Player Constructor.
+     * @param name     Name of the player
+     * @param x        X coordinate of the player
+     * @param y        Y coordinate of the player
+     * @param life     Life points of the player
+     * @param speed    Speed of the player
+     * @param spriteFP File path to the player's sprite
      */
-    public Player(String name, int x, int y, int life, int speed, String spriteFP){
+    public Player(String name, int x, int y, int life, int speed, String spriteFP) {
         super(name, x, y, life, speed, spriteFP);
         this.nbBomb = 1;
+        this.droppedBombs = new java.util.ArrayList<>();
     }
 
     /* ------[GETTERS]------------------------------------ */
 
     /**
-     * Player number of bomb playable getter
+     * Player number of bomb playable getter.
      * @return nbBomb Current number of bomb playable
      */
-    public Integer getNbBomb(){
+    public Integer getNbBomb() {
         return this.nbBomb;
     }
 
     /**
-     * Player number of bomb playable getter
+     * Player number of bomb playable getter.
      * @return typeBomb Current number of bomb playable
      */
-    public Bomb getTypeBomb(){
+    public Bomb getTypeBomb() {
         return this.typeBomb;
     }
 
-    public Integer getNbDroppdeBomb(){
+    /**
+     * Player list of dropped bombs getter.
+     * @return droppedBombs Current list of dropped bombs
+     */
+    public Integer getNbDroppedBomb() {
         return this.droppedBombs.size();
     }
 
     /* ------[SETTERS]------------------------------------ */
 
     /**
-     * Player number of bomb playable setter
+     * Player number of bomb playable setter.
      * @param newNbBomb The new nbBomb value
-     * @throws IllegalBombSetException If new number of bomb is >= 0
+     * @throws IllegalBombOperationException If new number of bomb is >= 0
      */
-    public void setNbBomb(int newNbBomb){
+    public void setNbBomb(int newNbBomb) {
         if (newNbBomb >= 0) {
             this.nbBomb = newNbBomb;
         } else {
@@ -63,11 +82,11 @@ public abstract class Player extends Character {
     }
 
     /**
-     * Player type of bomb playable setter
+     * Player type of bomb playable setter.
      * @param newTypeBomb The new type of bomb
      * @throws IllegalBombSetException If new type of bomb is not an instance of
      */
-    public void setTypeBomb(Bomb newTypeBomb){
+    public void setTypeBomb(Bomb newTypeBomb) {
         boolean isValidBomb = false;
         for (Bomb.BombType type : Bomb.BombType.values()) {
             if (type.name().equals(newTypeBomb.getClass().getSimpleName())) {
@@ -85,17 +104,18 @@ public abstract class Player extends Character {
     /* ------[OTHER]------------------------------------ */
 
     /**
-     * Allow the Player to drop a bomb
-     * @param bombToDrop Permit to identify wich
+     * Allow the Player to drop a bomb.
+     * @param bombToDrop Permit to identify which bomb to drop
+     * @return true if the bomb was successfully dropped, false otherwise
      */
-    public boolean dropBomb(Bomb bombToDrop){
+    public boolean dropBomb(Bomb bombToDrop) {
         boolean isValidBomb = true;
         for (Bomb bomb : droppedBombs) {
-            if (bomb.equals(bombToDrop)){
+            if (bomb.equals(bombToDrop)) {
                 isValidBomb = false;
             }
         }
-        if(isValidBomb == true) {
+        if (isValidBomb) {
             droppedBombs.add(bombToDrop);
             return true;
         } else {
@@ -104,17 +124,18 @@ public abstract class Player extends Character {
     }
 
     /**
-     * Allow the Player the timer of a bomb
-     * @param bombToDrop Permit to identify wich
+     * Allow the Player to activate a bomb.
+     * @param bombToActivate Permit to identify which bomb to activate
+     * @return true if the bomb was successfully activated, false otherwise
      */
-    public boolean activateBomb(Bomb bombToActivate){
+    public boolean activateBomb(Bomb bombToActivate) {
         boolean isActivated = false;
         for (Bomb bomb : droppedBombs) {
-            if (bomb.equals(bombToActivate)){
+            if (bomb.equals(bombToActivate)) {
                 isActivated = true;
             }
         }
-        if(isActivated == true) {
+        if (isActivated) {
             bombToActivate.setStatusBomb(isActivated);
             return true;
         } else {

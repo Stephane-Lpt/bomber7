@@ -1,14 +1,11 @@
-package com.bomber7.core.model.exceptions;
-
 /**
  * IllegalSpeedSetException is raised if illegal value for speed is tried to be set.
- * @author Pierre Chaveroux
- * @version Sprint n°1
  */
+package com.bomber7.core.model.exceptions;
 public class IllegalSpeedOperationException extends RuntimeException {
 
     /**
-	 * IllegalSpeedSetException Exception constructor
+	 * IllegalSpeedOperationException Exception constructor.
 	 * @param message
 	 */
     public IllegalSpeedOperationException(String message) {
