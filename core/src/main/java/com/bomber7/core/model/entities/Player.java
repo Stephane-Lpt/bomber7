@@ -12,17 +12,11 @@ import com.bomber7.core.model.bombs.Bomb;
 
 public abstract class Player extends Character {
 
-    /**
-     * List of dropped bombs by the player.
-     */
+    /** List of dropped bombs by the player. */
     private List<Bomb> droppedBombs;
-    /**
-     * Type of bomb used by the player.
-     */
+    /** Type of bomb used by the player. */
     private int typeBomb;
-    /**
-     * Number of bombs the player can drop.
-     */
+    /** Number of bombs the player can drop. */
     private int nbBomb;
 
     /**
