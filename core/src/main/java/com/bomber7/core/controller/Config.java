@@ -1,21 +1,44 @@
 package com.bomber7.core.controller;
+
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-import com.badlogic.gdx.Input.Keys;
+/**
+ * Config class is used to manage the configuration settings for the game. It
+ * allows setting and getting key bindings for player controls. The
+ * configuration can be saved to a file.
+ */
 
 public class Config implements java.io.Serializable {
-    private int up;
-    private int down;
-    private int left;
-    private int right;
-    private int dropBomb;
-    private int activateBomb;
 
+    /** The key for moving up. */
+    private int up;
+    /** The key for moving down. */
+    private int down;
+    /** The key for moving left. */
+    private int left;
+    /** The key for moving right. */
+    private int right;
+    /** The key for dropping a bomb. */
+    private int dropBomb;
+    /** The key for activating a bomb. */
+    private int activateBomb;
+    /** The path to the configuration file. */
     private String fileString;
 
-
-    public Config(String fileString, int up, int down, int left, int right, int dropBomb, int activateBomb) throws Exception {
+    /**
+     * Constructor for the Config class. Initializes the configuration with default
+     * key bindings.
+     * @param fileString   The path to the configuration file.
+     * @param up           The key for moving up.
+     * @param down         The key for moving down.
+     * @param left         The key for moving left.
+     * @param right        The key for moving right.
+     * @param dropBomb     The key for dropping a bomb.
+     * @param activateBomb The key for activating a bomb.
+     */
+    public Config(String fileString, int up, int down, int left, int right, int dropBomb, int activateBomb)
+            throws Exception {
         this.up = up;
         this.down = down;
         this.left = left;
@@ -27,7 +50,6 @@ public class Config implements java.io.Serializable {
 
     /**
      * Saves the current configuration to a file.
-     * @param fileString The path to the file where the configuration will be saved.
      */
     public void saveConfig() throws Exception {
         java.io.File file = new java.io.File(this.fileString);
