@@ -4,7 +4,7 @@ import java.io.ObjectOutputStream;
 
 import com.badlogic.gdx.Input.Keys;
 
-public class Config {
+public class Config implements java.io.Serializable {
     private int up;
     private int down;
     private int left;
@@ -12,7 +12,7 @@ public class Config {
     private int dropBomb;
     private int activateBomb;
 
-    private FileOutputStream fileOutputStream;
+    private String fileString;
 
 
     public Config(String fileString, int up, int down, int left, int right, int dropBomb, int activateBomb) throws Exception {
@@ -22,21 +22,23 @@ public class Config {
         this.right = right;
         this.dropBomb = dropBomb;
         this.activateBomb = activateBomb;
-        this.fileOutputStream = new FileOutputStream(fileString);
+        this.fileString = fileString;
     }
 
     /**
      * Saves the current configuration to a file.
      * @param fileString The path to the file where the configuration will be saved.
      */
-    public void saveConfig() {
-        try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(this.fileOutputStream); 
-            objectOutputStream.writeObject(this);
-            objectOutputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void saveConfig() throws Exception {
+        java.io.File file = new java.io.File(this.fileString);
+        java.io.File parent = file.getParentFile();
+        if (parent != null && !parent.exists()) {
+            parent.mkdirs();
         }
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(this);
+        objectOutputStream.close();
     }
 
     /**
