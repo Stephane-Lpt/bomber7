@@ -1,12 +1,25 @@
 package com.bomber7.core.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.bomber7.core.model.entities.HumanPlayer;
-import com.bomber7.core.model.entities.Player;
 
+/**
+ * The {@code HumanController} class is responsible for handling user input and
+ * controlling the movement of a {@link HumanPlayer} in the game. It processes
+ * keyboard input according to the player's configuration and updates the
+ * player's position accordingly.
+ *
+ * <p>
+ * This controller is typically used to allow a human player to interact with
+ * the game using customizable key bindings defined in a {@link Config} object.
+ * </p>
+ */
 public class HumanController {
+
+    /** The HumanPlayer instance that this controller manages. */
     private HumanPlayer player;
+
+    /** The configuration object containing key bindings for the player. */
     private Config playerConfig;
 
     /**
@@ -20,8 +33,9 @@ public class HumanController {
     }
 
     /**
-     * Processes input keys to control the player's movement.
-     * This method checks if the player is pressing any movement keys and updates the player's position accordingly.
+     * Processes input keys to control the player's movement. This method checks if
+     * the player is pressing any movement keys and updates the player's position
+     * accordingly.
      */
     public void processKeys() {
         if (Gdx.input.isKeyPressed(this.playerConfig.getUp())) {

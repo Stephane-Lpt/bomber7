@@ -1,10 +1,7 @@
-package com.bomber7.core.model.exceptions;
-
 /**
  * IllegalLifeSetException is raised if illegal value for life is tried to be set.
- * @author Pierre Chaveroux
- * @version Sprint n°1
  */
+package com.bomber7.core.model.exceptions;
 public class IllegalLifeOperationException extends RuntimeException {
 
     /**

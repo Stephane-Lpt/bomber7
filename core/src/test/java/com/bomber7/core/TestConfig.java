@@ -1,5 +1,7 @@
 package com.bomber7.core;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
@@ -9,32 +11,25 @@ import org.junit.jupiter.api.BeforeEach;
 import com.badlogic.gdx.Input.Keys;
 import com.bomber7.core.controller.Config;
 
-
 /**
- * TestConfig is a placeholder class for testing purposes.
- * It currently does not contain any fields or methods.
- * This class can be expanded in the future to include test configurations or settings.
+ * Test class for the Config class. This class tests the configuration settings,
+ * saving functionality, and setter methods.
  */
 public class TestConfig {
-    private Config config;
-    private int up;
-    private int down;
-    private int left;
-    private int right;
-    private int dropBomb;
-    private int activateBomb;
 
+    /** The Config object to be tested. */
+    private Config config;
+
+
+    /**
+     * Sets up the test environment before each test case.
+     * Initializes a Config object with a test configuration file.
+     */
     @BeforeEach
     public void setUp() {
         try {
             // Initialize the Config object with a test configuration file
-            config = new Config("testConfig.txt", 
-                                Keys.W, 
-                                Keys.S, 
-                                Keys.A, 
-                                Keys.D, 
-                                Keys.SPACE, 
-                                Keys.ENTER);
+            config = new Config("testConfig.txt", Keys.W, Keys.S, Keys.A, Keys.D, Keys.SPACE, Keys.ENTER);
         } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to initialize Config: " + e.getMessage());
@@ -102,7 +97,5 @@ public class TestConfig {
         assertEquals(Keys.B, config.getDropBomb(), "Drop Bomb key should be B");
         assertEquals(Keys.ENTER, config.getActivateBomb(), "Activate Bomb key should be ENTER");
     }
-
-    
 
 }
