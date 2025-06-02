@@ -1,5 +1,7 @@
 package com.bomber7.core.model;
 
+import com.bomber7.core.model.map.LevelMap;
+
 /**
  * Abstract class representing a character in the game.
  * A character has a name, position, life points, movement speed,
