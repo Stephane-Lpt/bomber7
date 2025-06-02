@@ -13,7 +13,6 @@ gradle-app.setting
 /headless/build/
 /server/build/
 /shared/build/
-
 .vscode/
 
 ## Java:
