@@ -76,7 +76,7 @@ public abstract class Character {
      * Character current X-Axis position getter.
      * @return x Current X-position
      */
-    public Integer getPositionX() {
+    public int getPositionX() {
         return this.x;
     }
 
@@ -84,7 +84,7 @@ public abstract class Character {
      * Character current Y-Axis position getter.
      * @return y Current Y-position
      */
-    public Integer getPositionY() {
+    public int getPositionY() {
         return this.y;
     }
 
@@ -92,7 +92,7 @@ public abstract class Character {
      * Character current life getter.
      * @return life Current life
      */
-    public Integer getLife() {
+    public int getLife() {
         return this.life;
     }
 
@@ -100,7 +100,7 @@ public abstract class Character {
      * Character current speed getter.
      * @return speed Current speed
      */
-    public Integer getSpeed() {
+    public int getSpeed() {
         return this.speed;
     }
 

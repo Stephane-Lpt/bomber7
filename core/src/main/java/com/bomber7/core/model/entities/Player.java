@@ -19,7 +19,7 @@ public abstract class Player extends Character {
     /**
      * Type of bomb used by the player.
      */
-    private Bomb typeBomb;
+    private int typeBomb;
     /**
      * Number of bombs the player can drop.
      */
@@ -46,7 +46,7 @@ public abstract class Player extends Character {
      * Player number of bomb playable getter.
      * @return nbBomb Current number of bomb playable
      */
-    public Integer getNbBomb() {
+    public int getNbBomb() {
         return this.nbBomb;
     }
 
@@ -54,7 +54,7 @@ public abstract class Player extends Character {
      * Player number of bomb playable getter.
      * @return typeBomb Current number of bomb playable
      */
-    public Bomb getTypeBomb() {
+    public int getTypeBomb() {
         return this.typeBomb;
     }
 
@@ -62,7 +62,7 @@ public abstract class Player extends Character {
      * Player list of dropped bombs getter.
      * @return droppedBombs Current list of dropped bombs
      */
-    public Integer getNbDroppedBomb() {
+    public int getNbDroppedBomb() {
         return this.droppedBombs.size();
     }
 
