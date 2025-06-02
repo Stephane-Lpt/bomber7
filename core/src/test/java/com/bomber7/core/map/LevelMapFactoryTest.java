@@ -2,6 +2,7 @@ package com.bomber7.core.map;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
+import com.bomber7.core.model.square.MapElement;
 import com.bomber7.core.model.square.Square;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
@@ -244,6 +245,10 @@ public class LevelMapFactoryTest {
         assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), levelMap.get(0).get(0).getTextureFilePath());
     }
 
+    @Test
+    void test_eachFlipsIndividually_OK() {
+        // TODO
+    }
 
     @Test
     void test_parseCsv_backgroundTextureIds_match() throws Exception {
@@ -251,40 +256,82 @@ public class LevelMapFactoryTest {
         LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
 
         File backgroundCsv = new File("../assets/maps/" + mapName + "/le_foy_Background.csv");
+        File breakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Breakable.csv");
+        File unbreakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Unbreakable.csv");
         assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
 
-        try (CSVReader reader = new CSVReader(new FileReader(backgroundCsv))) {
-            List<String[]> rows = reader.readAll();
+        try (
+                CSVReader backgroundReader = new CSVReader(new FileReader(backgroundCsv));
+                CSVReader breakableReader = new CSVReader(new FileReader(breakableCsv));
+                CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakableCsv))
+        ) {
+            List<String[]> backgroundRows = backgroundReader.readAll();
+            List<String[]> breakableRows = breakableReader.readAll();
+            List<String[]> unbreakableRows = unbreakableReader.readAll();
 
-            assertEquals(rows.size(), levelMap.getHeight(), "Number of rows mismatch");
+            assertEquals(backgroundRows.size(), levelMap.getHeight(), "Number of back rows mismatch");
+            assertEquals(breakableRows.size(), levelMap.getHeight(), "Number of break rows mismatch");
+            assertEquals(unbreakableRows.size(), levelMap.getHeight(), "Number of unbreak rows mismatch");
 
-            for (int i = 0; i < rows.size(); i++) {
-                String[] cols = rows.get(i);
-                assertEquals(cols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
+            for (int i = 0; i < backgroundRows.size(); i++) {
+                String[] backgroundCols = backgroundRows.get(i);
+                String[] breakableCols = breakableRows.get(i);
+                String[] unbreakableCols = unbreakableRows.get(i);
+                assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
+                assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
+                assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
 
-                for (int j = 0; j < cols.length; j++) {
+                for (int j = 0; j < backgroundCols.length; j++) {
                     System.out.println("i[" + i + "] = " + "j[" + j + "]");
-                    int expectedTextureId = Integer.parseInt(cols[j].trim());
-                    System.err.println("Found texture id " + expectedTextureId);
+                    int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
+                    Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
+                    Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
+
                     Square actualSquare = levelMap.getSquare(j,i);
-                    int actualTextureId = actualSquare.getTextureId();
-                    System.err.println(actualSquare);
-                    boolean verticalFlip = actualSquare.isVerticalFlip();
-                    boolean horizontalFlip = actualSquare.isHorizontalFlip();
-                    boolean diagonalFlip = actualSquare.isDiagonalFlip();
+                    int actualBackgroundTextureId = actualSquare.getTextureId();
 
-                    if (horizontalFlip) {
-                        actualTextureId |= 0x80000000;
+                    if (actualSquare.isVerticalFlip()) {
+                        actualBackgroundTextureId |= 0x40000000;
                     }
-                    if (verticalFlip) {
-                        actualTextureId |= 0x40000000;
+                    if (actualSquare.isHorizontalFlip()) {
+                        actualBackgroundTextureId |= 0x80000000;
                     }
-                    if (diagonalFlip) {
-                        actualTextureId |= 0x20000000;
+                    if (actualSquare.isDiagonalFlip()) {
+                        actualBackgroundTextureId |= 0x20000000;
                     }
 
-                    assertEquals(expectedTextureId, actualTextureId,
-                        String.format("Mismatch at [%d,%d]: expected %d but got %d", i, j, expectedTextureId, actualTextureId));
+                    assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
+                        String.format("Mismatch at [%d,%d]: expected %d but got %d", i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
+
+
+                    MapElement actualElement = actualSquare.getMapElement();
+
+                    Integer expectedTextureId = null;
+
+                    if (expectedBreakableTextureId != -1) {
+                        expectedTextureId = expectedBreakableTextureId;
+                    } else if (expectedUnbreakableTextureId != -1) {
+                        expectedTextureId = expectedUnbreakableTextureId;
+                    }
+
+                    if (expectedTextureId != null) {
+                        System.out.println(expectedTextureId);
+                        int actualTextureId = actualElement.getTextureId();
+
+                        if (actualElement.isVerticalFlip()) {
+                            actualTextureId |= 0x40000000;
+                        }
+                        if (actualElement.isHorizontalFlip()) {
+                            actualTextureId |= 0x80000000;
+                        }
+                        if (actualElement.isDiagonalFlip()) {
+                            actualTextureId |= 0x20000000;
+                        }
+
+                        assertEquals(expectedTextureId, actualTextureId,
+                                String.format("Mismatch at [%d,%d]: expected %d but got %d", i, j, expectedTextureId, actualTextureId));
+                    }
+
                 }
             }
         }
