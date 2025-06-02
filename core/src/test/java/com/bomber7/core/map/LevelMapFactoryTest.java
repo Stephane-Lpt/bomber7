@@ -123,10 +123,10 @@ public class LevelMapFactoryTest {
             LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
             Square square = levelMap.getSquare(5,2);
             // id = 33
-            assertEquals("assets/textures/images/spruce_planks.png", square.getTextureFilePath());
+            assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), square.getTextureFilePath());
 
             // id = 44
-            assertEquals("assets/textures/images/pressure_plate.png", square.getMapElement().getTextureFilePath());
+            assertEquals(Paths.get("assets/textures/images/pressure_plate.png"), square.getMapElement().getTextureFilePath());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
@@ -241,7 +241,7 @@ public class LevelMapFactoryTest {
 
         System.out.println(levelMap);
         assertEquals(33, levelMap.get(0).get(0).getTextureId());
-        assertEquals("assets/textures/images/spruce_planks.png", levelMap.get(0).get(0).getTextureFilePath());
+        assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), levelMap.get(0).get(0).getTextureFilePath());
     }
 
 
@@ -266,8 +266,23 @@ public class LevelMapFactoryTest {
                     System.out.println("i[" + i + "] = " + "j[" + j + "]");
                     int expectedTextureId = Integer.parseInt(cols[j].trim());
                     System.err.println("Found texture id " + expectedTextureId);
-                    long actualTextureId = levelMap.getSquare(j, i).getTextureId();
-                    System.err.println(levelMap.getSquare(j,i));
+                    Square actualSquare = levelMap.getSquare(j,i);
+                    int actualTextureId = actualSquare.getTextureId();
+                    System.err.println(actualSquare);
+                    boolean verticalFlip = actualSquare.isDiagonalFlip();
+                    boolean horizontalFlip = actualSquare.isHorizontalFlip();
+                    boolean diagonalFlip = actualSquare.isDiagonalFlip();
+
+                    if (horizontalFlip) {
+                        actualTextureId |= 0x80000000;
+                    }
+                    if (verticalFlip) {
+                        actualTextureId |= 0x40000000;
+                    }
+                    if (diagonalFlip) {
+                        actualTextureId |= 0x20000000;
+                    }
+
                     assertEquals(expectedTextureId, actualTextureId,
                         String.format("Mismatch at [%d,%d]: expected %d but got %d", i, j, expectedTextureId, actualTextureId));
                 }
