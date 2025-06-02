@@ -11,7 +11,7 @@ public class Square extends ElementTexture {
     /**
      * A map element associated with this square (if any). e.g. Bomb, wall, etc.
      */
-    private final MapElement mapElement;
+    private MapElement mapElement;
 
     public Square(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId, false, false, false);
@@ -51,6 +51,15 @@ public class Square extends ElementTexture {
     public boolean hasMapElement() {
         return mapElement != null;
     }
+
+    public void setMapElement(MapElement mapElement) {
+        this.mapElement = mapElement;
+    }
+
+    public void clearMapElement(){
+        this.mapElement = null;
+    }
+
 
     /**
      * Returns the map element associated with this square.
