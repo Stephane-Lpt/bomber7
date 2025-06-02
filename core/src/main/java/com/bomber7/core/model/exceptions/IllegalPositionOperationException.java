@@ -5,7 +5,7 @@ package com.bomber7.core.model.exceptions;
 public class IllegalPositionOperationException extends RuntimeException {
 
     /**
-	 * IllegalPositionSetException Exception constructor
+	 * IllegalPositionSetException Exception constructor.
 	 * @param message
 	 */
     public IllegalPositionOperationException(String message) {
