@@ -15,8 +15,8 @@ public class HumanPlayer extends Player {
      * @param y        The y-coordinate of the player
      * @param spriteFP The file path to the player's sprite
      */
-    public HumanPlayer(Config config, String name, int x, int y, String spriteFP) {
-        super(name, x, y, 1, 1, spriteFP);
+    public HumanPlayer(Config config, LevelMap map, String name, int x, int y, String spriteFP) {
+        super(name, map, x, y, 1, 1, spriteFP);
         this.config = config;
     }
 
