@@ -33,7 +33,7 @@ public class BombTest {
     /**
      * Instance of LevelMap used as a shared resource for tests.
      */
-    private LevelMap levelMap;
+    protected LevelMap levelMap;
 
     /**
      * Set up a larger LevelMap and shared resources
@@ -92,7 +92,7 @@ public class BombTest {
      *  U = UnbreakableWall, B = BreakableWall, . = Empty
      * @return a fully initialized LevelMap based on the predefined layout.
      */
-    private LevelMap createLargeLevelMap() {
+    protected LevelMap createLargeLevelMap() {
         List<List<Square>> grid = new ArrayList<>();
 
         // Row 0
