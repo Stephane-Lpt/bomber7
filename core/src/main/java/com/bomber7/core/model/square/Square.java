@@ -13,6 +13,12 @@ public class Square extends ElementTexture {
      */
     private MapElement mapElement;
 
+    /**
+     * Constructs a new Square with the specified texture file path and texture ID.
+     * @param textureFilePath the file path to the texture image for this square
+     * @param textureId the texture ID associated with this square
+     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
+     */
     public Square(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId, false, false, false);
         this.mapElement = null; // Initialize mapElement to null if not provided
