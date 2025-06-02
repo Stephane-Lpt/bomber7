@@ -57,5 +57,15 @@ public abstract class ElementTexture {
         return textureId;
     }
 
+    public boolean isVerticalFlip() {
+        return this.verticalFlip;
+    }
 
+    public boolean isHorizontalFlip() {
+        return this.horizontalFlip;
+    }
+
+    public boolean isDiagonalFlip() {
+        return this.diagonalFlip;
+    }
 }
