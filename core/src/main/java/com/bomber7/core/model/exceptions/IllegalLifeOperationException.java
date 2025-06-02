@@ -5,7 +5,7 @@ package com.bomber7.core.model.exceptions;
 public class IllegalLifeOperationException extends RuntimeException {
 
     /**
-	 * IllegalLifeSetException Exception constructor
+	 * IllegalLifeOperationException Exception constructor.
 	 * @param message
 	 */
     public IllegalLifeOperationException(String message) {
