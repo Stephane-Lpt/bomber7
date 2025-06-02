@@ -38,8 +38,10 @@ public class LevelMapFactory {
      * @param tilesetJsonPath Path to the JSON file containing texture mappings.
      */
     public LevelMapFactory(Path tilesetJsonPath) {
+        if (tilesetJsonPath == null) {
+            throw new IllegalArgumentException("Tileset JSON path cannot be null." + tilesetJsonPath);
+        }
         this.textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
-
     }
 
     /**
