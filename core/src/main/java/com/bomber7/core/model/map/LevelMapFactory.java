@@ -31,7 +31,12 @@ public class LevelMapFactory {
      */
     private final Map<Integer, String> textureMap;
 
-
+    /**
+     * Constructs a LevelMapFactory with the specified path to the tileset JSON file.
+     * This JSON file contains the mapping of texture IDs to their file paths.
+     *
+     * @param tilesetJsonPath Path to the JSON file containing texture mappings.
+     */
     public LevelMapFactory(Path tilesetJsonPath) {
         this.textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
 
@@ -43,7 +48,7 @@ public class LevelMapFactory {
      *
      * @param mapName The name of the map to create.
      * @return A LevelMap instance representing the specified map.
-     * @throws IllegalArgumentException if the map directory is not found or is empty, or if there are multiple CSV files of the same type.
+     * @throws IllegalArgumentException if the map directory is not found, is empty, or same type multiple CSV files.
      */
     public LevelMap createLevelMap(String mapName) {
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
@@ -119,7 +124,9 @@ public class LevelMapFactory {
         File mapsRoot = new File("../assets/maps");
 
         File[] subdirs = mapsRoot.listFiles(File::isDirectory);
-        if (subdirs == null) return null;
+        if (subdirs == null) {
+            return null;
+        }
 
         for (File dir : subdirs) {
             if (dir.getName().equals(filename)) {
@@ -160,24 +167,24 @@ public class LevelMapFactory {
     /**
      * Parses the CSV files to create a list of lists of Square objects (the checkerboard).
      *
-     * @param backgroundCsvPath Path to the background CSV file.
-     * @param breakableCsvPath Path to the breakable walls CSV file.
-     * @param unbreakableCsvPath Path to the unbreakable walls CSV file.
+     * @param backCsvPath Path to the background CSV file.
+     * @param breakCsvPath Path to the breakable walls CSV file.
+     * @param unbreakCsvPath Path to the unbreakable walls CSV file.
      * @param textureMap A map of texture IDs to their file paths.
      * @return A list of lists of Square objects representing the map.
      */
     public static List<List<Square>> parseCsv(
-        File backgroundCsvPath,
-        File breakableCsvPath,
-        File unbreakableCsvPath,
+        File backCsvPath,
+        File breakCsvPath,
+        File unbreakCsvPath,
         Map<Integer, String> textureMap
     ) {
         List<List<Square>> result = new ArrayList<>();
 
         try (
-            CSVReader backgroundReader = new CSVReader(new FileReader(backgroundCsvPath.getAbsolutePath()));
-            CSVReader breakableReader = new CSVReader(new FileReader(breakableCsvPath.getAbsolutePath()));
-            CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakableCsvPath.getAbsolutePath()))
+            CSVReader backgroundReader = new CSVReader(new FileReader(backCsvPath.getAbsolutePath()));
+            CSVReader breakableReader = new CSVReader(new FileReader(breakCsvPath.getAbsolutePath()));
+            CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakCsvPath.getAbsolutePath()))
         ) {
             List<String[]> backgroundRows = backgroundReader.readAll();
             List<String[]> breakableRows = breakableReader.readAll();
@@ -228,7 +235,6 @@ public class LevelMapFactory {
                     boolean backgroundDiagonalFlip = false;
 
 
-                    // Process negatives ids TODO: Refacto with function ?
                     if (backgroundTextureId != -1) {
                         // The 3 high bits are used for flipping:
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
@@ -248,7 +254,6 @@ public class LevelMapFactory {
                     Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
 
                     if (breakableTextureId != -1) {
-                        // Process negatives ids TODO: Refacto with function ?
                         // The 3 high bits are used for flipping:
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
@@ -280,8 +285,7 @@ public class LevelMapFactory {
                                 backgroundDiagonalFlip
                             )
                         );
-                    }
-                    else if (unbreakableTextureId != -1) {
+                    } else if (unbreakableTextureId != -1) {
                         // The 3 high bits are used for flipping:
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
@@ -312,9 +316,16 @@ public class LevelMapFactory {
                                 backgroundDiagonalFlip
                             )
                         );
-                    }
-                    else {
-                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
+                    } else {
+                        squareRow.add(
+                            new Square(
+                                backgroundTexturePath,
+                                backgroundTextureId,
+                                backgroundVerticalFlip,
+                                backgroundHorizontalFlip,
+                                backgroundDiagonalFlip
+                            )
+                        );
                     }
                 }
 
