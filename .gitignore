@@ -14,6 +14,8 @@ gradle-app.setting
 /server/build/
 /shared/build/
 
+.vscode/
+
 ## Java:
 *.class
 *.war
