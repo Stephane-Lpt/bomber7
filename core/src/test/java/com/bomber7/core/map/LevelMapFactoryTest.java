@@ -269,7 +269,7 @@ public class LevelMapFactoryTest {
                     Square actualSquare = levelMap.getSquare(j,i);
                     int actualTextureId = actualSquare.getTextureId();
                     System.err.println(actualSquare);
-                    boolean verticalFlip = actualSquare.isDiagonalFlip();
+                    boolean verticalFlip = actualSquare.isVerticalFlip();
                     boolean horizontalFlip = actualSquare.isHorizontalFlip();
                     boolean diagonalFlip = actualSquare.isDiagonalFlip();
 
