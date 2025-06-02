@@ -25,6 +25,10 @@ import java.util.Map;
  * Responsible for parsing texture mappings and CSV files to create a map of squares.
  */
 public class LevelMapFactory {
+    /**
+     * A map that associates texture IDs with their corresponding file paths.
+     * The keys are texture IDs, and the values are the paths to the texture files.
+     */
     private final Map<Integer, String> textureMap;
 
 
@@ -44,7 +48,17 @@ public class LevelMapFactory {
     public LevelMap createLevelMap(String mapName) {
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
         if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
-            throw new IllegalArgumentException("Map directory not found or is empty for: " + mapName + " (cwd: " + Paths.get("./").toAbsolutePath() + ")");
+            throw new IllegalArgumentException(
+                "Map directory not found or is empty for: "
+                +
+                mapName
+                +
+                " (cwd: "
+                +
+                Paths.get("./").toAbsolutePath()
+                +
+                ")"
+            );
         }
 
 
@@ -65,17 +79,23 @@ public class LevelMapFactory {
 
                         if (name.contains("background")) {
                             if (backgroundCsvFile != null) {
-                                throw new IllegalArgumentException("Multiple background CSV files found in: " + mapName);
+                                throw new IllegalArgumentException(
+                                    "Multiple background CSV files found in: " + mapName
+                                );
                             }
                             backgroundCsvFile = file;
                         } else if (name.contains("unbreakable")) {
                             if (unbreakableCsvFile != null) {
-                                throw new IllegalArgumentException("Multiple unbreakable CSV files found in: " + mapName);
+                                throw new IllegalArgumentException(
+                                    "Multiple unbreakable CSV files found in: " + mapName
+                                );
                             }
                             unbreakableCsvFile = file;
                         } else if (name.contains("breakable")) {
                             if (breakableCsvFile != null) {
-                                throw new IllegalArgumentException("Multiple breakable CSV files found in: " + mapName);
+                                throw new IllegalArgumentException(
+                                    "Multiple breakable CSV files found in: " + mapName
+                                );
                             }
                             breakableCsvFile = file;
                         }
@@ -131,7 +151,9 @@ public class LevelMapFactory {
             return textureMap;
 
         } catch (IOException e) {
-            throw new IllegalArgumentException("Failed to parse texture JSON. Wrong filepath or wrong format/json content.", e);
+            throw new IllegalArgumentException(
+                "Failed to parse texture JSON. Wrong filepath or wrong format/json content.", e
+            );
         }
     }
 
@@ -144,7 +166,12 @@ public class LevelMapFactory {
      * @param textureMap A map of texture IDs to their file paths.
      * @return A list of lists of Square objects representing the map.
      */
-    public static List<List<Square>> parseCsv(File backgroundCsvPath, File breakableCsvPath, File unbreakableCsvPath, Map<Integer, String> textureMap) {
+    public static List<List<Square>> parseCsv(
+        File backgroundCsvPath,
+        File breakableCsvPath,
+        File unbreakableCsvPath,
+        Map<Integer, String> textureMap
+    ) {
         List<List<Square>> result = new ArrayList<>();
 
         try (
@@ -237,7 +264,22 @@ public class LevelMapFactory {
                             );
                         }
                         Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
-                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId, breakableVerticalFlip, breakableHorizontalFlip, breakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
+                        squareRow.add(
+                            new Square(
+                                backgroundTexturePath,
+                                backgroundTextureId,
+                                new BreakableWall(
+                                    breakableTexturePath,
+                                    breakableTextureId,
+                                    breakableVerticalFlip,
+                                    breakableHorizontalFlip,
+                                    breakableDiagonalFlip
+                                ),
+                                backgroundVerticalFlip,
+                                backgroundHorizontalFlip,
+                                backgroundDiagonalFlip
+                            )
+                        );
                     }
                     else if (unbreakableTextureId != -1) {
                         // The 3 high bits are used for flipping:
@@ -250,11 +292,26 @@ public class LevelMapFactory {
                         unbreakableTextureId = unbreakableTextureId & ElementTexture.ID_MASK;
 
                         if (!textureMap.containsKey(unbreakableTextureId)) {
-                            throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + unbreakableTextureId);
+                            throw new IllegalArgumentException(
+                                "textureMap doesnt have all the required textures: back:" + unbreakableTextureId
+                            );
                         }
 
                         Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
-                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId, unbreakableVerticalFlip, unbreakableHorizontalFlip, unbreakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
+                        squareRow.add(
+                            new Square(backgroundTexturePath,
+                                backgroundTextureId,
+                                new UnbreakableWall(
+                                    unbreakableTexturePath,
+                                    unbreakableTextureId,
+                                    unbreakableVerticalFlip,
+                                    unbreakableHorizontalFlip,
+                                    unbreakableDiagonalFlip),
+                                backgroundVerticalFlip,
+                                backgroundHorizontalFlip,
+                                backgroundDiagonalFlip
+                            )
+                        );
                     }
                     else {
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));

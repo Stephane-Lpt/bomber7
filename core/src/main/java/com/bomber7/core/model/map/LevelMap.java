@@ -10,8 +10,14 @@ import java.util.List;
  */
 public class LevelMap {
 
+    /** A 2D list representing the checkerboard of squares in the level map. */
     private List<List<Square>> checkerboard;
 
+    /**
+     * Constructs a LevelMap with the specified checkerboard.
+     *
+     * @param checkerboard a 2D list representing the checkerboard of squares
+     */
     public LevelMap(List<List<Square>> checkerboard) {
         this.checkerboard = checkerboard;
     }
@@ -54,7 +60,7 @@ public class LevelMap {
      * all rows have the same number of columns.
      * @return the width of the checkerboard
      */
-    public int getWidth(){
+    public int getWidth() {
         return checkerboard.get(0).size();
     }
 
@@ -62,7 +68,7 @@ public class LevelMap {
      * Returns the height of the checkerboard (number of rows).
      * @return the height of the checkerboard
      */
-    public int getHeight(){
+    public int getHeight() {
         return checkerboard.size();
     }
 

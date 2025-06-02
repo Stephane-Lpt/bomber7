@@ -104,13 +104,14 @@ public class Square extends ElementTexture {
 
     @Override
     public String toString() {
+        final int MAX_TRONCATE = 4;
         return "S{"
                 +
                 "tId=" + this.getTextureId() + '\''
                 +
-                ", tFP='" + this.getTextureFilePath().toString().substring(0, 4) + '\''
+                ", tFP='" + this.getTextureFilePath().toString().substring(0, MAX_TRONCATE) + '\''
                 +
-                ", mE=" + (mapElement != null ? mapElement.toString().substring(0, 4) : "null")
+                ", mE=" + (mapElement != null ? mapElement.toString().substring(0, MAX_TRONCATE) : "null")
                 +
                 "} ";
     }
