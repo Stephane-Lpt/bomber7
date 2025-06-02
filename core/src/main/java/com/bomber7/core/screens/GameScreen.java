@@ -28,7 +28,7 @@ public class GameScreen extends BomberScreen {
      /** Map view of the game */
     private ViewMap viewMap;
     /** New factory for a level map. */
-    //private final 
+    //private final
 
     /**
      * Constructs a new GameScreen associated with the given game.
@@ -66,7 +66,7 @@ public class GameScreen extends BomberScreen {
 
         /** =======[MAP VIEW]=============================================== */
 
-        Path tilesetJsonPath = Paths.get("/home/t70n/Documents/bomber7/assets/textures/tileset.tsj");
+        Path tilesetJsonPath = Paths.get("assets/textures/tileset.tsj");
         LevelMapFactory levelMapFactory = new LevelMapFactory(tilesetJsonPath);
         LevelMap levelMap = levelMapFactory.createLevelMap("foy");
         viewMap = new ViewMap(levelMap, resources);
@@ -94,7 +94,7 @@ public class GameScreen extends BomberScreen {
      */
     @Override
     public void render(float delta) {
-        super.render(delta); 
+        super.render(delta);
     }
 
 }
