@@ -12,11 +12,20 @@ import com.bomber7.core.model.bombs.Bomb;
 
 public abstract class Player extends Character {
 
-    /** List of dropped bombs by the player. */
+    public static final int CLASSIC_BOMB = 1;
+    public static final int TRIGGER_BOMB = 2;
+
+    /**
+     * List of dropped bombs by the player.
+     */
     private List<Bomb> droppedBombs;
-    /** Type of bomb used by the player. */
+    /**
+     * Type of bomb used by the player.
+     */
     private int typeBomb;
-    /** Number of bombs the player can drop. */
+    /**
+     * Number of bombs the player can drop.
+     */
     private int nbBomb;
 
     /**
@@ -49,6 +58,7 @@ public abstract class Player extends Character {
      * @return typeBomb Current number of bomb playable
      */
     public int getTypeBomb() {
+    public int getTypeBomb() {
         return this.typeBomb;
     }
 
@@ -80,19 +90,12 @@ public abstract class Player extends Character {
      * @param newTypeBomb The new type of bomb
      * @throws IllegalBombSetException If new type of bomb is not an instance of
      */
-    public void setTypeBomb(Bomb newTypeBomb) {
-        boolean isValidBomb = false;
-        for (Bomb.BombType type : Bomb.BombType.values()) {
-            if (type.name().equals(newTypeBomb.getClass().getSimpleName())) {
-                isValidBomb = true;
-                break;
-            }
+    public void setTypeBomb(int newTypeBomb) {
+        if (newTypeBomb != CLASSIC_BOMB && newTypeBomb != TRIGGER_BOMB) {
+            throw new IllegalBombOperationException("Invalid bomb type: " + newTypeBomb);
         }
-        if (isValidBomb) {
-            this.typeBomb = newTypeBomb;
-        } else {
-            throw new IllegalBombOperationException("Invalid bomb type: " + newTypeBomb.getClass().getSimpleName());
-        }
+        
+        this.typeBomb = newTypeBomb;
     }
 
     /* ------[OTHER]------------------------------------ */
