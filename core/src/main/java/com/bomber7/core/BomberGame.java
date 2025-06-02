@@ -1,7 +1,6 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
-import com.bomber7.utils.ResourceManager;
 import com.bomber7.utils.ScreenType;
 
 /**
@@ -45,5 +44,12 @@ public class BomberGame extends Game {
      */
     public ResourceManager getBomberResources() {
         return resources;
+    }
+
+    /**
+     * Launches the game.
+     */
+    public void start() {
+        ScreenManager.getInstance().showScreen(ScreenType.GAME);
     }
 }

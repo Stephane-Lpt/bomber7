@@ -1,9 +1,10 @@
-package com.bomber7.utils;
+package com.bomber7.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bomber7.utils.SoundManager;
 
 // TODO : use AssetManager libgdx class instead
 /**

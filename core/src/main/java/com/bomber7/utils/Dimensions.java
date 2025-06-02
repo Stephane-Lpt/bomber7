@@ -19,21 +19,19 @@ public final class Dimensions {
     /**
      * Spacing between UI components (buttons, etc...).
      */
-    public static final float COMPONENT_SPACING = 50f;
+    public static final float COMPONENT_SPACING = 50F;
     /**
-     * Spacing between UI components (buttons, etc...).
+     * XS spacing between UI components (buttons, etc...).
      */
-    public static final float COMPONENT_SPACING_LG = COMPONENT_SPACING / 4f;
+    public static final float COMPONENT_SPACING_XS = COMPONENT_SPACING / 8f;
     /**
-     * Spacing between UI components (buttons, etc...).
-     */
-    public static final float COMPONENT_SPACING_MD = COMPONENT_SPACING / 3f;
-    /**
-     * Spacing between UI components (buttons, etc...).
+     * Small spacing between UI components (buttons, etc...).
      */
     public static final float COMPONENT_SPACING_SM = COMPONENT_SPACING / 2f;
-
-
+    /**
+     * Large spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_LG = COMPONENT_SPACING / 4f;
 
     /**
      * Spacing between labels and other UI components.

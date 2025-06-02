@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bomber7.core.ScreenManager;
+import com.bomber7.core.components.BomberTable;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
@@ -73,7 +74,8 @@ public class SettingsScreen extends BomberScreen {
 
     @Override
     public void initView() {
-        Table table = new Table();
+        final int cols = 2;
+        BomberTable table = new BomberTable();
         table.setDebug(true);
         table.setFillParent(true);
 
@@ -96,10 +98,7 @@ public class SettingsScreen extends BomberScreen {
         confirmChangesButton = new TextButton(resources.getString("validate"), resources.getSkin());
         goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
 
-        table.add(optionsLabels)
-            .colspan(2)
-            .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
-            .row();
+        table.setTitle(new Label(resources.getString("options"), resources.getSkin(), "large"), cols);
         table.add(globalVolumeLabel)
             .spaceBottom(Dimensions.LABEL_PADDING)
             .padRight(Dimensions.LABEL_PADDING)
@@ -118,7 +117,7 @@ public class SettingsScreen extends BomberScreen {
             .row();
 
         table.add(keyBindingLabel)
-            .colspan(2)
+            .colspan(cols)
             .left()
             .spaceTop(Dimensions.COMPONENT_SPACING_LG)
             .spaceBottom(Dimensions.LABEL_PADDING)
@@ -138,16 +137,7 @@ public class SettingsScreen extends BomberScreen {
                 .row();
         }
 
-        table.add(goBackButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING_LG)
-            .padRight(Dimensions.COMPONENT_SPACING_LG);
-        table.add(confirmChangesButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING_LG)
-            .padLeft(Dimensions.COMPONENT_SPACING_LG);
+        table.setupDoubleButtons(goBackButton, confirmChangesButton, 2);
 
         super.addActor(table);
     }

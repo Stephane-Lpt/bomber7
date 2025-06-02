@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.bomber7.core.BomberGame;
 import com.bomber7.utils.MVCComponent;
-import com.bomber7.utils.ResourceManager;
+import com.bomber7.core.ResourceManager;
 
 /**
  * An abstract Screen class that all bomber screens should inherit from.

@@ -18,4 +18,12 @@ public final class Constants {
      * Maximum number of human players allowed in the game.
      */
     public static final int MAX_PLAYERS = 4;
+    /**
+     * Maximum number of rounds allowed in a game.
+     */
+    public static final int MIN_ROUNDS_NUMBER = 1;
+    /**
+     * Maximum number of rounds allowed in a game.
+     */
+    public static final int MAX_ROUNDS_NUMBER = 1;
 }

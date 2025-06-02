@@ -19,7 +19,7 @@ import com.bomber7.utils.Constants;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.PlayerBlueprintObservable;
 import com.bomber7.utils.MVCComponent;
-import com.bomber7.utils.ResourceManager;
+import com.bomber7.core.ResourceManager;
 
 /**
  * A component used in {@link com.bomber7.core.screens.PlayerSelectionScreen} to add / remove / setup
@@ -162,9 +162,9 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             .height(Dimensions.PLAYER_SELECTOR_HEIGHT)
             .pad(
                 Dimensions.COMPONENT_SPACING_SM,
-                Dimensions.COMPONENT_SPACING_MD,
+                Dimensions.COMPONENT_SPACING_XS,
                 Dimensions.COMPONENT_SPACING_SM,
-                Dimensions.COMPONENT_SPACING_MD
+                Dimensions.COMPONENT_SPACING_XS
             );
         this.add(changePlayerSkinRightButton);
         this.row();
