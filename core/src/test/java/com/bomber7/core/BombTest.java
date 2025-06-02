@@ -16,17 +16,28 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test class for Bomb functionality, including 2 scenarios with BreakableWall and UnbreakableWall.
+ * Unit test for the Bomb class to verify its behavior.
+ * This test class uses this map to ensure the functionalities of our class:
+ *
+ *          U U B . .
+ *          . U B . .
+ *          . . B B U
+ *          . . . . B
+ *          . . U . .
+ *
+ *  U = UnbreakableWall, B = BreakableWall, . = Empty
+ *
  */
 public class BombTest {
 
     /**
-     * LevelMap used for the tests.
+     * Instance of LevelMap used as a shared resource for tests.
      */
     private LevelMap levelMap;
 
     /**
-     * Set up a larger LevelMap and shared resources before each test.
+     * Set up a larger LevelMap and shared resources
+     * before each test case.
      */
     @BeforeEach
     void setUp() {
@@ -34,8 +45,9 @@ public class BombTest {
     }
 
     /**
-     * A bomb should explodes correctly and affects nearby BreakableWalls
-     * but stops at UnbreakableWalls.
+     * Verifies that a Bomb explodes correctly within the LevelMap.
+     * A bomb should affect nearby BreakableWall objects but stops at
+     * UnbreakableWalls objects.
      */
     @Test
     void testBombExplosionWithWalls() {
@@ -70,7 +82,7 @@ public class BombTest {
     }
 
     /**
-     *  Map used in my TEST :
+     *  Create a larger LevelMap for complex test scenarios.
      *    U U B . .
      *    . U B . .
      *    . . B B U
@@ -78,6 +90,7 @@ public class BombTest {
      *    . . U . .
      *
      *  U = UnbreakableWall, B = BreakableWall, . = Empty
+     * @return a fully initialized LevelMap based on the predefined layout.
      */
     private LevelMap createLargeLevelMap() {
         List<List<Square>> grid = new ArrayList<>();
@@ -130,6 +143,10 @@ public class BombTest {
         return new LevelMap(grid);
     }
 
+    /**
+     * Tests the expected behavior in situations where a Bomb
+     * interaction could result in a NullPointerException
+     */
     @Test
     void testNullPointerException() {
         this.levelMap = null;

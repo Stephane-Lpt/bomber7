@@ -6,10 +6,11 @@ import java.nio.file.Path;
 
 /**
  * Represents a bomb in the game, which can explode and affect surrounding squares.
+ *
  * The bomb has a power that determines the range of its explosion.
  *
- * The Bomb class extends the Square class and can be placed on a map where it can
- * later be activated to trigger an explosion that affects adjacent squares on the l
+ * The Bomb class extends the MapElement class and can be placed on a map where it can
+ * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
  */
 
@@ -19,11 +20,26 @@ public class Bomb extends MapElement {
      * The power of the bomb, which determines the range of its explosion.
      */
     private int power;
-    private int x,y;
+    /**
+     * The X-coordinate of the bomb.
+     */
+    private int x;
+    /**
+     * The Y-coordinate of the bomb.
+     */
+    private int y;
 
     /**
-     * Constructs a Bomb with a specified explosion power and sprite file path.
-     * @param p power of the bomb, must be positive
+     * Constructs a Bomb with a specified explosion power and texture file path.
+     *
+     * @param p power of the bomb, must be a positive integer.
+     * @param x X-coordinate of the bomb on the map.
+     * @param y Y-coordinate of the bomb on the map.
+     * @param textureFilePath The path of the texture file associated with the bomb.
+     * @param textureId       The texture ID for the bomb.
+     * @param verticalFlip    Indicates whether the texture is vertically flipped.
+     * @param horizontalFlip  Indicates whether the texture is horizontally flipped.
+     * @param diagonalFlip    Indicates whether the texture is diagonally flipped.
      */
     public Bomb(int p, int x, int y, Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip){
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
@@ -34,7 +50,7 @@ public class Bomb extends MapElement {
 
     /**
      * Returns the power of the bomb.
-     * @return  power of the bomb
+     * @return  power of the bomb.
      */
     public int getPower(){
         return this.power;
@@ -42,22 +58,27 @@ public class Bomb extends MapElement {
 
     /**
      * Handles the explosion effect at a specific position on the map.
-     * This method can eventually be overridden to implement specific explosion effects.
-     * @param m map where the explosion occurs
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * @param m The map where the explosion occurs.
+     * @param x The X-coordinate.
+     * @param y The Y-coordinate.
      */
     public void onExplosion(LevelMap m, int x, int y) {
-        Square sq = m.getSquare(x, y); // Get the square
+        Square sq = m.getSquare(x, y);
         if (sq != null) {
             sq.clearMapElement();
         }
     }
+
     /**
      * Activates the bomb, causing it to explode and affect surrounding squares.
      * The explosion propagates in all four cardinal directions (up, down, left, right)
      * based on the bomb's power.
-     * @param m the LevelMap where the bomb is activated
+     *
+     * The propagation stops when it encounters a map boundary, an unbreakable wall, or
+     * in the case of a breakable wall, after destroying it.
+     *
+     * @param m the LevelMap where the bomb is activated.
+     * @throws NullPointerException if the LevelMap is null.
      */
     public void activateBomb(LevelMap m) {
         if (m == null) {
@@ -66,7 +87,7 @@ public class Bomb extends MapElement {
         // Explosion at the bomb's position
         onExplosion(m,this.x,this.y);
 
-            // Explosion propagation in all four directions
+        // Explosion propagation in all four directions
         int[][] directions = { {0, 1}, {0, -1}, {-1,0}, {1,0}};
 
         for (int[] direction : directions) {
