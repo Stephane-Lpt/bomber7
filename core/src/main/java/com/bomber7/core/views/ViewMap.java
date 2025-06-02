@@ -1,7 +1,9 @@
 package com.bomber7.core.views;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.ResourceManager;
 
@@ -32,14 +34,42 @@ public class ViewMap {
      */
     public void updateMapTextures() {
         spriteBatch.begin();
-        for (int i = 0; i < mapGrid.length; i++) {
-            for (int j = 0; j < mapGrid[i].length; j++) {
-                Square square = mapGrid[j][i];
-                String spriteFilePath = square.getSpriteFilePath();
-                Texture texture = resourceManager.getTexture(spriteFilePath);
-                spriteBatch.draw(texture, j * texture.getWidth(), i * texture.getHeight());
+        Skin skin = resourceManager.getSkin();
+
+        for (int y = 0; y < mapGrid.getHeight(); y++) {
+            for (int x = 0; x < mapGrid.getWidth(); x++) {
+                Square square = mapGrid.getSquare(x, y);
+                String textureName = square.getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", ""); // Obtenez le nom de la texture sans extension
+                TextureRegion textureRegion = skin.getRegion(textureName);
+
+                if (textureRegion != null) {
+                    // Sauvegardez l'état actuel du TextureRegion
+                    boolean flipX = textureRegion.isFlipX();
+                    boolean flipY = textureRegion.isFlipY();
+
+                    // Appliquez les retournements nécessaires
+                    textureRegion.flip(square.isHorizontalFlip(), square.isVerticalFlip());
+
+                    // Dessinez le TextureRegion
+                    spriteBatch.draw(
+                        textureRegion,
+                        x * textureRegion.getRegionWidth(),
+                        y * textureRegion.getRegionHeight(),
+                        textureRegion.getRegionWidth() / 2,
+                        textureRegion.getRegionHeight() / 2,
+                        textureRegion.getRegionWidth(),
+                        textureRegion.getRegionHeight(),
+                        1, // scaleX
+                        1, // scaleY
+                        0 // rotation
+                    );
+
+                    // Rétablissez l'état original du TextureRegion
+                    textureRegion.flip(flipX, flipY);
+                }
             }
         }
+
         spriteBatch.end();
     }
 

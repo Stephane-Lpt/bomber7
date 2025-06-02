@@ -1,10 +1,16 @@
 package com.bomber7.core.screens;
 
+import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.map.LevelMapFactory;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Map;
+
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Scaling;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.core.views.*;
@@ -13,19 +19,24 @@ public class GameScreen extends BomberScreen {
 
     /** Buttons to go to key bindings menu */
     private BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
-
     /** Buttons to go to key bindings menu */
     private BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
-
-    /** Map view of the game */
+    /** Tileset JSON file path. */
+    //private final Path tilesetJsonPath = Paths.get("/home/t70n/Documents/bomber7/assets/textures/tileset.tsj");
+    /** Map name. */
+    private final String mapName;
+     /** Map view of the game */
     private ViewMap viewMap;
+    /** New factory for a level map. */
+    //private final 
 
     /**
      * Constructs a new GameScreen associated with the given game.
      * @param game the Game instance this screen belongs to
      */
-    public GameScreen(Game game) {
+    public GameScreen(Game game, String mapName, String mapFileName) {
         super(game);
+        this.mapName = mapName;
     }
 
     /**
@@ -55,7 +66,11 @@ public class GameScreen extends BomberScreen {
 
         /** =======[MAP VIEW]=============================================== */
 
-        viewMap = new ViewMap(LevelMapFactory.createLevelMap(), resources);
+        Path tilesetJsonPath = Paths.get("/home/t70n/Documents/bomber7/assets/textures/tileset.tsj");
+        LevelMapFactory levelMapFactory = new LevelMapFactory(tilesetJsonPath);
+        LevelMap levelMap = levelMapFactory.createLevelMap("foy");
+        viewMap = new ViewMap(levelMap, resources);
+
         MapActor mapActor = new MapActor(viewMap);
 
         Table viewMapTable = new Table();
