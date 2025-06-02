@@ -167,24 +167,24 @@ public class LevelMapFactory {
     /**
      * Parses the CSV files to create a list of lists of Square objects (the checkerboard).
      *
-     * @param backCsvPath Path to the background CSV file.
-     * @param breakCsvPath Path to the breakable walls CSV file.
-     * @param unbreakCsvPath Path to the unbreakable walls CSV file.
+     * @param backgroundCsvPath Path to the background CSV file.
+     * @param breakableCsvPath Path to the breakable walls CSV file.
+     * @param unbreakableCsvPath Path to the unbreakable walls CSV file.
      * @param textureMap A map of texture IDs to their file paths.
      * @return A list of lists of Square objects representing the map.
      */
     public static List<List<Square>> parseCsv(
-        File backCsvPath,
-        File breakCsvPath,
-        File unbreakCsvPath,
+        File backgroundCsvPath,
+        File breakableCsvPath,
+        File unbreakableCsvPath,
         Map<Integer, String> textureMap
     ) {
         List<List<Square>> result = new ArrayList<>();
 
         try (
-            CSVReader backgroundReader = new CSVReader(new FileReader(backCsvPath.getAbsolutePath()));
-            CSVReader breakableReader = new CSVReader(new FileReader(breakCsvPath.getAbsolutePath()));
-            CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakCsvPath.getAbsolutePath()))
+            CSVReader backgroundReader = new CSVReader(new FileReader(backgroundCsvPath.getAbsolutePath()));
+            CSVReader breakableReader = new CSVReader(new FileReader(breakableCsvPath.getAbsolutePath()));
+            CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakableCsvPath.getAbsolutePath()))
         ) {
             List<String[]> backgroundRows = backgroundReader.readAll();
             List<String[]> breakableRows = breakableReader.readAll();
@@ -254,10 +254,6 @@ public class LevelMapFactory {
                     Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
 
                     if (breakableTextureId != -1) {
-                        // The 3 high bits are used for flipping:
-                        // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
-                        // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
-                        // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
                         boolean breakableVerticalFlip = (breakableTextureId & ElementTexture.FLIP_V) != 0;
                         boolean breakableHorizontalFlip   = (breakableTextureId & ElementTexture.FLIP_H) != 0;
                         boolean breakableDiagonalFlip   = (breakableTextureId & ElementTexture.FLIP_D) != 0;
@@ -270,26 +266,15 @@ public class LevelMapFactory {
                         }
                         Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
                         squareRow.add(
-                            new Square(
-                                backgroundTexturePath,
-                                backgroundTextureId,
+                            new Square(backgroundTexturePath, backgroundTextureId,
                                 new BreakableWall(
-                                    breakableTexturePath,
-                                    breakableTextureId,
-                                    breakableVerticalFlip,
-                                    breakableHorizontalFlip,
-                                    breakableDiagonalFlip
+                                    breakableTexturePath, breakableTextureId, breakableVerticalFlip,
+                                    breakableHorizontalFlip, breakableDiagonalFlip
                                 ),
-                                backgroundVerticalFlip,
-                                backgroundHorizontalFlip,
-                                backgroundDiagonalFlip
+                                backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip
                             )
                         );
                     } else if (unbreakableTextureId != -1) {
-                        // The 3 high bits are used for flipping:
-                        // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
-                        // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
-                        // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
                         boolean unbreakableVerticalFlip = (unbreakableTextureId & ElementTexture.FLIP_V) != 0;
                         boolean unbreakableHorizontalFlip   = (unbreakableTextureId & ElementTexture.FLIP_H) != 0;
                         boolean unbreakableDiagonalFlip   = (unbreakableTextureId & ElementTexture.FLIP_D) != 0;
