@@ -25,7 +25,8 @@ public class HumanPlayer extends Player {
      * @return The configuration object.
      */
     public Config getConfig() {
-        return config;
+        Config tmpConfig = this.config;
+        return tmpConfig;
     }
 
     // /**
