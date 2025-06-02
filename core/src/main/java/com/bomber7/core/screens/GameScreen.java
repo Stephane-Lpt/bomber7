@@ -55,12 +55,12 @@ public class GameScreen extends BomberScreen {
 
         /** =======[MAP VIEW]=============================================== */
 
+        viewMap = new ViewMap(resources.getBomberResources().getMapGrid(), resources);
+        MapActor mapActor = new MapActor(viewMap);
+
         Table viewMapTable = new Table();
         viewMapTable.setSize(Dimensions.VIEW_MAP_WIDTH, Dimensions.VIEW_MAP_HEIGHT);
-        viewMap = new ViewMap(resources.getBomberResources().getMapGrid(), resources);
-        viewMapTable.add(viewMap)
-            .expand()
-            .fill();
+        viewMapTable.add(mapActor).expand().fill();
 
         /** =======[FULL FRAME]=============================================== */
 
@@ -82,7 +82,6 @@ public class GameScreen extends BomberScreen {
     @Override
     public void render(float delta) {
         super.render(delta); 
-        viewMap.updateMapTextures();
     }
 
 }
