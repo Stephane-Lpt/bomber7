@@ -5,6 +5,12 @@ import com.bomber7.core.model.square.MapElement;
 import java.nio.file.Path;
 
 public abstract class ElementTexture {
+
+    public static final int FLIP_H = 0x80000000;
+    public static final int FLIP_V = 0x40000000;
+    public static final int FLIP_D = 0x20000000;
+    public static final int ID_MASK = ~(FLIP_H | FLIP_V | FLIP_D);
+
     /**
      * The file path to the texture image for this element.
      */

@@ -3,6 +3,7 @@ package com.bomber7.core.model.map;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
+import com.bomber7.core.model.texture.ElementTexture;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
@@ -24,12 +25,6 @@ import java.util.Map;
  * Responsible for parsing texture mappings and CSV files to create a map of squares.
  */
 public class LevelMapFactory {
-
-    public static final int FLIP_H = 0x80000000;
-    public static final int FLIP_V = 0x40000000;
-    public static final int FLIP_D = 0x20000000;
-    public static final int ID_MASK = ~(FLIP_H | FLIP_V | FLIP_D);
-
     private final Map<Integer, String> textureMap;
 
 
@@ -38,6 +33,14 @@ public class LevelMapFactory {
 
     }
 
+    /**
+     * Creates a LevelMap instance based on the specified map name.
+     * Searches for the map files in the "assets/maps" directory and parses the related CSV files to create the map.
+     *
+     * @param mapName The name of the map to create.
+     * @return A LevelMap instance representing the specified map.
+     * @throws IllegalArgumentException if the map directory is not found or is empty, or if there are multiple CSV files of the same type.
+     */
     public LevelMap createLevelMap(String mapName){
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
         if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
@@ -130,6 +133,15 @@ public class LevelMapFactory {
         }
     }
 
+    /**
+     * Parses the CSV files to create a list of lists of Square objects (the checkerboard).
+     *
+     * @param backgroundCsvPath Path to the background CSV file.
+     * @param breakableCsvPath Path to the breakable walls CSV file.
+     * @param unbreakableCsvPath Path to the unbreakable walls CSV file.
+     * @param textureMap A map of texture IDs to their file paths.
+     * @return A list of lists of Square objects representing the map.
+     */
     public static List<List<Square>> parseCsv(File backgroundCsvPath, File breakableCsvPath, File unbreakableCsvPath, Map<Integer, String> textureMap) {
         List<List<Square>> result = new ArrayList<>();
 
@@ -191,10 +203,10 @@ public class LevelMapFactory {
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
                         // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
-                        backgroundVerticalFlip = (backgroundTextureId & FLIP_V) != 0;
-                        backgroundHorizontalFlip = (backgroundTextureId & FLIP_H) != 0;
-                        backgroundDiagonalFlip = (backgroundTextureId & FLIP_D) != 0;
-                        backgroundTextureId = backgroundTextureId & ID_MASK;
+                        backgroundVerticalFlip = (backgroundTextureId & ElementTexture.FLIP_V) != 0;
+                        backgroundHorizontalFlip = (backgroundTextureId & ElementTexture.FLIP_H) != 0;
+                        backgroundDiagonalFlip = (backgroundTextureId & ElementTexture.FLIP_D) != 0;
+                        backgroundTextureId = backgroundTextureId & ElementTexture.ID_MASK;
                     }
 
                     if(!textureMap.containsKey(backgroundTextureId)) {
@@ -208,10 +220,10 @@ public class LevelMapFactory {
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
                         // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
-                        boolean breakableVerticalFlip = (breakableTextureId & FLIP_V) != 0;
-                        boolean breakableHorizontalFlip   = (breakableTextureId & FLIP_H) != 0;
-                        boolean breakableDiagonalFlip   = (breakableTextureId & FLIP_D) != 0;
-                        breakableTextureId = breakableTextureId & ID_MASK;
+                        boolean breakableVerticalFlip = (breakableTextureId & ElementTexture.FLIP_V) != 0;
+                        boolean breakableHorizontalFlip   = (breakableTextureId & ElementTexture.FLIP_H) != 0;
+                        boolean breakableDiagonalFlip   = (breakableTextureId & ElementTexture.FLIP_D) != 0;
+                        breakableTextureId = breakableTextureId & ElementTexture.ID_MASK;
 
                         if(!textureMap.containsKey(breakableTextureId)) {
                             throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + breakableTextureId);
@@ -225,10 +237,10 @@ public class LevelMapFactory {
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
                         // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
-                        boolean unbreakableVerticalFlip = (unbreakableTextureId & FLIP_V) != 0;
-                        boolean unbreakableHorizontalFlip   = (unbreakableTextureId & FLIP_H) != 0;
-                        boolean unbreakableDiagonalFlip   = (unbreakableTextureId & FLIP_D) != 0;
-                        unbreakableTextureId = unbreakableTextureId & ID_MASK;
+                        boolean unbreakableVerticalFlip = (unbreakableTextureId & ElementTexture.FLIP_V) != 0;
+                        boolean unbreakableHorizontalFlip   = (unbreakableTextureId & ElementTexture.FLIP_H) != 0;
+                        boolean unbreakableDiagonalFlip   = (unbreakableTextureId & ElementTexture.FLIP_D) != 0;
+                        unbreakableTextureId = unbreakableTextureId & ElementTexture.ID_MASK;
 
                         if(!textureMap.containsKey(unbreakableTextureId)) {
                             throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + unbreakableTextureId);
