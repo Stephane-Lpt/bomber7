@@ -13,8 +13,8 @@ public class BreakableWall extends Wall {
      * @param textureFilePath the file path to the sprite image for the wall
      * @param textureId id of the texture
      */
-    public BreakableWall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId);
+    public BreakableWall(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
+        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     @Override

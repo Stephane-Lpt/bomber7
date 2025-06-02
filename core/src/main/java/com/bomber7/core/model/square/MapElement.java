@@ -14,7 +14,7 @@ public abstract class MapElement extends ElementTexture {
      * @param textureId the texture ID associated with this square
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
-    public MapElement(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId);
+    public MapElement(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
+        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 }

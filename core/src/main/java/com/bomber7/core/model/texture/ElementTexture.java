@@ -14,13 +14,17 @@ public abstract class ElementTexture {
      */
     private int textureId;
 
+    private boolean verticalFlip;
+    private boolean horizontalFlip;
+    private boolean diagonalFlip;
+
     /**
      * Constructs a new Square with the specified sprite file path and texture ID.
      * @param textureFilePath the file path to the texture image for this square
      * @param textureId the texture ID associated with this square
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId < -1
      */
-    public ElementTexture(Path textureFilePath, int textureId) {
+    public ElementTexture(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
         if (textureFilePath == null || textureFilePath.toString().trim().isEmpty()) {
             throw new IllegalArgumentException("Texture file path cannot be null or empty. Texture file path: " + textureFilePath + ", texture id: " + textureId);
         }
@@ -31,6 +35,9 @@ public abstract class ElementTexture {
 
         this.textureFilePath = textureFilePath;
         this.textureId = textureId;
+        this.verticalFlip = verticalFlip;
+        this.horizontalFlip = horizontalFlip;
+        this.diagonalFlip = diagonalFlip;
     }
 
     /**
@@ -49,4 +56,6 @@ public abstract class ElementTexture {
     public int getTextureId() {
         return textureId;
     }
+
+
 }

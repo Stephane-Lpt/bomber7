@@ -266,7 +266,7 @@ public class LevelMapFactoryTest {
                     System.out.println("i[" + i + "] = " + "j[" + j + "]");
                     int expectedTextureId = Integer.parseInt(cols[j].trim());
                     System.err.println("Found texture id " + expectedTextureId);
-                    int actualTextureId = levelMap.getSquare(j, i).getTextureId();
+                    long actualTextureId = levelMap.getSquare(j, i).getTextureId();
                     System.err.println(levelMap.getSquare(j,i));
                     assertEquals(expectedTextureId, actualTextureId,
                         String.format("Mismatch at [%d,%d]: expected %d but got %d", i, j, expectedTextureId, actualTextureId));
