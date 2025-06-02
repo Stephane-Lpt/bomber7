@@ -5,6 +5,7 @@ import com.bomber7.core.controller.Config;
 public class HumanPlayer extends Player {
 
     private Config config;
+
     //private Bomb[] bombs;
 
     /**
