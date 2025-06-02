@@ -179,23 +179,28 @@ public class LevelMapFactory {
                     int backgroundTextureId = Integer.parseInt(backgroundRow[j].trim());
                     int breakableTextureId = Integer.parseInt(breakableRow[j].trim());
                     int unbreakableTextureId = Integer.parseInt(unbreakableRow[j].trim());
-
-                    // Process negatives ids TODO: Refacto with function ?
                     boolean backgroundVerticalFlip = false;
                     boolean backgroundHorizontalFlip = false;
                     boolean backgroundDiagonalFlip = false;
-                    if(backgroundTextureId < -1){
+
+                    // Process negatives ids TODO: Refacto with function ?
+                    if (backgroundTextureId != -1) {
                         // The 3 high bits are used for flipping:
                         // 0x80000000 → Bit 31: Horizontal flip → 1000 0000 0000 0000 0000 0000 0000 0000
                         // 0x40000000 → Bit 30: Vertical flip → 0100 0000 0000 0000 0000 0000 0000 0000
                         // 0x20000000 → Bit 29: Diagonal flip → 0010 0000 0000 0000 0000 0000 0000 0000
                         backgroundVerticalFlip = (backgroundTextureId & FLIP_H) != 0;
-                        backgroundHorizontalFlip   = (backgroundTextureId & FLIP_V) != 0;
-                        backgroundDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
+                        backgroundHorizontalFlip = (backgroundTextureId & FLIP_V) != 0;
+                        backgroundDiagonalFlip = (backgroundTextureId & FLIP_D) != 0;
+                        System.out.println(backgroundTextureId);
                         int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
                         backgroundTextureId = backgroundTextureId & idMask;
+                        System.out.println(backgroundTextureId);
                     }
 
+                    if(!textureMap.containsKey(backgroundTextureId)) {
+                        throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + backgroundTextureId);
+                    }
                     Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
 
                     if(breakableTextureId != -1) {
@@ -213,10 +218,13 @@ public class LevelMapFactory {
                         int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
                         breakableTextureId = backgroundTextureId & idMask;
 
-                    System.out.println(breakableTextureId);
+                        System.out.println(breakableTextureId);
 
-                    Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
-                    squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId, breakableVerticalFlip, breakableHorizontalFlip, breakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
+                        if(!textureMap.containsKey(breakableTextureId)) {
+                            throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + breakableTextureId);
+                        }
+                        Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
+                        squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new BreakableWall(breakableTexturePath, breakableTextureId, breakableVerticalFlip, breakableHorizontalFlip, breakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
                     else if(unbreakableTextureId != -1){
                         // Process negatives ids TODO: Refacto with function ?
@@ -230,19 +238,27 @@ public class LevelMapFactory {
                         unbreakableVerticalFlip = (backgroundTextureId & FLIP_H) != 0;
                         unbreakableHorizontalFlip   = (backgroundTextureId & FLIP_V) != 0;
                         unbreakableDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
-                        int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
+
+//                        int idWTF = 26;
+//                        System.out.println(idWTF);
+//                        int maskWTF = ~(0x80000000 | 0x40000000 | 0x20000000);
+//                        idWTF = idWTF & maskWTF;
+//                        System.out.println(idWTF);
+
+
                         System.out.println(unbreakableTextureId);
+                        int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
                         unbreakableTextureId = backgroundTextureId & idMask;
                         System.out.println(unbreakableTextureId);
+
+                        if(!textureMap.containsKey(unbreakableTextureId)) {
+                            throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + unbreakableTextureId);
+                        }
                         Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, new UnbreakableWall(unbreakableTexturePath, unbreakableTextureId, unbreakableVerticalFlip, unbreakableHorizontalFlip, unbreakableDiagonalFlip), backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
                     }
                     else{
                         squareRow.add(new Square(backgroundTexturePath, backgroundTextureId, backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip));
-                    }
-
-                    if(!textureMap.containsKey(backgroundTextureId) || !textureMap.containsKey(breakableTextureId) || !textureMap.containsKey(unbreakableTextureId)) {
-                        throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + backgroundTextureId + ", break:" + breakableTextureId + ", unbreak:" + unbreakableTextureId);
                     }
                 }
 
