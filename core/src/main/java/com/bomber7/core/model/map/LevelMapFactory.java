@@ -192,10 +192,8 @@ public class LevelMapFactory {
                         backgroundVerticalFlip = (backgroundTextureId & FLIP_H) != 0;
                         backgroundHorizontalFlip = (backgroundTextureId & FLIP_V) != 0;
                         backgroundDiagonalFlip = (backgroundTextureId & FLIP_D) != 0;
-                        System.out.println(backgroundTextureId);
                         int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
                         backgroundTextureId = backgroundTextureId & idMask;
-                        System.out.println(backgroundTextureId);
                     }
 
                     if(!textureMap.containsKey(backgroundTextureId)) {
@@ -216,9 +214,7 @@ public class LevelMapFactory {
                         breakableHorizontalFlip   = (backgroundTextureId & FLIP_V) != 0;
                         breakableDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
                         int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
-                        breakableTextureId = backgroundTextureId & idMask;
-
-                        System.out.println(breakableTextureId);
+                        breakableTextureId = breakableTextureId & idMask;
 
                         if(!textureMap.containsKey(breakableTextureId)) {
                             throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + breakableTextureId);
@@ -240,16 +236,17 @@ public class LevelMapFactory {
                         unbreakableDiagonalFlip   = (backgroundTextureId & FLIP_D) != 0;
 
 //                        int idWTF = 26;
-//                        System.out.println(idWTF);
+//                        System.out.println("idWTF Avant Mask: " + idWTF);
 //                        int maskWTF = ~(0x80000000 | 0x40000000 | 0x20000000);
 //                        idWTF = idWTF & maskWTF;
-//                        System.out.println(idWTF);
+//                        System.out.println("idWTF Apres Mask: " + idWTF);
 
 
-                        System.out.println(unbreakableTextureId);
+                        System.out.println("unbreakable Avant Mask: " + unbreakableTextureId);
                         int idMask = ~(0x80000000 | 0x40000000 | 0x20000000); // actual id without flips encoded bits
-                        unbreakableTextureId = backgroundTextureId & idMask;
-                        System.out.println(unbreakableTextureId);
+                        unbreakableTextureId = unbreakableTextureId & idMask;
+                        System.out.println("unbreakable Apres Mask: " + unbreakableTextureId);
+
 
                         if(!textureMap.containsKey(unbreakableTextureId)) {
                             throw new IllegalArgumentException("textureMap doesnt have all the required textures: back:" + unbreakableTextureId);
