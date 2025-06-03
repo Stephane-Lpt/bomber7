@@ -1,5 +1,13 @@
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.SpriteCache;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.bomber7.core.model.Character;
 
 /**
  * A view component for displaying a character in our game, implementing the Observer pattern.
@@ -9,6 +17,14 @@ public class viewCharacter implements Observer {
     private Character character;
     private Texture texture;
     protected static final int TILE_SIZE = 32;
+    private static final int FRAME_COLS = 8;
+    private static final int FRAME_ROWS = 7; 
+    Animation<TextureRegion> moveRight;
+    Animation<TextureRegion> moveLeft;
+    Animation<TextureRegion> moveUp;
+    Animation<TextureRegion> moveDown;
+    Animation<TextureRegion> stand;
+    Animation<TextureRegion> die;
 
     /**
      * Constructs a new CharacterView for the specified character
@@ -17,38 +33,55 @@ public class viewCharacter implements Observer {
     public viewCharacter(Character character) {
         this.character = character;
         this.texture = new Texture(Gdx.files.internal(character.getSpriteFP()));
-        // character.addObserver(this); add in the right place
     }
 
     /**
-     * Updates the view based on changes in the model.
-     * @param model game model that has changed
+     * Creates the animations for the character based on the texture.
      */
-    @Override
-    public void refresh(Model model) {
-        // animations
-    }
+    private void createAnimations () {
 
-    /**
-     * Draws the character on the screen using the provided SpriteBatch
-     * @param batch the spriteBatch to use for drawing
-     */
-    public void draw(SpriteBatch batch) {
+        // TODO : change the split size to match the character sprite sheet
+        TextureRegion[][] tmp = TextureRegion.split(texture,
+				texture.getWidth() / FRAME_COLS,
+				texture.getHeight() / FRAME_ROWS);
 
-        if (character.isAlive()) {
-            float x = character.getPositionX() * TILE_SIZE;
-            float y = character.getPositionY() * TILE_SIZE;
 
-            batch.draw(this.texture, x, y);
+        // Place the regions into a 1D array in the correct order, starting from the top
+		// left, going across first. The Animation constructor requires a 1D array.
+		TextureRegion[] walkFrames = new TextureRegion[FRAME_COLS * FRAME_ROWS];
+		int index = 0;
+		for (int i = 0; i < FRAME_ROWS; i++) {
+			for (int j = 0; j < FRAME_COLS; j++) {
+				walkFrames[index++] = tmp[i][j];
+			}
+		}
+
+		moveRight = new Animation<>(0.1f, walkFrames);
+		moveLeft = new Animation<>(0.1f, walkFrames);
+		moveUp = new Animation<>(0.1f, walkFrames);
+		moveDown = new Animation<>(0.1f, walkFrames);
+		stand = new Animation<>(0.1f, walkFrames);
+		die = new Animation<>(0.1f, walkFrames);
+    };
+
+
+    public void renderCharacter(SpriteBatch batch) {
+        Animation<TextureRegion> currentAnimation = stand;
+        if (this.character.getState() == Character.State.MOVE_RIGHT) {
+            currentAnimation = moveRight;
+        } else if (this.character.getState() == Character.State.MOVE_LEFT) {
+            currentAnimation = moveLeft;
+        } else if (this.character.getState() == Character.State.MOVE_UP) {
+            currentAnimation = moveUp;
+        } else if (this.character.getState() == Character.State.MOVE_DOWN) {
+            currentAnimation = moveDown;
+        } else if (this.character.getState() == Character.State.STAND) {
+            currentAnimation = stand;
+        } else if (this.character.getState() == Character.State.DIE) {
+            currentAnimation = die;
         }
-    }
 
-    /**
-     * Realeases all ressources used by this view.
-     */
-    public void dispose() {
-        if (texture != null) {
-            texture.dispose();
-        }
+        batch.draw(currentAnimation.getKeyFrame(Gdx.graphics.getDeltaTime(), true), character.getPosition().x, character.getPosition().y, 1, 1);
+
     }
 }
