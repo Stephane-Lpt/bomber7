@@ -30,9 +30,11 @@ configure(subprojects) {
 
   // Checkstyle configuration
   checkstyle {
-    toolVersion = '10.12.1'
-    config = resources.text.fromFile("${rootDir}/config/checkstyle/checkstyle.xml")
-  }
+          configFile = rootProject.file("config/checkstyle/checkstyle.xml")
+          configProperties = [
+              'checkstyle.suppressions.file': rootProject.file("config/checkstyle/suppression.xml").absolutePath
+          ]
+      }
 
   // Production of HTML reports for Checkstyle
   tasks.withType(Checkstyle).configureEach {
