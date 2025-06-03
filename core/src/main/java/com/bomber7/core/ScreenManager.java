@@ -6,15 +6,15 @@ import com.bomber7.utils.ScreenType;
 
 /**
  * Singleton class responsible for managing screen transitions in the game.
- * <p>
- * This class holds a reference to the main {@link BomberGame} instance and provides
+ *
+ * <p>This class holds a reference to the main {@link BomberGame} instance and provides
  * functionality to initialize and switch between different screens based on
- * the {@link ScreenType} enum.
- * </p>
- * <p>
- * The screen transition approach is inspired by the guidelines available at
- * <url>https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/</url>
- * </p>
+ * the {@link ScreenType} enum.</p>
+ *
+ * <p>The screen transition approach is inspired by the guidelines available at:<br>
+ * <a href="https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/">
+ * https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/
+ * </a></p>
  */
 public final class ScreenManager {
 

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
@@ -14,7 +13,10 @@ import com.bomber7.core.components.DisableableTextButton;
 import com.bomber7.core.components.MapCheckBox;
 import com.bomber7.core.model.Observer;
 import com.bomber7.core.model.Subject;
-import com.bomber7.utils.*;
+import com.bomber7.utils.ComponentsUtils;
+import com.bomber7.utils.Constants;
+import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.Map;
 
 /**
  * Screen where the user selects the map
@@ -59,7 +61,6 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
      * The number of currently checked checkboxes.
      */
     private int checkedCount;
-
 
     /**
      * Constructs a new LevelSetupScreen associated with the given game.
@@ -133,7 +134,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
                 if (rounds < checkedCount) {
                     for (int i = Map.values().length - 1; i >= 0; i--) {
                         if (mapCheckboxes[i].isChecked()) {
-                            mapCheckboxes[i].setChecked(false);
+                            mapCheckboxes[i].uncheck();
                             break;
                         }
                     }
@@ -164,6 +165,9 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
         }, resources));
     }
 
+    /**
+     * Updates the checkedCount variable which holds the current number of checked MapCheckboxes.
+     */
     private void updateCheckedCount() {
         int count = 0;
 

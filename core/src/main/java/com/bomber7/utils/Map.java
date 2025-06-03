@@ -34,7 +34,7 @@ public enum Map {
         );
 
     /**
-     * The asset name of the map (found in bundles, images, etc...)
+     * The asset name of the map (found in bundles, images, etc...).
      */
     private final String assetName;
     /**
@@ -61,7 +61,7 @@ public enum Map {
     }
 
     /**
-     * Initializes
+     * Initializes the map.
      * @param assetName the name of the map asset.
      * @param pointsToUnlock the number of points needed to unclock the map.
      */

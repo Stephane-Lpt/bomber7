@@ -1,6 +1,5 @@
 package com.bomber7.core.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

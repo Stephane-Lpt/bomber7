@@ -1,11 +1,23 @@
 package com.bomber7.core.components;
 
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.utils.Dimensions;
 
+/**
+ * A {@link Table} extension that provides some helpful function for cleaner UI initialization.
+ */
 public class BomberTable extends Table {
 
-    public void setupDoubleButtons(Button b1, Button b2, int colspan) {
+    /**
+     * Adds two buttons side by side to the table.
+     *
+     * @param b1       the first button to add
+     * @param b2       the second button to add
+     * @param totalCols  the total number of columns in the table.
+     */
+    public void setupDoubleButtons(Button b1, Button b2, int totalCols) {
         Table nestedTable = new Table();
 
         nestedTable.add(b1)
@@ -20,12 +32,18 @@ public class BomberTable extends Table {
 
         this.add(nestedTable)
             .padTop(Dimensions.COMPONENT_SPACING)
-            .colspan(colspan)
+            .colspan(totalCols)
             .center();
     }
-    public void setTitle(Label label, int colspan) {
+
+    /**
+     * Adds a title label to this table.
+     * @param label the label to add.
+     * @param totalCols  the total number of columns in the table.
+     */
+    public void setTitle(Label label, int totalCols) {
         this.add(label)
-            .colspan(colspan)
+            .colspan(totalCols)
             .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
             .row();
     }

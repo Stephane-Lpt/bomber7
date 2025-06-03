@@ -58,6 +58,13 @@ public final class ComponentsUtils {
         };
     }
 
+    /**
+     * Returns a new drawable tinted with the specified color from the skin.
+     *
+     * @param resources the resource manager that provides access to the skin
+     * @param color     the name of the color defined in the skin
+     * @return a new {@link Drawable} tinted with the specified color
+     */
     public static Drawable getTintedDrawable(ResourceManager resources, String color) {
         return resources.getSkin().newDrawable(
             "white.9",
