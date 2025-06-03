@@ -1,9 +1,9 @@
 package com.bomber7.core;
 
-import com.bomber7.core.model.map.LevelMap;
-
 import com.bomber7.core.model.square.TriggerBomb;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.nio.file.Paths;
@@ -33,7 +33,7 @@ public class TriggerBombTest extends BombTest {
         // Instantiate a TriggerBomb at postion (2,2)
         triggerBomb = new TriggerBomb(2, 2, 2,
             Paths.get("textures/bomb.png"),
-            1, false, false, false);
+            1);
     }
 
     /**

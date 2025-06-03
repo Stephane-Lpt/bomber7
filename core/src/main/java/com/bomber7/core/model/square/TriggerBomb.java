@@ -1,7 +1,6 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 import java.nio.file.Path;
-import com.bomber7.core.model.Character;
 
 /**
  * TriggerBomb is a type of bomb that can be manually activated by the player.
@@ -11,10 +10,15 @@ public class TriggerBomb extends Bomb {
 
     /**
      * Constructs a TriggerBomb with the specified explosion, power, sprite file path and owner.
+     * @param power explosion power of the bomb
+     * @param x X-coordinate
+     * @param y Y-coordinate
+     * @param textureFilePath the path to the texture file
+     * @param textureId the ID of the texture
      */
-    public TriggerBomb(int power, int x, int y, Path textureFilePath, int textureId,
-                       boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
-        super(power, x, y, textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+
+    public TriggerBomb(int power, int x, int y, Path textureFilePath, int textureId) {
+        super(power, x, y, textureFilePath, textureId);
     }
 
     /**
