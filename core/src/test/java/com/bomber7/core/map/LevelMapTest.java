@@ -5,6 +5,7 @@ import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
+import com.bomber7.utils.ProjectPaths;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -23,15 +24,8 @@ public class LevelMapTest {
     /**
      * Path to the JSON file containing the tileset export file.
      */
-    private final Path jsonPath = Paths.get("../assets/textures/tileset.tsj");
-    /**
-     * Name of the map to be loaded.
-     */
-    private final String foyMapName = "foy";
-    /**
-     * Directory where the map files are located.
-     */
-    private final File foyDirectory = new File("../assets/maps/" + foyMapName);
+    private final Path jsonPath = ProjectPaths.getTileset();
+
     /**
      * LevelMapFactory instance to create LevelMap objects.
      */
@@ -47,14 +41,14 @@ public class LevelMapTest {
         final int textureId2 = 102;
         // Create squares with map elements
         Square square1 = new Square(
-            Paths.get("assets/texture1.png"),
+            Paths.get(ProjectPaths.getAssetsPath()+"/texture1.png"),
             textureId1,
-            new UnbreakableWall(Paths.get("assets/unbreakable.png"),
+            new UnbreakableWall(Paths.get(ProjectPaths.getAssetsPath()+"/unbreakable.png"),
             1));
         Square square2 = new Square(
-            Paths.get("assets/texture2.png"),
+            Paths.get(ProjectPaths.getAssetsPath()+"/texture2.png"),
             textureId2,
-            new BreakableWall(Paths.get("assets/breakable.png"),
+            new BreakableWall(Paths.get(ProjectPaths.getAssetsPath()+"/breakable.png"),
             2));
 
         // Create a 2x2 checkerboard grid
@@ -91,10 +85,10 @@ public class LevelMapTest {
     void testGetSquareInvalidCoordinatesThrowsException() {
         // Create a 1x1 map with one square
         Square square = new Square(
-            Paths.get("assets/texture.png"),
+            Paths.get(ProjectPaths.getAssetsPath()+"/texture.png"),
             1,
             new BreakableWall(
-                Paths.get("assets/break.png"),
+                Paths.get(ProjectPaths.getAssetsPath()+"/break.png"),
                 2)
                 );
         List<List<Square>> checkerboard = new ArrayList<>();

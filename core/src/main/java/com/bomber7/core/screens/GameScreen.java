@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.core.views.*;
+import com.bomber7.utils.ProjectPaths;
 
 public class GameScreen extends BomberScreen {
 
@@ -66,7 +67,7 @@ public class GameScreen extends BomberScreen {
 
         /** =======[MAP VIEW]=============================================== */
 
-        Path tilesetJsonPath = Paths.get("assets/textures/tileset.tsj");
+        Path tilesetJsonPath = Paths.get(ProjectPaths.getAssetsPath()+"/textures/tileset.tsj");
         LevelMapFactory levelMapFactory = new LevelMapFactory(tilesetJsonPath);
         LevelMap levelMap = levelMapFactory.createLevelMap("foy");
         viewMap = new ViewMap(levelMap, resources);

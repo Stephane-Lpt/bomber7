@@ -4,6 +4,7 @@ import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.MapElement;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.ProjectPaths;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
 import com.bomber7.core.model.texture.ElementTexture;
@@ -40,13 +41,13 @@ public class LevelMapFactoryTest {
     /** Map filename. */
     private final String foyMapFileName = "foy";
     /** Tileset JSON file path. */
-    private final Path tilesetJsonPath = Paths.get("../assets/textures/tileset.tsj");
+    private final Path tilesetJsonPath = ProjectPaths.getTileset();
     /** Texture Map. */
     private final Map<Integer, String> textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
     /** Map name. */
     private final String foyMapName = "foy";
     /** Directory for Foy map. */
-    private final File foyDirectory = new File("../assets/maps/" + foyMapName);
+    private final File foyDirectory = new File(ProjectPaths.getMapDir() + "/" + foyMapName);
     /** New factory for a level map. */
     private final LevelMapFactory levelMapFactory = new LevelMapFactory(tilesetJsonPath);
 
@@ -80,7 +81,7 @@ public class LevelMapFactoryTest {
     @Test
     void testCreateLevelMapEmptyDirectory() {
         String dirName = "emptyDirectory";
-        String dirPathName = "../assets/maps/" + dirName;
+        String dirPathName = ProjectPaths.getMapDir() + dirName;
         File dir = new File(dirPathName);
         dir.mkdir();
         try {
@@ -148,10 +149,9 @@ public class LevelMapFactoryTest {
             LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
             Square square = levelMap.getSquare(CINQ, DEUX);
             // id = 33
-            assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), square.getTextureFilePath());
-
+            assertEquals(ProjectPaths.getTexture("spruce_planks"), square.getTextureFilePath());
             // id = 44
-            assertEquals(Paths.get("assets/textures/images/pressure_plate.png"), square.getMapElement().getTextureFilePath());
+            assertEquals(ProjectPaths.getTexture("pressure_plate"), square.getMapElement().getTextureFilePath());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
@@ -267,7 +267,7 @@ public class LevelMapFactoryTest {
 
         System.out.println(levelMap);
         assertEquals(TRENTETROIS, levelMap.get(0).get(0).getTextureId());
-        assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), levelMap.get(0).get(0).getTextureFilePath());
+        assertEquals(ProjectPaths.getTexture("spruce_planks"), levelMap.get(0).get(0).getTextureFilePath());
     }
 
     @Test
