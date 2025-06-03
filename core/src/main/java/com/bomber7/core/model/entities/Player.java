@@ -58,7 +58,6 @@ public abstract class Player extends Character {
      * @return typeBomb Current number of bomb playable
      */
     public int getTypeBomb() {
-    public int getTypeBomb() {
         return this.typeBomb;
     }
 
