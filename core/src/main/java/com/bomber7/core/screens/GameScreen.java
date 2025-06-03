@@ -1,5 +1,7 @@
 package com.bomber7.core.screens;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 
@@ -33,26 +35,26 @@ public class GameScreen extends BomberScreen {
 
         Table mainTable = new Table();
         mainTable.setFillParent(true);
-        mainTable.setDebug(true);
+//        mainTable.setDebug(true);
 
         /** =======[BUTTON]=============================================== */
 
         /** Buttons to go to key bindings menu. */
-        BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
+//        BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
         /** Buttons to go to key bindings menu. */
-        BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
+//        BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
 
-        mainTable.add(settingsButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-        mainTable.add(goBackButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-        mainTable.row();
+//        mainTable.add(settingsButton)
+//            .width(Dimensions.BUTTON_WIDTH)
+//            .height(Dimensions.BUTTON_HEIGHT)
+//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
+//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
+//        mainTable.add(goBackButton)
+//            .width(Dimensions.BUTTON_WIDTH)
+//            .height(Dimensions.BUTTON_HEIGHT)
+//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
+//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
+//        mainTable.row();
 
         /** =======[MAP VIEW]=============================================== */
 
@@ -65,26 +67,30 @@ public class GameScreen extends BomberScreen {
         LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
         /** Map view of the game. */
         ViewMap viewMap = new ViewMap(levelMap, resources);
+        viewMap.setWidth(500);
 
-        Table viewTable = new Table();
-        viewTable.setFillParent(true);
-        mainTable.setDebug(true);
-        viewTable.add(viewMap)
-            .width(Dimensions.VIEW_MAP_WIDTH)
-            .height(Dimensions.VIEW_MAP_HEIGHT)
-            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-        viewTable.row();
-        
-        mainTable.add(viewTable)
-            .expand()
-            .fill()
-            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-        mainTable.row();
+//        Table viewTable = new Table();
+//        viewTable.setFillParent(true);
+//        mainTable.setDebug(true);
+//        viewTable.add(viewMap)
+//            .width(Dimensions.VIEW_MAP_WIDTH)
+//            .height(Dimensions.VIEW_MAP_HEIGHT)
+//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
+//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
+//        viewTable.row();
+//
+//        mainTable.add(viewTable)
+//            .expand()
+//            .fill()
+//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
+//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
+//        mainTable.row();
 
         /** =======[FULL FRAME]=============================================== */
 
+        mainTable.add(viewMap)
+            .width(1024)
+            .height(768);
         stage.addActor(mainTable);
     }
 

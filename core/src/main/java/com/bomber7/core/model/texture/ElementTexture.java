@@ -1,5 +1,7 @@
 package com.bomber7.core.model.texture;
 
+import com.bomber7.core.model.square.Square;
+
 import java.nio.file.Path;
 
 /**
@@ -92,6 +94,15 @@ public abstract class ElementTexture {
     }
 
     /**
+     * Returns the textures filename without the extension.
+     *
+     * @return the texture file name.
+     */
+    public String getTextureName() {
+        return textureFilePath.getFileName().toString().replaceFirst("[.][^.]+$", "");
+    }
+
+    /**
      * Returns the texture id for this element.
      * @return the texture id
      */
@@ -121,5 +132,16 @@ public abstract class ElementTexture {
      */
     public boolean isDiagonalFlip() {
         return this.diagonalFlip;
+    }
+
+    /**
+     * Calculate the rotation base on this elements flip flags.
+     * @return the angle of rotation in degrees
+     */
+    public float computeRotation() {
+        if (isDiagonalFlip() && !isHorizontalFlip() && !isVerticalFlip()) return 270f;
+        if (isDiagonalFlip() && !isHorizontalFlip() && isVerticalFlip())  return 90f;
+        if (isDiagonalFlip() && isHorizontalFlip() && isVerticalFlip())   return 180f;
+        return 0f;
     }
 }

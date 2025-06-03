@@ -1,12 +1,17 @@
 package com.bomber7.core.views;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.ResourceManager;
+import org.w3c.dom.Text;
 
 public class ViewMap extends Actor {
 
@@ -17,7 +22,15 @@ public class ViewMap extends Actor {
     private final ResourceManager resourceManager;
 
     /** Used to draw sprite to screen */
-    private final SpriteBatch spriteBatch;
+    private final PolygonSpriteBatch spriteBatch;
+
+    private final float scale = 0.7f;
+    private float scaledTextureOrigin;
+    private float totalWidth;
+    private float totalHeight;
+    private float scaledTextureSize;
+    private float originX;
+    private float originY;
 
     /**
      * Constructs a new ViewMap with the specified map grid and resource manager.
@@ -27,78 +40,36 @@ public class ViewMap extends Actor {
     public ViewMap(LevelMap mapGrid, ResourceManager resourceManager) {
         this.mapGrid = mapGrid;
         this.resourceManager = resourceManager;
-        this.spriteBatch = new SpriteBatch();
+        this.spriteBatch = new PolygonSpriteBatch();
+
+        updateDimensions();
     }
 
     /**
-     * Updates the textures of the map by iterating through each square in the grid.
+     * Method called by libGDX to draw the map.
+     * It draws each map square by iterating through each square in the grid.
      */
-    public void updateMapTextures() {
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
         spriteBatch.begin();
 
-        for (int y = 0; y < mapGrid.getHeight(); y++) {
-            for (int x = 0; x < mapGrid.getWidth(); x++) {
-                Square square = mapGrid.getSquare(x, y);
+        // TODO: notes pour plus tard - renommer les textures en enlevant les _X car texturepacker les supprime automatiquement
+        // Actuellement la taille du tableau ne depend pas des elements autour
+        // Rotation incorrecte pour certaines cases
+        for (int col = 0; col < mapGrid.getHeight(); col++) {
+            for (int row = 0; row < mapGrid.getWidth(); row++) {
+                Square square = mapGrid.getSquare(row, col);
 
-                String squareTexture = square.getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", ""); // Obtenez le nom de la texture sans extension
-                TextureRegion squareTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(squareTexture);
+                TextureRegion squareTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(square.getTextureName());
+                drawTextureRegion(squareTextureRegion, row, col, square.computeRotation());
 
-                TextureRegion mapElementTextureRegion = null;
-                if (square.hasMapElement()) {
-                    String mapElementTexture = square.getMapElement().getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", "");
-                    mapElementTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(mapElementTexture);
-                }
-
-                if (squareTextureRegion != null) {
-                    // Sauvegardez l'état actuel du squareTextureRegion
-                    boolean flipX = squareTextureRegion.isFlipX();
-                    boolean flipY = squareTextureRegion.isFlipY();
-
-                    // Appliquez les retournements nécessaires
-                    squareTextureRegion.flip(square.isHorizontalFlip(), square.isVerticalFlip());
-
-                    // Dessinez le squareTextureRegion
-                    spriteBatch.draw(
-                        squareTextureRegion,
-                        x * squareTextureRegion.getRegionWidth(),
-                        y * squareTextureRegion.getRegionHeight(),
-                        squareTextureRegion.getRegionWidth() / 2,
-                        squareTextureRegion.getRegionHeight() / 2,
-                        squareTextureRegion.getRegionWidth(),
-                        squareTextureRegion.getRegionHeight(),
-                        1, // scaleX
-                        1, // scaleY
-                        0 // rotation
-                    );
-
-                    // Rétablissez l'état original du squareTextureRegion
-                    squareTextureRegion.flip(flipX, flipY);
-                }
+                TextureRegion mapElementTextureRegion =
+                    square.hasMapElement() ?
+                        resourceManager.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName()) :
+                        null;
 
                 if (mapElementTextureRegion != null) {
-                    // Sauvegardez l'état actuel du squareTextureRegion
-                    boolean flipX = mapElementTextureRegion.isFlipX();
-                    boolean flipY = mapElementTextureRegion.isFlipY();
-
-                    // Appliquez les retournements nécessaires
-                    mapElementTextureRegion.flip(square.isHorizontalFlip(), square.isVerticalFlip());
-
-                    // Dessinez le mapElementTextureRegion
-                    spriteBatch.draw(
-                        mapElementTextureRegion,
-                        x * mapElementTextureRegion.getRegionWidth(),
-                        y * mapElementTextureRegion.getRegionHeight(),
-                        mapElementTextureRegion.getRegionWidth() / 2,
-                        mapElementTextureRegion.getRegionHeight() / 2,
-                        mapElementTextureRegion.getRegionWidth(),
-                        mapElementTextureRegion.getRegionHeight(),
-                        1, // scaleX
-                        1, // scaleY
-                        0 // rotation
-                    );
-
-                    // Rétablissez l'état original du mapElementTextureRegion
-                    mapElementTextureRegion.flip(flipX, flipY);
+                    drawTextureRegion(mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
                 }
             }
         }
@@ -107,12 +78,33 @@ public class ViewMap extends Actor {
     }
 
     /**
-     * Method called by libGDX to draw the map.
-     * It updates the map textures by iterating through each square in the grid.
+     * Updates the dimensions / coordinates used to draw the map.
      */
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        updateMapTextures();
+    private void updateDimensions() {
+        int centerX = Gdx.graphics.getWidth() / 2;
+        int centerY = Gdx.graphics.getHeight() / 2;
+
+        scaledTextureSize = Constants.TEXTURE_SIZE * scale;
+        scaledTextureOrigin = scaledTextureSize / 2f;
+        totalWidth = Constants.TEXTURE_SIZE * mapGrid.getWidth() * scale;
+        totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * scale;
+
+        originX = centerX - totalWidth / 2;
+        originY = centerY + totalHeight / 2;
     }
 
+    private void drawTextureRegion(TextureRegion textureRegion, int row, int col, float rotation) {
+        spriteBatch.draw(
+            textureRegion,
+            originX + (row * scaledTextureSize),
+            originY - (col * scaledTextureSize),
+            scaledTextureOrigin,
+            scaledTextureOrigin,
+            scaledTextureSize,
+            scaledTextureSize,
+            1,
+            1,
+            rotation
+        );
+    }
 }
