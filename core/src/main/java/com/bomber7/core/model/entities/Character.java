@@ -1,6 +1,6 @@
 package com.bomber7.core.model.entities;
 
-import com.bomber7.core.model.LevelMap;
+import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
