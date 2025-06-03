@@ -28,7 +28,7 @@ public abstract class Character {
     /** Indicates whether the character is alive or not. */
     private boolean isAlive;
     /** The map on which the character is currently located. */
-    private LevelMap map;
+    protected LevelMap map;
     /** The speed of the character. */
     private int speed;
     /** The life points of the character. */
@@ -37,13 +37,14 @@ public abstract class Character {
     private int x;
     /** The Y-axis position of the character on the map. */
     private int y;
-    /** Moving status of player, needed for sprite animation */
+    /** Moving status of player, needed for sprite animation. */
     private int movingStatus;
 
     /**
      * Character Constructor.
      * @throws IllegalArgumentException in case an argument is not wrong
      * @param name     The name of the character
+     * @param map      The map
      * @param x        The X-axis position of the character
      * @param y        The Y-axis position of the character
      * @param life     The initial life points of the character
@@ -202,8 +203,8 @@ public abstract class Character {
         return this.isAlive;
     }
 
-    /** 
-     * Caracter is standing still. 
+    /**
+     * Caracter is standing still.
      */
     public void setStandingStill() {
         this.movingStatus = STANDING_STILL;
