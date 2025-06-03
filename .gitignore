@@ -63,6 +63,9 @@ www-test/
 *.iws
 *.iml
 
+## VSCode
+.vscode/
+
 ## Eclipse:
 .classpath
 .project
