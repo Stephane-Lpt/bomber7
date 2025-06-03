@@ -18,7 +18,8 @@ public class viewCharacter implements Observer {
     private Texture texture;
     protected static final int TILE_SIZE = 32;
     private static final int FRAME_COLS = 8;
-    private static final int FRAME_ROWS = 7; 
+    private static final int FRAME_ROWS = 7;
+
     Animation<TextureRegion> moveRight;
     Animation<TextureRegion> moveLeft;
     Animation<TextureRegion> moveUp;
@@ -56,12 +57,40 @@ public class viewCharacter implements Observer {
 			}
 		}
 
-		moveRight = new Animation<>(0.1f, walkFrames);
-		moveLeft = new Animation<>(0.1f, walkFrames);
-		moveUp = new Animation<>(0.1f, walkFrames);
-		moveDown = new Animation<>(0.1f, walkFrames);
+        TextureRegion[] moveRightFrames = new TextureRegion[3];
+        for (int i = 0; i < 3; i++) {
+            moveRightFrames[i] = tmp[0][i];
+        }
+		moveRight = new Animation<>(0.1f, moveRightFrames);
+
+        TextureRegion[] moveLeftFrames = new TextureRegion[3];
+        for (int i = 0; i < 3; i++) {
+            moveLeftFrames[i] = new TextureRegion(moveRightFrames[i]);
+            moveLeftFrames[i].flip(true, false);
+        }
+        moveLeft = new Animation<>(0.1f, moveLeftFrames);
+
+        TextureRegion[] moveUpFrames = new TextureRegion[3];
+        for (int i = 0; i < 3; i++) {
+            moveUpFrames[i] = tmp[2][i];
+        }
+        moveUp = new Animation<>(0.1f, moveUpFrames);
+
+        TextureRegion[] moveDownFrames = new TextureRegion[3];
+        for (int i = 0; i < 3; i++) {
+            moveDownFrames[i] = tmp[1][i];
+        }
+		moveDown = new Animation<>(0.1f, moveDownFrames);
+
+        TextureRegion[] standFrames = new TextureRegion[1];
+        standFrames[0] = tmp[5][0];
 		stand = new Animation<>(0.1f, walkFrames);
-		die = new Animation<>(0.1f, walkFrames);
+
+        TextureRegion[] dieFrames = new TextureRegion[6];
+        for (int i = 0; i < 6; i++) {
+            dieFrames[i] = tmp[4][i];
+        }
+		die = new Animation<>(0.1f, dieFrames);
     };
 
 
