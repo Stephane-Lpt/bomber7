@@ -94,6 +94,15 @@ public abstract class ElementTexture {
     }
 
     /**
+     * Returns the textures filename without the extension.
+     *
+     * @return the texture file name.
+     */
+    public String getTextureName() {
+        return textureFilePath.getFileName().toString().replaceFirst("[.][^.]+$", "");
+    }
+
+    /**
      * Returns the texture id for this element.
      * @return the texture id
      */
