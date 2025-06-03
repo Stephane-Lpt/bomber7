@@ -10,7 +10,7 @@ public class UnbreakableWall extends Wall {
     /**
      * Constructs an UnbreakableWall with the specified texture file path.
      *
-     * @param textureFilePath the file path to the texture image for the unbreakable wall
+     * @param textureName the file path to the texture image for the unbreakable wall
      * @param textureId id of the texture
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
@@ -30,7 +30,7 @@ public class UnbreakableWall extends Wall {
      * Constructs an UnbreakbleWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureFilePath the file path to the texture image for the unbreakable wall
+     * @param textureName the texture name for this square for the wall for the unbreakable wall
      * @param textureId id of the texture
      */
     public UnbreakableWall(String textureName, int textureId) {

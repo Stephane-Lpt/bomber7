@@ -51,7 +51,7 @@ public abstract class ElementTexture {
 
     /**
      * Constructs a new Square with the specified sprite file path and texture ID.
-     * @param textureFilePath the file path to the texture image for this square
+     * @param textureName the file path to the texture image for this square
      * @param textureId the texture ID associated with this square
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
@@ -91,15 +91,6 @@ public abstract class ElementTexture {
      */
     public String getTextureName() {
         return this.textureName;
-    }
-
-    /**
-     * Returns the textures filename without the extension.
-     *
-     * @return the texture file name.
-     */
-    public String getTextureName() {
-        return textureFilePath.getFileName().toString().replaceFirst("[.][^.]+$", "");
     }
 
     /**

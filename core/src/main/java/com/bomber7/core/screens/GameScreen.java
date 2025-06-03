@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.core.views.*;
+import com.bomber7.utils.ProjectPaths;
 
 public class GameScreen extends BomberScreen {
 

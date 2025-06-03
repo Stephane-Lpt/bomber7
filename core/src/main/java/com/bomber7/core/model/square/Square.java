@@ -15,7 +15,7 @@ public class Square extends ElementTexture {
 
     /**
      * Constructs a new Square with the specified texture file path and texture ID.
-     * @param textureFilePath the file path to the texture image for this square
+     * @param textureName the texture name for this square
      * @param textureId the texture ID associated with this square
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
@@ -26,7 +26,7 @@ public class Square extends ElementTexture {
 
     /**
      * Constructs a new Square with the specified sprite file path and texture ID.
-     * @param textureFilePath the file path to the sprite image for this square
+     * @param textureName the texture name for this square
      * @param textureId the texture ID associated with this square
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
@@ -40,7 +40,7 @@ public class Square extends ElementTexture {
 
     /**
      * Constructs a new Square with the specified texture file path and map element.
-     * @param textureFilePath the file path to the texture image for this square
+     * @param textureName the texture name for this square
      * @param textureId the texture ID associated with this square
      * @param mapElement the map element associated with this square
      */
@@ -51,7 +51,7 @@ public class Square extends ElementTexture {
 
     /**
      * Constructs a new Square with the specified texture file path and map element.
-     * @param textureFilePath the file path to the texture image for this square
+     * @param textureName the texture name for this square
      * @param textureId the texture ID associated with this square
      * @param mapElement the map element associated with this square
      * @param verticalFlip whether to flip the texture vertically

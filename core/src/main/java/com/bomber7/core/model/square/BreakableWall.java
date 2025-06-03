@@ -10,7 +10,7 @@ public class BreakableWall extends Wall {
     /**
      * Constructs a BreakableWall with the specified texture file path.
      *
-     * @param textureFilePath the file path to the texture image for the wall
+     * @param textureName the file path to the texture image for the wall
      * @param textureId id of the texture
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
@@ -30,7 +30,7 @@ public class BreakableWall extends Wall {
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureFilePath the file path to the sprite image for the wall
+     * @param textureName the texture name for this square for the breakable wall
      * @param textureId id of the texture
      */
     public BreakableWall(String textureName, int textureId) {
