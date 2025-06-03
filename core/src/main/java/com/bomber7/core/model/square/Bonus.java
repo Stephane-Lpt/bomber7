@@ -41,4 +41,5 @@ public abstract class Bonus extends MapElement {
      * @param player the player to which the bonus effect will be applied
      */
     public void applyBonusEffect(HumanPlayer player) {}
+
 }

@@ -1,11 +1,16 @@
 package com.bomber7.core.model.square;
 
 import java.nio.file.Path;
+import java.util.Random;
+
+import com.bomber7.utils.Constants;
 
 /**
  * Represents a breakable wall in the game.
  */
 public class BreakableWall extends Wall {
+
+    private boolean hasBonus;
 
     /**
      * Constructs a BreakableWall with the specified texture file path.
@@ -24,9 +29,10 @@ public class BreakableWall extends Wall {
         boolean diagonalFlip
     ) {
         super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        this.hasBonus = hasRandomBonus();
     }
 
-    /**
+    /*
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
@@ -37,8 +43,24 @@ public class BreakableWall extends Wall {
         super(textureFilePath, textureId);
     }
 
-    @Override
-    public String toString() {
-        return "BreakableWall";
+    public Bonus onDestruction() {
+        if (this.hasBonus) {
+            return Bonus.createRandomBonus();
+        }
+    }
+
+    private boolean hasRandomBonus() {
+        Random randomGenerator = new Random();
+        double randomValue = randomGenerator.nextDouble();
+        if (randomValue > Constants.BONUS_RATE) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private static Bonus createRandomBonus() {
+        
+        return pickedBonus
     }
 }
