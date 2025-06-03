@@ -7,6 +7,8 @@ plugins {
 eclipse.project.name = appName + '-core'
 
 dependencies {
+  implementation 'com.opencsv:opencsv:5.7.1'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
 
   if(enableGraalNative == 'true') {
