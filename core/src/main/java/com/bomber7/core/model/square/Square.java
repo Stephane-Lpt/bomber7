@@ -19,8 +19,8 @@ public class Square extends ElementTexture {
      * @param textureId the texture ID associated with this square
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
-    public Square(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId, false, false, false);
+    public Square(String textureName, int textureId) {
+        super(textureName, textureId, false, false, false);
         this.mapElement = null; // Initialize mapElement to null if not provided
     }
 
@@ -33,8 +33,8 @@ public class Square extends ElementTexture {
      * @param diagonalFlip whether to flip the texture diagonally
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
-    public Square(Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+    public Square(String textureName, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
         this.mapElement = null; // Initialize mapElement to null if not provided
     }
 
@@ -44,8 +44,8 @@ public class Square extends ElementTexture {
      * @param textureId the texture ID associated with this square
      * @param mapElement the map element associated with this square
      */
-    public Square(Path textureFilePath, int textureId, MapElement mapElement) {
-        super(textureFilePath, textureId, false, false, false);
+    public Square(String textureName, int textureId, MapElement mapElement) {
+        super(textureName, textureId, false, false, false);
         this.mapElement = mapElement;
     }
 
@@ -59,11 +59,11 @@ public class Square extends ElementTexture {
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public Square(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         MapElement mapElement,
         boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
         this.mapElement = mapElement;
     }
 
@@ -109,7 +109,7 @@ public class Square extends ElementTexture {
                 +
                 "tId=" + this.getTextureId() + '\''
                 +
-                ", tFP='" + this.getTextureFilePath().toString().substring(0, maxTRONCATE) + '\''
+                ", tFP='" + this.getTextureName().substring(0, maxTRONCATE) + '\''
                 +
                 ", mE=" + (mapElement != null ? mapElement.toString().substring(0, maxTRONCATE) : "null")
                 +

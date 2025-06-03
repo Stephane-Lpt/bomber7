@@ -17,13 +17,13 @@ public class BreakableWall extends Wall {
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public BreakableWall(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     /**
@@ -33,8 +33,8 @@ public class BreakableWall extends Wall {
      * @param textureFilePath the file path to the sprite image for the wall
      * @param textureId id of the texture
      */
-    public BreakableWall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId);
+    public BreakableWall(String textureName, int textureId) {
+        super(textureName, textureId);
     }
 
     @Override

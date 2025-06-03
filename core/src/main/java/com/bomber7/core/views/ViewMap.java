@@ -38,12 +38,12 @@ public class ViewMap {
             for (int x = 0; x < mapGrid.getWidth(); x++) {
                 Square square = mapGrid.getSquare(x, y);
 
-                String squareTexture = square.getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", ""); // Obtenez le nom de la texture sans extension
+                String squareTexture = square.getTextureName();
                 TextureRegion squareTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(squareTexture);
 
                 TextureRegion mapElementTextureRegion = null;
                 if (square.hasMapElement()) {
-                    String mapElementTexture = square.getMapElement().getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", "");
+                    String mapElementTexture = square.getMapElement().getTextureName();
                     mapElementTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(mapElementTexture);
                 }
 

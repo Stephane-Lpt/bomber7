@@ -254,7 +254,8 @@ public class LevelMapFactory {
                             "textureMap doesnt have all the required textures: back:" + backgroundTextureId
                         );
                     }
-                    Path backgroundTexturePath = Paths.get("../" + textureMap.get(backgroundTextureId)).toAbsolutePath();
+                    Path backgroundTextureFilePath = Paths.get(textureMap.get(backgroundTextureId));
+                    String backgroundTextureName = getTextureNameByTilesetPathString(backgroundTextureFilePath);
 
                     if (breakableTextureId != -1) {
                         boolean breakableVerticalFlip = (breakableTextureId & ElementTexture.FLIP_V) != 0;
@@ -267,11 +268,14 @@ public class LevelMapFactory {
                                 "textureMap doesnt have all the required textures: back:" + breakableTextureId
                             );
                         }
-                        Path breakableTexturePath = Paths.get("../" + textureMap.get(breakableTextureId)).toAbsolutePath();
+
+                        Path breakableTextureFilePath = Paths.get(textureMap.get(breakableTextureId));
+                        String breakableTextureName = getTextureNameByTilesetPathString(breakableTextureFilePath);
+
                         squareRow.add(
-                            new Square(backgroundTexturePath, backgroundTextureId,
+                            new Square(backgroundTextureName, backgroundTextureId,
                                 new BreakableWall(
-                                    breakableTexturePath, breakableTextureId, breakableVerticalFlip,
+                                    breakableTextureName, breakableTextureId, breakableVerticalFlip,
                                     breakableHorizontalFlip, breakableDiagonalFlip
                                 ),
                                 backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip
@@ -289,12 +293,14 @@ public class LevelMapFactory {
                             );
                         }
 
-                        Path unbreakableTexturePath = Paths.get("../" + textureMap.get(unbreakableTextureId)).toAbsolutePath();
+                        Path unbreakableTextureFilePath = Paths.get(textureMap.get(unbreakableTextureId));
+                        String unbreakableTextureName = getTextureNameByTilesetPathString(unbreakableTextureFilePath);
+
                         squareRow.add(
-                            new Square(backgroundTexturePath,
+                            new Square(backgroundTextureName,
                                 backgroundTextureId,
                                 new UnbreakableWall(
-                                    unbreakableTexturePath,
+                                    unbreakableTextureName,
                                     unbreakableTextureId,
                                     unbreakableVerticalFlip,
                                     unbreakableHorizontalFlip,
@@ -307,7 +313,7 @@ public class LevelMapFactory {
                     } else {
                         squareRow.add(
                             new Square(
-                                backgroundTexturePath,
+                                backgroundTextureName,
                                 backgroundTextureId,
                                 backgroundVerticalFlip,
                                 backgroundHorizontalFlip,
@@ -328,5 +334,15 @@ public class LevelMapFactory {
         } catch (CsvException e) {
             throw new IllegalArgumentException("Unable to read the CSV file. Wrong format");
         }
+    }
+
+    public static String getTextureNameByTilesetPathString(Path textureFilePath) {
+        /*
+            \\. : a literal dot, since . is a special character in regex (matches any character), we escape it.
+            [^.]+ : one or more characters that are not a dot, i.e. the extension (like png, jpg, etc.).
+            $ : end of the string, ensures it only matches the final extension.
+            replaceFirst(...) : replaces only the first match of the regex (the final extension) with an empty string.
+         */
+        return textureFilePath.getFileName().toString().replaceFirst("\\.[^.]+$", "");
     }
 }

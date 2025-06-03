@@ -26,9 +26,9 @@ public abstract class ElementTexture {
     public static final int ID_MASK = ~(FLIP_H | FLIP_V | FLIP_D);
 
     /**
-     * The file path to the texture image for this element.
+     * The texture image for this element.
      */
-    private final Path textureFilePath;
+    private final String textureName;
     /**
      * The texture id for this element.
      */
@@ -57,15 +57,15 @@ public abstract class ElementTexture {
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
     public ElementTexture(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        if (textureFilePath == null || textureFilePath.toString().trim().isEmpty()) {
-            throw new IllegalArgumentException("Texture file path cannot be null or empty. Texture file path: "
-                + textureFilePath
+        if (textureName == null || textureName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Texture file path cannot be null or empty. Texture name: "
+                + textureName
                 + ", texture id: "
                 + textureId
             );
@@ -75,7 +75,7 @@ public abstract class ElementTexture {
             throw new IllegalArgumentException("Texture id cannot be less than -1. Texture id: " + textureId);
         }
 
-        this.textureFilePath = textureFilePath;
+        this.textureName = textureName;
         this.textureId = textureId;
         this.verticalFlip = verticalFlip;
         this.horizontalFlip = horizontalFlip;
@@ -87,8 +87,8 @@ public abstract class ElementTexture {
      *
      * @return the texture file path
      */
-    public Path getTextureFilePath() {
-        return this.textureFilePath;
+    public String getTextureName() {
+        return this.textureName;
     }
 
     /**

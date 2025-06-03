@@ -18,13 +18,13 @@ public abstract class MapElement extends ElementTexture {
      * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
      */
     public MapElement(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     /**
@@ -32,7 +32,7 @@ public abstract class MapElement extends ElementTexture {
      * @param textureFilePath the file path to the sprite image for the map element
      * @param textureId id of the texture
      */
-    public MapElement(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId, false, false, false);
+    public MapElement(String textureName, int textureId) {
+        super(textureName, textureId, false, false, false);
     }
 }

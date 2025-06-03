@@ -41,15 +41,13 @@ public class LevelMapTest {
         final int textureId2 = 102;
         // Create squares with map elements
         Square square1 = new Square(
-            Paths.get(ProjectPaths.getAssetsPath()+"/texture1.png"),
+            "texture1",
             textureId1,
-            new UnbreakableWall(Paths.get(ProjectPaths.getAssetsPath()+"/unbreakable.png"),
-            1));
+            new UnbreakableWall("unbreakable", 1));
         Square square2 = new Square(
-            Paths.get(ProjectPaths.getAssetsPath()+"/texture2.png"),
+            "texture2",
             textureId2,
-            new BreakableWall(Paths.get(ProjectPaths.getAssetsPath()+"/breakable.png"),
-            2));
+            new BreakableWall("breakable", 2));
 
         // Create a 2x2 checkerboard grid
         List<List<Square>> checkerboard = new ArrayList<>();
@@ -85,10 +83,10 @@ public class LevelMapTest {
     void testGetSquareInvalidCoordinatesThrowsException() {
         // Create a 1x1 map with one square
         Square square = new Square(
-            Paths.get(ProjectPaths.getAssetsPath()+"/texture.png"),
+            "texture",
             1,
             new BreakableWall(
-                Paths.get(ProjectPaths.getAssetsPath()+"/break.png"),
+                "break",
                 2)
                 );
         List<List<Square>> checkerboard = new ArrayList<>();

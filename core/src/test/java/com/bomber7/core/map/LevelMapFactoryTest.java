@@ -149,9 +149,9 @@ public class LevelMapFactoryTest {
             LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
             Square square = levelMap.getSquare(CINQ, DEUX);
             // id = 33
-            assertEquals(ProjectPaths.getTexture("spruce_planks"), square.getTextureFilePath());
+            assertEquals("spruce_planks", square.getTextureName());
             // id = 44
-            assertEquals(ProjectPaths.getTexture("pressure_plate"), square.getMapElement().getTextureFilePath());
+            assertEquals("pressure_plate", square.getMapElement().getTextureName());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
@@ -267,7 +267,7 @@ public class LevelMapFactoryTest {
 
         System.out.println(levelMap);
         assertEquals(TRENTETROIS, levelMap.get(0).get(0).getTextureId());
-        assertEquals(ProjectPaths.getTexture("spruce_planks"), levelMap.get(0).get(0).getTextureFilePath());
+        assertEquals("spruce_planks", levelMap.get(0).get(0).getTextureName());
     }
 
     @Test
@@ -358,6 +358,13 @@ public class LevelMapFactoryTest {
             }
         }
     }
+
+    // TODO: Add tests for checking flips
+
+
+
+
+
 
     private File writeCsv(String prefix, String[][] data) throws IOException {
         File file = File.createTempFile(prefix, ".csv");

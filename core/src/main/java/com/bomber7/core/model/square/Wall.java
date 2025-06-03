@@ -19,13 +19,13 @@ public abstract class Wall extends MapElement {
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public Wall(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class Wall extends MapElement {
      * @param textureFilePath the file path to the sprite image for the wall
      * @param textureId id of the texture
      */
-    public Wall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId, false, false, false);
+    public Wall(String textureName, int textureId) {
+        super(textureName, textureId, false, false, false);
     }
 }

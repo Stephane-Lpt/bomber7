@@ -17,13 +17,13 @@ public class UnbreakableWall extends Wall {
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public UnbreakableWall(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     /**
@@ -33,8 +33,8 @@ public class UnbreakableWall extends Wall {
      * @param textureFilePath the file path to the texture image for the unbreakable wall
      * @param textureId id of the texture
      */
-    public UnbreakableWall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId);
+    public UnbreakableWall(String textureName, int textureId) {
+        super(textureName, textureId);
     }
 
     @Override
