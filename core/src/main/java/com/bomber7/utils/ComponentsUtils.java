@@ -1,10 +1,7 @@
 package com.bomber7.utils;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bomber7.core.ResourceManager;
@@ -59,5 +56,12 @@ public final class ComponentsUtils {
                 original.touchUp(event, x, y, pointer, button);
             }
         };
+    }
+
+    public static Drawable getTintedDrawable(ResourceManager resources, String color) {
+        return resources.getSkin().newDrawable(
+            "white.9",
+            resources.getSkin().getColor(color)
+        );
     }
 }

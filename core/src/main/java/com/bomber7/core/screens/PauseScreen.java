@@ -2,6 +2,9 @@ package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
 
+/**
+ * Pause screen.
+ */
 public class PauseScreen extends BomberScreen {
     /**
      * Constructs a new PauseScreen associated with the given game.

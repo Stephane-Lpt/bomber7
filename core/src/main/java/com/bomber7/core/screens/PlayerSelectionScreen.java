@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.BomberTable;
+import com.bomber7.core.components.DisableableTextButton;
 import com.bomber7.core.components.PlayerSelector;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.ScreenType;
@@ -38,7 +39,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
     /**
      * Button to continue and go to the map selection screen.
      */
-    private TextButton goToMapSelectionButton;
+    private DisableableTextButton goToMapSelectionButton;
 
     /**
      * Constructs a new LevelSetupScreen associated with the given game.
@@ -59,7 +60,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         PlayerSelector[] playerSelectors = new PlayerSelector[Constants.MAX_PLAYERS];
         playerBlueprintObservables = new PlayerBlueprintObservable[Constants.MAX_PLAYERS];
         goToMainMenuButton = new TextButton(resources.getString("go_back"), resources.getSkin());
-        goToMapSelectionButton = new TextButton(resources.getString("continue"), resources.getSkin(), "inactive");
+        goToMapSelectionButton = new DisableableTextButton(resources.getString("continue"), resources.getSkin(), "inactive");
         goToMapSelectionButton.setTouchable(Touchable.disabled);
 
         table.setTitle(new Label(resources.getString("player_selection"), resources.getSkin(), "large"), cols);
@@ -85,7 +86,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         goToMainMenuButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showPreviousScreen();
+                ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU);
             }
         }, resources));
 
@@ -107,25 +108,6 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
             }
         }
 
-        changeGoToMapSelectionButtonState(validBlueprintsCount);
-    }
-
-    /**
-     * Enabled or disabled the button that allows the user to go to the next screen (configuring map).
-     * At least {@link Constants#MIN_PLAYERS} players should be valid for the button to be active.
-     * @param validBlueprintsCount the number of valid players.
-     */
-    private void changeGoToMapSelectionButtonState(int validBlueprintsCount) {
-        if (validBlueprintsCount < Constants.MIN_PLAYERS) {
-            goToMapSelectionButton.setTouchable(Touchable.disabled);
-            goToMapSelectionButton.setStyle(
-                resources.getSkin().get("inactive", TextButton.TextButtonStyle.class
-                ));
-        } else {
-            goToMapSelectionButton.setTouchable(Touchable.enabled);
-            goToMapSelectionButton.setStyle(
-                resources.getSkin().get("default", TextButton.TextButtonStyle.class
-                ));
-        }
+        goToMapSelectionButton.toggle(validBlueprintsCount >= Constants.MIN_PLAYERS);
     }
 }

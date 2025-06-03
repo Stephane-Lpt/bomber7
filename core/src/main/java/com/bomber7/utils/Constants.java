@@ -21,9 +21,9 @@ public final class Constants {
     /**
      * Maximum number of rounds allowed in a game.
      */
-    public static final int MIN_ROUNDS_NUMBER = 1;
+    public static final int MIN_ROUNDS = 1;
     /**
      * Maximum number of rounds allowed in a game.
      */
-    public static final int MAX_ROUNDS_NUMBER = 1;
+    public static final int MAX_ROUNDS = 10;
 }

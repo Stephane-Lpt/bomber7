@@ -15,7 +15,10 @@ public final class Dimensions {
      * The height of the PlayerSelector component.
      */
     public static final float PLAYER_SELECTOR_HEIGHT = 350;
-
+    /**
+     * The width of the PlayerSelector component.
+     */
+    public static final float MAP_CHECK_BOX_SIZE = 250f;
     /**
      * Spacing between UI components (buttons, etc...).
      */
@@ -58,4 +61,8 @@ public final class Dimensions {
      */
     public static final float BUTTON_WIDTH_SM = 300f;
 
+    /**
+     * Border size for elements.
+     */
+    public static final float BORDER_SIZE = 5f;
 }

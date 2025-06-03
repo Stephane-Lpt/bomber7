@@ -13,8 +13,7 @@ import com.bomber7.utils.ScreenType;
  * </p>
  * <p>
  * The screen transition approach is inspired by the guidelines available at
- * <a href="https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/" target="_blank" rel="noopener noreferrer">
- * How to Manage Screens in libGDX</a>.
+ * <url>https://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/</url>
  * </p>
  */
 public final class ScreenManager {

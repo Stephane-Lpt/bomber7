@@ -8,7 +8,12 @@
     "red":      { "hex": "F91931FF" },
     "darkRed":  { "hex": "B70B1EFF  " },
     "darkBlue": { "hex": "0A1646FF" },
-    "transparentDarkBlue": { "hex": "29a1ff88" }
+    "transparentDarkBlue": { "hex": "29a1ff88" },
+    "lightGreen": { "hex": "6EA759FF" },
+    "green": { "hex": "3C6935FF" },
+    "darkGreen": { "hex": "22590EFF" },
+    "lightGray": { "hex": "D1D1D1FF" },
+    "grey": { "hex": "B1B1B1FF" }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable": {
     "selection": {
@@ -29,6 +34,22 @@
     },
     "sprite-graduate": {
       "name": "sprite.graduate.9",
+      "color": "white"
+    },
+    "foy": {
+      "name": "foy.9",
+      "color": "white"
+    },
+    "enseeiht": {
+      "name": "enseeiht.9",
+      "color": "white"
+    },
+    "crous": {
+      "name": "crous.9",
+      "color": "white"
+    },
+    "halle_aux_grains": {
+      "name": "halle_aux_grains.9",
       "color": "white"
     }
   },
@@ -85,6 +106,16 @@
     },
     "inactive": {
       "up": "character.background.inactive"
+    },
+    "checkbox-unchecked": {
+      "up": "square.light.gold.9",
+      "over": "square.dark.gold.9",
+      "down": "square.white.gold.9"
+    },
+    "checkbox-checked": {
+      "up": "square.light.gold.9",
+      "over": "square.dark.gold.9",
+      "down": "square.white.gold.9"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {

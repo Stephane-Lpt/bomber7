@@ -1,11 +1,11 @@
 uiskin.png
-size: 1992, 1236
+size: 1992, 2145
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 button.dark.9
   rotate: false
-  xy: 0, 1008
+  xy: 0, 1917
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -13,7 +13,7 @@ button.dark.9
   index: -1
 button.inactive.9
   rotate: false
-  xy: 664, 1008
+  xy: 664, 1917
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -21,7 +21,7 @@ button.inactive.9
   index: -1
 button.light.9
   rotate: false
-  xy: 1328, 1008
+  xy: 1328, 1917
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -29,7 +29,7 @@ button.light.9
   index: -1
 button.white.9
   rotate: false
-  xy: 0, 1122
+  xy: 0, 2031
   size: 664, 114
   split: 166, 166, 29, 28
   orig: 664, 114
@@ -37,7 +37,7 @@ button.white.9
   index: -1
 character.background.add.dark.9
   rotate: false
-  xy: 874, 0
+  xy: 546, 409
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -45,7 +45,7 @@ character.background.add.dark.9
   index: -1
 character.background.add.light.9
   rotate: false
-  xy: 1149, 0
+  xy: 821, 409
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -53,7 +53,7 @@ character.background.add.light.9
   index: -1
 character.background.add.white.9
   rotate: false
-  xy: 1424, 0
+  xy: 1096, 409
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -61,7 +61,7 @@ character.background.add.white.9
   index: -1
 character.background.inactive
   rotate: false
-  xy: 1699, 0
+  xy: 1371, 409
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -69,7 +69,7 @@ character.background.inactive
   index: -1
 character.background.locked.dark.9
   rotate: false
-  xy: 0, 504
+  xy: 1646, 409
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -77,7 +77,7 @@ character.background.locked.dark.9
   index: -1
 character.background.locked.light.9
   rotate: false
-  xy: 275, 504
+  xy: 0, 913
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -85,7 +85,7 @@ character.background.locked.light.9
   index: -1
 character.background.locked.white.9
   rotate: false
-  xy: 550, 504
+  xy: 275, 913
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -93,7 +93,7 @@ character.background.locked.white.9
   index: -1
 character.background.valid.dark.9
   rotate: false
-  xy: 825, 504
+  xy: 550, 913
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -101,7 +101,7 @@ character.background.valid.dark.9
   index: -1
 character.background.valid.light.9
   rotate: false
-  xy: 1100, 504
+  xy: 825, 913
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
@@ -109,15 +109,47 @@ character.background.valid.light.9
   index: -1
 character.background.valid.white.9
   rotate: false
-  xy: 1375, 504
+  xy: 1100, 913
   size: 275, 504
   split: 69, 69, 126, 126
   orig: 275, 504
   offset: 0, 0
   index: -1
+crous.9
+  rotate: false
+  xy: 1375, 913
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+enseeiht.9
+  rotate: false
+  xy: 0, 1417
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+foy.9
+  rotate: false
+  xy: 500, 1417
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+halle_aux_grains.9
+  rotate: false
+  xy: 1000, 1417
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
 slider.9
   rotate: false
-  xy: 664, 1122
+  xy: 664, 2031
   size: 664, 35
   split: 166, 166, 9, 9
   orig: 664, 35
@@ -125,7 +157,7 @@ slider.9
   index: -1
 slider.knob.9
   rotate: false
-  xy: 7, 0
+  xy: 38, 0
   size: 50, 50
   split: 13, 12, 13, 12
   orig: 50, 50
@@ -133,7 +165,7 @@ slider.knob.9
   index: -1
 sprite.bde
   rotate: false
-  xy: 328, 0
+  xy: 0, 409
   size: 272, 409
   split: 0, 272, 0, 409
   orig: 272, 409
@@ -141,7 +173,7 @@ sprite.bde
   index: -1
 sprite.graduate.9
   rotate: false
-  xy: 600, 0
+  xy: 272, 409
   size: 274, 412
   split: 0, 0, 0, 0
   pad: 69, 68, 103, 103
@@ -150,15 +182,63 @@ sprite.graduate.9
   index: -1
 sprite.student
   rotate: false
-  xy: 57, 0
+  xy: 1588, 0
   size: 271, 409
   split: 0, 271, 0, 409
   orig: 271, 409
   offset: 0, 0
   index: -1
+square.dark.gold.9
+  rotate: false
+  xy: 88, 0
+  size: 250, 250
+  split: 63, 62, 63, 62
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+square.dark.green.9
+  rotate: false
+  xy: 338, 0
+  size: 250, 250
+  split: 63, 62, 63, 62
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+square.light.gold.9
+  rotate: false
+  xy: 588, 0
+  size: 250, 250
+  split: 63, 62, 63, 62
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+square.light.green.9
+  rotate: false
+  xy: 838, 0
+  size: 250, 250
+  split: 63, 62, 63, 62
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+square.white.gold.9
+  rotate: false
+  xy: 1088, 0
+  size: 250, 250
+  split: 63, 62, 63, 62
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+square.white.green.9
+  rotate: false
+  xy: 1338, 0
+  size: 250, 250
+  split: 63, 62, 63, 62
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
 transparent
   rotate: false
-  xy: 1, 0
+  xy: 0, 0
   size: 6, 6
   split: 0, 6, 0, 6
   orig: 6, 6
@@ -166,9 +246,9 @@ transparent
   index: -1
 white.9
   rotate: false
-  xy: 0, 0
-  size: 1, 1
-  split: 0, 0, 0, 0
-  orig: 1, 1
+  xy: 6, 0
+  size: 32, 32
+  split: 8, 8, 8, 8
+  orig: 32, 32
   offset: 0, 0
   index: -1
