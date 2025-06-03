@@ -302,7 +302,6 @@ public class LevelMapFactoryTest {
                 assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
 
                 for (int j = 0; j < backgroundCols.length; j++) {
-                    System.out.println("i[" + i + "] = " + "j[" + j + "]");
                     int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
                     Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
                     Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
@@ -336,7 +335,6 @@ public class LevelMapFactoryTest {
                     }
 
                     if (expectedTextureId != null) {
-                        System.out.println(expectedTextureId);
                         int actualTextureId = actualElement.getTextureId();
 
                         if (actualElement.isVerticalFlip()) {
@@ -355,13 +353,43 @@ public class LevelMapFactoryTest {
                     }
 
                 }
+
+                Square square = levelMap.getSquare(4, 11);
+                System.out.println("Square at (4, 11): " + square);
+                MapElement mapElement = square.getMapElement();
+                System.out.println("MapElement at (4, 11): " + mapElement);
+
+                System.out.println("Flip Horizontal: " + mapElement.isHorizontalFlip());
+                System.out.println("Flip Vertical: " + mapElement.isVerticalFlip());
+                System.out.println("Flip Diagonal: " + mapElement.isDiagonalFlip());
+
+                System.out.println(levelMap);
+
+                assertTrue(levelMap.getSquare(4,11).getMapElement().isHorizontalFlip());
             }
         }
     }
 
     // TODO: Add tests for checking flips
 
-
+//    @Test
+//    public void test_debug() {
+//        int breakableTextureId = 53;
+//        System.out.print("FLIP_V: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V);
+//        System.out.print("FLIP_H: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_H);
+//        System.out.print("FLIP_D: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_D);
+//        System.out.print("FLIP_VH: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V | ElementTexture.FLIP_H);
+//        System.out.print("FLIP_VD: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V | ElementTexture.FLIP_D);
+//        System.out.print("FLIP_HD: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_H | ElementTexture.FLIP_D);
+//        System.out.print("FLIP_VHD: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V | ElementTexture.FLIP_H | ElementTexture.FLIP_D);
+//    }
 
 
 

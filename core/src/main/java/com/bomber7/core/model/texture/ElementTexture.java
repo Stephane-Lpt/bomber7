@@ -130,9 +130,10 @@ public abstract class ElementTexture {
      * @return the angle of rotation in degrees
      */
     public float computeRotation() {
-        if (isDiagonalFlip() && !isHorizontalFlip() && !isVerticalFlip()) return 270f;
-        if (isDiagonalFlip() && !isHorizontalFlip() && isVerticalFlip())  return 90f;
-        if (isDiagonalFlip() && isHorizontalFlip() && isVerticalFlip())   return 180f;
+        if (!isHorizontalFlip() && !isVerticalFlip()) return 0f;
+        if (!isHorizontalFlip() && isVerticalFlip())  return 90f;
+        if (isHorizontalFlip() && !isVerticalFlip())  return -90f;
+        if (isHorizontalFlip() && isVerticalFlip())   return 180f;
         return 0f;
     }
 }

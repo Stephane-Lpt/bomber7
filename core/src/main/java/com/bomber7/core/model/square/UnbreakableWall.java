@@ -39,6 +39,12 @@ public class UnbreakableWall extends Wall {
 
     @Override
     public String toString() {
-        return "UnbreakableWall";
+        return "UnbreakableWall{" +
+                "textureName='" + getTextureName() + '\'' +
+                ", textureId=" + getTextureId() +
+                ", verticalFlip=" + isVerticalFlip() +
+                ", horizontalFlip=" + isHorizontalFlip() +
+                ", diagonalFlip=" + isDiagonalFlip() +
+                '}';
     }
 }

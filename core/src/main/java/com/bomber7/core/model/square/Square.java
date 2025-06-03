@@ -111,7 +111,7 @@ public class Square extends ElementTexture {
                 +
                 ", tFP='" + this.getTextureName().substring(0, maxTRONCATE) + '\''
                 +
-                ", mE=" + (mapElement != null ? mapElement.toString().substring(0, maxTRONCATE) : "null")
+                ", mE=" + (mapElement != null ? mapElement.toString() : "null")
                 +
                 "} ";
     }

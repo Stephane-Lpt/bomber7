@@ -37,8 +37,13 @@ public class BreakableWall extends Wall {
         super(textureName, textureId);
     }
 
-    @Override
     public String toString() {
-        return "BreakableWall";
+        return "BreakableWall{" +
+                "textureName='" + getTextureName() + '\'' +
+                ", textureId=" + getTextureId() +
+                ", verticalFlip=" + isVerticalFlip() +
+                ", horizontalFlip=" + isHorizontalFlip() +
+                ", diagonalFlip=" + isDiagonalFlip() +
+                '}';
     }
 }
