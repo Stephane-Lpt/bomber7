@@ -123,7 +123,7 @@ public class LevelMapFactory {
      * @return The path of the subdirectory containing the file, or null if not found.
      */
     public static File searchMapFilesRootDirectory(String filename) {
-        File mapsRoot = new File("../assets/maps");
+        File mapsRoot = new File("assets/maps");
 
         File[] subdirs = mapsRoot.listFiles(File::isDirectory);
         if (subdirs == null) {
