@@ -35,26 +35,23 @@ public class GameScreen extends BomberScreen {
 
         Table mainTable = new Table();
         mainTable.setFillParent(true);
-//        mainTable.setDebug(true);
 
         /** =======[BUTTON]=============================================== */
 
         /** Buttons to go to key bindings menu. */
-//        BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
+        BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
         /** Buttons to go to key bindings menu. */
-//        BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
+        BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
 
-//        mainTable.add(settingsButton)
-//            .width(Dimensions.BUTTON_WIDTH)
-//            .height(Dimensions.BUTTON_HEIGHT)
-//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-//        mainTable.add(goBackButton)
-//            .width(Dimensions.BUTTON_WIDTH)
-//            .height(Dimensions.BUTTON_HEIGHT)
-//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-//        mainTable.row();
+        mainTable.add(settingsButton)
+            .width(Dimensions.BUTTON_WIDTH)
+            .height(Dimensions.BUTTON_HEIGHT)
+            .left();
+        mainTable.row();
+        mainTable.add(goBackButton)
+            .width(Dimensions.BUTTON_WIDTH)
+            .height(Dimensions.BUTTON_HEIGHT);
+        mainTable.row();
 
         /** =======[MAP VIEW]=============================================== */
 
@@ -69,28 +66,11 @@ public class GameScreen extends BomberScreen {
         ViewMap viewMap = new ViewMap(levelMap, resources);
         viewMap.setWidth(500);
 
-//        Table viewTable = new Table();
-//        viewTable.setFillParent(true);
-//        mainTable.setDebug(true);
-//        viewTable.add(viewMap)
-//            .width(Dimensions.VIEW_MAP_WIDTH)
-//            .height(Dimensions.VIEW_MAP_HEIGHT)
-//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-//        viewTable.row();
-//
-//        mainTable.add(viewTable)
-//            .expand()
-//            .fill()
-//            .padTop(Dimensions.COMPONENT_SPACING / 2f)
-//            .padRight(Dimensions.COMPONENT_SPACING / 2f);
-//        mainTable.row();
-
         /** =======[FULL FRAME]=============================================== */
 
         mainTable.add(viewMap)
-            .width(1024)
-            .height(768);
+            .width(1920)
+            .height(1080);
         stage.addActor(mainTable);
     }
 
