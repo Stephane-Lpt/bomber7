@@ -55,13 +55,6 @@ public class TimeBomb extends Bomb {
         return this.timer;
     }
 
-    /**
-     * Updates the value of the countdown timer.
-     * @param t the new value for the countdown timer in seconds
-     */
-    public void setTimer(float t) {
-        this.timer = t;
-    }
 
 }
 
