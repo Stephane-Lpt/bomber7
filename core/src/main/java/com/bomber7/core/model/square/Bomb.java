@@ -1,5 +1,4 @@
 package com.bomber7.core.model.square;
-import com.bomber7.core.model.Character;
 import com.bomber7.core.model.map.LevelMap;
 
 import java.nio.file.Path;
@@ -37,12 +36,17 @@ public class Bomb extends MapElement {
      * @param y Y-coordinate of the bomb on the map.
      * @param textureFilePath The path of the texture file associated with the bomb.
      * @param textureId       The texture ID for the bomb.
-     * @param verticalFlip    Indicates whether the texture is vertically flipped.
-     * @param horizontalFlip  Indicates whether the texture is horizontally flipped.
-     * @param diagonalFlip    Indicates whether the texture is diagonally flipped.
+     * //@param verticalFlip    Indicates whether the texture is vertically flipped.
+     * //@param horizontalFlip  Indicates whether the texture is horizontally flipped.
+     * //@param diagonalFlip    Indicates whether the texture is diagonally flipped.
      */
-    public Bomb(int p, int x, int y, Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip){
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+    public Bomb(int p,
+                int x,
+                int y,
+                Path textureFilePath,
+                int textureId) {
+
+        super(textureFilePath, textureId);
         this.power = p;
         this.x = x;
         this.y = y;
@@ -52,18 +56,18 @@ public class Bomb extends MapElement {
      * Returns the power of the bomb.
      * @return  power of the bomb.
      */
-    public int getPower(){
+    public int getPower() {
         return this.power;
     }
 
     /**
      * Handles the explosion effect at a specific position on the map.
      * @param m The map where the explosion occurs.
-     * @param x The X-coordinate.
-     * @param y The Y-coordinate.
+     * @param xCord The X-coordinate.
+     * @param yCord The Y-coordinate.
      */
-    public void onExplosion(LevelMap m, int x, int y) {
-        Square sq = m.getSquare(x, y);
+    public void onExplosion(LevelMap m, int xCord, int yCord) {
+        Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
             sq.clearMapElement();
         }
@@ -85,10 +89,10 @@ public class Bomb extends MapElement {
             throw new NullPointerException("LevelMap cannot be null");
         }
         // Explosion at the bomb's position
-        onExplosion(m,this.x,this.y);
+        onExplosion(m, this.x, this.y);
 
         // Explosion propagation in all four directions
-        int[][] directions = { {0, 1}, {0, -1}, {-1,0}, {1,0}};
+        int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
         for (int[] direction : directions) {
 

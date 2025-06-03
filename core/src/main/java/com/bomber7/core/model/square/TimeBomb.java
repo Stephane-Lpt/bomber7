@@ -1,7 +1,6 @@
 package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.Character;
 import java.nio.file.Path;
 
 /**
@@ -18,10 +17,15 @@ public class TimeBomb extends Bomb {
 
     /**
      * Constructs a TimeBomb with the specified explosion power, sprite file path and timer.
+     * @param p power of the bomb
+     * @param x the X-coordinate
+     * @param y the Y-coordinate
+     * @param textureFilePath the path to the texture file
+     * @param textureId the id of the texture
      * @param t initial value of the countdown timer
      */
-    public TimeBomb(int p, int x, int y, Path textureFilePath, int textureId, boolean verticalFlip, boolean horizontalFlip, boolean diagonalFlip, float t) {
-        super(p, x,y , textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+    public TimeBomb(int p, int x, int y, Path textureFilePath, int textureId, float t) {
+        super(p, x, y, textureFilePath, textureId);
         this.timer = t;
     }
 
@@ -32,7 +36,7 @@ public class TimeBomb extends Bomb {
      */
     public void tick(LevelMap map, float delta) {
         if (timer > 0) {
-            timer-= delta;
+            timer -= delta;
             if (timer <= 0) {
                 activateBomb(map);
             }
@@ -43,7 +47,7 @@ public class TimeBomb extends Bomb {
      * Retrieves the current value of the countdown timer.
      * @return current value (in seconds)
      */
-    public float getTimer(){
+    public float getTimer() {
         return this.timer;
     }
 
@@ -51,7 +55,7 @@ public class TimeBomb extends Bomb {
      * Updates the value of the countdown timer.
      * @param t the new value for the countdown timer in seconds
      */
-    public void setTimer(float t){
+    public void setTimer(float t) {
         this.timer = t;
     }
 
