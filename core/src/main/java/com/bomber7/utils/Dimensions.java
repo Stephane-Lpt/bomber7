@@ -40,11 +40,11 @@ public final class Dimensions {
     /**
      * Small button width.
      */
-    public static final float VIEW_MAP_WIDTH = 800f;
+    public static final float VIEW_MAP_WIDTH = 80f;
 
     /**
      * Small button width.
      */
-    public static final float VIEW_MAP_HEIGHT = 400f;
+    public static final float VIEW_MAP_HEIGHT = 40f;
 
 }

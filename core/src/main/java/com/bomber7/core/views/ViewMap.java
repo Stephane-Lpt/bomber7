@@ -1,12 +1,14 @@
 package com.bomber7.core.views;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.model.map.LevelMap;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.ResourceManager;
 
-public class ViewMap {
+public class ViewMap extends Actor {
 
     /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk) */
     private final LevelMap mapGrid;
@@ -102,6 +104,15 @@ public class ViewMap {
         }
 
         spriteBatch.end();
+    }
+
+    /**
+     * Method called by libGDX to draw the map.
+     * It updates the map textures by iterating through each square in the grid.
+     */
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        updateMapTextures();
     }
 
 }

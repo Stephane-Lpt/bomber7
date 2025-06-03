@@ -7,8 +7,8 @@ import com.bomber7.core.BomberGame;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
-    private static final int DESKTOP_MIN_WIDTH = 1024;
-    private static final int DESKTOP_MIN_HEIGHT = 768;
+    private static final int DESKTOP_MIN_WIDTH = 1920;
+    private static final int DESKTOP_MIN_HEIGHT = 1080;
     private static final String APPLICATION_NAME = "Bomber7";
 
     public static void main(String[] args) {
