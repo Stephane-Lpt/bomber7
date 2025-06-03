@@ -1,4 +1,6 @@
 package com.bomber7.core.model.square;
+import com.bomber7.core.model.entities.HumanPlayer;
+
 
 import java.nio.file.Path;
 
@@ -31,4 +33,12 @@ public abstract class Bonus extends MapElement {
     public Bonus(Path textureFilePath, int textureId) {
         super(textureFilePath, textureId, false, false, false);
     }
+
+    /**
+     * Applies the bonus effect to the player or game state.
+     * This method should be overridden by subclasses to implement specific bonus effects.
+     * 
+     * @param player the player to which the bonus effect will be applied
+     */
+    public void applyBonusEffect(HumanPlayer player) {}
 }
