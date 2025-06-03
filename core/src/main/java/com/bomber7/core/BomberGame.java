@@ -30,7 +30,7 @@ public class BomberGame extends Game {
     @Override
     public void create() {
         resources = new ResourceManager();
-        setScreen(new GameScreen(this, "foy", "foy"));
+        setScreen(new GameScreen(this));
     }
 
     /**
