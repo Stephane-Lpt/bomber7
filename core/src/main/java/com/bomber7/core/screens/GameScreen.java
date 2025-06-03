@@ -60,7 +60,7 @@ public class GameScreen extends BomberScreen {
         /** =======[MAP VIEW]=============================================== */
 
         /** Path to the tileset JSON file. */
-        Path tilesetJsonPath = Paths.get("assets/textures/tileset.tsj");
+        Path tilesetJsonPath = ProjectPaths.getTileset();
         /** Map name for the current game. */
         String mapName = "foy";
         /** Create a LevelMapFactory to load the map from the tileset JSON file. */
