@@ -275,9 +275,9 @@ public class LevelMapFactoryTest {
         String mapName = "foy";
         LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
 
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/le_foy_Background.csv");
-        File breakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Breakable.csv");
-        File unbreakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Unbreakable.csv");
+        File backgroundCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Background.csv");
+        File breakableCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Breakable.csv");
+        File unbreakableCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Unbreakable.csv");
         assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
 
         try (
