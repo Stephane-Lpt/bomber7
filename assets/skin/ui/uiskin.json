@@ -9,13 +9,13 @@
     "darkBlue": { "hex": "0A1646FF" }
   },
   "com.badlogic.gdx.graphics.g2d.BitmapFont": {
-    "pixelify-regular-sm": { "file": "../fonts/pixelify-sans-regular-sm.fnt" },
-    "pixelify-regular-md": { "file": "../fonts/pixelify-sans-regular-md.fnt" },
-    "pixelify-regular-lg": { "file": "../fonts/pixelify-sans-regular-lg.fnt" },
+    "pixelify-regular-sm": { "file": "../../fonts/pixelify-sans-regular-sm.fnt" },
+    "pixelify-regular-md": { "file": "../../fonts/pixelify-sans-regular-md.fnt" },
+    "pixelify-regular-lg": { "file": "../../fonts/pixelify-sans-regular-lg.fnt" },
 
-    "pixelify-bold-sm": { "file": "../fonts/pixelify-sans-bold-sm.fnt" },
-    "pixelify-bold-md": { "file": "../fonts/pixelify-sans-bold-md.fnt" },
-    "pixelify-bold-lg": { "file": "../fonts/pixelify-sans-bold-lg.fnt" }
+    "pixelify-bold-sm": { "file": "../../fonts/pixelify-sans-bold-sm.fnt" },
+    "pixelify-bold-md": { "file": "../../fonts/pixelify-sans-bold-md.fnt" },
+    "pixelify-bold-lg": { "file": "../../fonts/pixelify-sans-bold-lg.fnt" }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {

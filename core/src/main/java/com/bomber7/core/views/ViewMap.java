@@ -1,22 +1,21 @@
 package com.bomber7.core.views;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.ResourceManager;
 
 public class ViewMap {
 
     /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk) */
-    private LevelMap mapGrid;
+    private final LevelMap mapGrid;
 
     /** The ressourceManager needed for sprites */
-    private ResourceManager resourceManager;
+    private final ResourceManager resourceManager;
 
     /** Used to draw sprite to screen */
-    private SpriteBatch spriteBatch;
+    private final SpriteBatch spriteBatch;
 
     /**
      * Constructs a new ViewMap with the specified map grid and resource manager.
@@ -34,38 +33,70 @@ public class ViewMap {
      */
     public void updateMapTextures() {
         spriteBatch.begin();
-        Skin skin = resourceManager.getSkin();
 
         for (int y = 0; y < mapGrid.getHeight(); y++) {
             for (int x = 0; x < mapGrid.getWidth(); x++) {
                 Square square = mapGrid.getSquare(x, y);
-                String textureName = square.getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", ""); // Obtenez le nom de la texture sans extension
-                TextureRegion textureRegion = skin.getRegion(textureName);
 
-                if (textureRegion != null) {
-                    // Sauvegardez l'état actuel du TextureRegion
-                    boolean flipX = textureRegion.isFlipX();
-                    boolean flipY = textureRegion.isFlipY();
+                String squareTexture = square.getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", ""); // Obtenez le nom de la texture sans extension
+                TextureRegion squareTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(squareTexture);
+
+                TextureRegion mapElementTextureRegion = null;
+                if (square.hasMapElement()) {
+                    String mapElementTexture = square.getMapElement().getTextureFilePath().getFileName().toString().replaceFirst("[.][^.]+$", "");
+                    mapElementTextureRegion = resourceManager.getMapSkin().getAtlas().findRegion(mapElementTexture);
+                }
+
+                if (squareTextureRegion != null) {
+                    // Sauvegardez l'état actuel du squareTextureRegion
+                    boolean flipX = squareTextureRegion.isFlipX();
+                    boolean flipY = squareTextureRegion.isFlipY();
 
                     // Appliquez les retournements nécessaires
-                    textureRegion.flip(square.isHorizontalFlip(), square.isVerticalFlip());
+                    squareTextureRegion.flip(square.isHorizontalFlip(), square.isVerticalFlip());
 
-                    // Dessinez le TextureRegion
+                    // Dessinez le squareTextureRegion
                     spriteBatch.draw(
-                        textureRegion,
-                        x * textureRegion.getRegionWidth(),
-                        y * textureRegion.getRegionHeight(),
-                        textureRegion.getRegionWidth() / 2,
-                        textureRegion.getRegionHeight() / 2,
-                        textureRegion.getRegionWidth(),
-                        textureRegion.getRegionHeight(),
+                        squareTextureRegion,
+                        x * squareTextureRegion.getRegionWidth(),
+                        y * squareTextureRegion.getRegionHeight(),
+                        squareTextureRegion.getRegionWidth() / 2,
+                        squareTextureRegion.getRegionHeight() / 2,
+                        squareTextureRegion.getRegionWidth(),
+                        squareTextureRegion.getRegionHeight(),
                         1, // scaleX
                         1, // scaleY
                         0 // rotation
                     );
 
-                    // Rétablissez l'état original du TextureRegion
-                    textureRegion.flip(flipX, flipY);
+                    // Rétablissez l'état original du squareTextureRegion
+                    squareTextureRegion.flip(flipX, flipY);
+                }
+
+                if (mapElementTextureRegion != null) {
+                    // Sauvegardez l'état actuel du squareTextureRegion
+                    boolean flipX = mapElementTextureRegion.isFlipX();
+                    boolean flipY = mapElementTextureRegion.isFlipY();
+
+                    // Appliquez les retournements nécessaires
+                    mapElementTextureRegion.flip(square.isHorizontalFlip(), square.isVerticalFlip());
+
+                    // Dessinez le mapElementTextureRegion
+                    spriteBatch.draw(
+                        mapElementTextureRegion,
+                        x * mapElementTextureRegion.getRegionWidth(),
+                        y * mapElementTextureRegion.getRegionHeight(),
+                        mapElementTextureRegion.getRegionWidth() / 2,
+                        mapElementTextureRegion.getRegionHeight() / 2,
+                        mapElementTextureRegion.getRegionWidth(),
+                        mapElementTextureRegion.getRegionHeight(),
+                        1, // scaleX
+                        1, // scaleY
+                        0 // rotation
+                    );
+
+                    // Rétablissez l'état original du mapElementTextureRegion
+                    mapElementTextureRegion.flip(flipX, flipY);
                 }
             }
         }
