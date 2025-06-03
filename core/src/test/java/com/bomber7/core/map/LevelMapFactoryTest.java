@@ -20,23 +20,12 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test class for LevelMapFactory.
  */
 public class LevelMapFactoryTest {
-
-    /** Contant =5 to avoid magic numbers. */
-    public static final int CINQ = 5;
-    /** Constant =2 to avoid magic numbers. */
-    public static final int DEUX = 2;
-    /** Constant =33 to avoid magic numbers. */
-    public static final int TRENTETROIS = 33;
 
     /** Map filename. */
     private final String foyMapFileName = "foy";
@@ -147,7 +136,7 @@ public class LevelMapFactoryTest {
 
         try {
             LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
-            Square square = levelMap.getSquare(CINQ, DEUX);
+            Square square = levelMap.getSquare(5, 2);
             // id = 33
             assertEquals("spruce_planks", square.getTextureName());
             // id = 44
@@ -266,7 +255,7 @@ public class LevelMapFactoryTest {
         List<List<Square>> levelMap = LevelMapFactory.parseCsv(f1, f2, f3, this.textureMap);
 
         System.out.println(levelMap);
-        assertEquals(TRENTETROIS, levelMap.get(0).get(0).getTextureId());
+        assertEquals(33, levelMap.get(0).get(0).getTextureId());
         assertEquals("spruce_planks", levelMap.get(0).get(0).getTextureName());
     }
 
@@ -353,20 +342,21 @@ public class LevelMapFactoryTest {
                     }
 
                 }
-
-                Square square = levelMap.getSquare(4, 11);
-                System.out.println("Square at (4, 11): " + square);
-                MapElement mapElement = square.getMapElement();
-                System.out.println("MapElement at (4, 11): " + mapElement);
-
-                System.out.println("Flip Horizontal: " + mapElement.isHorizontalFlip());
-                System.out.println("Flip Vertical: " + mapElement.isVerticalFlip());
-                System.out.println("Flip Diagonal: " + mapElement.isDiagonalFlip());
-
-                System.out.println(levelMap);
-
-                assertTrue(levelMap.getSquare(4,11).getMapElement().isHorizontalFlip());
             }
+            Square square = levelMap.getSquare(4, 11);
+            System.out.println("Square at (4, 11): " + square);
+            MapElement mapElement = square.getMapElement();
+            System.out.println("MapElement at (4, 11): " + mapElement);
+
+            System.out.println("Flip Horizontal: " + mapElement.isHorizontalFlip());
+            System.out.println("Flip Vertical: " + mapElement.isVerticalFlip());
+            System.out.println("Flip Diagonal: " + mapElement.isDiagonalFlip());
+
+            System.out.println(levelMap);
+
+            System.out.println("Square at (12,13): " + levelMap.getSquare(12,13));
+
+            assertTrue(levelMap.getSquare(4,11).getMapElement().isHorizontalFlip());
         }
     }
 
