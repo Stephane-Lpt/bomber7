@@ -10,14 +10,13 @@ import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.BomberTable;
 import com.bomber7.core.components.DisableableTextButton;
 import com.bomber7.core.components.PlayerSelector;
+import com.bomber7.core.model.Observer;
+import com.bomber7.core.model.Subject;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.ScreenType;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.PlayerBlueprintObservable;
-
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Screen where the user adds or removes players to the game he is creating.
@@ -67,7 +66,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         for (int i = 0; i < playerSelectors.length; i++) {
             playerBlueprintObservables[i] = new PlayerBlueprintObservable();
             playerSelectors[i] = new PlayerSelector(resources, playerBlueprintObservables[i], i);
-            playerBlueprintObservables[i].addObserver(this);
+            playerBlueprintObservables[i].registerObserver(this);
             table.add(playerSelectors[i])
                 .padLeft(Dimensions.COMPONENT_SPACING_SM)
                 .padRight(Dimensions.COMPONENT_SPACING_SM);
@@ -98,7 +97,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
     }
 
     @Override
-    public void update(Observable observable, Object o) {
+    public void refresh(Subject subject) {
         int validBlueprintsCount = 0;
 
         for (int i = 0; i < Constants.MAX_PLAYERS; i++) {

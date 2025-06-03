@@ -1,5 +1,10 @@
 package com.bomber7.utils;
 
+import com.bomber7.core.model.Observer;
+import com.bomber7.core.model.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -7,7 +12,11 @@ import java.util.Observable;
  * It was created to allow a null value for a playerBlueprint (= not added), which was
  * needed to implement UI logic in {@link com.bomber7.core.components.PlayerSelector}
  */
-public class PlayerBlueprintObservable extends Observable {
+public class PlayerBlueprintObservable implements Subject {
+    /**
+     * The list of this subject's observers.
+     */
+    private final List<Observer> observers = new ArrayList<>();
     /**
      * The PlayerBlueprint instance this observable is linked to.
      */
@@ -114,7 +123,11 @@ public class PlayerBlueprintObservable extends Observable {
      * Marks this observable as changed and notifies all of its observers.
      */
     public void notifyChanged() {
-        this.setChanged();
         this.notifyObservers();
+    }
+
+    @Override
+    public List<Observer> getObservers() {
+        return observers;
     }
 }

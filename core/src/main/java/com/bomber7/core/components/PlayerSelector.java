@@ -1,7 +1,5 @@
 package com.bomber7.core.components;
 
-import java.util.Observable;
-import java.util.Observer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -14,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
+import com.bomber7.core.model.Observer;
+import com.bomber7.core.model.Subject;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.ComponentsUtils;
@@ -115,7 +115,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         initView();
         initController();
 
-        playerBlueprint.addObserver(this);
+        playerBlueprint.registerObserver(this);
         playerBlueprint.notifyChanged();
     }
 
@@ -237,8 +237,7 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         }, resources));
     }
 
-    @Override
-    public void update(Observable observable, Object o) {
+    public void refresh(Subject subject) {
         updateCharacterBackground();
         updateNameTextField();
         updatePlayerStrategyTable();
