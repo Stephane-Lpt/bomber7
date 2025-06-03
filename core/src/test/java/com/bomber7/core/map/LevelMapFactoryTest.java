@@ -7,6 +7,8 @@ import com.bomber7.core.model.square.Square;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
 import com.bomber7.core.model.texture.ElementTexture;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -270,14 +272,15 @@ public class LevelMapFactoryTest {
         assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), levelMap.get(0).get(0).getTextureFilePath());
     }
 
-    @Test
-    void testCreateLevelMapFoyMapTextureIdsMatch() throws Exception {
-        String mapName = "foy";
+    @ParameterizedTest
+    @ValueSource(strings = { "foy", "enseeiht", "halle_aux_grains", "crous" })
+    void testCreateLevelMapTextureIdsMatch(String mapName) throws Exception {
         LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
 
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/le_foy_Background.csv");
-        File breakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Breakable.csv");
-        File unbreakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Unbreakable.csv");
+        File backgroundCsv = new File("../assets/maps/" + mapName + "/" + mapName + "_Background.csv");
+        File breakableCsv = new File("../assets/maps/" + mapName + "/" + mapName + "_Breakable.csv");
+        File unbreakableCsv = new File("../assets/maps/" + mapName + "/" + mapName + "_Unbreakable.csv");
+
         assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
 
         try (
@@ -289,20 +292,20 @@ public class LevelMapFactoryTest {
             List<String[]> breakableRows = breakableReader.readAll();
             List<String[]> unbreakableRows = unbreakableReader.readAll();
 
-            assertEquals(backgroundRows.size(), levelMap.getHeight(), "Number of back rows mismatch");
-            assertEquals(breakableRows.size(), levelMap.getHeight(), "Number of break rows mismatch");
-            assertEquals(unbreakableRows.size(), levelMap.getHeight(), "Number of unbreak rows mismatch");
+            assertEquals(backgroundRows.size(), levelMap.getHeight(), "Number of background rows mismatch");
+            assertEquals(breakableRows.size(), levelMap.getHeight(), "Number of breakable rows mismatch");
+            assertEquals(unbreakableRows.size(), levelMap.getHeight(), "Number of unbreakable rows mismatch");
 
             for (int i = 0; i < backgroundRows.size(); i++) {
                 String[] backgroundCols = backgroundRows.get(i);
                 String[] breakableCols = breakableRows.get(i);
                 String[] unbreakableCols = unbreakableRows.get(i);
-                assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
+
+                assertEquals(backgroundCols.length, levelMap.getWidth(), "Column count mismatch at row " + i);
+                assertEquals(breakableCols.length, levelMap.getWidth(), "Column count mismatch at row " + i);
+                assertEquals(unbreakableCols.length, levelMap.getWidth(), "Column count mismatch at row " + i);
 
                 for (int j = 0; j < backgroundCols.length; j++) {
-                    System.out.println("i[" + i + "] = " + "j[" + j + "]");
                     int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
                     Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
                     Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
@@ -310,114 +313,17 @@ public class LevelMapFactoryTest {
                     Square actualSquare = levelMap.getSquare(j, i);
                     int actualBackgroundTextureId = actualSquare.getTextureId();
 
-                    if (actualSquare.isVerticalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_V;
-                    }
-                    if (actualSquare.isHorizontalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_H;
-                    }
-                    if (actualSquare.isDiagonalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_D;
-                    }
-
-                    assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
-                        String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                            i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
-
-
-                    MapElement actualElement = actualSquare.getMapElement();
-
-                    Integer expectedTextureId = null;
-
-                    if (expectedBreakableTextureId != -1) {
-                        expectedTextureId = expectedBreakableTextureId;
-                    } else if (expectedUnbreakableTextureId != -1) {
-                        expectedTextureId = expectedUnbreakableTextureId;
-                    }
-
-                    if (expectedTextureId != null) {
-                        System.out.println(expectedTextureId);
-                        int actualTextureId = actualElement.getTextureId();
-
-                        if (actualElement.isVerticalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_V;
-                        }
-                        if (actualElement.isHorizontalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_H;
-                        }
-                        if (actualElement.isDiagonalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_D;
-                        }
-
-                        assertEquals(expectedTextureId, actualTextureId,
-                                String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                    i, j, expectedTextureId, actualTextureId));
-                    }
-
-                }
-            }
-        }
-    }
-
-    @Test
-    void testCreateLevelMapEnseeihtMapTextureIdsMatch() throws Exception {
-        String mapName = "enseeiht";
-        LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
-
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/enseeiht_Background.csv");
-        File breakableCsv = new File("../assets/maps/" + mapName + "/enseeiht_Breakable.csv");
-        File unbreakableCsv = new File("../assets/maps/" + mapName + "/enseeiht_Unbreakable.csv");
-        assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
-
-        try (
-                CSVReader backgroundReader = new CSVReader(new FileReader(backgroundCsv));
-                CSVReader breakableReader = new CSVReader(new FileReader(breakableCsv));
-                CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakableCsv))
-        ) {
-            List<String[]> backgroundRows = backgroundReader.readAll();
-            List<String[]> breakableRows = breakableReader.readAll();
-            List<String[]> unbreakableRows = unbreakableReader.readAll();
-
-            assertEquals(backgroundRows.size(), levelMap.getHeight(), "Number of back rows mismatch");
-            assertEquals(breakableRows.size(), levelMap.getHeight(), "Number of break rows mismatch");
-            assertEquals(unbreakableRows.size(), levelMap.getHeight(), "Number of unbreak rows mismatch");
-
-            for (int i = 0; i < backgroundRows.size(); i++) {
-                String[] backgroundCols = backgroundRows.get(i);
-                String[] breakableCols = breakableRows.get(i);
-                String[] unbreakableCols = unbreakableRows.get(i);
-                assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-
-                for (int j = 0; j < backgroundCols.length; j++) {
-                    System.out.println("i[" + i + "] = " + "j[" + j + "]");
-                    int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
-                    Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
-                    Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
-
-                    Square actualSquare = levelMap.getSquare(j, i);
-                    int actualBackgroundTextureId = actualSquare.getTextureId();
-
-                    if (actualSquare.isVerticalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_V;
-                    }
-                    if (actualSquare.isHorizontalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_H;
-                    }
-                    if (actualSquare.isDiagonalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_D;
-                    }
+                    if (actualSquare.isVerticalFlip()) actualBackgroundTextureId |= ElementTexture.FLIP_V;
+                    if (actualSquare.isHorizontalFlip()) actualBackgroundTextureId |= ElementTexture.FLIP_H;
+                    if (actualSquare.isDiagonalFlip()) actualBackgroundTextureId |= ElementTexture.FLIP_D;
 
                     assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
                             String.format("Mismatch at [%d,%d]: expected %d but got %d",
                                     i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
 
-
                     MapElement actualElement = actualSquare.getMapElement();
 
                     Integer expectedTextureId = null;
-
                     if (expectedBreakableTextureId != -1) {
                         expectedTextureId = expectedBreakableTextureId;
                     } else if (expectedUnbreakableTextureId != -1) {
@@ -425,202 +331,15 @@ public class LevelMapFactoryTest {
                     }
 
                     if (expectedTextureId != null) {
-                        System.out.println(expectedTextureId);
                         int actualTextureId = actualElement.getTextureId();
-
-                        if (actualElement.isVerticalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_V;
-                        }
-                        if (actualElement.isHorizontalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_H;
-                        }
-                        if (actualElement.isDiagonalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_D;
-                        }
+                        if (actualElement.isVerticalFlip()) actualTextureId |= ElementTexture.FLIP_V;
+                        if (actualElement.isHorizontalFlip()) actualTextureId |= ElementTexture.FLIP_H;
+                        if (actualElement.isDiagonalFlip()) actualTextureId |= ElementTexture.FLIP_D;
 
                         assertEquals(expectedTextureId, actualTextureId,
                                 String.format("Mismatch at [%d,%d]: expected %d but got %d",
                                         i, j, expectedTextureId, actualTextureId));
                     }
-
-                }
-            }
-        }
-    }
-
-    @Test
-    void testCreateLevelMapHalleAuxGrainsMapTextureIdsMatch() throws Exception {
-        String mapName = "halle_aux_grains";
-        LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
-
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/halle_aux_grains_Background.csv");
-        File breakableCsv = new File("../assets/maps/" + mapName + "/halle_aux_grains_Breakable.csv");
-        File unbreakableCsv = new File("../assets/maps/" + mapName + "/halle_aux_grains_Unbreakable.csv");
-        assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
-
-        try (
-                CSVReader backgroundReader = new CSVReader(new FileReader(backgroundCsv));
-                CSVReader breakableReader = new CSVReader(new FileReader(breakableCsv));
-                CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakableCsv))
-        ) {
-            List<String[]> backgroundRows = backgroundReader.readAll();
-            List<String[]> breakableRows = breakableReader.readAll();
-            List<String[]> unbreakableRows = unbreakableReader.readAll();
-
-            assertEquals(backgroundRows.size(), levelMap.getHeight(), "Number of back rows mismatch");
-            assertEquals(breakableRows.size(), levelMap.getHeight(), "Number of break rows mismatch");
-            assertEquals(unbreakableRows.size(), levelMap.getHeight(), "Number of unbreak rows mismatch");
-
-            for (int i = 0; i < backgroundRows.size(); i++) {
-                String[] backgroundCols = backgroundRows.get(i);
-                String[] breakableCols = breakableRows.get(i);
-                String[] unbreakableCols = unbreakableRows.get(i);
-                assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-
-                for (int j = 0; j < backgroundCols.length; j++) {
-                    System.out.println("i[" + i + "] = " + "j[" + j + "]");
-                    int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
-                    Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
-                    Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
-
-                    Square actualSquare = levelMap.getSquare(j, i);
-                    int actualBackgroundTextureId = actualSquare.getTextureId();
-
-                    if (actualSquare.isVerticalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_V;
-                    }
-                    if (actualSquare.isHorizontalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_H;
-                    }
-                    if (actualSquare.isDiagonalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_D;
-                    }
-
-                    assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
-                            String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                    i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
-
-
-                    MapElement actualElement = actualSquare.getMapElement();
-
-                    Integer expectedTextureId = null;
-
-                    if (expectedBreakableTextureId != -1) {
-                        expectedTextureId = expectedBreakableTextureId;
-                    } else if (expectedUnbreakableTextureId != -1) {
-                        expectedTextureId = expectedUnbreakableTextureId;
-                    }
-
-                    if (expectedTextureId != null) {
-                        System.out.println(expectedTextureId);
-                        int actualTextureId = actualElement.getTextureId();
-
-                        if (actualElement.isVerticalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_V;
-                        }
-                        if (actualElement.isHorizontalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_H;
-                        }
-                        if (actualElement.isDiagonalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_D;
-                        }
-
-                        assertEquals(expectedTextureId, actualTextureId,
-                                String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                        i, j, expectedTextureId, actualTextureId));
-                    }
-
-                }
-            }
-        }
-    }
-
-    @Test
-    void testCreateLevelMapCrousMapTextureIdsMatch() throws Exception {
-        String mapName = "crous";
-        LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
-
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/crous_Background.csv");
-        File breakableCsv = new File("../assets/maps/" + mapName + "/crous_Breakable.csv");
-        File unbreakableCsv = new File("../assets/maps/" + mapName + "/crous_Unbreakable.csv");
-        assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
-
-        try (
-                CSVReader backgroundReader = new CSVReader(new FileReader(backgroundCsv));
-                CSVReader breakableReader = new CSVReader(new FileReader(breakableCsv));
-                CSVReader unbreakableReader = new CSVReader(new FileReader(unbreakableCsv))
-        ) {
-            List<String[]> backgroundRows = backgroundReader.readAll();
-            List<String[]> breakableRows = breakableReader.readAll();
-            List<String[]> unbreakableRows = unbreakableReader.readAll();
-
-            assertEquals(backgroundRows.size(), levelMap.getHeight(), "Number of back rows mismatch");
-            assertEquals(breakableRows.size(), levelMap.getHeight(), "Number of break rows mismatch");
-            assertEquals(unbreakableRows.size(), levelMap.getHeight(), "Number of unbreak rows mismatch");
-
-            for (int i = 0; i < backgroundRows.size(); i++) {
-                String[] backgroundCols = backgroundRows.get(i);
-                String[] breakableCols = breakableRows.get(i);
-                String[] unbreakableCols = unbreakableRows.get(i);
-                assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-                assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-
-                for (int j = 0; j < backgroundCols.length; j++) {
-                    System.out.println("i[" + i + "] = " + "j[" + j + "]");
-                    int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
-                    Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
-                    Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
-
-                    Square actualSquare = levelMap.getSquare(j, i);
-                    int actualBackgroundTextureId = actualSquare.getTextureId();
-
-                    if (actualSquare.isVerticalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_V;
-                    }
-                    if (actualSquare.isHorizontalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_H;
-                    }
-                    if (actualSquare.isDiagonalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_D;
-                    }
-
-                    assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
-                            String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                    i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
-
-
-                    MapElement actualElement = actualSquare.getMapElement();
-
-                    Integer expectedTextureId = null;
-
-                    if (expectedBreakableTextureId != -1) {
-                        expectedTextureId = expectedBreakableTextureId;
-                    } else if (expectedUnbreakableTextureId != -1) {
-                        expectedTextureId = expectedUnbreakableTextureId;
-                    }
-
-                    if (expectedTextureId != null) {
-                        System.out.println(expectedTextureId);
-                        int actualTextureId = actualElement.getTextureId();
-
-                        if (actualElement.isVerticalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_V;
-                        }
-                        if (actualElement.isHorizontalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_H;
-                        }
-                        if (actualElement.isDiagonalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_D;
-                        }
-
-                        assertEquals(expectedTextureId, actualTextureId,
-                                String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                        i, j, expectedTextureId, actualTextureId));
-                    }
-
                 }
             }
         }
