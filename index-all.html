@@ -52,6 +52,10 @@ loadScripts(document, 'script');</script>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/square/Bomb.html#activateBomb(com.bomber7.core.model.map.LevelMap)" class="member-name-link">activateBomb(LevelMap)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Activates the bomb, causing it to explode and affect surrounding squares.</div>
+</dd>
 <dt><a href="com/bomber7/core/components/BomberTextButton.html#addListener(com.badlogic.gdx.scenes.scene2d.EventListener)" class="member-name-link">addListener(EventListener)</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/BomberTextButton.html" title="class in com.bomber7.core.components">BomberTextButton</a></dt>
 <dd>
 <div class="block">Adds an <code>EventListener</code> to this button.</div>
@@ -59,6 +63,14 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:B">B</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/square/Bomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">Bomb</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents a bomb in the game, which can explode and affect surrounding squares.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#%3Cinit%3E(int,int,int,java.nio.file.Path,int)" class="member-name-link">Bomb(int, int, int, Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Constructs a Bomb with a specified explosion power and texture file path.</div>
+</dd>
 <dt><a href="com/bomber7/core/BomberGame.html" class="type-name-link" title="class in com.bomber7.core">BomberGame</a> - Class in <a href="com/bomber7/core/package-summary.html">com.bomber7.core</a></dt>
 <dd>
 <div class="block">Main class of the Bomber7 game, extending LibGDX's <code>Game</code> class.</div>
@@ -233,6 +245,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the list of registered observers.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#getPower()" class="member-name-link">getPower()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Returns the power of the bomb.</div>
+</dd>
 <dt><a href="com/bomber7/utils/ResourceManager.html#getSkin()" class="member-name-link">getSkin()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/ResourceManager.html" title="class in com.bomber7.utils">ResourceManager</a></dt>
 <dd>
 <div class="block">Returns the UI skin used throughout the game.</div>
@@ -257,6 +273,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/model/texture/ElementTexture.html#getTextureId()" class="member-name-link">getTextureId()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
 <dd>
 <div class="block">Returns the texture id for this element.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TimeBomb.html#getTimer()" class="member-name-link">getTimer()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
+<dd>
+<div class="block">Retrieves the current value of the countdown timer.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/map/LevelMap.html#getWidth()" class="member-name-link">getWidth()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
 <dd>
@@ -411,6 +431,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Observer in the Observer design pattern.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#onExplosion(com.bomber7.core.model.map.LevelMap,int,int)" class="member-name-link">onExplosion(LevelMap, int, int)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Handles the explosion effect at a specific position on the map.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:P">P</h2>
 <dl class="index">
@@ -542,6 +566,19 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Updates the game state.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/TimeBomb.html#tick(com.bomber7.core.model.map.LevelMap,float)" class="member-name-link">tick(LevelMap, float)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
+<dd>
+<div class="block">Decreases the countdown timer based on the time delta.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TimeBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">TimeBomb</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">The Timebomb class is a special type of Bomb that has a countdown
+ timer.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TimeBomb.html#%3Cinit%3E(int,int,int,java.nio.file.Path,int,float)" class="member-name-link">TimeBomb(int, int, int, Path, int, float)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
+<dd>
+<div class="block">Constructs a TimeBomb with the specified explosion power, sprite file path and timer.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/map/LevelMap.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/model/square/BreakableWall.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></dt>
@@ -550,6 +587,18 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/model/square/UnbreakableWall.html#toString()" class="member-name-link">toString()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/UnbreakableWall.html" title="class in com.bomber7.core.model.square">UnbreakableWall</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/TriggerBomb.html#trigger(com.bomber7.core.model.map.LevelMap)" class="member-name-link">trigger(LevelMap)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></dt>
+<dd>
+<div class="block">Manually triggers the bomb to activate its explosion on the specified map.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TriggerBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">TriggerBomb</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">TriggerBomb is a type of bomb that can be manually activated by the player.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TriggerBomb.html#%3Cinit%3E(int,int,int,java.nio.file.Path,int)" class="member-name-link">TriggerBomb(int, int, int, Path, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></dt>
+<dd>
+<div class="block">Constructs a TriggerBomb with the specified explosion, power, sprite file path and owner.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:U">U</h2>
 <dl class="index">
