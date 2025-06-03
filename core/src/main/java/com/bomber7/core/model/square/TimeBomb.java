@@ -35,9 +35,13 @@ public class TimeBomb extends Bomb {
      * @param delta the elapsed time (in seconds) to decrease
      */
     public void tick(LevelMap map, float delta) {
+        if (map == null) {
+            throw new NullPointerException("LevelMap cannot be null");
+        }
         if (timer > 0) {
             timer -= delta;
             if (timer <= 0) {
+                timer = 0;
                 activateBomb(map);
             }
         }
@@ -60,3 +64,4 @@ public class TimeBomb extends Bomb {
     }
 
 }
+
