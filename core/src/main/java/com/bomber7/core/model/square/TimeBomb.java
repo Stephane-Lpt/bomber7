@@ -20,11 +20,10 @@ public class TimeBomb extends Bomb {
      * @param x the X-coordinate
      * @param y the Y-coordinate
      * @param textureName The texture name associated with the bomb.
-     * @param textureId the id of the texture
      * @param t initial value of the countdown timer
      */
-    public TimeBomb(int p, int x, int y, String textureName, int textureId, float t) {
-        super(p, x, y, textureName, textureId);
+    public TimeBomb(int p, int x, int y, String textureName, float t) {
+        super(p, x, y, textureName);
         this.timer = t;
     }
 

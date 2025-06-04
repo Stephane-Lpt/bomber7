@@ -32,7 +32,6 @@ public class Bomb extends MapElement {
      * @param x X-coordinate of the bomb on the map.
      * @param y Y-coordinate of the bomb on the map.
      * @param textureName The texture name associated with the bomb.
-     * @param textureId       The texture ID for the bomb.
      * //@param verticalFlip    Indicates whether the texture is vertically flipped.
      * //@param horizontalFlip  Indicates whether the texture is horizontally flipped.
      * //@param diagonalFlip    Indicates whether the texture is diagonally flipped.
@@ -40,10 +39,10 @@ public class Bomb extends MapElement {
     public Bomb(int p,
                 int x,
                 int y,
-                String textureName,
-                int textureId) {
+                String textureName
+                ) {
 
-        super(textureName, textureId);
+        super(textureName);
         this.power = p;
         this.x = x;
         this.y = y;

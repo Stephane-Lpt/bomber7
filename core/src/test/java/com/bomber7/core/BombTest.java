@@ -52,7 +52,7 @@ public class BombTest {
     @Test
     void testBombExplosionWithWalls() {
         // Create a Bomb at (x : 2, y : 2) with explosion power 3
-        Bomb bomb = new Bomb(3, 2, 2, "bomb", 101);
+        Bomb bomb = new Bomb(3, 2, 2, "bomb");
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(2, 2);
@@ -94,63 +94,59 @@ public class BombTest {
      */
     protected LevelMap createLargeLevelMap() {
         List<List<Square>> grid = new ArrayList<>();
-        final int textureId1 = 101;
-        final int textureId2 = 102;
-        final int textureId3 = 103;
-
         // Row 0
         List<Square> row0 = new ArrayList<>();
-        row0.add(new Square("texture1", textureId1,
-            new UnbreakableWall("unbreakable", 1)));
-        row0.add(new Square("texture1", textureId1,
-            new UnbreakableWall("unbreakable", 1)));
-        row0.add(new Square("texture2", textureId2,
-            new BreakableWall("breakable", 2)));
-        row0.add(new Square("empty", textureId3));
-        row0.add(new Square("empty", textureId3));
+        row0.add(new Square("texture1",
+            new UnbreakableWall("unbreakable")));
+        row0.add(new Square("texture1",
+            new UnbreakableWall("unbreakable")));
+        row0.add(new Square("texture2",
+            new BreakableWall("breakable")));
+        row0.add(new Square("empty"));
+        row0.add(new Square("empty"));
         grid.add(row0);
 
         // Row 1
         List<Square> row1 = new ArrayList<>();
-        row1.add(new Square("empty", textureId3));
-        row1.add(new Square("texture1", textureId1,
-            new UnbreakableWall("unbreakable", 1)));
-        row1.add(new Square("texture2", textureId2,
-            new BreakableWall("breakable", 2)));
-        row1.add(new Square("empty", textureId3));
-        row1.add(new Square("empty", textureId3));
+        row1.add(new Square("empty"));
+        row1.add(new Square("texture1",
+            new UnbreakableWall("unbreakable")));
+        row1.add(new Square("texture2",
+            new BreakableWall("breakable")));
+        row1.add(new Square("empty"));
+        row1.add(new Square("empty"));
         grid.add(row1);
 
         // Row 2
         List<Square> row2 = new ArrayList<>();
-        row2.add(new Square("empty", textureId3));
-        row2.add(new Square("empty", textureId3));
-        row2.add(new Square("texture2", textureId2,
-            new BreakableWall("breakable", 2)));
-        row2.add(new Square("texture2", textureId2,
-            new BreakableWall("breakable", 2)));
-        row2.add(new Square("texture1", textureId1,
-            new UnbreakableWall("unbreakable", 1)));
+        row2.add(new Square("empty"));
+        row2.add(new Square("empty"));
+        row2.add(new Square("texture2",
+            new BreakableWall("breakable")));
+        row2.add(new Square("texture2",
+            new BreakableWall("breakable")));
+        row2.add(new Square("texture1",
+            new UnbreakableWall("unbreakable")));
         grid.add(row2);
 
         // Row 3
         List<Square> row3 = new ArrayList<>();
-        row3.add(new Square("empty", textureId3));
-        row3.add(new Square("empty", textureId3));
-        row3.add(new Square("empty", textureId3));
-        row3.add(new Square("empty", textureId3));
-        row3.add(new Square("texture2", textureId2,
-            new BreakableWall("breakable", 2)));
+        row3.add(new Square("empty"));
+        row3.add(new Square("empty"));
+        row3.add(new Square("empty"));
+        row3.add(new Square("empty"));
+        row3.add(new Square("texture2",
+            new BreakableWall("breakable")));
         grid.add(row3);
 
         // Row 4
         List<Square> row4 = new ArrayList<>();
-        row4.add(new Square("empty", textureId3));
-        row4.add(new Square("empty", textureId3));
-        row4.add(new Square("texture1", textureId1,
-            new UnbreakableWall("unbreakable", 1)));
-        row4.add(new Square("empty", textureId3));
-        row4.add(new Square("empty", textureId3));
+        row4.add(new Square("empty"));
+        row4.add(new Square("empty"));
+        row4.add(new Square("texture1",
+            new UnbreakableWall("unbreakable")));
+        row4.add(new Square("empty"));
+        row4.add(new Square("empty"));
         grid.add(row4);
 
         return new LevelMap(grid);
@@ -163,7 +159,7 @@ public class BombTest {
     @Test
     void testNullPointerException() {
         this.levelMap = null;
-        Bomb bomb = new Bomb(2, -1, 0, "texture", 1);
+        Bomb bomb = new Bomb(2, -1, 0, "texture");
         assertThrows(NullPointerException.class, () -> bomb.activateBomb(this.levelMap));
     }
 }
