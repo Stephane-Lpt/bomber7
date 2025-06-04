@@ -49,7 +49,12 @@ public class HumanController {
         }
         if (Gdx.input.isKeyPressed(this.playerConfig.getRight())) {
             this.player.moveRight();
+<<<<<<< HEAD
         } else {
+=======
+        }
+        else {
+>>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
             this.player.setStandingStill();
         }
     }
