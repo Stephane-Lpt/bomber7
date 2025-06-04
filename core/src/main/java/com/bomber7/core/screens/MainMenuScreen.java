@@ -51,8 +51,8 @@ public class MainMenuScreen extends BomberScreen {
     @Override
     public void initView() {
         Table table = new Table();
-        table.setDebug(true);
         table.setFillParent(true);
+//        table.setDebug(true);
 
         Image backgroundImage = new Image(new Texture("images/background.png"));
         backgroundImage.setFillParent(true);
@@ -93,14 +93,14 @@ public class MainMenuScreen extends BomberScreen {
         playButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showScreen(ScreenType.PLAYER_SETUP);
+                ScreenManager.getInstance().showScreen(ScreenType.PLAYER_SETUP, true, false);
             }
         }, resources));
 
         settingsButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showScreen(ScreenType.SETTINGS);
+                ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, true, false);
             }
         }, resources));
 
@@ -110,5 +110,10 @@ public class MainMenuScreen extends BomberScreen {
                 Gdx.app.exit();
             }
         }, resources));
+    }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.MAIN_MENU;
     }
 }

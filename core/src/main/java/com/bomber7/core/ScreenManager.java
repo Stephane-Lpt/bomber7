@@ -4,6 +4,10 @@ import com.badlogic.gdx.Screen;
 import com.bomber7.core.screens.BomberScreen;
 import com.bomber7.utils.ScreenType;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 /**
  * Singleton class responsible for managing screen transitions in the game.
  *
@@ -23,19 +27,19 @@ public final class ScreenManager {
      */
     private static ScreenManager instance;
 
+    private ScreenType currentScreenType = null;
+
+    private Map<ScreenType, BomberScreen> screens = new HashMap<>();
+    private Stack<BomberScreen> screenStack = new Stack<>();
+
     /**
      * Reference to the LibGDX Game object.
      */
     private BomberGame game;
 
     /**
-     * Type of current screen.
+     * Stack of
      */
-    private ScreenType currentScreenType = null;
-    /**
-     * Type of previous screen.
-     */
-    private ScreenType previousScreenType = null;
 
     /**
      * Private constructor to enforce singleton pattern.
@@ -66,37 +70,65 @@ public final class ScreenManager {
      */
     public void initialize(BomberGame bomberGame) {
         this.game = bomberGame;
+
+        for (ScreenType screenType : ScreenType.values()) {
+            screens.put(screenType, null);
+        }
     }
 
     /**
      * Displays a new screen based on the specified {@link ScreenType}.
      * <p>
      * If a screen is currently active, it will be disposed before switching to the new screen.
+     * You can control whether the current screen should be remembered as the previous screen
+     * using the {@code updatePreviousScreen} flag.
      * </p>
      *
-     * @param screenType the type of screen to be shown.
+     * @param screenType            the type of screen to be shown
+     * @param params                optional parameters used to configure the new screen (e.g., level ID, player settings)
      */
-    public void showScreen(ScreenType screenType, Object... params) {
-        Screen currentScreen = game.getScreen();
+    public void showScreen(ScreenType screenType, boolean pushScreenToStack, boolean saveScreen, Object... params) {
+        BomberScreen oldScreen = (BomberScreen) game.getScreen();
+        BomberScreen newScreen;
 
-        previousScreenType = currentScreenType;
+        if (screens.get(screenType) == null) {
+            System.out.println("initializing screen " + screenType);
+            newScreen = screenType.getScreen(game, params);
+            screens.put(screenType, newScreen);
+        } else {
+            System.out.println("screen already initialized. retreiving it from the stack");
+            newScreen = screens.get(screenType);
+        }
+
+        if (currentScreenType != null) {
+            System.out.println("current screen is not null");
+            if (pushScreenToStack) {
+                if (saveScreen) {
+                    System.out.println("saving " + currentScreenType + " " + "screen to stack");
+                    screenStack.push(oldScreen);
+                } else {
+                    System.out.println("creating a new " + currentScreenType + " " + "and adding it to the stack");
+                    screenStack.push(currentScreenType.getScreen(game));
+                }
+            }
+        }
+
         currentScreenType = screenType;
 
-        BomberScreen newScreen = screenType.getScreen(game, params);
-
         game.setScreen(newScreen);
-
-        if (currentScreen != null) {
-            currentScreen.dispose();
-        }
     }
 
-    /**
-     * Sets the previous screen as the current screen (if not null).
-     */
-    public void showPreviousScreen() {
-        if (previousScreenType != null) {
-            showScreen(previousScreenType);
+
+    public void showPreviousScreen(boolean pushScreenToStack, boolean saveScreen) {
+        System.out.println("trying to come back to previous screen");
+        if (!screenStack.isEmpty()) {
+            BomberScreen poppedScreen = screenStack.pop();
+
+            if (game.getScreen() != null && !screens.containsValue(game.getScreen())) {
+                game.getScreen().dispose();
+            }
+
+            showScreen(poppedScreen.getScreenType(), pushScreenToStack, saveScreen);
         }
     }
 }

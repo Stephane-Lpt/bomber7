@@ -60,9 +60,9 @@
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {
-      "up": "button.light.9",
-      "over": "button.dark.9",
-      "down": "button.white.9",
+      "up": "light.gold.9",
+      "over": "dark.gold.9",
+      "down": "white.gold.9",
       "font": "pixelify-sm",
       "fontColor": "white"
     },
@@ -81,41 +81,38 @@
       "fontColor": "white"
     },
     "player-add": {
-      "up": "character.background.add.light.9",
-      "over": "character.background.add.dark.9",
-      "down": "character.background.add.white.9",
+      "up": "light.green.9",
+      "over": "dark.green.9",
+      "down": "white.green.9",
       "font": "pixelify-sm",
       "fontColor": "white"
     },
     "inactive": {
-      "up": "button.inactive.9",
+      "up": "inactive.9",
+      "font": "pixelify-sm",
+      "fontColor": "white"
+    },
+    "red": {
+      "up": "light.red.9",
+      "over": "dark.red.9",
+      "down": "white.red.9",
       "font": "pixelify-sm",
       "fontColor": "white"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
     "character-selector-valid": {
-      "up": "character.background.valid.light.9",
-      "over": "character.background.valid.dark.9",
-      "down": "character.background.valid.white.9"
+      "up": "light.gold.9",
+      "over": "dark.gold.9",
+      "down": "white.gold.9"
     },
     "character-selector-locked": {
-      "up": "character.background.locked.light.9",
-      "over": "character.background.locked.dark.9",
-      "down": "character.background.locked.white.9"
+      "up": "light.red.9",
+      "over": "dark.red.9",
+      "down": "white.red.9"
     },
     "inactive": {
-      "up": "character.background.inactive"
-    },
-    "checkbox-unchecked": {
-      "up": "square.light.gold.9",
-      "over": "square.dark.gold.9",
-      "down": "square.white.gold.9"
-    },
-    "checkbox-checked": {
-      "up": "square.light.gold.9",
-      "over": "square.dark.gold.9",
-      "down": "square.white.gold.9"
+      "up": "inactive.9"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
@@ -134,8 +131,8 @@
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
     "default-horizontal": {
-      "background": "slider.9",
-      "knob": "slider.knob.9"
+      "background": "white.9",
+      "knob": "light.gold.9"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {

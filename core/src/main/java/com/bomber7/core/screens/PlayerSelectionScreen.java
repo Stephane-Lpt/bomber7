@@ -84,14 +84,14 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         goToMainMenuButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU);
+                ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false,false);
             }
         }, resources));
 
         goToMapSelectionButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showScreen(ScreenType.MAP_SELECTION);
+                ScreenManager.getInstance().showScreen(ScreenType.MAP_SELECTION, true, true);
             }
         }, resources));
     }
@@ -107,5 +107,10 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         }
 
         goToMapSelectionButton.toggle(validBlueprintsCount >= Constants.MIN_PLAYERS);
+    }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.PLAYER_SETUP;
     }
 }

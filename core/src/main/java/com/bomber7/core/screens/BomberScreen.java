@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.bomber7.core.BomberGame;
 import com.bomber7.utils.MVCComponent;
 import com.bomber7.core.ResourceManager;
+import com.bomber7.utils.ScreenType;
 
 /**
  * An abstract Screen class that all bomber screens should inherit from.
@@ -74,4 +75,6 @@ public abstract class BomberScreen extends Stage implements Screen, MVCComponent
     public void dispose() {
         super.dispose();
     }
+
+    public abstract ScreenType getScreenType();
 }

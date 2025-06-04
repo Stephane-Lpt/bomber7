@@ -2,6 +2,7 @@ package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -64,6 +65,11 @@ public class SettingsScreen extends BomberScreen {
     private TextButton goBackButton;
 
     /**
+     * Indicates whether the user modified the settings.
+     */
+    private boolean isModified = false;
+
+    /**
      * Constructs a new SettingsScreen associated with the given game.
      *
      * @param game the Game instance this screen belongs to
@@ -76,8 +82,8 @@ public class SettingsScreen extends BomberScreen {
     public void initView() {
         final int cols = 2;
         BomberTable table = new BomberTable();
-        table.setDebug(true);
         table.setFillParent(true);
+//        table.setDebug(true);
 
         Label globalVolumeLabel = new Label(resources.getString("global_volume"), resources.getSkin(), "medium");
         Label musicLabel = new Label(resources.getString("music"), resources.getSkin(), "medium");
@@ -94,8 +100,9 @@ public class SettingsScreen extends BomberScreen {
         globalVolumeSlider = new Slider(VOLUME_SLIDER_MIN, VOLUME_SLIDER_MAX, VOLUME_SLIDER_STEP, false, resources.getSkin());
         musicVolumeSlider = new Slider(VOLUME_SLIDER_MIN, VOLUME_SLIDER_MAX, VOLUME_SLIDER_STEP, false, resources.getSkin());
 
-        confirmChangesButton = new TextButton(resources.getString("validate"), resources.getSkin());
         goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
+        confirmChangesButton = new TextButton(resources.getString("validate"), resources.getSkin(), "inactive");
+        confirmChangesButton.setTouchable(Touchable.disabled);
 
         table.setTitle(new Label(resources.getString("options"), resources.getSkin(), "large"), cols);
         table.add(globalVolumeLabel)
@@ -124,16 +131,14 @@ public class SettingsScreen extends BomberScreen {
 
         for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             table.add(playerLabels[i])
-                .right()
-                .padRight(Dimensions.COMPONENT_SPACING_LG)
-                .spaceBottom(Dimensions.COMPONENT_SPACING_LG);
+                .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
+                .padRight(Dimensions.COMPONENT_SPACING_LG);
             table.add(configPlayerButtons[i])
                 .width(Dimensions.BUTTON_WIDTH_SM)
                 .height(Dimensions.BUTTON_HEIGHT_SM)
                 .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
-                .padLeft(Dimensions.COMPONENT_SPACING_LG)
-                .left()
-                .row();
+                .padLeft(Dimensions.COMPONENT_SPACING_LG);
+            table.row();
         }
 
         table.setupDoubleButtons(goBackButton, confirmChangesButton, 2);
@@ -146,7 +151,7 @@ public class SettingsScreen extends BomberScreen {
         goBackButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showPreviousScreen();
+                ScreenManager.getInstance().showPreviousScreen(false, false);
             }
         }, resources));
 
@@ -162,9 +167,14 @@ public class SettingsScreen extends BomberScreen {
             configPlayerButtons[i].addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, finalI);
+                    ScreenManager.getInstance().showScreen(ScreenType.KEY_BINDING, true, false, finalI);
                 }
             }, resources));
         }
+    }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.SETTINGS;
     }
 }

@@ -34,7 +34,7 @@ public final class ResourceManager {
             Gdx.files.internal("ui/uiskin.json"),
             new TextureAtlas(Gdx.files.internal("ui/uiskin.atlas"))
         );
-        bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/english"));
+        bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/french"));
         sound = new SoundManager();
     }
 

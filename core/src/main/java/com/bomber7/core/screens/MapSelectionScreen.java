@@ -17,6 +17,7 @@ import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.Map;
+import com.bomber7.utils.ScreenType;
 
 /**
  * Screen where the user selects the map
@@ -153,7 +154,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
         goToPlayerSelectionButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showPreviousScreen();
+                ScreenManager.getInstance().showPreviousScreen(true, true);
             }
         }, resources));
 
@@ -191,5 +192,10 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
         }
 
         startGameButton.toggle(checkedCount != 0);
+    }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.MAP_SELECTION;
     }
 }

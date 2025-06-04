@@ -1,6 +1,7 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
+import com.bomber7.utils.ScreenType;
 
 /**
  * Pause screen.
@@ -24,4 +25,10 @@ public class PauseScreen extends BomberScreen {
     public void initController() {
 
     }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.PAUSE;
+    }
 }
+

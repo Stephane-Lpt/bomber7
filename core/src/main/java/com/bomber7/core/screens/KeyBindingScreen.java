@@ -1,12 +1,16 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.bomber7.core.ScreenManager;
 import com.bomber7.core.components.BomberTable;
+import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Controls;
 import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.ScreenType;
 
 /**
  * A screen where a player can bind its input controls.
@@ -36,16 +40,16 @@ public class KeyBindingScreen extends BomberScreen {
     public void initView() {
         BomberTable table = new BomberTable();
         table.setFillParent(true);
-        table.setDebug(true);
+//        table.setDebug(true);
 
         Label[] inputLabels = new Label[Controls.values().length];
         inputButtons = new TextButton[Controls.values().length];
 
         confirmButton = new TextButton(resources.getString("confirm"), resources.getSkin());
-        resetBindingButton = new TextButton(resources.getString("reset"), resources.getSkin());
+        resetBindingButton = new TextButton(resources.getString("reset"), resources.getSkin(), "red");
 
         table.setTitle(new Label(
-            resources.getString("key_binding") + " " + resources.getString("player").toLowerCase() + " " + playerIndex,
+            resources.getString("key_binding") + " " + resources.getString("player").toLowerCase() + " " + (playerIndex + 1),
             resources.getSkin(),
             "large"
         ), 2);
@@ -73,8 +77,33 @@ public class KeyBindingScreen extends BomberScreen {
 
     @Override
     public void initController() {
+        resetBindingButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // TODO
+            }
+        }, resources));
+
+        confirmButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // TODO
+                ScreenManager.getInstance().showPreviousScreen(false, false);
+            }
+        }, resources));
+
         for (int i = 0; i < Controls.values().length; i++) {
-            inputButtons[i].
+            inputButtons[i].addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    // TODO
+                }
+            }, resources));
         }
+    }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.KEY_BINDING;
     }
 }
