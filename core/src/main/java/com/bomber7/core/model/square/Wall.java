@@ -12,30 +12,30 @@ public abstract class Wall extends MapElement {
     /**
      * Constructs a Wall with the specified texture file path.
      *
-     * @param textureFilePath the file path to the texture image for the wall
+     * @param textureName the file path to the texture image for the wall
      * @param textureId id of the texture
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public Wall(
-        Path textureFilePath,
+        String textureName,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, textureId, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     /**
      * Constructs a Wall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureFilePath the file path to the sprite image for the wall
+     * @param textureName the texture name for this square for the wall
      * @param textureId id of the texture
      */
-    public Wall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId, false, false, false);
+    public Wall(String textureName, int textureId) {
+        super(textureName, textureId, false, false, false);
     }
 }

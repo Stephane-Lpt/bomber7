@@ -4,6 +4,7 @@ import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.core.model.texture.ElementTexture;
+import com.bomber7.utils.ProjectPaths;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
@@ -123,7 +124,7 @@ public class LevelMapFactory {
      * @return The path of the subdirectory containing the file, or null if not found.
      */
     public static File searchMapFilesRootDirectory(String filename) {
-        File mapsRoot = new File("assets/maps");
+        File mapsRoot = new File(ProjectPaths.getAssetsPath()+"/maps");
 
         File[] subdirs = mapsRoot.listFiles(File::isDirectory);
         if (subdirs == null) {
@@ -141,10 +142,10 @@ public class LevelMapFactory {
     }
 
     /**
-     * Parses the JSON file to create a mapping of texture IDs to their file paths.
+     * Parses the JSON file to create a mapping of texture IDs to their names.
      *
      * @param jsonPath Path to the JSON file containing texture mappings.
-     * @return A map where keys are texture IDs and values are their corresponding file paths.
+     * @return A map where keys are texture IDs and values are their corresponding names.
      */
     public static Map<Integer, String> parseTextureMap(Path jsonPath) {
         try {
@@ -154,14 +155,14 @@ public class LevelMapFactory {
 
             for (JsonNode tile : root.path("tiles")) {
                 int id = tile.path("id").asInt();
-                String path = tile.path("image").asText().replace("\\/", "/");
-                textureMap.put(id, path);
+                String textureName = tile.path("image").asText().replace("\\/", "/");
+                textureMap.put(id, textureName);
             }
             return textureMap;
 
         } catch (IOException e) {
             throw new IllegalArgumentException(
-                "Failed to parse texture JSON. Wrong filepath or wrong format/json content.", e
+                "Failed to parse texture JSON. Wrong filepath or wrong format/json content:" + jsonPath, e
             );
         }
     }
@@ -253,7 +254,8 @@ public class LevelMapFactory {
                             "textureMap doesnt have all the required textures: back:" + backgroundTextureId
                         );
                     }
-                    Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
+
+                    String backgroundTextureName = textureMap.get(backgroundTextureId);
 
                     if (breakableTextureId != -1) {
                         boolean breakableVerticalFlip = (breakableTextureId & ElementTexture.FLIP_V) != 0;
@@ -266,11 +268,13 @@ public class LevelMapFactory {
                                 "textureMap doesnt have all the required textures: back:" + breakableTextureId
                             );
                         }
-                        Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
+
+                        String breakableTextureName = textureMap.get(breakableTextureId);
+
                         squareRow.add(
-                            new Square(backgroundTexturePath, backgroundTextureId,
+                            new Square(backgroundTextureName, backgroundTextureId,
                                 new BreakableWall(
-                                    breakableTexturePath, breakableTextureId, breakableVerticalFlip,
+                                    breakableTextureName, breakableTextureId, breakableVerticalFlip,
                                     breakableHorizontalFlip, breakableDiagonalFlip
                                 ),
                                 backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip
@@ -288,12 +292,13 @@ public class LevelMapFactory {
                             );
                         }
 
-                        Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
+                        String unbreakableTextureName = textureMap.get(unbreakableTextureId);
+
                         squareRow.add(
-                            new Square(backgroundTexturePath,
+                            new Square(backgroundTextureName,
                                 backgroundTextureId,
                                 new UnbreakableWall(
-                                    unbreakableTexturePath,
+                                    unbreakableTextureName,
                                     unbreakableTextureId,
                                     unbreakableVerticalFlip,
                                     unbreakableHorizontalFlip,
@@ -306,7 +311,7 @@ public class LevelMapFactory {
                     } else {
                         squareRow.add(
                             new Square(
-                                backgroundTexturePath,
+                                backgroundTextureName,
                                 backgroundTextureId,
                                 backgroundVerticalFlip,
                                 backgroundHorizontalFlip,
