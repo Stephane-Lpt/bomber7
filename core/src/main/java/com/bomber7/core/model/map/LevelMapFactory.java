@@ -142,10 +142,10 @@ public class LevelMapFactory {
     }
 
     /**
-     * Parses the JSON file to create a mapping of texture IDs to their file paths.
+     * Parses the JSON file to create a mapping of texture IDs to their names.
      *
      * @param jsonPath Path to the JSON file containing texture mappings.
-     * @return A map where keys are texture IDs and values are their corresponding file paths.
+     * @return A map where keys are texture IDs and values are their corresponding names.
      */
     public static Map<Integer, String> parseTextureMap(Path jsonPath) {
         try {
@@ -155,8 +155,8 @@ public class LevelMapFactory {
 
             for (JsonNode tile : root.path("tiles")) {
                 int id = tile.path("id").asInt();
-                String path = tile.path("image").asText().replace("\\/", "/");
-                textureMap.put(id, path);
+                String textureName = tile.path("image").asText().replace("\\/", "/");
+                textureMap.put(id, textureName);
             }
             return textureMap;
 
@@ -254,8 +254,8 @@ public class LevelMapFactory {
                             "textureMap doesnt have all the required textures: back:" + backgroundTextureId
                         );
                     }
-                    Path backgroundTextureFilePath = Paths.get(textureMap.get(backgroundTextureId));
-                    String backgroundTextureName = getTextureNameByTilesetPathString(backgroundTextureFilePath);
+
+                    String backgroundTextureName = textureMap.get(backgroundTextureId);
 
                     if (breakableTextureId != -1) {
                         boolean breakableVerticalFlip = (breakableTextureId & ElementTexture.FLIP_V) != 0;
@@ -269,8 +269,7 @@ public class LevelMapFactory {
                             );
                         }
 
-                        Path breakableTextureFilePath = Paths.get(textureMap.get(breakableTextureId));
-                        String breakableTextureName = getTextureNameByTilesetPathString(breakableTextureFilePath);
+                        String breakableTextureName = textureMap.get(breakableTextureId);
 
                         squareRow.add(
                             new Square(backgroundTextureName, backgroundTextureId,
@@ -293,8 +292,7 @@ public class LevelMapFactory {
                             );
                         }
 
-                        Path unbreakableTextureFilePath = Paths.get(textureMap.get(unbreakableTextureId));
-                        String unbreakableTextureName = getTextureNameByTilesetPathString(unbreakableTextureFilePath);
+                        String unbreakableTextureName = textureMap.get(unbreakableTextureId);
 
                         squareRow.add(
                             new Square(backgroundTextureName,
@@ -334,15 +332,5 @@ public class LevelMapFactory {
         } catch (CsvException e) {
             throw new IllegalArgumentException("Unable to read the CSV file. Wrong format");
         }
-    }
-
-    public static String getTextureNameByTilesetPathString(Path textureFilePath) {
-        /*
-            \\. : a literal dot, since . is a special character in regex (matches any character), we escape it.
-            [^.]+ : one or more characters that are not a dot, i.e. the extension (like png, jpg, etc.).
-            $ : end of the string, ensures it only matches the final extension.
-            replaceFirst(...) : replaces only the first match of the regex (the final extension) with an empty string.
-         */
-        return textureFilePath.getFileName().toString().replaceFirst("\\.[^.]+$", "");
     }
 }

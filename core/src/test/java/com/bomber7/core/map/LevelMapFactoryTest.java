@@ -149,9 +149,9 @@ public class LevelMapFactoryTest {
             LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
             Square square = levelMap.getSquare(CINQ, DEUX);
             // id = 33
-            assertEquals("spruce_planks", square.getTextureName());
+            assertEquals("spruce-planks", square.getTextureName());
             // id = 44
-            assertEquals("pressure_plate", square.getMapElement().getTextureName());
+            assertEquals("pressure-plate", square.getMapElement().getTextureName());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
@@ -267,7 +267,7 @@ public class LevelMapFactoryTest {
 
         System.out.println(levelMap);
         assertEquals(TRENTETROIS, levelMap.get(0).get(0).getTextureId());
-        assertEquals("spruce_planks", levelMap.get(0).get(0).getTextureName());
+        assertEquals("spruce-planks", levelMap.get(0).get(0).getTextureName());
     }
 
     @Test
