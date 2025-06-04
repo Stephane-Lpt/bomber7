@@ -11,6 +11,9 @@ import java.util.List;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 
+/**
+ * Class Player.
+ */
 public abstract class Player extends Character {
 
     /** Bomb type classic. */
@@ -91,7 +94,6 @@ public abstract class Player extends Character {
     /**
      * Player type of bomb playable setter.
      * @param newTypeBomb The new type of bomb
-     * @throws IllegalBombSetException If new type of bomb is not an instance of
      */
     public void setTypeBomb(int newTypeBomb) {
         if (newTypeBomb != CLASSIC_BOMB && newTypeBomb != TRIGGER_BOMB) {
