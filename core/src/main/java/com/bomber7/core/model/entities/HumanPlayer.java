@@ -3,6 +3,9 @@ package com.bomber7.core.model.entities;
 import com.bomber7.core.controller.Config;
 import com.bomber7.core.model.map.LevelMap;
 
+/**
+ * Human player class.
+*/
 public class HumanPlayer extends Player {
 
     /** The configuration for the player controls. */

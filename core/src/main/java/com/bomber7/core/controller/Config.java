@@ -37,8 +37,7 @@ public class Config implements java.io.Serializable {
      * @param dropBomb     The key for dropping a bomb.
      * @param activateBomb The key for activating a bomb.
      */
-    public Config(String fileString, int up, int down, int left, int right, int dropBomb, int activateBomb)
-            throws Exception {
+    public Config(String fileString, int up, int down, int left, int right, int dropBomb, int activateBomb) {
         this.up = up;
         this.down = down;
         this.left = left;
@@ -50,6 +49,7 @@ public class Config implements java.io.Serializable {
 
     /**
      * Saves the current configuration to a file.
+     * @throws Exception if file not found.
      */
     public void saveConfig() throws Exception {
         java.io.File file = new java.io.File(this.fileString);
