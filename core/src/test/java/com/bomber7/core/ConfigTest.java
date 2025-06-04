@@ -15,7 +15,7 @@ import com.bomber7.core.controller.Config;
  * Test class for the Config class. This class tests the configuration settings,
  * saving functionality, and setter methods.
  */
-public class TestConfig {
+public class ConfigTest {
 
     /** The Config object to be tested. */
     private Config config;

@@ -8,7 +8,6 @@ import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 
 import java.util.List;
 
-<<<<<<< HEAD
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 
@@ -17,13 +16,6 @@ public abstract class Player extends Character {
     /** Bomb type classic. */
     public static final int CLASSIC_BOMB = 1;
     /** Bomb type trigger. */
-=======
-import com.bomber7.core.model.bombs.Bomb;
-
-public abstract class Player extends Character {
-
-    public static final int CLASSIC_BOMB = 1;
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
     public static final int TRIGGER_BOMB = 2;
 
     /**
@@ -42,10 +34,7 @@ public abstract class Player extends Character {
     /**
      * Player Constructor.
      * @param name     Name of the player
-<<<<<<< HEAD
      * @param map      Map
-=======
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
      * @param x        X coordinate of the player
      * @param y        Y coordinate of the player
      * @param life     Life points of the player
@@ -108,10 +97,6 @@ public abstract class Player extends Character {
         if (newTypeBomb != CLASSIC_BOMB && newTypeBomb != TRIGGER_BOMB) {
             throw new IllegalBombOperationException("Invalid bomb type: " + newTypeBomb);
         }
-<<<<<<< HEAD
-=======
-        
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
         this.typeBomb = newTypeBomb;
     }
 
@@ -140,7 +125,6 @@ public abstract class Player extends Character {
     /**
      * Allow the Player to activate a bomb.
      * @param bombToActivate Permit to identify which bomb to activate
-<<<<<<< HEAD
      */
     public void activateBomb(Bomb bombToActivate) {
         boolean isActivated = false;
@@ -149,23 +133,6 @@ public abstract class Player extends Character {
                 bombToActivate.activateBomb(this.map);
             }
         }
-=======
-     * @return true if the bomb was successfully activated, false otherwise
-     */
-    public boolean activateBomb(Bomb bombToActivate) {
-        boolean isActivated = false;
-        for (Bomb bomb : droppedBombs) {
-            if (bomb.equals(bombToActivate)) {
-                isActivated = true;
-            }
-        }
-        if (isActivated) {
-            bombToActivate.setStatusBomb(isActivated);
-            return true;
-        } else {
-            return false;
-        }
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
     }
 
 }
