@@ -124,7 +124,7 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#parseTextureMap(java.nio.file.Path)" class="member-name-link">parseTextureMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;jsonPath)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Parses the JSON file to create a mapping of texture IDs to their file paths.</div>
+<div class="block">Parses the JSON file to create a mapping of texture IDs to their names.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html" title="class or interface in java.io" class="external-link">File</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#searchMapFilesRootDirectory(java.lang.String)" class="member-name-link">searchMapFilesRootDirectory</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;filename)</code></div>
@@ -201,12 +201,12 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="parseTextureMap(java.nio.file.Path)">
 <h3>parseTextureMap</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">parseTextureMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;jsonPath)</span></div>
-<div class="block">Parses the JSON file to create a mapping of texture IDs to their file paths.</div>
+<div class="block">Parses the JSON file to create a mapping of texture IDs to their names.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>jsonPath</code> - Path to the JSON file containing texture mappings.</dd>
 <dt>Returns:</dt>
-<dd>A map where keys are texture IDs and values are their corresponding file paths.</dd>
+<dd>A map where keys are texture IDs and values are their corresponding names.</dd>
 </dl>
 </section>
 </li>

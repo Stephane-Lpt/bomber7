@@ -114,6 +114,26 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">ID_MASK - Mask to extract the texture ID from the combined flags.</div>
 </div>
+<div class="col-first even-row-color"><code>static final float</code></div>
+<div class="col-second even-row-color"><code><a href="#NO_ROTATION" class="member-name-link">NO_ROTATION</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">No rotation constant.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final float</code></div>
+<div class="col-second odd-row-color"><code><a href="#ROTATION_180" class="member-name-link">ROTATION_180</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Rotation of 180 degrees.</div>
+</div>
+<div class="col-first even-row-color"><code>static final float</code></div>
+<div class="col-second even-row-color"><code><a href="#ROTATION_90" class="member-name-link">ROTATION_90</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Rotation of 90 degrees.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final float</code></div>
+<div class="col-second odd-row-color"><code><a href="#ROTATION_MINUS_90" class="member-name-link">ROTATION_MINUS_90</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Rotation of -90 degrees.</div>
+</div>
 </div>
 </section>
 </li>
@@ -125,7 +145,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.nio.file.Path,int,boolean,boolean,boolean)" class="member-name-link">ElementTexture</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;textureFilePath,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,boolean,boolean,boolean)" class="member-name-link">ElementTexture</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;textureName,
  int&nbsp;textureId,
  boolean&nbsp;verticalFlip,
  boolean&nbsp;horizontalFlip,
@@ -147,29 +167,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTextureFilePath()" class="member-name-link">getTextureFilePath</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>float</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#computeRotation()" class="member-name-link">computeRotation</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the file path to the texture image for this element.</div>
+<div class="block">Calculate the rotation base on this elements flip flags.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTextureId()" class="member-name-link">getTextureId</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the texture id for this element.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDiagonalFlip()" class="member-name-link">isDiagonalFlip</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTextureName()" class="member-name-link">getTextureName</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the texture should be flipped diagonally.</div>
+<div class="block">Returns the file path to the texture image for this element.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isHorizontalFlip()" class="member-name-link">isHorizontalFlip</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isDiagonalFlip()" class="member-name-link">isDiagonalFlip</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Checks if the texture should be flipped horizontally.</div>
+<div class="block">Checks if the texture should be flipped diagonally.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isVerticalFlip()" class="member-name-link">isVerticalFlip</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isHorizontalFlip()" class="member-name-link">isHorizontalFlip</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the texture should be flipped horizontally.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isVerticalFlip()" class="member-name-link">isVerticalFlip</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Checks if the texture should be flipped vertically.</div>
 </div>
 </div>
@@ -250,6 +275,66 @@ loadScripts(document, 'script');</script>
 </dl>
 </section>
 </li>
+<li>
+<section class="detail" id="NO_ROTATION">
+<h3>NO_ROTATION</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">NO_ROTATION</span></div>
+<div class="block">No rotation constant.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#com.bomber7.core.model.texture.ElementTexture.NO_ROTATION">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ROTATION_90">
+<h3>ROTATION_90</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">ROTATION_90</span></div>
+<div class="block">Rotation of 90 degrees.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#com.bomber7.core.model.texture.ElementTexture.ROTATION_90">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ROTATION_MINUS_90">
+<h3>ROTATION_MINUS_90</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">ROTATION_MINUS_90</span></div>
+<div class="block">Rotation of -90 degrees.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#com.bomber7.core.model.texture.ElementTexture.ROTATION_MINUS_90">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ROTATION_180">
+<h3>ROTATION_180</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">ROTATION_180</span></div>
+<div class="block">Rotation of 180 degrees.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#com.bomber7.core.model.texture.ElementTexture.ROTATION_180">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -259,9 +344,9 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.nio.file.Path,int,boolean,boolean,boolean)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,boolean,boolean,boolean)">
 <h3>ElementTexture</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ElementTexture</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a>&nbsp;textureFilePath,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">ElementTexture</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;textureName,
  int&nbsp;textureId,
  boolean&nbsp;verticalFlip,
  boolean&nbsp;horizontalFlip,
@@ -269,7 +354,7 @@ loadScripts(document, 'script');</script>
 <div class="block">Constructs a new Square with the specified sprite file path and texture ID.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>textureFilePath</code> - the file path to the texture image for this square</dd>
+<dd><code>textureName</code> - the file path to the texture image for this square</dd>
 <dd><code>textureId</code> - the texture ID associated with this square</dd>
 <dd><code>verticalFlip</code> - whether to flip the texture vertically</dd>
 <dd><code>horizontalFlip</code> - whether to flip the texture horizontally</dd>
@@ -288,9 +373,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getTextureFilePath()">
-<h3>getTextureFilePath</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a></span>&nbsp;<span class="element-name">getTextureFilePath</span>()</div>
+<section class="detail" id="getTextureName()">
+<h3>getTextureName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getTextureName</span>()</div>
 <div class="block">Returns the file path to the texture image for this element.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -339,6 +424,17 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>true if the texture should be flipped diagonally, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="computeRotation()">
+<h3>computeRotation</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">computeRotation</span>()</div>
+<div class="block">Calculate the rotation base on this elements flip flags.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the angle of rotation in degrees</dd>
 </dl>
 </section>
 </li>

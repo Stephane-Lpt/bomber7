@@ -5,4 +5,5 @@ com.bomber7.core.model.map
 com.bomber7.core.model.square
 com.bomber7.core.model.texture
 com.bomber7.core.screens
+com.bomber7.core.views
 com.bomber7.utils
