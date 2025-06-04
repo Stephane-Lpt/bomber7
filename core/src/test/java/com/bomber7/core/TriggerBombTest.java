@@ -32,7 +32,7 @@ public class TriggerBombTest extends BombTest {
 
         // Instantiate a TriggerBomb at postion (2,2)
         triggerBomb = new TriggerBomb(2, 2, 2,
-            Paths.get("textures/bomb.png"),
+            "bomb",
             1);
     }
 

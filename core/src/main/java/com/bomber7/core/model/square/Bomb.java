@@ -43,10 +43,10 @@ public class Bomb extends MapElement {
     public Bomb(int p,
                 int x,
                 int y,
-                Path textureFilePath,
+                String textureName,
                 int textureId) {
 
-        super(textureFilePath, textureId);
+        super(textureName, textureId);
         this.power = p;
         this.x = x;
         this.y = y;

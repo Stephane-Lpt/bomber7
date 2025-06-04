@@ -17,8 +17,8 @@ public class TriggerBomb extends Bomb {
      * @param textureId the ID of the texture
      */
 
-    public TriggerBomb(int power, int x, int y, Path textureFilePath, int textureId) {
-        super(power, x, y, textureFilePath, textureId);
+    public TriggerBomb(int power, int x, int y, String textureName, int textureId) {
+        super(power, x, y, textureName, textureId);
     }
 
     /**

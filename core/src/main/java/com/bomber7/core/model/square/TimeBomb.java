@@ -24,8 +24,8 @@ public class TimeBomb extends Bomb {
      * @param textureId the id of the texture
      * @param t initial value of the countdown timer
      */
-    public TimeBomb(int p, int x, int y, Path textureFilePath, int textureId, float t) {
-        super(p, x, y, textureFilePath, textureId);
+    public TimeBomb(int p, int x, int y, String textureName, int textureId, float t) {
+        super(p, x, y, textureName, textureId);
         this.timer = t;
     }
 
