@@ -1,7 +1,6 @@
 package com.bomber7.core.map;
 
 import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
