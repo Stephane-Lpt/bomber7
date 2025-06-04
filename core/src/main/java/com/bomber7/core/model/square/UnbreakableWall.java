@@ -1,7 +1,5 @@
 package com.bomber7.core.model.square;
 
-import java.nio.file.Path;
-
 /**
  * Represents an unbreakable wall in the game.
  */
@@ -39,12 +37,29 @@ public class UnbreakableWall extends Wall {
 
     @Override
     public String toString() {
-        return "UnbreakableWall{" +
-                "textureName='" + getTextureName() + '\'' +
-                ", textureId=" + getTextureId() +
-                ", verticalFlip=" + isVerticalFlip() +
-                ", horizontalFlip=" + isHorizontalFlip() +
-                ", diagonalFlip=" + isDiagonalFlip() +
+        return "UnbreakableWall{"
+            +
+                "textureName='"
+            +
+            getTextureName()
+            + '\''
+            +
+                ", textureId="
+            +
+            getTextureId()
+            +
+                ", verticalFlip="
+            +
+            isVerticalFlip()
+            +
+                ", horizontalFlip="
+            +
+            isHorizontalFlip()
+            +
+                ", diagonalFlip="
+            +
+            isDiagonalFlip()
+            +
                 '}';
     }
 }

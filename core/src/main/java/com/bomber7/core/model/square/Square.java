@@ -2,8 +2,6 @@ package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.texture.ElementTexture;
 
-import java.nio.file.Path;
-
 /**
  * Represents a square in the game, which can be a wall, a bomb, or any other future map element.
  */

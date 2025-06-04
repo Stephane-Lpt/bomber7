@@ -8,8 +8,6 @@ import com.bomber7.core.model.square.UnbreakableWall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.nio.file.Paths;
-
 import java.util.List;
 import java.util.ArrayList;
 

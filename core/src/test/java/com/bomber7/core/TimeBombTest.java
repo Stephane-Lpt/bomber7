@@ -2,7 +2,6 @@ package com.bomber7.core;
 
 import com.bomber7.core.model.square.TimeBomb;
 
-import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

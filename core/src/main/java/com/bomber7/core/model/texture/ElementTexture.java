@@ -1,9 +1,4 @@
 package com.bomber7.core.model.texture;
-
-import com.bomber7.core.model.square.Square;
-
-import java.nio.file.Path;
-
 /**
  * Abstract class representing a texture for an element in the game.
  */
@@ -26,6 +21,20 @@ public abstract class ElementTexture {
      * This mask is used to isolate the right texture ID from the flip flags.
      */
     public static final int ID_MASK = ~(FLIP_H | FLIP_V | FLIP_D);
+
+    /**
+     * No rotation constant.
+     */
+    public static final float NO_ROTATION = 0f;
+
+    /** Rotation of 90 degrees. */
+    public static final float ROTATION_90 = 90f;
+
+    /** Rotation of -90 degrees. */
+    public static final float ROTATION_MINUS_90 = -90f;
+
+    /** Rotation of 180 degrees. */
+    public static final float ROTATION_180 = 180f;
 
     /**
      * The texture image for this element.
@@ -130,10 +139,20 @@ public abstract class ElementTexture {
      * @return the angle of rotation in degrees
      */
     public float computeRotation() {
-        if (!isHorizontalFlip() && !isVerticalFlip()) return 0f;
-        if (!isHorizontalFlip() && isVerticalFlip())  return 90f;
-        if (isHorizontalFlip() && !isVerticalFlip())  return -90f;
-        if (isHorizontalFlip() && isVerticalFlip())   return 180f;
+        if (!isHorizontalFlip() && !isVerticalFlip()) {
+            return NO_ROTATION;
+        }
+
+        if (!isHorizontalFlip() && isVerticalFlip()) {
+            return ROTATION_90;
+        }
+
+        if (isHorizontalFlip() && !isVerticalFlip()) {
+            return ROTATION_MINUS_90;
+        }
+        if (isHorizontalFlip() && isVerticalFlip()) {
+            return ROTATION_180;
+        }
         return 0f;
     }
 }

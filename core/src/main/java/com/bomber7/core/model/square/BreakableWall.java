@@ -1,7 +1,5 @@
 package com.bomber7.core.model.square;
 
-import java.nio.file.Path;
-
 /**
  * Represents a breakable wall in the game.
  */
@@ -37,13 +35,31 @@ public class BreakableWall extends Wall {
         super(textureName, textureId);
     }
 
+    @Override
     public String toString() {
-        return "BreakableWall{" +
-                "textureName='" + getTextureName() + '\'' +
-                ", textureId=" + getTextureId() +
-                ", verticalFlip=" + isVerticalFlip() +
-                ", horizontalFlip=" + isHorizontalFlip() +
-                ", diagonalFlip=" + isDiagonalFlip() +
+        return "BreakableWall{"
+            +
+                "textureName='"
+            +
+            getTextureName()
+            + '\''
+            +
+                ", textureId="
+            +
+            getTextureId()
+            +
+                ", verticalFlip="
+            +
+            isVerticalFlip()
+            +
+                ", horizontalFlip="
+            +
+            isHorizontalFlip()
+            +
+                ", diagonalFlip="
+            +
+            isDiagonalFlip()
+            +
                 '}';
     }
 }

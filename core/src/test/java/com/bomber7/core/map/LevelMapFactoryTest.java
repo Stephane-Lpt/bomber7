@@ -359,13 +359,11 @@ public class LevelMapFactoryTest {
 
             System.out.println(levelMap);
 
-            System.out.println("Square at (12,13): " + levelMap.getSquare(12,13));
+            System.out.println("Square at (12,13): " + levelMap.getSquare(12, 13));
 
-            assertTrue(levelMap.getSquare(4,11).getMapElement().isHorizontalFlip());
+            assertTrue(levelMap.getSquare(4, 11).getMapElement().isHorizontalFlip());
         }
     }
-
-    // TODO: Add tests for checking flips
 
 //    @Test
 //    public void test_debug() {

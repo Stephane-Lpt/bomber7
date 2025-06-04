@@ -8,13 +8,10 @@ import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.utils.ProjectPaths;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertSame;

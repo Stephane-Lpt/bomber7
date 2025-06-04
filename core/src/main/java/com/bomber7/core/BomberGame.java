@@ -2,7 +2,6 @@ package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
 import com.bomber7.core.screens.GameScreen;
-import com.bomber7.core.screens.MainMenuScreen;
 import com.bomber7.utils.ResourceManager;
 
 /**

@@ -12,21 +12,30 @@ import com.bomber7.utils.ResourceManager;
 
 public class ViewMap extends Actor {
 
-    /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk) */
+    /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk). */
     private final LevelMap mapGrid;
 
-    /** The ressourceManager needed for sprites */
+    /** The ressourceManager needed for sprites. */
     private final ResourceManager resourceManager;
 
-    /** Used to draw sprite to screen */
+    /** Used to draw sprite to screen. */
     private final PolygonSpriteBatch spriteBatch;
 
+    /** Scale factor for the map texture. */
     private final float scale = 0.7f;
+
+    /** The size of the scaled texture origin. */
     private float scaledTextureOrigin;
+
+    /** The width of the total map. */
     private float totalWidth;
+    /** The height of the total map. */
     private float totalHeight;
+    /** The size of the scaled texture. */
     private float scaledTextureSize;
+    /** The X coordinate of the origin point for drawing the map. */
     private float originX;
+    /** The Y coordinate of the origin point for drawing the map. */
     private float originY;
 
     /**
@@ -45,6 +54,8 @@ public class ViewMap extends Actor {
     /**
      * Method called by libGDX to draw the map.
      * It draws each map square by iterating through each square in the grid.
+     * @param batch the Batch used for drawing
+     * @param parentAlpha the alpha value of the parent actor
      */
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -58,8 +69,10 @@ public class ViewMap extends Actor {
                 drawTextureRegion(squareTextureRegion, row, col, square.computeRotation());
 
                 TextureRegion mapElementTextureRegion =
-                    square.hasMapElement() ?
-                        resourceManager.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName()) :
+                    square.hasMapElement()
+                        ?
+                        resourceManager.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName())
+                        :
                         null;
 
                 if (mapElementTextureRegion != null) {

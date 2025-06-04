@@ -2,8 +2,6 @@ package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.texture.ElementTexture;
 
-import java.nio.file.Path;
-
 /**
  * Abstract class representing a map element in the game.
  */

@@ -124,7 +124,7 @@ public class LevelMapFactory {
      * @return The path of the subdirectory containing the file, or null if not found.
      */
     public static File searchMapFilesRootDirectory(String filename) {
-        File mapsRoot = new File(ProjectPaths.getAssetsPath()+"/maps");
+        File mapsRoot = new File(ProjectPaths.getAssetsPath() + "/maps");
 
         File[] subdirs = mapsRoot.listFiles(File::isDirectory);
         if (subdirs == null) {
@@ -200,7 +200,6 @@ public class LevelMapFactory {
             }
 
             for (int i = 0; i < backgroundRows.size(); i++) {
-
                 int backgroundCols = backgroundRows.get(i).length;
                 int breakableCols = breakableRows.get(i).length;
                 int unbreakableCols = unbreakableRows.get(i).length;
@@ -211,7 +210,6 @@ public class LevelMapFactory {
                         "Row " + i + " has mismatched column counts between CSV files."
                     );
                 }
-
                 // Check if all rows are rectangular (comparing with the first row)
                 if (backgroundCols != backgroundRows.get(0).length) {
                     throw new IllegalArgumentException("Background CSV is not rectangular at row " + i);
@@ -226,7 +224,6 @@ public class LevelMapFactory {
                 String[] backgroundRow = backgroundRows.get(i);
                 String[] breakableRow = breakableRows.get(i);
                 String[] unbreakableRow = unbreakableRows.get(i);
-
                 List<Square> squareRow = new ArrayList<>();
 
                 for (int j = 0; j < backgroundRow.length; j++) {
@@ -236,7 +233,6 @@ public class LevelMapFactory {
                     boolean backgroundVerticalFlip = false;
                     boolean backgroundHorizontalFlip = false;
                     boolean backgroundDiagonalFlip = false;
-
 
                     if (backgroundTextureId != -1) {
                         // The 3 high bits are used for flipping:
@@ -322,10 +318,8 @@ public class LevelMapFactory {
                         );
                     }
                 }
-
                 result.add(squareRow);
             }
-
             return result;
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Invalid CSV filepath.", e);

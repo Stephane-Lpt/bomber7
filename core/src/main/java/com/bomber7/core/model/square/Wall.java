@@ -1,7 +1,5 @@
 package com.bomber7.core.model.square;
 
-import java.nio.file.Path;
-
 /**
  * Abstract class representing a wall in the game.
  * Useful for defining common properties and behaviors of walls in the future.

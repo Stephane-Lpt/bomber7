@@ -1,21 +1,24 @@
 package com.bomber7.core.screens;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.components.BomberTextButton;
+import com.bomber7.core.views.ViewMap;
 import com.bomber7.utils.Dimensions;
-import com.bomber7.core.views.*;
+
 import com.bomber7.utils.ProjectPaths;
 
+/**
+ * Represents the game screen in the Bomber7 game.
+ * This screen displays the game map
+ */
 public class GameScreen extends BomberScreen {
+
+
 
 
     /**
@@ -27,21 +30,21 @@ public class GameScreen extends BomberScreen {
     }
 
     /**
-     * Game screen initialization
+     * Game screen initialization.
      */
     @Override
     public void initView() {
 
-        /** =======[GENERAL PURPOSES]=============================================== */
+        /* =======[GENERAL PURPOSES]=============================================== */
 
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        /** =======[BUTTON]=============================================== */
+        /* =======[BUTTON]=============================================== */
 
-        /** Buttons to go to key bindings menu. */
+        /* Buttons to go to key bindings menu. */
         BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
-        /** Buttons to go to key bindings menu. */
+        /* Buttons to go to key bindings menu. */
         BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
 
         mainTable.add(settingsButton)
@@ -54,35 +57,35 @@ public class GameScreen extends BomberScreen {
             .height(Dimensions.BUTTON_HEIGHT);
         mainTable.row();
 
-        /** =======[MAP VIEW]=============================================== */
+        /* =======[MAP VIEW]=============================================== */
 
-        /** Path to the tileset JSON file. */
+        /* Path to the tileset JSON file. */
         Path tilesetJsonPath = ProjectPaths.getTileset();
-        /** Map name for the current game. */
-        String mapName = "enseeiht";
-        /** Create a LevelMapFactory to load the map from the tileset JSON file. */
+        /* Map name for the current game. */
+        String mapName = "foy";
+        /* Create a LevelMapFactory to load the map from the tileset JSON file. */
         LevelMapFactory levelMapFactory = new LevelMapFactory(tilesetJsonPath);
         LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
-        /** Map view of the game. */
+        /* Map view of the game. */
         ViewMap viewMap = new ViewMap(levelMap, resources);
-        viewMap.setWidth(500);
 
-        /** =======[FULL FRAME]=============================================== */
+        /* =======[FULL FRAME]=============================================== */
 
-        mainTable.add(viewMap)
-            .width(1920)
-            .height(1080);
+        mainTable.add(viewMap);
         stage.addActor(mainTable);
     }
 
     /**
-     * Game controller initialization
+     * Game controller initialization.
      */
     @Override
-    public void initController() {}
+    public void initController() {
+
+    }
 
     /**
-     * Update the game screen for each frame
+     * Update the game screen for each frame.
+     * @param delta time since the last frame
      */
     @Override
     public void render(float delta) {
