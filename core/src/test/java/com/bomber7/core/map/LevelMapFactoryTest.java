@@ -7,7 +7,6 @@ import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.ProjectPaths;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
-import com.bomber7.core.model.texture.ElementTexture;
 
 import java.io.BufferedWriter;
 import java.io.File;
