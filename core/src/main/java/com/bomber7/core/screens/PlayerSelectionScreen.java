@@ -84,7 +84,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         goToMainMenuButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false,false);
+                ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, true,false);
             }
         }, resources));
 

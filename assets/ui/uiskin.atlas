@@ -1,5 +1,5 @@
 uiskin.png
-size: 1000, 1512
+size: 1000, 1547
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -13,7 +13,7 @@ crous.9
   index: -1
 dark.gold.9
   rotate: false
-  xy: 38, 0
+  xy: 73, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -21,7 +21,7 @@ dark.gold.9
   index: -1
 dark.green.9
   rotate: false
-  xy: 138, 0
+  xy: 173, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -29,7 +29,7 @@ dark.green.9
   index: -1
 dark.red.9
   rotate: false
-  xy: 238, 0
+  xy: 273, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -61,7 +61,7 @@ halle_aux_grains.9
   index: -1
 inactive.9
   rotate: false
-  xy: 338, 0
+  xy: 373, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -69,7 +69,7 @@ inactive.9
   index: -1
 light.gold.9
   rotate: false
-  xy: 438, 0
+  xy: 473, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -77,7 +77,7 @@ light.gold.9
   index: -1
 light.green.9
   rotate: false
-  xy: 538, 0
+  xy: 573, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -85,10 +85,31 @@ light.green.9
   index: -1
 light.red.9
   rotate: false
-  xy: 638, 0
+  xy: 673, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
+  offset: 0, 0
+  index: -1
+slider.9
+  rotate: false
+  xy: 0, 1512
+  size: 500, 35
+  orig: 500, 35
+  offset: 0, 0
+  index: -1
+slider.fill.9
+  rotate: false
+  xy: 500, 1512
+  size: 500, 35
+  orig: 500, 35
+  offset: 0, 0
+  index: -1
+slider.knob.9
+  rotate: false
+  xy: 38, 0
+  size: 35, 35
+  orig: 35, 35
   offset: 0, 0
   index: -1
 sprite.bde
@@ -134,7 +155,7 @@ white.9
   index: -1
 white.gold.9
   rotate: false
-  xy: 738, 0
+  xy: 773, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -142,7 +163,7 @@ white.gold.9
   index: -1
 white.green.9
   rotate: false
-  xy: 838, 0
+  xy: 873, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100

@@ -91,7 +91,7 @@ public final class ScreenManager {
         BomberScreen oldScreen = (BomberScreen) game.getScreen();
         BomberScreen newScreen;
 
-        if (screens.get(screenType) == null) {
+        if (screens.get(screenType) == null || !saveScreen) {
             System.out.println("initializing screen " + screenType);
             newScreen = screenType.getScreen(game, params);
             screens.put(screenType, newScreen);
