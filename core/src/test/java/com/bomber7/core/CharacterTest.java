@@ -4,22 +4,17 @@ import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-<<<<<<< HEAD
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
 import java.util.List;
 import java.util.ArrayList;
 
 import com.bomber7.core.model.entities.Character;
-=======
-
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestCharacter {
+public class CharacterTest {
 
-<<<<<<< HEAD
     /** Grid. */
     private List<List<Square>> grid = new ArrayList<>();
 
@@ -32,14 +27,6 @@ public class TestCharacter {
     private static class ConcreteCharacter extends Character {
         ConcreteCharacter(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
             super(name, map, x, y, life, speed, spriteFP);
-=======
-    /**
-     * Test class for Character.
-     */
-    private static class ConcreteCharacter extends com.bomber7.core.model.entities.Character {
-        ConcreteCharacter(String name, int x, int y, int life, int speed, String spriteFP) {
-            super(name, x, y, life, speed, spriteFP);
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
         }
     }
 
@@ -50,17 +37,13 @@ public class TestCharacter {
      */
     @Test
     public void testCharacterCreation() {
-<<<<<<< HEAD
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 1,
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         assertEquals("Test", character.getName());
         assertEquals(0, character.getPositionX());
         assertEquals(0, character.getPositionY());
         assertEquals(100, character.getLife());
-        assertEquals(1, character.getSpeed());
+        assertEquals(10, character.getSpeed());
         assertEquals("path/to/sprite", character.getSpriteFP());
         assertTrue(character.isAlive());
     }
@@ -71,7 +54,6 @@ public class TestCharacter {
     @Test
     public void testInvalidName() {
         assertThrows(IllegalArgumentException.class, () -> {
-<<<<<<< HEAD
             new ConcreteCharacter(null, this.map, 0, 0, 100, 1, "path/to/sprite");
         });
         assertThrows(IllegalPositionOperationException.class, () -> {
@@ -84,22 +66,7 @@ public class TestCharacter {
             new ConcreteCharacter("Test", this.map, 0, 0, 100, 0, "path/to/sprite");
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            new ConcreteCharacter("Test", this.map, 0, 0, 100, 1, null);
-=======
-            new ConcreteCharacter(null, 0, 0, 100, 1, "path/to/sprite");
-        });
-        assertThrows(IllegalPositionOperationException.class, () -> {
-            new ConcreteCharacter("Test", -1, 0, 100, 1, "path/to/sprite");
-        });
-        assertThrows(IllegalLifeOperationException.class, () -> {
-            new ConcreteCharacter("Test", 0, 0, 0, 1, "path/to/sprite");
-        });
-        assertThrows(IllegalSpeedOperationException.class, () -> {
-            new ConcreteCharacter("Test", 0, 0, 100, 0, "path/to/sprite");
-        });
-        assertThrows(IllegalArgumentException.class, () -> {
-            new ConcreteCharacter("Test", 0, 0, 100, 1, null);
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+            new ConcreteCharacter("Test", this.map, 0, 0, 100, 10, null);
         });
     }
 
@@ -110,11 +77,7 @@ public class TestCharacter {
      */
     @Test
     public void testSetSpeed() {
-<<<<<<< HEAD
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 1,
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         character.setSpeed(2);
         assertEquals(2, character.getSpeed());
@@ -125,11 +88,7 @@ public class TestCharacter {
      */
     @Test
     public void testSetInvalidSpeed() {
-<<<<<<< HEAD
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 1,
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         assertThrows(IllegalSpeedOperationException.class, () -> {
             character.setSpeed(-1);
@@ -141,11 +100,7 @@ public class TestCharacter {
      */
     @Test
     public void testAddOneLife() {
-<<<<<<< HEAD
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 1,
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         character.addOneLife();
         assertEquals(101, character.getLife());
@@ -156,11 +111,7 @@ public class TestCharacter {
      */
     @Test
     public void testRemoveOneLife() {
-<<<<<<< HEAD
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 1,
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         character.removeOneLife();
         assertEquals(99, character.getLife());
@@ -171,11 +122,7 @@ public class TestCharacter {
      */
     @Test
     public void testRemoveLastLifeDead() {
-<<<<<<< HEAD
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 1, 1,
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 1, 1,
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
                 "path/to/sprite");
         character.removeOneLife();
         assertEquals(0, character.getLife());
@@ -187,17 +134,10 @@ public class TestCharacter {
      */
     @Test
     public void testMoveRight() {
-<<<<<<< HEAD
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 1,
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         character.moveRight();
-        assertEquals(Character.MOOVE_VALUE, character.getPositionX());
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
-                "path/to/sprite");
-        character.moveRight();
-        assertEquals(1, character.getPositionX());
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        assertEquals(10, character.getPositionX());
     }
 
     /**
@@ -205,13 +145,8 @@ public class TestCharacter {
      */
     @Test
     public void testMoveLeft() {
-<<<<<<< HEAD
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map,
-                Character.MOOVE_VALUE, 0, 100, 1, "path/to/sprite");
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 1, 0, 100, 1,
-                "path/to/sprite");
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+                10, 0, 100, 10, "path/to/sprite");
         character.moveLeft();
         assertEquals(0, character.getPositionX());
     }
@@ -221,17 +156,10 @@ public class TestCharacter {
      */
     @Test
     public void testMoveDown() {
-<<<<<<< HEAD
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0,
-                Character.MOOVE_VALUE, 100, 1, "path/to/sprite");
+                10, 100, 10, "path/to/sprite");
         character.moveDown();
         assertEquals(0, character.getPositionY());
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 0, 100, 1,
-                "path/to/sprite");
-        character.moveDown();
-        assertEquals(1, character.getPositionY());
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
     }
 
     /**
@@ -239,17 +167,10 @@ public class TestCharacter {
      */
     @Test
     public void testMoveUp() {
-<<<<<<< HEAD
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0,
-                0, 100, 1, "path/to/sprite");
+                0, 100, 10, "path/to/sprite");
         character.moveUp();
-        assertEquals(Character.MOOVE_VALUE, character.getPositionY());
-=======
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", 0, 1, 100, 1,
-                "path/to/sprite");
-        character.moveUp();
-        assertEquals(0, character.getPositionY());
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
+        assertEquals(10, character.getPositionY());
     }
 
 }

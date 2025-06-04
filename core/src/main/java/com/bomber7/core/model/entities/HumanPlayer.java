@@ -1,10 +1,7 @@
 package com.bomber7.core.model.entities;
 
 import com.bomber7.core.controller.Config;
-<<<<<<< HEAD
 import com.bomber7.core.model.map.LevelMap;
-=======
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
 
 public class HumanPlayer extends Player {
 
@@ -14,10 +11,7 @@ public class HumanPlayer extends Player {
     /**
      * HumanPlayer Constructor.
      * @param config   The configuration for the player controls
-<<<<<<< HEAD
      * @param map      The map.
-=======
->>>>>>> 7a136fd3f2d2c4adf36b5f8e55b97808b44669f9
      * @param name     The name of the player
      * @param x        The x-coordinate of the player
      * @param y        The y-coordinate of the player
