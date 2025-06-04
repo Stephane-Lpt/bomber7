@@ -1,7 +1,6 @@
 package com.bomber7.core.map;
 
 import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
@@ -22,11 +21,6 @@ public class LevelMapTest {
      * Path to the JSON file containing the tileset export file.
      */
     private final Path jsonPath = ProjectPaths.getTileset();
-
-    /**
-     * LevelMapFactory instance to create LevelMap objects.
-     */
-    private final LevelMapFactory levelMapFactory = new LevelMapFactory(jsonPath);
 
     /**
      * Ensures LevelMapFactory loads the map accordingly.

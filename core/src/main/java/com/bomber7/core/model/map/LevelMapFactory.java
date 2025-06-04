@@ -25,24 +25,16 @@ import java.util.Map;
  * Factory class for creating LevelMap instances.
  * Responsible for parsing texture mappings and CSV files to create a map of squares.
  */
-public class LevelMapFactory {
+public final class LevelMapFactory {
     /**
      * A map that associates texture IDs with their corresponding file paths.
      * The keys are texture IDs, and the values are the paths to the texture files.
      */
-    private final Map<Integer, String> textureMap;
+    private static final Map<Integer, String> TEXTURE_MAP =
+        LevelMapFactory.parseTextureMap(ProjectPaths.getTileset());
 
-    /**
-     * Constructs a LevelMapFactory with the specified path to the tileset JSON file.
-     * This JSON file contains the mapping of texture IDs to their file paths.
-     *
-     * @param tilesetJsonPath Path to the JSON file containing texture mappings.
-     */
-    public LevelMapFactory(Path tilesetJsonPath) {
-        if (tilesetJsonPath == null) {
-            throw new IllegalArgumentException("Tileset JSON path cannot be null." + tilesetJsonPath);
-        }
-        this.textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
+    private LevelMapFactory() {
+        // Private constructor to prevent instantiation
     }
 
     /**
@@ -53,7 +45,7 @@ public class LevelMapFactory {
      * @return A LevelMap instance representing the specified map.
      * @throws IllegalArgumentException if the map directory is not found, is empty, or same type multiple CSV files.
      */
-    public LevelMap createLevelMap(String mapName) {
+    public static LevelMap createLevelMap(String mapName) {
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
         if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
             throw new IllegalArgumentException(
@@ -112,7 +104,7 @@ public class LevelMapFactory {
             }
         }
         List<List<Square>> checkerboard = LevelMapFactory.parseCsv(
-            backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, this.textureMap
+            backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, LevelMapFactory.TEXTURE_MAP
         );
         return new LevelMap(checkerboard);
     }
