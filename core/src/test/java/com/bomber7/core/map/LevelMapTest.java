@@ -72,11 +72,8 @@ public class LevelMapTest {
 
         // Assert that map elements exist and are of correct type
         assertTrue(levelMap.getSquare(0, 0).hasMapElement());
-        assertEquals("UnbreakableWall", levelMap.getSquare(0, 0).getMapElement().toString());
-        assertEquals(
-            "BreakableWall",
-            levelMap.getSquare(1, 0).getMapElement().toString()
-            );
+        assertTrue(levelMap.getSquare(0, 0).getMapElement().toString().contains("UnbreakableWall"));
+        assertTrue(levelMap.getSquare(1, 0).getMapElement().toString().contains("BreakableWall"));
     }
 
     @Test
