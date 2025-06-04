@@ -12,11 +12,10 @@ public class TriggerBomb extends Bomb {
      * @param x X-coordinate
      * @param y Y-coordinate
      * @param textureName The texture name associated with the bomb.
-     * @param textureId the ID of the texture
      */
 
-    public TriggerBomb(int power, int x, int y, String textureName, int textureId) {
-        super(power, x, y, textureName, textureId);
+    public TriggerBomb(int power, int x, int y, String textureName) {
+        super(power, x, y, textureName);
     }
 
     /**

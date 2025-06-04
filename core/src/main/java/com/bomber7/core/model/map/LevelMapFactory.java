@@ -270,9 +270,9 @@ public class LevelMapFactory {
                         String breakableTextureName = textureMap.get(breakableTextureId);
 
                         squareRow.add(
-                            new Square(backgroundTextureName, backgroundTextureId,
+                            new Square(backgroundTextureName,
                                 new BreakableWall(
-                                    breakableTextureName, breakableTextureId, breakableVerticalFlip,
+                                    breakableTextureName, breakableVerticalFlip,
                                     breakableHorizontalFlip, breakableDiagonalFlip
                                 ),
                                 backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip
@@ -294,10 +294,8 @@ public class LevelMapFactory {
 
                         squareRow.add(
                             new Square(backgroundTextureName,
-                                backgroundTextureId,
                                 new UnbreakableWall(
                                     unbreakableTextureName,
-                                    unbreakableTextureId,
                                     unbreakableVerticalFlip,
                                     unbreakableHorizontalFlip,
                                     unbreakableDiagonalFlip),
@@ -310,7 +308,6 @@ public class LevelMapFactory {
                         squareRow.add(
                             new Square(
                                 backgroundTextureName,
-                                backgroundTextureId,
                                 backgroundVerticalFlip,
                                 backgroundHorizontalFlip,
                                 backgroundDiagonalFlip

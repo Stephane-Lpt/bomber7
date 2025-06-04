@@ -30,9 +30,7 @@ public class TriggerBombTest extends BombTest {
         super.setUp(); // Call BombTest's setup to initialize the map
 
         // Instantiate a TriggerBomb at postion (2,2)
-        triggerBomb = new TriggerBomb(2, 2, 2,
-            "bomb",
-            1);
+        triggerBomb = new TriggerBomb(2, 2, 2, "bomb");
     }
 
     /**

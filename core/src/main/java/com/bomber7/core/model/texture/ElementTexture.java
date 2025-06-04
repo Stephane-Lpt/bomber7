@@ -40,10 +40,6 @@ public abstract class ElementTexture {
      * The texture image for this element.
      */
     private final String textureName;
-    /**
-     * The texture id for this element.
-     */
-    private final int textureId;
 
     /**
      * Whether to flip the texture vertically.
@@ -61,15 +57,13 @@ public abstract class ElementTexture {
     /**
      * Constructs a new Square with the specified sprite file path and texture ID.
      * @param textureName the file path to the texture image for this square
-     * @param textureId the texture ID associated with this square
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
      * @param diagonalFlip whether to flip the texture diagonally
-     * @throws IllegalArgumentException if the sprite file path is null or empty or textureId less than -1
+     * @throws IllegalArgumentException if the sprite file path is null or empty
      */
     public ElementTexture(
         String textureName,
-        int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
@@ -77,17 +71,10 @@ public abstract class ElementTexture {
         if (textureName == null || textureName.trim().isEmpty()) {
             throw new IllegalArgumentException("Texture file path cannot be null or empty. Texture name: "
                 + textureName
-                + ", texture id: "
-                + textureId
             );
         }
 
-        if (textureId < -1) {
-            throw new IllegalArgumentException("Texture id cannot be less than -1. Texture id: " + textureId);
-        }
-
         this.textureName = textureName;
-        this.textureId = textureId;
         this.verticalFlip = verticalFlip;
         this.horizontalFlip = horizontalFlip;
         this.diagonalFlip = diagonalFlip;
@@ -100,14 +87,6 @@ public abstract class ElementTexture {
      */
     public String getTextureName() {
         return this.textureName;
-    }
-
-    /**
-     * Returns the texture id for this element.
-     * @return the texture id
-     */
-    public int getTextureId() {
-        return textureId;
     }
 
     /**
