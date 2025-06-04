@@ -9,7 +9,11 @@ import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 import java.util.List;
 
 import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.square.*;
+import com.bomber7.core.model.square.Bomb;
+import com.bomber7.core.model.square.BombType;
+import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.TriggerBomb;
+import com.bomber7.core.model.square.TimeBomb;
 
 /**
  * Class Player.
@@ -94,7 +98,7 @@ public abstract class Player extends Character {
 
     /**
      * Player type of bomb playable setter.
-     * @param newTypeBomb The new type of bomb
+     * @param bombType The new type of bomb
      */
     public void setTypeBomb(BombType bombType) {
         this.typeBomb = bombType;
@@ -107,16 +111,18 @@ public abstract class Player extends Character {
      * @return true if the bomb was successfully dropped, false otherwise
      */
     public boolean dropBomb() {
-        if (nbBomb>1) {
+        if (nbBomb > 1) {
             int currX = this.getPositionX(); // get our current X position
             int currY = this.getPositionY(); // get our current Y position
-            Square currentSquare = this.map.getSquare(currX,currY);
+            Square currentSquare = this.map.getSquare(currX, currY);
             Bomb bombToDrop = null;
             switch (this.typeBomb) {
                 case TRIGGER:
                     bombToDrop = new TriggerBomb(power, currX, currY);
+                    break;
                 case TIME:
                     bombToDrop = new TimeBomb(power, currX, currY);
+                    break;
             };
             currentSquare.setMapElement(bombToDrop);
             return true;

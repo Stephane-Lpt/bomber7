@@ -3,11 +3,10 @@ package com.bomber7.core;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.core.model.square.Bomb;
-import com.bomber7.core.model.square.BombType;
-import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
@@ -34,21 +33,31 @@ class PlayerTest {
     }
 
     @Test
-    void dropBombWhenNbBombIsGreaterThan1OK() {
+    void dropTimeBombWhenNbBombIsGreaterThan1OK() {
         boolean result = player.dropBomb();
         assertTrue(result, "Expected dropBomb to return true when nbBomb > 1");
 
         Square square = this.foyLevelMap.getSquare(1, 1);
-        assertTrue(square.getMapElement() instanceof Bomb, "Expected a Bomb to be placed on the square");
+        assertTrue(square.getMapElement() instanceof TimeBomb, "Expected a TimeBomb to be placed on the square");
     }
 
     @Test
-    void dropBombWhenNbBombIsLessThanOrEqualTo1FAIL() {
+    void dropTimeBombWhenNbBombIsLessThanOrEqualTo1FAIL() {
         player.setNbBomb(1); // should fail
         boolean result = player.dropBomb();
         assertFalse(result, "Expected dropBomb to return false when nbBomb <= 1");
 
         Square square = this.foyLevelMap.getSquare(1, 1);
         assertNull(square.getMapElement(), "Expected no Bomb to be placed when dropBomb fails");
+    }
+
+    @Test
+    void dropTriggerBombWhenNbBombIsGreaterThan1OK() {
+        player.setTypeBomb(BombType.TRIGGER);
+        boolean result = player.dropBomb();
+        assertTrue(result, "Expected dropBomb to return true when nbBomb > 1 and type is TRIGGER");
+
+        Square square = this.foyLevelMap.getSquare(1, 1);
+        assertTrue(square.getMapElement() instanceof TriggerBomb, "Expected a TriggerBomb to be placed on the square");
     }
 }
