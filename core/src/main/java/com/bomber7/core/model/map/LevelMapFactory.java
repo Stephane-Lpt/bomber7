@@ -265,7 +265,9 @@ public class LevelMapFactory {
 
                         if (!textureMap.containsKey(breakableTextureId)) {
                             throw new IllegalArgumentException(
-                                "textureMap doesnt have all the required textures: back:" + breakableTextureId
+                                "textureMap doesnt have all the required textures: break:" + breakableTextureId
+                                +
+                                    " row " + i + " col " + j
                             );
                         }
 
@@ -288,7 +290,7 @@ public class LevelMapFactory {
 
                         if (!textureMap.containsKey(unbreakableTextureId)) {
                             throw new IllegalArgumentException(
-                                "textureMap doesnt have all the required textures: back:" + unbreakableTextureId
+                                "textureMap doesnt have all the required textures: unbreak:" + unbreakableTextureId
                             );
                         }
 
