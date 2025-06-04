@@ -20,7 +20,11 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test class for LevelMapFactory.
@@ -138,9 +142,9 @@ public class LevelMapFactoryTest {
             LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
             Square square = levelMap.getSquare(5, 2);
             // id = 33
-            assertEquals("spruce_planks", square.getTextureName());
+            assertEquals("spruce-planks", square.getTextureName());
             // id = 44
-            assertEquals("pressure_plate", square.getMapElement().getTextureName());
+            assertEquals("pressure-plate", square.getMapElement().getTextureName());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
@@ -256,7 +260,7 @@ public class LevelMapFactoryTest {
 
         System.out.println(levelMap);
         assertEquals(33, levelMap.get(0).get(0).getTextureId());
-        assertEquals("spruce_planks", levelMap.get(0).get(0).getTextureName());
+        assertEquals("spruce-planks", levelMap.get(0).get(0).getTextureName());
     }
 
     @Test
@@ -343,6 +347,7 @@ public class LevelMapFactoryTest {
 
                 }
             }
+
             Square square = levelMap.getSquare(4, 11);
             System.out.println("Square at (4, 11): " + square);
             MapElement mapElement = square.getMapElement();

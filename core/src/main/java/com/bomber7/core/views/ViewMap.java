@@ -3,15 +3,12 @@ package com.bomber7.core.views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.ResourceManager;
-import org.w3c.dom.Text;
 
 public class ViewMap extends Actor {
 
@@ -53,9 +50,6 @@ public class ViewMap extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         spriteBatch.begin();
 
-        // TODO: notes pour plus tard - renommer les textures en enlevant les _X car texturepacker les supprime automatiquement
-        // Actuellement la taille du tableau ne depend pas des elements autour
-        // Rotation incorrecte pour certaines cases
         for (int col = 0; col < mapGrid.getHeight(); col++) {
             for (int row = 0; row < mapGrid.getWidth(); row++) {
                 Square square = mapGrid.getSquare(row, col);
