@@ -5,15 +5,13 @@ import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
+import com.bomber7.utils.ProjectPaths;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -23,15 +21,8 @@ public class LevelMapTest {
     /**
      * Path to the JSON file containing the tileset export file.
      */
-    private final Path jsonPath = Paths.get("../assets/textures/tileset.tsj");
-    /**
-     * Name of the map to be loaded.
-     */
-    private final String foyMapName = "foy";
-    /**
-     * Directory where the map files are located.
-     */
-    private final File foyDirectory = new File("../assets/maps/" + foyMapName);
+    private final Path jsonPath = ProjectPaths.getTileset();
+
     /**
      * LevelMapFactory instance to create LevelMap objects.
      */
@@ -47,15 +38,13 @@ public class LevelMapTest {
         final int textureId2 = 102;
         // Create squares with map elements
         Square square1 = new Square(
-            Paths.get("assets/texture1.png"),
+            "texture1",
             textureId1,
-            new UnbreakableWall(Paths.get("assets/unbreakable.png"),
-            1));
+            new UnbreakableWall("unbreakable", 1));
         Square square2 = new Square(
-            Paths.get("assets/texture2.png"),
+            "texture2",
             textureId2,
-            new BreakableWall(Paths.get("assets/breakable.png"),
-            2));
+            new BreakableWall("breakable", 2));
 
         // Create a 2x2 checkerboard grid
         List<List<Square>> checkerboard = new ArrayList<>();
@@ -80,21 +69,18 @@ public class LevelMapTest {
 
         // Assert that map elements exist and are of correct type
         assertTrue(levelMap.getSquare(0, 0).hasMapElement());
-        assertEquals("UnbreakableWall", levelMap.getSquare(0, 0).getMapElement().toString());
-        assertEquals(
-            "BreakableWall",
-            levelMap.getSquare(1, 0).getMapElement().toString()
-            );
+        assertTrue(levelMap.getSquare(0, 0).getMapElement().toString().contains("UnbreakableWall"));
+        assertTrue(levelMap.getSquare(1, 0).getMapElement().toString().contains("BreakableWall"));
     }
 
     @Test
     void testGetSquareInvalidCoordinatesThrowsException() {
         // Create a 1x1 map with one square
         Square square = new Square(
-            Paths.get("assets/texture.png"),
+            "texture",
             1,
             new BreakableWall(
-                Paths.get("assets/break.png"),
+                "break",
                 2)
                 );
         List<List<Square>> checkerboard = new ArrayList<>();

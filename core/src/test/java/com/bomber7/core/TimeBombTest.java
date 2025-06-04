@@ -2,7 +2,6 @@ package com.bomber7.core;
 
 import com.bomber7.core.model.square.TimeBomb;
 
-import java.nio.file.Paths;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +31,7 @@ public class TimeBombTest extends BombTest {
 
         // Instantiate a TimeBomb at position (2, 3) with a timer of 5 sec
         timeBomb = new TimeBomb(2, 2, 3,
-            Paths.get("textures/timebomb.png"),
+            "timebomb",
             2,
             5.0f);
     }

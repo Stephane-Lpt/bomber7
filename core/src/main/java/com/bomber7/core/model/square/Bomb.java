@@ -1,8 +1,6 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 
-import java.nio.file.Path;
-
 /**
  * Represents a bomb in the game, which can explode and affect surrounding squares.
  *
@@ -12,7 +10,6 @@ import java.nio.file.Path;
  * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
  */
-
 public class Bomb extends MapElement {
 
     /**
@@ -34,7 +31,7 @@ public class Bomb extends MapElement {
      * @param p power of the bomb, must be a positive integer.
      * @param x X-coordinate of the bomb on the map.
      * @param y Y-coordinate of the bomb on the map.
-     * @param textureFilePath The path of the texture file associated with the bomb.
+     * @param textureName The texture name associated with the bomb.
      * @param textureId       The texture ID for the bomb.
      * //@param verticalFlip    Indicates whether the texture is vertically flipped.
      * //@param horizontalFlip  Indicates whether the texture is horizontally flipped.
@@ -43,10 +40,10 @@ public class Bomb extends MapElement {
     public Bomb(int p,
                 int x,
                 int y,
-                Path textureFilePath,
+                String textureName,
                 int textureId) {
 
-        super(textureFilePath, textureId);
+        super(textureName, textureId);
         this.power = p;
         this.x = x;
         this.y = y;
