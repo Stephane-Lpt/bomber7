@@ -10,6 +10,9 @@ import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
  */
 public abstract class Character {
 
+
+    /** Mooving value. */
+    public static final int MOOVE_VALUE = 10;
     /** Standing still status constant. */
     private static final int STANDING_STILL = 0;
     /** Moving UP status constant. */
@@ -214,8 +217,8 @@ public abstract class Character {
      * Move character to the right.
      */
     public void moveRight() {
-        if (checkMove(getPositionX() + 10, getPositionY())) {
-            this.x += 10;
+        if (checkMove(getPositionX() + MOOVE_VALUE, getPositionY())) {
+            this.x += MOOVE_VALUE;
             this.movingStatus = MOVING_RIGHT;
         }
     }
@@ -224,8 +227,8 @@ public abstract class Character {
      * Move character to the left.
      */
     public void moveLeft() {
-        if (checkMove(getPositionX() - 10, getPositionY())) {
-            this.x--;
+        if (checkMove(getPositionX() - MOOVE_VALUE, getPositionY())) {
+            this.x -= MOOVE_VALUE;
             this.movingStatus = MOVING_LEFT;
         }
     }
@@ -234,8 +237,8 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
-        if (checkMove(getPositionX(), getPositionY() + 10)) {
-            this.y++;
+        if (checkMove(getPositionX(), getPositionY() + MOOVE_VALUE)) {
+            this.y -= MOOVE_VALUE;
             this.movingStatus = MOVING_DOWN;
         }
     }
@@ -244,8 +247,8 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
-        if (checkMove(getPositionX(), getPositionY() - 10)) {
-            this.y--;
+        if (checkMove(getPositionX(), getPositionY() - MOOVE_VALUE)) {
+            this.y += MOOVE_VALUE;
             this.movingStatus = MOVING_UP;
         }
     }
