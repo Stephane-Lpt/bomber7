@@ -7,7 +7,6 @@ import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.ProjectPaths;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
-import com.bomber7.core.model.texture.ElementTexture;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -259,7 +258,6 @@ public class LevelMapFactoryTest {
         List<List<Square>> levelMap = LevelMapFactory.parseCsv(f1, f2, f3, this.textureMap);
 
         System.out.println(levelMap);
-        assertEquals(33, levelMap.get(0).get(0).getTextureId());
         assertEquals("spruce-planks", levelMap.get(0).get(0).getTextureName());
     }
 
@@ -293,59 +291,6 @@ public class LevelMapFactoryTest {
                 assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
                 assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
                 assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-
-                for (int j = 0; j < backgroundCols.length; j++) {
-                    int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
-                    Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
-                    Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
-
-                    Square actualSquare = levelMap.getSquare(j, i);
-                    int actualBackgroundTextureId = actualSquare.getTextureId();
-
-                    if (actualSquare.isVerticalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_V;
-                    }
-                    if (actualSquare.isHorizontalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_H;
-                    }
-                    if (actualSquare.isDiagonalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_D;
-                    }
-
-                    assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
-                        String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                            i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
-
-
-                    MapElement actualElement = actualSquare.getMapElement();
-
-                    Integer expectedTextureId = null;
-
-                    if (expectedBreakableTextureId != -1) {
-                        expectedTextureId = expectedBreakableTextureId;
-                    } else if (expectedUnbreakableTextureId != -1) {
-                        expectedTextureId = expectedUnbreakableTextureId;
-                    }
-
-                    if (expectedTextureId != null) {
-                        int actualTextureId = actualElement.getTextureId();
-
-                        if (actualElement.isVerticalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_V;
-                        }
-                        if (actualElement.isHorizontalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_H;
-                        }
-                        if (actualElement.isDiagonalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_D;
-                        }
-
-                        assertEquals(expectedTextureId, actualTextureId,
-                                String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                    i, j, expectedTextureId, actualTextureId));
-                    }
-
-                }
             }
 
             Square square = levelMap.getSquare(4, 11);

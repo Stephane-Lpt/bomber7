@@ -34,17 +34,13 @@ public class LevelMapTest {
      */
     @Test
     void testGetSquareValidCoordinatesReturnsCorrectSquare() {
-        final int textureId1 = 101;
-        final int textureId2 = 102;
         // Create squares with map elements
         Square square1 = new Square(
             "texture1",
-            textureId1,
-            new UnbreakableWall("unbreakable", 1));
+            new UnbreakableWall("unbreakable"));
         Square square2 = new Square(
             "texture2",
-            textureId2,
-            new BreakableWall("breakable", 2));
+            new BreakableWall("breakable"));
 
         // Create a 2x2 checkerboard grid
         List<List<Square>> checkerboard = new ArrayList<>();
@@ -76,13 +72,9 @@ public class LevelMapTest {
     @Test
     void testGetSquareInvalidCoordinatesThrowsException() {
         // Create a 1x1 map with one square
-        Square square = new Square(
-            "texture",
-            1,
-            new BreakableWall(
-                "break",
-                2)
-                );
+        Square square = new Square("texture",
+            new BreakableWall("break")
+        );
         List<List<Square>> checkerboard = new ArrayList<>();
         List<Square> row = new ArrayList<>();
         row.add(square); // (0,0)
