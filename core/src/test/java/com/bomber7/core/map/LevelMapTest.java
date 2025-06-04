@@ -24,11 +24,6 @@ public class LevelMapTest {
     private final Path jsonPath = ProjectPaths.getTileset();
 
     /**
-     * LevelMapFactory instance to create LevelMap objects.
-     */
-    private final LevelMapFactory levelMapFactory = new LevelMapFactory(jsonPath);
-
-    /**
      * Ensures LevelMapFactory loads the map accordingly.
      * Getters to compare actual squares with the ones added to the map.
      */
