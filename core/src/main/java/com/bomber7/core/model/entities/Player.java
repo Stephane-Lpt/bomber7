@@ -111,7 +111,7 @@ public abstract class Player extends Character {
      * @return true if the bomb was successfully dropped, false otherwise
      */
     public boolean dropBomb() {
-        if (nbBomb > 1) {
+        if (nbBomb >= 1) {
             int currX = this.getPositionX(); // get our current X position
             int currY = this.getPositionY(); // get our current Y position
             Square currentSquare = this.map.getSquare(currX, currY);
@@ -125,24 +125,26 @@ public abstract class Player extends Character {
                     break;
             };
             currentSquare.setMapElement(bombToDrop);
+            this.droppedBombs.add(bombToDrop); // Add the bomb to the list of dropped bombs
+            this.nbBomb--; // Decrease the number of bombs available
             return true;
         } else {
             return false;
         }
     }
 
-    /**
-     * Allow the Player to activate a bomb.
-     * @param bombToActivate Permit to identify which bomb to activate
-     */
-    public void activateBomb(Bomb bombToActivate) {
-        boolean isActivated = false;
-        for (Bomb bomb : droppedBombs) {
-            if (bomb.equals(bombToActivate)) {
-                bombToActivate.activateBomb(this.map);
-            }
-        }
-    }
+//    /**
+//     * Allow the Player to activate a bomb.
+//     * @param bombToActivate Permit to identify which bomb to activate
+//     */
+//    public void activateBomb() {
+//        boolean isActivated = false;
+//        for (Bomb bomb : droppedBombs) {
+//            if (bomb.equals(bombToActivate)) {
+//                bombToActivate.activateBomb(this.map);
+//            }
+//        }
+//    }
 
     public int getPower() {
         return power;

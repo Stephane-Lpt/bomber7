@@ -29,7 +29,17 @@ class PlayerTest {
         player = new Player("TestPlayer", this.foyLevelMap, 1, 1, 3, 1, "sprite.png") {
         };
         player.setTypeBomb(BombType.TIME);
-        player.setNbBomb(2);
+        player.setNbBomb(1);
+    }
+
+    @Test
+    void dropTimeBombWhenNbBombIsLessThanOrEqualTo1FAIL() {
+        player.setNbBomb(0); // should fail
+        boolean result = player.dropBomb();
+        assertFalse(result, "Expected dropBomb to return false when nbBomb < 1");
+
+        Square square = this.foyLevelMap.getSquare(1, 1);
+        assertNull(square.getMapElement(), "Expected no Bomb to be placed when dropBomb fails");
     }
 
     @Test
@@ -38,17 +48,9 @@ class PlayerTest {
         assertTrue(result, "Expected dropBomb to return true when nbBomb > 1");
 
         Square square = this.foyLevelMap.getSquare(1, 1);
-        assertTrue(square.getMapElement() instanceof TimeBomb, "Expected a TimeBomb to be placed on the square");
-    }
-
-    @Test
-    void dropTimeBombWhenNbBombIsLessThanOrEqualTo1FAIL() {
-        player.setNbBomb(1); // should fail
-        boolean result = player.dropBomb();
-        assertFalse(result, "Expected dropBomb to return false when nbBomb <= 1");
-
-        Square square = this.foyLevelMap.getSquare(1, 1);
-        assertNull(square.getMapElement(), "Expected no Bomb to be placed when dropBomb fails");
+        assertTrue(square.getMapElement() instanceof TimeBomb, "Expected a TimeBomb on the square");
+        assertEquals(0, player.getNbBomb(), "Expected nbBomb to decrease by 1 after dropping a bomb");
+        assertEquals(player.getNbDroppedBomb(), 1, "Expected nbDroppedBomb to be 1 after dropping a bomb");
     }
 
     @Test
@@ -58,6 +60,9 @@ class PlayerTest {
         assertTrue(result, "Expected dropBomb to return true when nbBomb > 1 and type is TRIGGER");
 
         Square square = this.foyLevelMap.getSquare(1, 1);
-        assertTrue(square.getMapElement() instanceof TriggerBomb, "Expected a TriggerBomb to be placed on the square");
+        assertTrue(square.getMapElement() instanceof TriggerBomb, "Expected a TriggerBomb on the square");
+        assertEquals(0, player.getNbBomb(), "Expected nbBomb to decrease by 1 after dropping a bomb");
+        assertEquals(player.getNbDroppedBomb(), 1, "Expected nbDroppedBomb to be 1 after dropping a bomb");
+
     }
 }
