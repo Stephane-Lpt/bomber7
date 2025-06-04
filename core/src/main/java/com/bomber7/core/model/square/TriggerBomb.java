@@ -7,15 +7,19 @@ import com.bomber7.core.model.map.LevelMap;
 public class TriggerBomb extends Bomb {
 
     /**
+     * The texture name associated with the TriggerBomb.
+     */
+    private static final String textureName = "trigger_bomb";
+
+    /**
      * Constructs a TriggerBomb with the specified explosion, power, sprite file path and owner.
      * @param power explosion power of the bomb
      * @param x X-coordinate
      * @param y Y-coordinate
-     * @param textureName The texture name associated with the bomb.
      */
 
-    public TriggerBomb(int power, int x, int y, String textureName) {
-        super(power, x, y, textureName);
+    public TriggerBomb(int power, int x, int y) {
+        super(power, x, y, TriggerBomb.textureName);
     }
 
     /**

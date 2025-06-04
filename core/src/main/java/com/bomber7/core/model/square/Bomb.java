@@ -10,7 +10,7 @@ import com.bomber7.core.model.map.LevelMap;
  * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
  */
-public class Bomb extends MapElement {
+public abstract class Bomb extends MapElement {
 
     /**
      * The power of the bomb, which determines the range of its explosion.

@@ -1,9 +1,10 @@
 package com.bomber7.core;
 
 import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.TimeBomb;
+import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.UnbreakableWall;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +53,7 @@ public class BombTest {
     @Test
     void testBombExplosionWithWalls() {
         // Create a Bomb at (x : 2, y : 2) with explosion power 3
-        Bomb bomb = new Bomb(3, 2, 2, "bomb");
+        Bomb bomb = new TimeBomb(3, 2, 2);
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(2, 2);
@@ -159,7 +160,7 @@ public class BombTest {
     @Test
     void testNullPointerException() {
         this.levelMap = null;
-        Bomb bomb = new Bomb(2, -1, 0, "texture");
+        Bomb bomb = new TimeBomb(2, -1, 0);
         assertThrows(NullPointerException.class, () -> bomb.activateBomb(this.levelMap));
     }
 }

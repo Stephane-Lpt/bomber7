@@ -12,19 +12,24 @@ public class TimeBomb extends Bomb {
     /**
      * The countdown timer for the bomb.
      */
-    private float timer;
+    private float timeRemaining;
+
+    /**
+     * The texture name associated with the TimeBomb.
+     */
+    public static final String TEXTURE_NAME = "time_bomb";
+
+    private static final float DEFAULT_TIMER = 0.5f;
 
     /**
      * Constructs a TimeBomb with the specified explosion power, sprite file path and timer.
      * @param p power of the bomb
      * @param x the X-coordinate
      * @param y the Y-coordinate
-     * @param textureName The texture name associated with the bomb.
-     * @param t initial value of the countdown timer
      */
-    public TimeBomb(int p, int x, int y, String textureName, float t) {
-        super(p, x, y, textureName);
-        this.timer = t;
+    public TimeBomb(int p, int x, int y) {
+        super(p, x, y, TimeBomb.TEXTURE_NAME);
+        this.timeRemaining = TimeBomb.DEFAULT_TIMER;
     }
 
     /**
@@ -36,10 +41,10 @@ public class TimeBomb extends Bomb {
         if (map == null) {
             throw new NullPointerException("LevelMap cannot be null");
         }
-        if (timer > 0) {
-            timer -= delta;
-            if (timer <= 0) {
-                timer = 0;
+        if (this.timeRemaining > 0) {
+            this.timeRemaining -= delta;
+            if (this.timeRemaining <= 0) {
+                this.timeRemaining = 0;
                 activateBomb(map);
             }
         }
@@ -50,7 +55,7 @@ public class TimeBomb extends Bomb {
      * @return current value (in seconds)
      */
     public float getTimer() {
-        return this.timer;
+        return this.timeRemaining;
     }
 
 

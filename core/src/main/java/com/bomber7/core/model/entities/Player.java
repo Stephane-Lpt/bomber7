@@ -9,30 +9,30 @@ import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 import java.util.List;
 
 import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.square.Bomb;
+import com.bomber7.core.model.square.*;
 
 /**
  * Class Player.
  */
 public abstract class Player extends Character {
 
-    /** Bomb type classic. */
-    public static final int CLASSIC_BOMB = 1;
-    /** Bomb type trigger. */
-    public static final int TRIGGER_BOMB = 2;
-
     /**
      * List of dropped bombs by the player.
      */
-    private List<Bomb> droppedBombs;
+    private final List<Bomb> droppedBombs;
     /**
      * Type of bomb used by the player.
      */
-    private int typeBomb;
+    private BombType typeBomb;
     /**
      * Number of bombs the player can drop.
      */
     private int nbBomb;
+    /**
+     * Power for the future bombs.
+     */
+    private int power;
+
 
     /**
      * Player Constructor.
@@ -47,6 +47,7 @@ public abstract class Player extends Character {
     public Player(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
         super(name, map, x, y, life, speed, spriteFP);
         this.nbBomb = 1;
+        this.typeBomb = BombType.TIME; // Default bomb type is TIME
         this.droppedBombs = new java.util.ArrayList<>();
     }
 
@@ -64,7 +65,7 @@ public abstract class Player extends Character {
      * Player number of bomb playable getter.
      * @return typeBomb Current number of bomb playable
      */
-    public int getTypeBomb() {
+    public BombType getBombType() {
         return this.typeBomb;
     }
 
@@ -95,29 +96,29 @@ public abstract class Player extends Character {
      * Player type of bomb playable setter.
      * @param newTypeBomb The new type of bomb
      */
-    public void setTypeBomb(int newTypeBomb) {
-        if (newTypeBomb != CLASSIC_BOMB && newTypeBomb != TRIGGER_BOMB) {
-            throw new IllegalBombOperationException("Invalid bomb type: " + newTypeBomb);
-        }
-        this.typeBomb = newTypeBomb;
+    public void setTypeBomb(BombType bombType) {
+        this.typeBomb = bombType;
     }
 
     /* ------[OTHER]------------------------------------ */
 
     /**
      * Allow the Player to drop a bomb.
-     * @param bombToDrop Permit to identify which bomb to drop
      * @return true if the bomb was successfully dropped, false otherwise
      */
-    public boolean dropBomb(Bomb bombToDrop) {
-        boolean isValidBomb = true;
-        for (Bomb bomb : droppedBombs) {
-            if (bomb.equals(bombToDrop)) {
-                isValidBomb = false;
-            }
-        }
-        if (isValidBomb) {
-            droppedBombs.add(bombToDrop);
+    public boolean dropBomb() {
+        if (nbBomb>1) {
+            int currX = this.getPositionX(); // get our current X position
+            int currY = this.getPositionY(); // get our current Y position
+            Square currentSquare = this.map.getSquare(currX,currY);
+            Bomb bombToDrop = null;
+            switch (this.typeBomb) {
+                case TRIGGER:
+                    bombToDrop = new TriggerBomb(power, currX, currY);
+                case TIME:
+                    bombToDrop = new TimeBomb(power, currX, currY);
+            };
+            currentSquare.setMapElement(bombToDrop);
             return true;
         } else {
             return false;
@@ -137,4 +138,7 @@ public abstract class Player extends Character {
         }
     }
 
+    public int getPower() {
+        return power;
+    }
 }
