@@ -26,7 +26,7 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link MainMenuScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
             return new MainMenuScreen(game);
         }
     },
@@ -41,7 +41,7 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link PlayerSelectionScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
             return new PlayerSelectionScreen(game);
         }
     },
@@ -56,7 +56,7 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link MapSelectionScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
             return new MapSelectionScreen(game);
         }
     },
@@ -71,7 +71,7 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link GameScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
             return new GameScreen(game);
         }
     },
@@ -86,7 +86,7 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link PauseScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
             return new PauseScreen(game);
         }
     },
@@ -101,7 +101,7 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link SettingsScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
             return new SettingsScreen(game);
         }
     },
@@ -116,7 +116,8 @@ public enum ScreenType {
          * @param game the current game instance
          * @return a new {@link KeyBindingScreen} instance
          */
-        public BomberScreen getScreen(Game game) {
+        public BomberScreen getScreen(Game game, Object... params) {
+//            int playerIndex = (Integer) params[0];
             return new KeyBindingScreen(game);
         }
     };
@@ -127,5 +128,5 @@ public enum ScreenType {
      * @param game the current game instance
      * @return the corresponding {@link BomberScreen} for this screen type
      */
-    public abstract BomberScreen getScreen(Game game);
+    public abstract BomberScreen getScreen(Game game, Object... params);
 }

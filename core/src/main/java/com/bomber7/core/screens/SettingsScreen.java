@@ -11,6 +11,7 @@ import com.bomber7.core.components.BomberTable;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
+import com.bomber7.utils.ScreenType;
 
 /**
  * Settings screen where the user can configure game options such as volume levels,
@@ -78,7 +79,6 @@ public class SettingsScreen extends BomberScreen {
         table.setDebug(true);
         table.setFillParent(true);
 
-        Label optionsLabels = new Label(resources.getString("options"), resources.getSkin(), "large");
         Label globalVolumeLabel = new Label(resources.getString("global_volume"), resources.getSkin(), "medium");
         Label musicLabel = new Label(resources.getString("music"), resources.getSkin(), "medium");
         Label keyBindingLabel = new Label(resources.getString("key_binding"), resources.getSkin(), "medium");
@@ -156,5 +156,15 @@ public class SettingsScreen extends BomberScreen {
                 // TODO
             }
         }, resources));
+
+        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
+            int finalI = i;
+            configPlayerButtons[i].addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, finalI);
+                }
+            }, resources));
+        }
     }
 }

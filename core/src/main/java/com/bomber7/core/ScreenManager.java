@@ -76,13 +76,13 @@ public final class ScreenManager {
      *
      * @param screenType the type of screen to be shown.
      */
-    public void showScreen(ScreenType screenType) {
+    public void showScreen(ScreenType screenType, Object... params) {
         Screen currentScreen = game.getScreen();
 
         previousScreenType = currentScreenType;
         currentScreenType = screenType;
 
-        BomberScreen newScreen = screenType.getScreen(game);
+        BomberScreen newScreen = screenType.getScreen(game, params);
 
         game.setScreen(newScreen);
 

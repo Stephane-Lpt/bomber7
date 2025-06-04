@@ -45,6 +45,7 @@ public class BomberTable extends Table {
         this.add(label)
             .colspan(totalCols)
             .spaceBottom(Dimensions.COMPONENT_SPACING_LG)
+            .padBottom(Dimensions.COMPONENT_SPACING_LG)
             .row();
     }
 }
