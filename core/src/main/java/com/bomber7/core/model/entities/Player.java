@@ -6,6 +6,7 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bomber7.core.model.map.LevelMap;
@@ -21,9 +22,9 @@ import com.bomber7.core.model.square.TimeBomb;
 public abstract class Player extends Character {
 
     /**
-     * List of dropped bombs by the player.
+     * List of trigger bombs dropped by the player.
      */
-    private final List<Bomb> droppedBombs;
+    private final List<TriggerBomb> triggerBombsDropped;
     /**
      * Type of bomb used by the player.
      */
@@ -52,7 +53,7 @@ public abstract class Player extends Character {
         super(name, map, x, y, life, speed, spriteFP);
         this.nbBomb = 1;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME
-        this.droppedBombs = new java.util.ArrayList<>();
+        this.triggerBombsDropped = new ArrayList<>();
     }
 
     /* ------[GETTERS]------------------------------------ */
@@ -77,8 +78,8 @@ public abstract class Player extends Character {
      * Player list of dropped bombs getter.
      * @return droppedBombs Current list of dropped bombs
      */
-    public int getNbDroppedBomb() {
-        return this.droppedBombs.size();
+    public int getNbTriggeredBombDropped() {
+        return this.triggerBombsDropped.size();
     }
 
     /* ------[SETTERS]------------------------------------ */
@@ -119,13 +120,13 @@ public abstract class Player extends Character {
             switch (this.typeBomb) {
                 case TRIGGER:
                     bombToDrop = new TriggerBomb(power, currX, currY);
+                    this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
                     bombToDrop = new TimeBomb(power, currX, currY);
                     break;
             };
             currentSquare.setMapElement(bombToDrop);
-            this.droppedBombs.add(bombToDrop); // Add the bomb to the list of dropped bombs
             this.nbBomb--; // Decrease the number of bombs available
             return true;
         } else {
@@ -133,18 +134,15 @@ public abstract class Player extends Character {
         }
     }
 
-//    /**
-//     * Allow the Player to activate a bomb.
-//     * @param bombToActivate Permit to identify which bomb to activate
-//     */
-//    public void activateBomb() {
-//        boolean isActivated = false;
-//        for (Bomb bomb : droppedBombs) {
-//            if (bomb.equals(bombToActivate)) {
-//                bombToActivate.activateBomb(this.map);
-//            }
-//        }
-//    }
+    /**
+     * Allow the Player to activate all trigger bomb that he dropped.
+     */
+    public void activateAllTriggerBombs() {
+        for (TriggerBomb bomb : this.triggerBombsDropped) {
+            bomb.activateBomb(this.map);
+        }
+        this.triggerBombsDropped.clear();
+    }
 
     public int getPower() {
         return power;

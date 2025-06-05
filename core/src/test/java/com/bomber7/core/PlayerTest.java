@@ -48,9 +48,14 @@ class PlayerTest {
         assertTrue(result, "Expected dropBomb to return true when nbBomb > 1");
 
         Square square = this.foyLevelMap.getSquare(1, 1);
-        assertTrue(square.getMapElement() instanceof TimeBomb, "Expected a TimeBomb on the square");
+        assertInstanceOf(TimeBomb.class, square.getMapElement(), "Expected a TimeBomb on the square");
         assertEquals(0, player.getNbBomb(), "Expected nbBomb to decrease by 1 after dropping a bomb");
-        assertEquals(player.getNbDroppedBomb(), 1, "Expected nbDroppedBomb to be 1 after dropping a bomb");
+        assertEquals(
+            0,
+            player.getNbTriggeredBombDropped(),
+            "Expected nbTriggeredBombDropped to be 0 "
+                +
+                "because dropping a TimeBomb instead of TriggerBomb");
     }
 
     @Test
@@ -60,9 +65,43 @@ class PlayerTest {
         assertTrue(result, "Expected dropBomb to return true when nbBomb > 1 and type is TRIGGER");
 
         Square square = this.foyLevelMap.getSquare(1, 1);
-        assertTrue(square.getMapElement() instanceof TriggerBomb, "Expected a TriggerBomb on the square");
+        assertInstanceOf(TriggerBomb.class, square.getMapElement(), "Expected a TriggerBomb on the square");
         assertEquals(0, player.getNbBomb(), "Expected nbBomb to decrease by 1 after dropping a bomb");
-        assertEquals(player.getNbDroppedBomb(), 1, "Expected nbDroppedBomb to be 1 after dropping a bomb");
+        assertEquals(1, player.getNbTriggeredBombDropped(), "Expected nbDroppedBomb to be 1 after dropping a bomb");
 
     }
+
+    @Test
+    void activateAllTriggerBombsActivatesAndClearsList() {
+        player.setTypeBomb(BombType.TRIGGER);
+        player.setNbBomb(3);
+
+        // Drop 2 trigger bombs
+        player.dropBomb(); // Drop at (1,1)
+        player.moveRight();
+        player.dropBomb(); // Drop at (2,1)
+
+        assertEquals(2, player.getNbTriggeredBombDropped(), "Should have 2 TriggerBombs before activation");
+
+        // Check squares before activation
+        Square square1 = this.foyLevelMap.getSquare(1, 1);
+        Square square2 = this.foyLevelMap.getSquare(2, 1);
+        Square square3 = this.foyLevelMap.getSquare(3, 1);
+        assertInstanceOf(TriggerBomb.class, square1.getMapElement(), "Expected TriggerBomb on (1,1)");
+        assertInstanceOf(TriggerBomb.class, square2.getMapElement(), "Expected TriggerBomb on (2,1)");
+        assertInstanceOf(BreakableWall.class, square3.getMapElement(), "Expected BreakableWall on (3,1)");
+
+        // Activate all trigger bombs
+        player.activateAllTriggerBombs();
+
+        square3 = this.foyLevelMap.getSquare(3, 1);
+
+        // TriggerBombs should be activated
+        assertEquals(0, player.getNbTriggeredBombDropped(), "Trigger bomb list should be empty after activation");
+        assertNull(square1.getMapElement(), "Expected square (1,1) to be cleared after explosion");
+        assertNull(square2.getMapElement(), "Expected square (2,1) to be cleared after explosion");
+        assertNull(square3.getMapElement(), "Expected nothing because wall should be broken on (3,1)");
+
+    }
+
 }
