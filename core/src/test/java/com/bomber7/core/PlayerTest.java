@@ -77,9 +77,9 @@ class PlayerTest {
         player.setNbBomb(3);
 
         // Drop 2 trigger bombs
-        player.moveUp(); // Going to (1,2) // TODO: PROBLEM - MoveUp go Down
+        player.moveDown(); // Going to (1,2)
         player.dropBomb(); // Drop at (1,2)
-        player.moveDown(); // Going back to (1,1)
+        player.moveUp(); // Going back to (1,1)
         player.moveRight();
         player.dropBomb(); // Drop at (2,1)
         System.out.println(player.getPower());
