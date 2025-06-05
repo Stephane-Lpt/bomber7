@@ -44,14 +44,14 @@ public abstract class Player extends Character {
      * Player Constructor.
      * @param name     Name of the player
      * @param map      Map
-     * @param x        X coordinate of the player
-     * @param y        Y coordinate of the player
+     * @param mapX     X-coordinate map of the player on the map
+     * @param mapY     Y-coordinate map of the player on the map
      * @param life     Life points of the player
      * @param speed    Speed of the player
      * @param spriteFP File path to the player's sprite
      */
-    public Player(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
-        super(name, map, x, y, life, speed, spriteFP);
+    public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
+        super(name, map, mapX, mapY, life, speed, spriteFP);
         this.nbBomb = 1;
         this.power = 1;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME
