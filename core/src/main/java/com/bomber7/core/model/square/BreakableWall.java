@@ -50,8 +50,7 @@ public class BreakableWall extends Wall {
     }
 
     private boolean hasRandomBonus() {
-        Random randomGenerator = new Random();
-        double randomValue = randomGenerator.nextDouble();
+        Random randomValue = new Random().nextDouble();
         if (randomValue > Constants.BONUS_RATE) {
             return false;
         } else {
@@ -59,8 +58,24 @@ public class BreakableWall extends Wall {
         }
     }
 
+    /** 
+     * Instantiates a random bonus based on their probabilities at the same location.
+     */
     private static Bonus createRandomBonus() {
-        
-        return pickedBonus
+        Random randomValue = new Random().nextDouble();
+        double cumulativeProbability = 1.0;
+        if (randomValue <= cumulativeProbability) {
+            // Instantiate the bonus based on the type
+            switch (entry.getKey()) {
+                case TRIGGER_BOMB:
+                    return new BonusTriggerBomb();
+                case LIFE:
+                    return new BonusLife();
+                case SPEED:
+                    return new BonusSpeed();
+                default:
+                    throw new IllegalArgumentException("Unknown bonus type: " + entry.getKey());
+            }
+        }
     }
 }
