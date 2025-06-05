@@ -13,7 +13,10 @@ public final class ResourceManager {
      * Skin object that contains UI textures and style definitions.
      */
     private final Skin skin;
-
+    /**
+     * Skin object that contains map textures and style definitions.
+     */
+    private final Skin mapSkin;
     /**
      * I18NBundle object that contains localized strings used in the game.
      */
@@ -29,8 +32,12 @@ public final class ResourceManager {
      */
     public ResourceManager() {
         skin = new Skin(
-            Gdx.files.internal("ui/uiskin.json"),
-            new TextureAtlas(Gdx.files.internal("ui/uiskin.atlas"))
+            Gdx.files.internal("skin/ui/uiskin.json"),
+            new TextureAtlas(Gdx.files.internal("skin/ui/uiskin.atlas"))
+        );
+        mapSkin = new Skin(
+            Gdx.files.internal("skin/map/mapskin.json"),
+            new TextureAtlas(Gdx.files.internal("skin/map/mapskin.atlas"))
         );
         bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/english"));
         sound = new SoundManager();
@@ -52,6 +59,15 @@ public final class ResourceManager {
      */
     public Skin getSkin() {
         return skin;
+    }
+
+    /**
+     * Returns the map skin used throughout the game.
+     *
+     * @return the loaded {@link Skin} object
+     */
+    public Skin getMapSkin() {
+        return mapSkin;
     }
 
     /**

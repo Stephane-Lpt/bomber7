@@ -4,6 +4,7 @@ import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.core.model.texture.ElementTexture;
+import com.bomber7.utils.ProjectPaths;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.opencsv.CSVReader;
@@ -24,22 +25,16 @@ import java.util.Map;
  * Factory class for creating LevelMap instances.
  * Responsible for parsing texture mappings and CSV files to create a map of squares.
  */
-public class LevelMapFactory {
+public final class LevelMapFactory {
     /**
      * A map that associates texture IDs with their corresponding file paths.
      * The keys are texture IDs, and the values are the paths to the texture files.
      */
-    private final Map<Integer, String> textureMap;
+    private static final Map<Integer, String> TEXTURE_MAP =
+        LevelMapFactory.parseTextureMap(ProjectPaths.getTileset());
 
-    /**
-     * Constructs a LevelMapFactory with the specified path to the tileset JSON file.
-     * This JSON file contains the mapping of texture IDs to their file paths.
-     *
-     * @param tilesetJsonPath Path to the JSON file containing texture mappings.
-     */
-    public LevelMapFactory(Path tilesetJsonPath) {
-        this.textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
-
+    private LevelMapFactory() {
+        // Private constructor to prevent instantiation
     }
 
     /**
@@ -50,7 +45,7 @@ public class LevelMapFactory {
      * @return A LevelMap instance representing the specified map.
      * @throws IllegalArgumentException if the map directory is not found, is empty, or same type multiple CSV files.
      */
-    public LevelMap createLevelMap(String mapName) {
+    public static LevelMap createLevelMap(String mapName) {
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
         if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
             throw new IllegalArgumentException(
@@ -109,7 +104,7 @@ public class LevelMapFactory {
             }
         }
         List<List<Square>> checkerboard = LevelMapFactory.parseCsv(
-            backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, this.textureMap
+            backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, LevelMapFactory.TEXTURE_MAP
         );
         return new LevelMap(checkerboard);
     }
@@ -121,7 +116,7 @@ public class LevelMapFactory {
      * @return The path of the subdirectory containing the file, or null if not found.
      */
     public static File searchMapFilesRootDirectory(String filename) {
-        File mapsRoot = new File("../assets/maps");
+        File mapsRoot = new File(ProjectPaths.getAssetsPath() + "/maps");
 
         File[] subdirs = mapsRoot.listFiles(File::isDirectory);
         if (subdirs == null) {
@@ -139,10 +134,10 @@ public class LevelMapFactory {
     }
 
     /**
-     * Parses the JSON file to create a mapping of texture IDs to their file paths.
+     * Parses the JSON file to create a mapping of texture IDs to their names.
      *
      * @param jsonPath Path to the JSON file containing texture mappings.
-     * @return A map where keys are texture IDs and values are their corresponding file paths.
+     * @return A map where keys are texture IDs and values are their corresponding names.
      */
     public static Map<Integer, String> parseTextureMap(Path jsonPath) {
         try {
@@ -152,14 +147,14 @@ public class LevelMapFactory {
 
             for (JsonNode tile : root.path("tiles")) {
                 int id = tile.path("id").asInt();
-                String path = tile.path("image").asText().replace("\\/", "/");
-                textureMap.put(id, path);
+                String textureName = tile.path("image").asText().replace("\\/", "/");
+                textureMap.put(id, textureName);
             }
             return textureMap;
 
         } catch (IOException e) {
             throw new IllegalArgumentException(
-                "Failed to parse texture JSON. Wrong filepath or wrong format/json content.", e
+                "Failed to parse texture JSON. Wrong filepath or wrong format/json content:" + jsonPath, e
             );
         }
     }
@@ -197,7 +192,6 @@ public class LevelMapFactory {
             }
 
             for (int i = 0; i < backgroundRows.size(); i++) {
-
                 int backgroundCols = backgroundRows.get(i).length;
                 int breakableCols = breakableRows.get(i).length;
                 int unbreakableCols = unbreakableRows.get(i).length;
@@ -208,7 +202,6 @@ public class LevelMapFactory {
                         "Row " + i + " has mismatched column counts between CSV files."
                     );
                 }
-
                 // Check if all rows are rectangular (comparing with the first row)
                 if (backgroundCols != backgroundRows.get(0).length) {
                     throw new IllegalArgumentException("Background CSV is not rectangular at row " + i);
@@ -223,7 +216,6 @@ public class LevelMapFactory {
                 String[] backgroundRow = backgroundRows.get(i);
                 String[] breakableRow = breakableRows.get(i);
                 String[] unbreakableRow = unbreakableRows.get(i);
-
                 List<Square> squareRow = new ArrayList<>();
 
                 for (int j = 0; j < backgroundRow.length; j++) {
@@ -233,7 +225,6 @@ public class LevelMapFactory {
                     boolean backgroundVerticalFlip = false;
                     boolean backgroundHorizontalFlip = false;
                     boolean backgroundDiagonalFlip = false;
-
 
                     if (backgroundTextureId != -1) {
                         // The 3 high bits are used for flipping:
@@ -251,7 +242,8 @@ public class LevelMapFactory {
                             "textureMap doesnt have all the required textures: back:" + backgroundTextureId
                         );
                     }
-                    Path backgroundTexturePath = Paths.get(textureMap.get(backgroundTextureId));
+
+                    String backgroundTextureName = textureMap.get(backgroundTextureId);
 
                     if (breakableTextureId != -1) {
                         boolean breakableVerticalFlip = (breakableTextureId & ElementTexture.FLIP_V) != 0;
@@ -261,14 +253,18 @@ public class LevelMapFactory {
 
                         if (!textureMap.containsKey(breakableTextureId)) {
                             throw new IllegalArgumentException(
-                                "textureMap doesnt have all the required textures: back:" + breakableTextureId
+                                "textureMap doesnt have all the required textures: break:" + breakableTextureId
+                                +
+                                    " row " + i + " col " + j
                             );
                         }
-                        Path breakableTexturePath = Paths.get(textureMap.get(breakableTextureId));
+
+                        String breakableTextureName = textureMap.get(breakableTextureId);
+
                         squareRow.add(
-                            new Square(backgroundTexturePath, backgroundTextureId,
+                            new Square(backgroundTextureName,
                                 new BreakableWall(
-                                    breakableTexturePath, breakableTextureId, breakableVerticalFlip,
+                                    breakableTextureName, breakableVerticalFlip,
                                     breakableHorizontalFlip, breakableDiagonalFlip
                                 ),
                                 backgroundVerticalFlip, backgroundHorizontalFlip, backgroundDiagonalFlip
@@ -282,17 +278,16 @@ public class LevelMapFactory {
 
                         if (!textureMap.containsKey(unbreakableTextureId)) {
                             throw new IllegalArgumentException(
-                                "textureMap doesnt have all the required textures: back:" + unbreakableTextureId
+                                "textureMap doesnt have all the required textures: unbreak:" + unbreakableTextureId
                             );
                         }
 
-                        Path unbreakableTexturePath = Paths.get(textureMap.get(unbreakableTextureId));
+                        String unbreakableTextureName = textureMap.get(unbreakableTextureId);
+
                         squareRow.add(
-                            new Square(backgroundTexturePath,
-                                backgroundTextureId,
+                            new Square(backgroundTextureName,
                                 new UnbreakableWall(
-                                    unbreakableTexturePath,
-                                    unbreakableTextureId,
+                                    unbreakableTextureName,
                                     unbreakableVerticalFlip,
                                     unbreakableHorizontalFlip,
                                     unbreakableDiagonalFlip),
@@ -304,8 +299,7 @@ public class LevelMapFactory {
                     } else {
                         squareRow.add(
                             new Square(
-                                backgroundTexturePath,
-                                backgroundTextureId,
+                                backgroundTextureName,
                                 backgroundVerticalFlip,
                                 backgroundHorizontalFlip,
                                 backgroundDiagonalFlip
@@ -313,10 +307,8 @@ public class LevelMapFactory {
                         );
                     }
                 }
-
                 result.add(squareRow);
             }
-
             return result;
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Invalid CSV filepath.", e);

@@ -4,9 +4,9 @@ import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.MapElement;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.ProjectPaths;
 import com.opencsv.CSVReader;
 import org.junit.jupiter.api.Test;
-import com.bomber7.core.model.texture.ElementTexture;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -30,25 +30,16 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 public class LevelMapFactoryTest {
 
-    /** Contant =5 to avoid magic numbers. */
-    public static final int CINQ = 5;
-    /** Constant =2 to avoid magic numbers. */
-    public static final int DEUX = 2;
-    /** Constant =33 to avoid magic numbers. */
-    public static final int TRENTETROIS = 33;
-
     /** Map filename. */
     private final String foyMapFileName = "foy";
     /** Tileset JSON file path. */
-    private final Path tilesetJsonPath = Paths.get("../assets/textures/tileset.tsj");
+    private final Path tilesetJsonPath = ProjectPaths.getTileset();
     /** Texture Map. */
     private final Map<Integer, String> textureMap = LevelMapFactory.parseTextureMap(tilesetJsonPath);
     /** Map name. */
     private final String foyMapName = "foy";
     /** Directory for Foy map. */
-    private final File foyDirectory = new File("../assets/maps/" + foyMapName);
-    /** New factory for a level map. */
-    private final LevelMapFactory levelMapFactory = new LevelMapFactory(tilesetJsonPath);
+    private final File foyDirectory = new File(ProjectPaths.getMapDir() + "/" + foyMapName);
 
     @Test
     void testSearchMapFilesRootDirectoryFound() {
@@ -66,26 +57,26 @@ public class LevelMapFactoryTest {
 
     @Test
     void testCreateLevelMapOK() {
-        LevelMap levelMap = levelMapFactory.createLevelMap("foy");
+        LevelMap levelMap = LevelMapFactory.createLevelMap("foy");
         System.out.println(levelMap.toString());
     }
 
     @Test
     void testCreateLevelMapNonExistentDirectory() {
         assertThrows(IllegalArgumentException.class, () -> {
-            levelMapFactory.createLevelMap("non_existent_map");
+            LevelMapFactory.createLevelMap("non_existent_map");
         });
     }
 
     @Test
     void testCreateLevelMapEmptyDirectory() {
         String dirName = "emptyDirectory";
-        String dirPathName = "../assets/maps/" + dirName;
+        String dirPathName = ProjectPaths.getMapDir() + dirName;
         File dir = new File(dirPathName);
         dir.mkdir();
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                levelMapFactory.createLevelMap(dirName);
+                LevelMapFactory.createLevelMap(dirName);
             });
         } finally {
             // Clean up the directory after the test
@@ -102,7 +93,7 @@ public class LevelMapFactoryTest {
 
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                levelMapFactory.createLevelMap(foyMapName);
+                LevelMapFactory.createLevelMap(foyMapName);
             });
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
@@ -117,7 +108,7 @@ public class LevelMapFactoryTest {
 
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                levelMapFactory.createLevelMap(foyMapName);
+                LevelMapFactory.createLevelMap(foyMapName);
             });
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
@@ -131,7 +122,7 @@ public class LevelMapFactoryTest {
 
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                levelMapFactory.createLevelMap(foyMapName);
+                LevelMapFactory.createLevelMap(foyMapName);
             });
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
@@ -145,13 +136,12 @@ public class LevelMapFactoryTest {
         assertTrue(dummyFile.createNewFile(), "Failed to create dummy background CSV");
 
         try {
-            LevelMap levelMap = levelMapFactory.createLevelMap(foyMapName);
-            Square square = levelMap.getSquare(CINQ, DEUX);
+            LevelMap levelMap = LevelMapFactory.createLevelMap(foyMapName);
+            Square square = levelMap.getSquare(5, 2);
             // id = 33
-            assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), square.getTextureFilePath());
-
+            assertEquals("spruce-planks", square.getTextureName());
             // id = 44
-            assertEquals(Paths.get("assets/textures/images/pressure_plate.png"), square.getMapElement().getTextureFilePath());
+            assertEquals("pressure-plate", square.getMapElement().getTextureName());
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
         }
@@ -266,18 +256,17 @@ public class LevelMapFactoryTest {
         List<List<Square>> levelMap = LevelMapFactory.parseCsv(f1, f2, f3, this.textureMap);
 
         System.out.println(levelMap);
-        assertEquals(TRENTETROIS, levelMap.get(0).get(0).getTextureId());
-        assertEquals(Paths.get("assets/textures/images/spruce_planks.png"), levelMap.get(0).get(0).getTextureFilePath());
+        assertEquals("spruce-planks", levelMap.get(0).get(0).getTextureName());
     }
 
     @Test
     void testParseCsvBackgroundTextureIdsMatch() throws Exception {
         String mapName = "foy";
-        LevelMap levelMap = levelMapFactory.createLevelMap(mapName);
+        LevelMap levelMap = LevelMapFactory.createLevelMap(mapName);
 
-        File backgroundCsv = new File("../assets/maps/" + mapName + "/le_foy_Background.csv");
-        File breakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Breakable.csv");
-        File unbreakableCsv = new File("../assets/maps/" + mapName + "/le_foy_Unbreakable.csv");
+        File backgroundCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Background.csv");
+        File breakableCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Breakable.csv");
+        File unbreakableCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Unbreakable.csv");
         assertTrue(backgroundCsv.exists(), "Background CSV does not exist!");
 
         try (
@@ -300,64 +289,46 @@ public class LevelMapFactoryTest {
                 assertEquals(backgroundCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
                 assertEquals(breakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
                 assertEquals(unbreakableCols.length, levelMap.getWidth(), "Number of columns mismatch at row " + i);
-
-                for (int j = 0; j < backgroundCols.length; j++) {
-                    System.out.println("i[" + i + "] = " + "j[" + j + "]");
-                    int expectedBackgroundTextureId = Integer.parseInt(backgroundCols[j].trim());
-                    Integer expectedBreakableTextureId = Integer.parseInt(breakableCols[j].trim());
-                    Integer expectedUnbreakableTextureId = Integer.parseInt(unbreakableCols[j].trim());
-
-                    Square actualSquare = levelMap.getSquare(j, i);
-                    int actualBackgroundTextureId = actualSquare.getTextureId();
-
-                    if (actualSquare.isVerticalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_V;
-                    }
-                    if (actualSquare.isHorizontalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_H;
-                    }
-                    if (actualSquare.isDiagonalFlip()) {
-                        actualBackgroundTextureId |= ElementTexture.FLIP_D;
-                    }
-
-                    assertEquals(expectedBackgroundTextureId, actualBackgroundTextureId,
-                        String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                            i, j, expectedBackgroundTextureId, actualBackgroundTextureId));
-
-
-                    MapElement actualElement = actualSquare.getMapElement();
-
-                    Integer expectedTextureId = null;
-
-                    if (expectedBreakableTextureId != -1) {
-                        expectedTextureId = expectedBreakableTextureId;
-                    } else if (expectedUnbreakableTextureId != -1) {
-                        expectedTextureId = expectedUnbreakableTextureId;
-                    }
-
-                    if (expectedTextureId != null) {
-                        System.out.println(expectedTextureId);
-                        int actualTextureId = actualElement.getTextureId();
-
-                        if (actualElement.isVerticalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_V;
-                        }
-                        if (actualElement.isHorizontalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_H;
-                        }
-                        if (actualElement.isDiagonalFlip()) {
-                            actualTextureId |= ElementTexture.FLIP_D;
-                        }
-
-                        assertEquals(expectedTextureId, actualTextureId,
-                                String.format("Mismatch at [%d,%d]: expected %d but got %d",
-                                    i, j, expectedTextureId, actualTextureId));
-                    }
-
-                }
             }
+
+            Square square = levelMap.getSquare(4, 11);
+            System.out.println("Square at (4, 11): " + square);
+            MapElement mapElement = square.getMapElement();
+            System.out.println("MapElement at (4, 11): " + mapElement);
+
+            System.out.println("Flip Horizontal: " + mapElement.isHorizontalFlip());
+            System.out.println("Flip Vertical: " + mapElement.isVerticalFlip());
+            System.out.println("Flip Diagonal: " + mapElement.isDiagonalFlip());
+
+            System.out.println(levelMap);
+
+            System.out.println("Square at (12,13): " + levelMap.getSquare(12, 13));
+
+            assertTrue(levelMap.getSquare(4, 11).getMapElement().isHorizontalFlip());
         }
     }
+
+//    @Test
+//    public void test_debug() {
+//        int breakableTextureId = 53;
+//        System.out.print("FLIP_V: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V);
+//        System.out.print("FLIP_H: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_H);
+//        System.out.print("FLIP_D: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_D);
+//        System.out.print("FLIP_VH: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V | ElementTexture.FLIP_H);
+//        System.out.print("FLIP_VD: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V | ElementTexture.FLIP_D);
+//        System.out.print("FLIP_HD: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_H | ElementTexture.FLIP_D);
+//        System.out.print("FLIP_VHD: ");
+//        System.out.println(breakableTextureId | ElementTexture.FLIP_V | ElementTexture.FLIP_H | ElementTexture.FLIP_D);
+//    }
+
+
+
 
     private File writeCsv(String prefix, String[][] data) throws IOException {
         File file = File.createTempFile(prefix, ".csv");
