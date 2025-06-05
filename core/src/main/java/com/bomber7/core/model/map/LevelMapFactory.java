@@ -218,7 +218,7 @@ public final class LevelMapFactory {
                 String[] unbreakableRow = unbreakableRows.get(i);
                 List<Square> squareRow = new ArrayList<>();
 
-                for (int j = backgroundRow.length-1; j >= 0; j--) {
+                for (int j = 0; j < backgroundRow.length; j++) {
                     int backgroundTextureId = Integer.parseInt(backgroundRow[j].trim());
                     int breakableTextureId = Integer.parseInt(breakableRow[j].trim());
                     int unbreakableTextureId = Integer.parseInt(unbreakableRow[j].trim());

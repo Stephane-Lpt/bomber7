@@ -97,14 +97,14 @@ public class ViewMap extends Actor {
         totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * scale;
 
         originX = centerX - totalWidth / 2;
-        originY = centerY + totalHeight / 2;
+        originY = centerY - totalHeight / 2;
     }
 
     private void drawTextureRegion(TextureRegion textureRegion, int row, int col, float rotation) {
         spriteBatch.draw(
             textureRegion,
             originX + (row * scaledTextureSize),
-            originY - (col * scaledTextureSize),
+            originY + (col * scaledTextureSize),
             scaledTextureOrigin,
             scaledTextureOrigin,
             scaledTextureSize,
