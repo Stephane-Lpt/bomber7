@@ -22,7 +22,7 @@ public class TimeBomb extends Bomb {
     /**
      * The default countdown timer value for the TimeBomb.
      */
-    private static final float DEFAULT_TIMER = 0.5f;
+    private static final float DEFAULT_TIMER = 5.0f;
 
     /**
      * Constructs a TimeBomb with the specified explosion power, sprite file path and timer.
