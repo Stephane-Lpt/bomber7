@@ -3,6 +3,7 @@ package com.bomber7.core.model.entities;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
+import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
 
 /**
@@ -32,6 +33,8 @@ public abstract class Character {
 
     /** The speed of the character. */
     private int speed;
+    /** The score of the character. */
+    private int score;
     /** The life points of the character. */
     private int life;
     /** The X-axis position of the character on the map. */
@@ -39,7 +42,6 @@ public abstract class Character {
     /** The Y-axis position of the character on the map. */
     private int y;
     /** Moving status of player, needed for sprite animation. */
-
     private int movingStatus;
 
     /**
@@ -78,6 +80,7 @@ public abstract class Character {
         this.isAlive = true;
         this.map = map;
         this.movingStatus = STANDING_STILL;
+        this.score = 0;
     }
 
     /* ------[GETTERS]------------------------------------ */
@@ -123,6 +126,14 @@ public abstract class Character {
     }
 
     /**
+     * Character current score getter.
+     * @return score Current score
+     */
+    public int getScore() {
+        return this.score;
+    }
+
+    /**
      * Character current sprite path file.
      * @return spriteFP Current sprite path file
      */
@@ -144,14 +155,28 @@ public abstract class Character {
     /**
      * Character speed setter.
      * @param newSpeed The new speed value of character
-     * @throws IllegalSpeedOperationException If new speed value not in range of
-     *                                        MIN-MAX value
+     * @throws IllegalSpeedOperationException If new speed value not valid
+     *                                        (negative or zero)
      */
     public void setSpeed(int newSpeed) {
         if (newSpeed > 0) {
             this.speed = newSpeed;
         } else {
             throw new IllegalSpeedOperationException("Speed value must be positive.");
+        }
+    }
+
+    /**
+     * Character score setter.
+     * @param newScore The new score value of character
+     * @throws IllegalScoreOperationException If new score value not valid
+     *                                        (negative)
+     */
+    public void setScore(int newScore) {
+        if (newScore > this.score) {
+            this.speed = newScore;
+        } else {
+            throw new IllegalScoreOperationException("Score value must be positive.");
         }
     }
 
