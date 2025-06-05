@@ -9,7 +9,7 @@ public class TriggerBomb extends Bomb {
     /**
      * The texture name associated with the TriggerBomb.
      */
-    private static final String textureName = "trigger_bomb";
+    private static final String TEXTURE_STRING = "trigger_bomb";
 
     /**
      * Constructs a TriggerBomb with the specified explosion, power, sprite file path and owner.
@@ -19,7 +19,7 @@ public class TriggerBomb extends Bomb {
      */
 
     public TriggerBomb(int power, int x, int y) {
-        super(power, x, y, TriggerBomb.textureName);
+        super(power, x, y, TriggerBomb.TEXTURE_STRING);
     }
 
     /**

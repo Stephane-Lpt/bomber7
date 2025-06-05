@@ -19,6 +19,9 @@ public class TimeBomb extends Bomb {
      */
     public static final String TEXTURE_NAME = "time_bomb";
 
+    /**
+     * The default countdown timer value for the TimeBomb.
+     */
     private static final float DEFAULT_TIMER = 0.5f;
 
     /**

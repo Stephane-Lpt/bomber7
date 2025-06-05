@@ -34,10 +34,4 @@ public class HumanPlayer extends Player {
         return tmpConfig;
     }
 
-    // /**
-    //  * Drops a bomb at the player's current position.
-    //  */
-    // public void dropBomb() {
-    // // Logic to drop a bomb
-    // }
 }

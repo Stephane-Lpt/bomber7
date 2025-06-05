@@ -259,7 +259,7 @@ public abstract class Character {
      * @return boolean
      */
     public boolean checkMove(int futureX, int futureY) {
-        // I don't know yet how to do that without the LevelMap Class Implemented
+        // need collisions
         return true;
     }
 

@@ -5,6 +5,7 @@
 package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
+import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +118,7 @@ public abstract class Player extends Character {
             int currX = this.getPositionX(); // get our current X position
             int currY = this.getPositionY(); // get our current Y position
             Square currentSquare = this.map.getSquare(currX, currY);
-            Bomb bombToDrop = null;
+            Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
                     bombToDrop = new TriggerBomb(power, currX, currY);
@@ -126,7 +127,9 @@ public abstract class Player extends Character {
                 case TIME:
                     bombToDrop = new TimeBomb(power, currX, currY);
                     break;
-            };
+                default:
+                    bombToDrop = null;
+            }
             currentSquare.setMapElement(bombToDrop);
             this.nbBomb--; // Decrease the number of bombs available
             return true;
@@ -145,7 +148,33 @@ public abstract class Player extends Character {
         this.triggerBombsDropped.clear();
     }
 
+    /**
+     * Gets the power of the player's bombs.
+     * @return The current power of the bombs
+     */
     public int getPower() {
         return power;
     }
+
+    /**
+     * Sets the power of the player's bombs.
+     * @param power The new power to set for the bombs
+     * @throws IllegalPowerOperationException If the power is less than 0
+     */
+    public void setPower(int power) throws IllegalPowerOperationException {
+        if (power >= 0) {
+            this.power = power;
+        } else {
+            throw new IllegalPowerOperationException("power_to_set >= 0");
+        }
+    }
+
+    /**
+     * Increases the player's bomb power by 1.
+     * This method is used to enhance the explosion radius of the bombs dropped by the player.
+     */
+    public void addPower() {
+        this.power++;
+    }
+
 }

@@ -3,11 +3,19 @@ package com.bomber7.core;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.core.model.square.*;
+import com.bomber7.core.model.square.BreakableWall;
+import com.bomber7.core.model.square.BombType;
+import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.TimeBomb;
+import com.bomber7.core.model.square.TriggerBomb;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PlayerTest {
 

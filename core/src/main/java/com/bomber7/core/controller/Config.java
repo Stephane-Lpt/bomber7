@@ -1,6 +1,8 @@
 package com.bomber7.core.controller;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
@@ -48,19 +50,40 @@ public class Config implements java.io.Serializable {
     }
 
     /**
-     * Saves the current configuration to a file.
-     * @throws Exception if file not found.
+     * Class method to load the configuration from a file.
+     * @param configFile the path to the configuration file.
+     * @return the Config object loaded from the file, or null if an error occurs.
      */
-    public void saveConfig() throws Exception {
+    public static Config loadConfig(String configFile) {
+        Config config = null;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(configFile);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            config = (Config) objectInputStream.readObject();
+            objectInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return config;
+    }
+
+    /**
+     * Saves the current configuration to a file.
+     */
+    public void saveConfig() {
         java.io.File file = new java.io.File(this.fileString);
         java.io.File parent = file.getParentFile();
         if (parent != null && !parent.exists()) {
             parent.mkdirs();
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(this);
-        objectOutputStream.close();
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(this);
+            objectOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
