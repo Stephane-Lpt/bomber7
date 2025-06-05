@@ -137,7 +137,7 @@ public class LevelMapFactoryTest {
 
         try {
             LevelMap levelMap = LevelMapFactory.createLevelMap(foyMapName);
-            Square square = levelMap.getSquare(5, 2);
+            Square square = levelMap.getSquare(5, 23);
             // id = 33
             assertEquals("spruce-planks", square.getTextureName());
             // id = 44
@@ -304,7 +304,7 @@ public class LevelMapFactoryTest {
 
             System.out.println("Square at (12,13): " + levelMap.getSquare(12, 13));
 
-            assertTrue(levelMap.getSquare(4, 11).getMapElement().isHorizontalFlip());
+            assertTrue(levelMap.getSquare(4, 13).getMapElement().isHorizontalFlip());
         }
     }
 
