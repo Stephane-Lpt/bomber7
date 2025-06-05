@@ -77,19 +77,25 @@ class PlayerTest {
         player.setNbBomb(3);
 
         // Drop 2 trigger bombs
-        player.dropBomb(); // Drop at (1,1)
+        player.moveUp(); // Going to (1,2) // TODO: PROBLEM - MoveUp go Down
+        player.dropBomb(); // Drop at (1,2)
+        player.moveDown(); // Going back to (1,1)
         player.moveRight();
         player.dropBomb(); // Drop at (2,1)
+        System.out.println(player.getPower());
 
         assertEquals(2, player.getNbTriggeredBombDropped(), "Should have 2 TriggerBombs before activation");
 
+
         // Check squares before activation
-        Square square1 = this.foyLevelMap.getSquare(1, 1);
+        Square square1 = this.foyLevelMap.getSquare(1, 2);
         Square square2 = this.foyLevelMap.getSquare(2, 1);
         Square square3 = this.foyLevelMap.getSquare(3, 1);
-        assertInstanceOf(TriggerBomb.class, square1.getMapElement(), "Expected TriggerBomb on (1,1)");
+        Square square4 = this.foyLevelMap.getSquare(1, 3);
+        assertInstanceOf(TriggerBomb.class, square1.getMapElement(), "Expected TriggerBomb on (1,2)");
         assertInstanceOf(TriggerBomb.class, square2.getMapElement(), "Expected TriggerBomb on (2,1)");
         assertInstanceOf(BreakableWall.class, square3.getMapElement(), "Expected BreakableWall on (3,1)");
+        assertInstanceOf(BreakableWall.class, square4.getMapElement(), "Expected BreakableWall on (1,3)");
 
         // Activate all trigger bombs
         player.activateAllTriggerBombs();
@@ -100,8 +106,8 @@ class PlayerTest {
         assertEquals(0, player.getNbTriggeredBombDropped(), "Trigger bomb list should be empty after activation");
         assertNull(square1.getMapElement(), "Expected square (1,1) to be cleared after explosion");
         assertNull(square2.getMapElement(), "Expected square (2,1) to be cleared after explosion");
-        assertNull(square3.getMapElement(), "Expected nothing because wall should be broken on (3,1)");
-
+        assertNull(square3.getMapElement(), "Expected null because wall should be broken on (3,1)");
+        assertNull(square4.getMapElement(), "Expected null because wall should be broken on (1,3)");
     }
 
 }

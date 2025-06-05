@@ -52,6 +52,7 @@ public abstract class Player extends Character {
     public Player(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
         super(name, map, x, y, life, speed, spriteFP);
         this.nbBomb = 1;
+        this.power = 1;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME
         this.triggerBombsDropped = new ArrayList<>();
     }
