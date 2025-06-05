@@ -1,3 +1,5 @@
+package com.bomber7.core.view;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.bomber7.core.model.Character;
+
+package com.bomber7.core.view;
 
 /**
  * A view component for displaying a character in our game, implementing the Observer pattern.
