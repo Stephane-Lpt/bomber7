@@ -1,5 +1,6 @@
 package com.bomber7.core.screens;
 
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 
@@ -7,7 +8,6 @@ import java.nio.file.Path;
 import com.badlogic.gdx.Game;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.core.views.ViewMap;
 import com.bomber7.utils.Dimensions;
 
@@ -40,9 +40,9 @@ public class GameScreen extends BomberScreen {
         /* =======[BUTTON]=============================================== */
 
         /* Buttons to go to key bindings menu. */
-        BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
+        TextButton settingsButton = new TextButton(resources.getString("options"), resources.getSkin());
         /* Buttons to go to key bindings menu. */
-        BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
+        TextButton goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
 
         mainTable.add(settingsButton)
             .width(Dimensions.BUTTON_WIDTH)
@@ -68,7 +68,7 @@ public class GameScreen extends BomberScreen {
         /* =======[FULL FRAME]=============================================== */
 
         mainTable.add(viewMap);
-        stage.addActor(mainTable);
+        this.addActor(mainTable);
     }
 
     /**
@@ -89,5 +89,5 @@ public class GameScreen extends BomberScreen {
     @Override
     public ScreenType getScreenType() {
         return ScreenType.GAME;
-
+    }
 }
