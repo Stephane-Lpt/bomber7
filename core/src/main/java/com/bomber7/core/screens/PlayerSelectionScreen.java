@@ -2,7 +2,6 @@ package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -58,8 +57,8 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         PlayerSelector[] playerSelectors = new PlayerSelector[Constants.MAX_PLAYERS];
         playerBlueprintObservables = new PlayerBlueprintObservable[Constants.MAX_PLAYERS];
         goToMainMenuButton = new TextButton(resources.getString("go_back"), resources.getSkin());
-        goToMapSelectionButton = new DisableableTextButton(resources.getString("continue"), resources.getSkin(), "inactive");
-        goToMapSelectionButton.setTouchable(Touchable.disabled);
+        goToMapSelectionButton = new DisableableTextButton(resources.getString("continue"), resources.getSkin(), "default");
+        goToMapSelectionButton.disable();
 
         table.setTitle(new Label(resources.getString("player_selection"), resources.getSkin(), "large"), cols);
 

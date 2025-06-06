@@ -1,5 +1,5 @@
 uiskin.png
-size: 1000, 1547
+size: 1017, 1547
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -67,7 +67,7 @@ inactive.9
   orig: 100, 100
   offset: 0, 0
   index: -1
-light.gold.9
+light.blue.9
   rotate: false
   xy: 473, 0
   size: 100, 100
@@ -75,7 +75,7 @@ light.gold.9
   orig: 100, 100
   offset: 0, 0
   index: -1
-light.green.9
+light.gold.9
   rotate: false
   xy: 573, 0
   size: 100, 100
@@ -83,9 +83,17 @@ light.green.9
   orig: 100, 100
   offset: 0, 0
   index: -1
-light.red.9
+light.green.9
   rotate: false
   xy: 673, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+light.red.9
+  rotate: false
+  xy: 773, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -114,7 +122,7 @@ slider.knob.9
   index: -1
 sprite.bde
   rotate: false
-  xy: 371, 100
+  xy: 471, 100
   size: 272, 409
   split: 0, 272, 0, 409
   orig: 272, 409
@@ -122,7 +130,7 @@ sprite.bde
   index: -1
 sprite.graduate.9
   rotate: false
-  xy: 643, 100
+  xy: 743, 100
   size: 274, 412
   split: 0, 0, 0, 0
   pad: 69, 68, 103, 103
@@ -131,7 +139,7 @@ sprite.graduate.9
   index: -1
 sprite.student
   rotate: false
-  xy: 100, 100
+  xy: 200, 100
   size: 271, 409
   split: 0, 271, 0, 409
   orig: 271, 409
@@ -155,7 +163,7 @@ white.9
   index: -1
 white.gold.9
   rotate: false
-  xy: 773, 0
+  xy: 873, 0
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -163,7 +171,7 @@ white.gold.9
   index: -1
 white.green.9
   rotate: false
-  xy: 873, 0
+  xy: 0, 100
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -171,7 +179,7 @@ white.green.9
   index: -1
 white.red.9
   rotate: false
-  xy: 0, 100
+  xy: 100, 100
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100

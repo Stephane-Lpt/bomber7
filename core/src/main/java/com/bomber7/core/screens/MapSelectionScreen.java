@@ -83,7 +83,8 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
         roundsNumberLabel = new Label(String.valueOf(Constants.MIN_ROUNDS), resources.getSkin());
 
         goToPlayerSelectionButton = new TextButton(resources.getString("go_back"), resources.getSkin());
-        startGameButton = new DisableableTextButton(resources.getString("start_game"), resources.getSkin(), "inactive");
+        startGameButton = new DisableableTextButton(resources.getString("start_game"), resources.getSkin(), "default");
+        startGameButton.disable();
         decreaseNumberOfRounds = new TextButton("<", resources.getSkin(), "transparent-sm");
         increaseNumberOfRounds = new TextButton(">", resources.getSkin(), "transparent-sm");
 

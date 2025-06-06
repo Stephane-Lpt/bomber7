@@ -1,5 +1,6 @@
 package com.bomber7.utils;
 
+// TODO: change for thomas' version
 /**
 * An enum that contains all the possible controls with their default values.
 */

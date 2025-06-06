@@ -1,6 +1,5 @@
 package com.bomber7.core;
 
-import com.badlogic.gdx.Screen;
 import com.bomber7.core.screens.BomberScreen;
 import com.bomber7.utils.ScreenType;
 
@@ -29,17 +28,13 @@ public final class ScreenManager {
 
     private ScreenType currentScreenType = null;
 
-    private Map<ScreenType, BomberScreen> screens = new HashMap<>();
-    private Stack<BomberScreen> screenStack = new Stack<>();
+    private final Map<ScreenType, BomberScreen> screens = new HashMap<>();
+    private final Stack<BomberScreen> screenStack = new Stack<>();
 
     /**
      * Reference to the LibGDX Game object.
      */
     private BomberGame game;
-
-    /**
-     * Stack of
-     */
 
     /**
      * Private constructor to enforce singleton pattern.
@@ -92,22 +87,22 @@ public final class ScreenManager {
         BomberScreen newScreen;
 
         if (screens.get(screenType) == null || !saveScreen) {
-            System.out.println("initializing screen " + screenType);
+//            System.out.println("initializing screen " + screenType);
             newScreen = screenType.getScreen(game, params);
             screens.put(screenType, newScreen);
         } else {
-            System.out.println("screen already initialized. retreiving it from the stack");
+//            System.out.println("screen already initialized. retreiving it from the stack");
             newScreen = screens.get(screenType);
         }
 
         if (currentScreenType != null) {
-            System.out.println("current screen is not null");
+//            System.out.println("current screen is not null");
             if (pushScreenToStack) {
                 if (saveScreen) {
-                    System.out.println("saving " + currentScreenType + " " + "screen to stack");
+//                    System.out.println("saving " + currentScreenType + " " + "screen to stack");
                     screenStack.push(oldScreen);
                 } else {
-                    System.out.println("creating a new " + currentScreenType + " " + "and adding it to the stack");
+//                    System.out.println("creating a new " + currentScreenType + " " + "and adding it to the stack");
                     screenStack.push(currentScreenType.getScreen(game));
                 }
             }
@@ -120,7 +115,7 @@ public final class ScreenManager {
 
 
     public void showPreviousScreen(boolean pushScreenToStack, boolean saveScreen) {
-        System.out.println("trying to come back to previous screen");
+//        System.out.println("trying to come back to previous screen");
         if (!screenStack.isEmpty()) {
             BomberScreen poppedScreen = screenStack.pop();
 

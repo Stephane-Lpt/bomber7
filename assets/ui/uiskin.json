@@ -80,7 +80,7 @@
       "font": "pixelify-sm",
       "fontColor": "white"
     },
-    "player-add": {
+    "green": {
       "up": "light.green.9",
       "over": "dark.green.9",
       "down": "white.green.9",
@@ -101,12 +101,12 @@
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
-    "character-selector-valid": {
+    "gold": {
       "up": "light.gold.9",
       "over": "dark.gold.9",
       "down": "white.gold.9"
     },
-    "character-selector-locked": {
+    "red": {
       "up": "light.red.9",
       "over": "dark.red.9",
       "down": "white.red.9"
@@ -142,6 +142,12 @@
       "fontColor" : "white",
       "cursor": "white.9",
       "selection": "selection"
+    }
+  },
+  "com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
+    "default": {
+      "titleFont": "pixelify-sm",
+      "background": "light.blue.9"
     }
   }
 }

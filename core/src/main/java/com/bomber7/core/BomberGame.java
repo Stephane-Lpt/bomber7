@@ -2,6 +2,8 @@ package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
 import com.bomber7.utils.ScreenType;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -21,8 +23,10 @@ public class BomberGame extends Game {
      */
     @Override
     public void create() {
-        resources = new ResourceManager();
+        Gdx.app.setLogLevel(Application.LOG_DEBUG);
         ScreenManager.getInstance().initialize(this);
+        ConfigManager.getInstance().initialize();
+        resources = new ResourceManager();
 
         ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }

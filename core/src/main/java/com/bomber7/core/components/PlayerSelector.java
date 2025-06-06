@@ -129,8 +129,8 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         nameTextField.setMaxLength(Constants.MAX_PLAYER_NAME_LENGTH);
         strategyLabel = new Label("", resources.getSkin());
 
-        addPlayerButton = new TextButton(resources.getString("add"), resources.getSkin(), "player-add");
-        characterBackgroundButton = new ImageButton(resources.getSkin(), "character-selector-valid");
+        addPlayerButton = new TextButton(resources.getString("add"), resources.getSkin(), "green");
+        characterBackgroundButton = new ImageButton(resources.getSkin(), "gold");
         characterImage = new Image(resources.getSkin().getDrawable("transparent-bg"));
         characterImage.setTouchable(Touchable.disabled);
 
@@ -271,12 +271,12 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
 
             if (playerBlueprint.isValid()) {
                 characterBackgroundButton.setStyle(
-                    resources.getSkin().get("character-selector-valid", ImageButton.ImageButtonStyle.class
-                ));
+                    resources.getSkin().get("gold", ImageButton.ImageButtonStyle.class)
+                );
             } else {
                 characterBackgroundButton.setStyle(
-                    resources.getSkin().get("character-selector-locked", ImageButton.ImageButtonStyle.class
-                ));
+                    resources.getSkin().get("red", ImageButton.ImageButtonStyle.class)
+                );
             }
         }
     }

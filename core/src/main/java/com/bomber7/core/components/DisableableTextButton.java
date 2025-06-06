@@ -11,6 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class DisableableTextButton extends TextButton {
 
     /**
+     * The default styleName for this button (i.e when its enabled).
+     */
+    private final String styleName;
+
+    /**
      * Creates a new DisableableTextButton with the specified text, skin, and style.
      *
      * @param text      the button label
@@ -19,6 +24,7 @@ public class DisableableTextButton extends TextButton {
      */
     public DisableableTextButton(String text, Skin skin, String styleName) {
         super(text, skin, styleName);
+        this.styleName = styleName;
     }
 
     /**
@@ -32,14 +38,13 @@ public class DisableableTextButton extends TextButton {
 
     }
 
-
     /**
      * Enabled the button and updates its style accordingly.
      */
     public void enable() {
         this.setTouchable(Touchable.enabled);
         this.setStyle(
-            this.getSkin().get("default", TextButton.TextButtonStyle.class
+            this.getSkin().get(styleName, TextButton.TextButtonStyle.class
             ));
     }
 

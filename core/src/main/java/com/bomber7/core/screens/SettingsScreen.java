@@ -1,18 +1,19 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.bomber7.core.ConfigManager;
 import com.bomber7.core.ScreenManager;
+import com.bomber7.core.components.BomberDialog;
 import com.bomber7.core.components.BomberTable;
+import com.bomber7.core.components.DisableableTextButton;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
@@ -60,7 +61,7 @@ public class SettingsScreen extends BomberScreen {
     /**
      * Button to confirm and save changes.
      */
-    private TextButton confirmChangesButton;
+    private DisableableTextButton saveChangesButton;
 
     /**
      * Button to return to the previous screen.
@@ -69,9 +70,23 @@ public class SettingsScreen extends BomberScreen {
     private TextButton goBackButton;
 
     /**
-     * Indicates whether the user modified the settings.
+     * A dialog that pops up when there is some unsaved changes.
      */
-    private boolean isModified = false;
+    private BomberDialog unsavedChangesDialog;
+
+    /**
+     * Button to switch to the previous language.
+     */
+    private TextButton changeLanguageLeftButton;
+
+    /**
+     * Button to switch to the next language.
+     */
+    private TextButton changeLanguageRightButton;
+    /**
+     * Label displaying the current language.
+     */
+    private Label languageValue;
 
     /**
      * Constructs a new SettingsScreen associated with the given game.
@@ -84,13 +99,26 @@ public class SettingsScreen extends BomberScreen {
 
     @Override
     public void initView() {
+        unsavedChangesDialog = new BomberDialog(
+            resources.getString("go_back"),
+            resources.getString("unsaved_changes_text"),
+            resources.getString("save_settings"),
+            resources.getString("discard"),
+            resources.getSkin()
+        );
+
         final int cols = 2;
         BomberTable table = new BomberTable();
         table.setFillParent(true);
-//        table.setDebug(true);
 
         Label globalVolumeLabel = new Label(resources.getString("global_volume"), resources.getSkin(), "medium");
         Label musicLabel = new Label(resources.getString("music"), resources.getSkin(), "medium");
+        Label languageLabel = new Label(resources.getString("language"), resources.getSkin(), "medium");
+        languageValue = new Label(
+            resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase()),
+            resources.getSkin(),
+            "medium"
+        );
         Label keyBindingLabel = new Label(resources.getString("key_binding"), resources.getSkin(), "medium");
         Label[] playerLabels = new Label[Constants.MAX_PLAYERS];
 
@@ -102,11 +130,16 @@ public class SettingsScreen extends BomberScreen {
         }
 
         globalVolumeSlider = new Slider(VOLUME_SLIDER_MIN, VOLUME_SLIDER_MAX, VOLUME_SLIDER_STEP, false, resources.getSkin());
+        globalVolumeSlider.setValue((float) ConfigManager.getInstance().getConfig().getGlobalVolume());
         musicVolumeSlider = new Slider(VOLUME_SLIDER_MIN, VOLUME_SLIDER_MAX, VOLUME_SLIDER_STEP, false, resources.getSkin());
+        musicVolumeSlider.setValue((float) ConfigManager.getInstance().getConfig().getMusicVolume());
 
         goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
-        confirmChangesButton = new TextButton(resources.getString("validate"), resources.getSkin(), "inactive");
-        confirmChangesButton.setTouchable(Touchable.disabled);
+        saveChangesButton = new DisableableTextButton(resources.getString("save_settings"), resources.getSkin(), "green");
+        updateSaveButtonState();
+
+        changeLanguageLeftButton = new TextButton("<", resources.getSkin(), "transparent-sm");
+        changeLanguageRightButton = new TextButton(">", resources.getSkin(), "transparent-sm");
 
         table.setTitle(new Label(resources.getString("options"), resources.getSkin(), "large"), cols);
         table.add(globalVolumeLabel)
@@ -120,10 +153,27 @@ public class SettingsScreen extends BomberScreen {
             .row();
         table.add(globalVolumeSlider)
             .fillX()
+            .spaceBottom(Dimensions.LABEL_PADDING)
             .padRight(Dimensions.LABEL_PADDING);
         table.add(musicVolumeSlider)
             .fillX()
             .padLeft(Dimensions.LABEL_PADDING)
+            .spaceBottom(Dimensions.LABEL_PADDING)
+            .row();
+
+        table.add(languageLabel)
+            .spaceBottom(Dimensions.LABEL_PADDING)
+            .left();
+
+        HorizontalGroup group = new HorizontalGroup();
+        group.space(Dimensions.COMPONENT_SPACING_SM);
+        group.addActor(changeLanguageLeftButton);
+        group.addActor(languageValue);
+        group.addActor(changeLanguageRightButton);
+
+        table.add(group)
+            .spaceBottom(Dimensions.LABEL_PADDING)
+            .right()
             .row();
 
         table.add(keyBindingLabel)
@@ -145,24 +195,61 @@ public class SettingsScreen extends BomberScreen {
             table.row();
         }
 
-        table.setupDoubleButtons(goBackButton, confirmChangesButton, 2);
+        table.setupDoubleButtons(goBackButton, saveChangesButton, 2);
 
         super.addActor(table);
     }
 
     @Override
     public void initController() {
-        goBackButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+        changeLanguageLeftButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ScreenManager.getInstance().showPreviousScreen(false, false);
+                ConfigManager.getInstance().getConfig().setLanguage(ConfigManager.getInstance().getConfig().getLanguage().previous());
+                languageValue.setText(resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase()));
+                updateSaveButtonState();
+                resources.updateLanguage();
+                ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, false, false);
             }
         }, resources));
 
-        confirmChangesButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+        changeLanguageRightButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // TODO
+                ConfigManager.getInstance().getConfig().setLanguage(ConfigManager.getInstance().getConfig().getLanguage().next());
+                languageValue.setText(resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase()));
+                updateSaveButtonState();
+                resources.updateLanguage();
+                ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, false, false);
+            }
+        }, resources));
+
+        unsavedChangesDialog.setOnResult(save -> {
+            if (save) {
+                ConfigManager.getInstance().saveModifications();
+                ScreenManager.getInstance().showPreviousScreen(false, false);
+            } else {
+                ConfigManager.getInstance().resetModifications();
+                ScreenManager.getInstance().showPreviousScreen(false, false);
+            }
+        });
+
+        goBackButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (ConfigManager.getInstance().isUnsaved()) {
+                    unsavedChangesDialog.show(SettingsScreen.this);
+                } else {
+                    ScreenManager.getInstance().showPreviousScreen(false, false);
+                }
+            }
+        }, resources));
+
+        saveChangesButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ConfigManager.getInstance().saveModifications();
+                updateSaveButtonState();
             }
         }, resources));
 
@@ -179,19 +266,36 @@ public class SettingsScreen extends BomberScreen {
         globalVolumeSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println(globalVolumeSlider.getValue());
+                ConfigManager.getInstance().getConfig().setGlobalVolume(
+                    (int) globalVolumeSlider.getValue()
+                );
+                updateSaveButtonState();
             }
         });
 
         musicVolumeSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println(globalVolumeSlider.getValue());
+                ConfigManager.getInstance().getConfig().setMusicVolume(
+                    (int) musicVolumeSlider.getValue()
+                );
+                updateSaveButtonState();
             }
         });
 
         globalVolumeSlider.addListener(ComponentsUtils.addSoundEffect(new ClickListener() { }, resources));
         musicVolumeSlider.addListener(ComponentsUtils.addSoundEffect(new ClickListener() { }, resources));
+    }
+
+    /**
+     * Updates the state of the "save" button
+     */
+    public void updateSaveButtonState() {
+        if (ConfigManager.getInstance().isUnsaved()) {
+            saveChangesButton.enable();
+        } else {
+            saveChangesButton.disable();
+        }
     }
 
     @Override
