@@ -1,7 +1,5 @@
 package com.bomber7.core.model.square;
 
-import java.nio.file.Path;
-
 /**
  * Represents a breakable wall in the game.
  */
@@ -10,35 +8,51 @@ public class BreakableWall extends Wall {
     /**
      * Constructs a BreakableWall with the specified texture file path.
      *
-     * @param textureFilePath the file path to the texture image for the wall
-     * @param textureId id of the texture
+     * @param textureName the file path to the texture image for the wall
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public BreakableWall(
-        Path textureFilePath,
-        int textureId,
+        String textureName,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureName, verticalFlip, horizontalFlip, diagonalFlip);
     }
 
     /**
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureFilePath the file path to the sprite image for the wall
-     * @param textureId id of the texture
+     * @param textureName the texture name for this square for the breakable wall
      */
-    public BreakableWall(Path textureFilePath, int textureId) {
-        super(textureFilePath, textureId);
+    public BreakableWall(String textureName) {
+        super(textureName);
     }
 
     @Override
     public String toString() {
-        return "BreakableWall";
+        return "BreakableWall{"
+            +
+                "textureName='"
+            +
+            getTextureName()
+            + '\''
+            +
+                ", verticalFlip="
+            +
+            isVerticalFlip()
+            +
+                ", horizontalFlip="
+            +
+            isHorizontalFlip()
+            +
+                ", diagonalFlip="
+            +
+            isDiagonalFlip()
+            +
+                '}';
     }
 }

@@ -26,4 +26,8 @@ public final class Constants {
      * Maximum number of rounds allowed in a game.
      */
     public static final int MAX_ROUNDS = 10;
+    /**
+     * The size in pixels of map textures.
+     */
+    public static final int TEXTURE_SIZE = 32;
 }

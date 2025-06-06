@@ -1,7 +1,6 @@
 package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.map.LevelMap;
-import java.nio.file.Path;
 
 /**
  * The Timebomb class is a special type of Bomb that has a countdown
@@ -20,12 +19,11 @@ public class TimeBomb extends Bomb {
      * @param p power of the bomb
      * @param x the X-coordinate
      * @param y the Y-coordinate
-     * @param textureFilePath the path to the texture file
-     * @param textureId the id of the texture
+     * @param textureName The texture name associated with the bomb.
      * @param t initial value of the countdown timer
      */
-    public TimeBomb(int p, int x, int y, Path textureFilePath, int textureId, float t) {
-        super(p, x, y, textureFilePath, textureId);
+    public TimeBomb(int p, int x, int y, String textureName, float t) {
+        super(p, x, y, textureName);
         this.timer = t;
     }
 
