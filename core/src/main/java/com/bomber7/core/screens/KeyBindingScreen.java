@@ -17,8 +17,17 @@ import com.bomber7.utils.ScreenType;
  */
 public class KeyBindingScreen extends BomberScreen {
 
-    private TextButton confirmButton;
+    /**
+     * A button to go back to the settings screen.
+     */
+    private TextButton goBackButton;
+    /**
+     * A button to reset current's player controls to defaults.
+     */
     private TextButton resetBindingButton;
+    /**
+     * Buttons representing input controls, on which the user can click and set his own inputs.
+     */
     private TextButton[] inputButtons;
 
     /**
@@ -45,7 +54,7 @@ public class KeyBindingScreen extends BomberScreen {
         Label[] inputLabels = new Label[Controls.values().length];
         inputButtons = new TextButton[Controls.values().length];
 
-        confirmButton = new TextButton(resources.getString("confirm"), resources.getSkin());
+        goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
         resetBindingButton = new TextButton(resources.getString("reset"), resources.getSkin(), "red");
 
         table.setTitle(new Label(
@@ -70,7 +79,7 @@ public class KeyBindingScreen extends BomberScreen {
             table.row();
         }
 
-        table.setupDoubleButtons(resetBindingButton, confirmButton,2);
+        table.setupDoubleButtons(resetBindingButton, goBackButton, 2);
 
         this.addActor(table);
     }
@@ -84,7 +93,7 @@ public class KeyBindingScreen extends BomberScreen {
             }
         }, resources));
 
-        confirmButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
+        goBackButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // TODO

@@ -12,7 +12,7 @@ import com.bomber7.utils.Constants;
 
 public class ViewMap extends Actor {
 
-    /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk). */
+    /** The Grid ({@link https://www.youtube.com/watch?v=lILHEnz8fTk YouTube video}). */
     private final LevelMap mapGrid;
 
     /** The ressourceManager needed for sprites. */

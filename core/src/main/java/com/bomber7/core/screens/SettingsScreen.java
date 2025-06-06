@@ -205,8 +205,12 @@ public class SettingsScreen extends BomberScreen {
         changeLanguageLeftButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ConfigManager.getInstance().getConfig().setLanguage(ConfigManager.getInstance().getConfig().getLanguage().previous());
-                languageValue.setText(resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase()));
+                ConfigManager.getInstance().getConfig().setLanguage(
+                    ConfigManager.getInstance().getConfig().getLanguage().previous()
+                );
+                languageValue.setText(
+                    resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase())
+                );
                 updateSaveButtonState();
                 resources.updateLanguage();
                 ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, false, false);
@@ -216,8 +220,12 @@ public class SettingsScreen extends BomberScreen {
         changeLanguageRightButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ConfigManager.getInstance().getConfig().setLanguage(ConfigManager.getInstance().getConfig().getLanguage().next());
-                languageValue.setText(resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase()));
+                ConfigManager.getInstance().getConfig().setLanguage(
+                    ConfigManager.getInstance().getConfig().getLanguage().next()
+                );
+                languageValue.setText(
+                    resources.getString(ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase())
+                );
                 updateSaveButtonState();
                 resources.updateLanguage();
                 ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, false, false);
@@ -253,7 +261,7 @@ public class SettingsScreen extends BomberScreen {
             }
         }, resources));
 
-        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             int finalI = i;
             configPlayerButtons[i].addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
                 @Override
@@ -288,7 +296,7 @@ public class SettingsScreen extends BomberScreen {
     }
 
     /**
-     * Updates the state of the "save" button
+     * Updates the state of the "save" button.
      */
     public void updateSaveButtonState() {
         if (ConfigManager.getInstance().isUnsaved()) {

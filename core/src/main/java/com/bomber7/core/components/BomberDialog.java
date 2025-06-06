@@ -9,9 +9,28 @@ import com.bomber7.utils.Dimensions;
 
 import java.util.function.Consumer;
 
+/**
+ * A custom dialog used in the game to confirm user actions, with styled buttons and title.
+ * <p>
+ * This dialog includes a title, a message, and two buttons for positive and negative responses.
+ * It also allows setting a callback through {@link #setOnResult(Consumer)} to handle the user's choice.
+ */
 public class BomberDialog extends Dialog {
+    /**
+     * A callback function that consumes the result of the dialog.
+     * If the user clicks the "yes" button, {@code true} is passed; if "no", {@code false}.
+     */
     private Consumer<Boolean> onResult;
 
+    /**
+     * Creates a new {@code BomberDialog} with a title, a message, and two styled buttons.
+     *
+     * @param title      the title
+     * @param text       the message displayed in the content area
+     * @param yesBtnText the label for the positive/confirmation button
+     * @param noBtnText  the label for the negative/cancel button
+     * @param skin       the skin
+     */
     public BomberDialog(String title, String text, String yesBtnText, String noBtnText, Skin skin) {
         super(title, skin);
 
@@ -52,6 +71,11 @@ public class BomberDialog extends Dialog {
         return this;
     }
 
+    /**
+     * Sets a callback that will be triggered with the result of the dialog.
+     *
+     * @param onResult a consumer that accepts {@code true} for "yes" and {@code false} for "no"
+     */
     public void setOnResult(Consumer<Boolean> onResult) {
         this.onResult = onResult;
     }

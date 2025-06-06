@@ -26,9 +26,19 @@ public final class ScreenManager {
      */
     private static ScreenManager instance;
 
+    /**
+     * The {@link ScreenType} of the current screen.
+     */
     private ScreenType currentScreenType = null;
 
+    /**
+     * A HashMap where keys are screenTypes and values are the screens associated with these screenTypes.
+     * It is used to store screens and easily load them.
+     */
     private final Map<ScreenType, BomberScreen> screens = new HashMap<>();
+    /**
+     * A stack of screens used to store previous screens and being able to come back to them.
+     */
     private final Stack<BomberScreen> screenStack = new Stack<>();
 
     /**
@@ -74,12 +84,18 @@ public final class ScreenManager {
     /**
      * Displays a new screen based on the specified {@link ScreenType}.
      * <p>
-     * If a screen is currently active, it will be disposed before switching to the new screen.
-     * You can control whether the current screen should be remembered as the previous screen
-     * using the {@code updatePreviousScreen} flag.
+     * If the screen does not already exist in the cache or if {@code saveScreen} is false,
+     * a new screen instance is created and stored. Otherwise, the existing screen is reused.
+     * </p>
+     * <p>
+     * Optionally, the current screen can be pushed to a stack before switching to the new screen.
+     * If {@code saveScreen} is true, the current screen instance is reused when popping from the stack;
+     * otherwise, a fresh instance is created when restoring.
      * </p>
      *
      * @param screenType            the type of screen to be shown
+     * @param pushScreenToStack whether the currentScreen should be pushed to the screen stack or not.
+     * @param saveScreen whether the currentScreen pushed to the stack should be saved or not.
      * @param params                optional parameters used to configure the new screen (e.g., level ID, player settings)
      */
     public void showScreen(ScreenType screenType, boolean pushScreenToStack, boolean saveScreen, Object... params) {
@@ -113,7 +129,11 @@ public final class ScreenManager {
         game.setScreen(newScreen);
     }
 
-
+    /**
+     * A method that pops and shows the previous screen in the stack.
+     * @param pushScreenToStack whether the currentScreen should be pushed to the screen stack or not.
+     * @param saveScreen whether the currentScreen pushed to the stack should be saved or not.
+     */
     public void showPreviousScreen(boolean pushScreenToStack, boolean saveScreen) {
 //        System.out.println("trying to come back to previous screen");
         if (!screenStack.isEmpty()) {

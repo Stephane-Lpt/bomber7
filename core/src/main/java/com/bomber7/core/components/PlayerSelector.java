@@ -237,6 +237,10 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
         }, resources));
     }
 
+    /**
+     * Refreshes the view of this {@link PlayerSelector} when the Subject its subscribed to is modified.
+     * @param subject the subject whose state has changed
+     */
     public void refresh(Subject subject) {
         updateCharacterBackground();
         updateNameTextField();

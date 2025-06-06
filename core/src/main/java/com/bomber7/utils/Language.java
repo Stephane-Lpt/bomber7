@@ -1,15 +1,17 @@
 package com.bomber7.utils;
 
+/**
+ * An enum that lists all the languages supported by the game.
+ */
 public enum Language {
     /**
-     * French language
+     * French language.
      */
     FRENCH,
     /**
-     * English language
+     * English language.
      */
     ENGLISH;
-
 
     /**
      * Array of all {@code Language} values for navigation methods

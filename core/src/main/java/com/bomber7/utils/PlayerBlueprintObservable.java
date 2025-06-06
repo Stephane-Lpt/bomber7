@@ -5,7 +5,6 @@ import com.bomber7.core.model.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Observable wrapper of {@link PlayerBlueprint}.

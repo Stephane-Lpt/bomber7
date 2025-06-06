@@ -1,6 +1,5 @@
 package com.bomber7.utils;
 
-// TODO: change for thomas' version
 /**
 * An enum that contains all the possible controls with their default values.
 */
@@ -63,9 +62,9 @@ public enum Controls {
     }
 
     /**
-     * Returns the default input key for a given player
-     * @param playerIndex the inder of the player
-     * @return the key
+     * Returns the default input key for a given player.
+     * @param playerIndex the inder of the player.
+     * @return the key.
      */
     public String getKeyForPlayer(int playerIndex) {
         switch (playerIndex) {
@@ -75,7 +74,7 @@ public enum Controls {
                 return player2Key;
             case 2:
                 return player3Key;
-            case 3:
+            case 2 + 1:
                 return player4Key;
             default:
                 throw new IllegalArgumentException("Invalid player index: " + playerIndex);

@@ -76,5 +76,10 @@ public abstract class BomberScreen extends Stage implements Screen, MVCComponent
         super.dispose();
     }
 
+    /**
+     * Returns the type of this screen.
+     * Used in ScreenManager to avoid multiple stacks.
+     * @return the screenType of the screen.
+     */
     public abstract ScreenType getScreenType();
 }

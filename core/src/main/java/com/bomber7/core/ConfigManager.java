@@ -8,6 +8,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * A singleton manager responsible for loading, saving, and managing the user's configuration.
+ * <p>
+ * The configuration is saved locally using LibGDX's {@link FileHandle}, and is serialized via Java's
+ * {@link ObjectOutputStream}. This manager provides access to both the persistent config and a
+ * modifiable version that can be saved or discarded.
+ * </p>
+ */
 public final class ConfigManager {
     /**
      * Path to the configuration file stored locally.
@@ -103,14 +111,16 @@ public final class ConfigManager {
     }
 
     /**
-     *
+     * A getter for the {@code modifiableConfig} attribute.
+     * @return the current modifiableConfig attribute.
      */
     public Config getConfig() {
         return modifiableConfig;
     }
 
     /**
-     *
+     * Saves the modifications made to {@code modifiableConfig} into {@code config}.
+     * Saves the config file to user's local directory and resets the modifications made to {@code modifiableConfig}.
      */
     public void saveModifications() {
         this.config = new Config(modifiableConfig);
@@ -127,6 +137,8 @@ public final class ConfigManager {
 
     /**
      * Indicates whether there is unsaved changes.
+     * @return {@code true} if {@code modifiableConfig} does not have the same config as {@code config},
+     * {@code false} if they are the same.
      */
     public boolean isUnsaved() {
         return !config.equals(modifiableConfig);
