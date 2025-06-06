@@ -5,6 +5,8 @@ import com.bomber7.core.model.map.LevelMapFactory;
 
 import java.nio.file.Path;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.core.views.ViewMap;
@@ -17,9 +19,6 @@ import com.bomber7.utils.ProjectPaths;
  * This screen displays the game map
  */
 public class GameScreen extends BomberScreen {
-
-
-
 
     /**
      * Constructs a new GameScreen associated with the given game.
@@ -40,22 +39,28 @@ public class GameScreen extends BomberScreen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        /* =======[BUTTON]=============================================== */
+        /* =======[SCOREBOARD]=============================================== */
 
-        /* Buttons to go to key bindings menu. */
-        BomberTextButton settingsButton = new BomberTextButton(resources.getString("options"), resources);
-        /* Buttons to go to key bindings menu. */
-        BomberTextButton goBackButton = new BomberTextButton(resources.getString("go_back"), resources);
+        // Ajout d'une grille tout en haut de l'écran
+        Table scoreboardTable = new Table();
+        scoreboardTable.setFillParent(true);
+        scoreboardTable.setDebug(false);
 
-        mainTable.add(settingsButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .left();
-        mainTable.row();
-        mainTable.add(goBackButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT);
-        mainTable.row();
+        // Créer la grille
+        for (int row = 0; row < 10; row++) {
+            for (int col = 0; col < 15; col++) {
+                Label cell = new Label("", new Label.LabelStyle());
+                scoreboardTable.add(cell).width(Gdx.graphics.getWidth() / 15f).height(Gdx.graphics.getHeight() / 10f);
+                for (Character character : game.getListPlayer()) {
+                    // Afficher le score dans les 5 dernières colonnes
+                    if (col >= 10) {
+                        cell.setText(String.valueOf(character.getScore()));
+                        col++;
+                    }
+                }
+            }
+            scoreboardTable.row();
+
 
         /* =======[MAP VIEW]=============================================== */
 

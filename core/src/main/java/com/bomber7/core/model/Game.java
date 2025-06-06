@@ -1,5 +1,9 @@
 package com.bomber7.core.model;
 
+import java.util.ArrayList;
+
+//import com.google.common.collect.ImmutableList;
+
 /**
  * Represents a game session.
  * Manages the number of players, map loading, and game state updates.
@@ -16,6 +20,10 @@ public class Game {
      */
     private String mapFilepath;
 
+        private ArrayList<Character> listPlayer;
+
+
+
     /**
      * Constructs a new Game instance with the specified number of players and map file.
      *
@@ -27,6 +35,7 @@ public class Game {
         // Load map from file
         // Initialize game state
         // Other functionalities to come ?
+        listPlayer = new ArrayList<Character>();
     }
 
     /**
@@ -40,4 +49,5 @@ public class Game {
         // Perhaps pulled from game engine ?
         return 0;
     }
+
 }

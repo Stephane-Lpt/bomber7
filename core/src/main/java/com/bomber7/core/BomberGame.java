@@ -1,5 +1,7 @@
 package com.bomber7.core;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Game;
 import com.bomber7.core.screens.GameScreen;
 import com.bomber7.utils.ResourceManager;
@@ -16,6 +18,9 @@ public class BomberGame extends Game {
      * Maximum number of human players allowed in the game.
      */
     public static final int MAX_PLAYERS = 4;
+
+    private ArrayList<Character> listPlayer;
+
 
     /**
      * Resource manager responsible for loading and managing game assets.
@@ -50,4 +55,6 @@ public class BomberGame extends Game {
     public ResourceManager getBomberResources() {
         return resources;
     }
+
+    
 }
