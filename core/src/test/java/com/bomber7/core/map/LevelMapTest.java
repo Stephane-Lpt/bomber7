@@ -82,4 +82,5 @@ public class LevelMapTest {
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(0, 1));
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(0, -1));
     }
+
 }

@@ -22,7 +22,7 @@ public class ViewMap extends Actor {
     private final PolygonSpriteBatch spriteBatch;
 
     /** Scale factor for the map texture. */
-    private final float scale = 0.7f;
+    public static final float scale = 0.7f;
 
     /** The size of the scaled texture origin. */
     private float scaledTextureOrigin;

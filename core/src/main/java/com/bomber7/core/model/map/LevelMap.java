@@ -1,8 +1,13 @@
 package com.bomber7.core.model.map;
 
+import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.views.ViewMap;
+import com.bomber7.utils.Constants;
 
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Represents a level with a map in the game.
@@ -70,6 +75,37 @@ public class LevelMap {
      */
     public int getHeight() {
         return checkerboard.size();
+    }
+
+
+    /**
+     * Returns the checkerboard of squares.
+     * @return the checkerboard of squares
+     */
+    public Pair<Integer, Integer> getAbsoluteCoordinates(int x, int y){
+
+        float originX =  (Gdx.graphics.getWidth() - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
+        float originY = (Gdx.graphics.getHeight() - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
+
+        return Pair.of((int) (originX + x * Constants.TEXTURE_SIZE * ViewMap.scale), (int) (originY + y * Constants.TEXTURE_SIZE * ViewMap.scale));
+    }
+
+    /**
+     * Returns the absolute coordinates of the square at the specified coordinates.
+     * This method calculates the absolute pixel coordinates based on the current screen size and scale.
+     *
+     * @param x the x-coordinate of the square
+     * @param y the y-coordinate of the square
+     * @return a Pair containing the absolute x and y coordinates
+     */
+    public Pair<Integer, Integer> getSquareCoordinate(int x, int y){
+
+        float originX =  (Gdx.graphics.getWidth() - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
+        float originY = (Gdx.graphics.getHeight() - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
+
+        return Pair.of((int) ((x - originX) / (Constants.TEXTURE_SIZE * ViewMap.scale)),
+                       (int) ((y - originY) / (Constants.TEXTURE_SIZE * ViewMap.scale)));
+       
     }
 
 }
