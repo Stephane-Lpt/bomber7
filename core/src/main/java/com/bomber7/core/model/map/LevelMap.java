@@ -91,14 +91,14 @@ public class LevelMap {
     }
 
     /**
-     * Returns the absolute coordinates of the square at the specified coordinates.
+     * Returns the absolute coordinates of the square at the specified coordinates. 
      * This method calculates the absolute pixel coordinates based on the current screen size and scale.
      *
      * @param x the x-coordinate of the square
      * @param y the y-coordinate of the square
      * @return a Pair containing the absolute x and y coordinates
      */
-    public Pair<Integer, Integer> getSquareCoordinate(int x, int y){
+    public Pair<Integer, Integer> getSquareCoordinates(int x, int y){
 
         float originX =  (Gdx.graphics.getWidth() - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
         float originY = (Gdx.graphics.getHeight() - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
