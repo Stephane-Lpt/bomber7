@@ -49,7 +49,7 @@ public class LevelMapTest {
         checkerboard.add(row1);
         checkerboard.add(row2);
 
-        LevelMap levelMap = new LevelMap(checkerboard);
+        LevelMap levelMap = new LevelMap(checkerboard, 800, 600);
 
         // Assert that the correct square is returned for each coordinate
         assertSame(square1, levelMap.getSquare(0, 0));
@@ -74,7 +74,7 @@ public class LevelMapTest {
         row.add(square); // (0,0)
         checkerboard.add(row);
 
-        LevelMap levelMap = new LevelMap(checkerboard);
+        LevelMap levelMap = new LevelMap(checkerboard, 800, 600);
 
         // Assert that accessing out-of-bounds coordinates throws IndexOutOfBoundsException
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(-1, 0));

@@ -19,7 +19,7 @@ public class CharacterTest {
     private List<List<Square>> grid = new ArrayList<>();
 
     /** Level map. */
-    private LevelMap map = new LevelMap(this.grid);
+    private LevelMap map = new LevelMap(this.grid, 800, 600);
 
     /**
      * Test class for Character.

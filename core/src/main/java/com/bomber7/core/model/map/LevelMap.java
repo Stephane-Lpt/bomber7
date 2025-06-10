@@ -15,6 +15,9 @@ import org.apache.commons.lang3.tuple.Pair;
  */
 public class LevelMap {
 
+    private int windowWidth;
+    private int windowHeight;
+
     /** A 2D list representing the checkerboard of squares in the level map. */
     private List<List<Square>> checkerboard;
 
@@ -23,8 +26,10 @@ public class LevelMap {
      *
      * @param checkerboard a 2D list representing the checkerboard of squares
      */
-    public LevelMap(List<List<Square>> checkerboard) {
+    public LevelMap(List<List<Square>> checkerboard, int windowWidth, int windowHeight) {
         this.checkerboard = checkerboard;
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
     }
 
     /**
@@ -84,14 +89,14 @@ public class LevelMap {
      */
     public Pair<Integer, Integer> getAbsoluteCoordinates(int x, int y){
 
-        float originX =  (Gdx.graphics.getWidth() - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
-        float originY = (Gdx.graphics.getHeight() - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
+        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
+        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
 
         return Pair.of((int) (originX + x * Constants.TEXTURE_SIZE * ViewMap.scale), (int) (originY + y * Constants.TEXTURE_SIZE * ViewMap.scale));
     }
 
     /**
-     * Returns the absolute coordinates of the square at the specified coordinates. 
+     * Returns the absolute coordinates of the square at the specified coordinates.
      * This method calculates the absolute pixel coordinates based on the current screen size and scale.
      *
      * @param x the x-coordinate of the square
@@ -99,13 +104,12 @@ public class LevelMap {
      * @return a Pair containing the absolute x and y coordinates
      */
     public Pair<Integer, Integer> getSquareCoordinates(int x, int y){
-
-        float originX =  (Gdx.graphics.getWidth() - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
-        float originY = (Gdx.graphics.getHeight() - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
+        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
+        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
 
         return Pair.of((int) ((x - originX) / (Constants.TEXTURE_SIZE * ViewMap.scale)),
                        (int) ((y - originY) / (Constants.TEXTURE_SIZE * ViewMap.scale)));
-       
+
     }
 
 }

@@ -31,7 +31,7 @@ class PlayerTest {
 
     @BeforeEach
     void setUp() {
-        this.foyLevelMap = LevelMapFactory.createLevelMap("foy");
+        this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
         player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 1, "sprite.png") {
