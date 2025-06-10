@@ -12,13 +12,23 @@ public class BonusTriggerBomb extends Bonus{
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public BonusTriggerBomb(
-        Path textureFilePath,
+        String textureFilePath,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureFilePath, verticalFlip, horizontalFlip, diagonalFlip);
+    }
+
+    /**
+     * Constructs a BonusTriggerBomb without specifying flip options (false by default).
+     * Useful for ids that don't need id_masks.
+     *
+     * @param textureFilePath the file path to the sprite image for the bonus
+     */
+    public BonusTriggerBomb(String textureFilePath) {
+        super(textureFilePath);
     }
 
     @Override

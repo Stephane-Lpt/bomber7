@@ -14,13 +14,23 @@ public class BonusSpeed extends Bonus {
      * @param diagonalFlip whether to flip the texture diagonally
      */
     public BonusSpeed(
-        Path textureFilePath,
+        String textureFilePath,
         int textureId,
         boolean verticalFlip,
         boolean horizontalFlip,
         boolean diagonalFlip
     ) {
-        super(textureFilePath, textureId, verticalFlip, horizontalFlip, diagonalFlip);
+        super(textureFilePath, verticalFlip, horizontalFlip, diagonalFlip);
+    }
+
+    /**
+     * Constructs a BonusSpeed without specifying flip options (false by default).
+     * Useful for ids that don't need id_masks.
+     * 
+     * @param textureFilePath
+     */
+    public BonusSpeed(String textureFilePath) {
+        super(textureFilePath);
     }
 
     @Override

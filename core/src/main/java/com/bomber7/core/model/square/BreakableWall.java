@@ -1,9 +1,11 @@
 package com.bomber7.core.model.square;
 
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.Random;
 
 import com.bomber7.utils.Constants;
+import com.bomber7.utils.Constants.BONUS_TYPE;
 
 /**
  * Represents a breakable wall in the game.
@@ -42,12 +44,13 @@ public class BreakableWall extends Wall {
 
     public Bonus onDestruction() {
         if (this.hasBonus) {
-            return Bonus.createRandomBonus();
+            return createRandomBonus();
         }
+        return null;
     }
 
     private boolean hasRandomBonus() {
-        Random randomValue = new Random().nextDouble();
+        double randomValue = new Random().nextDouble();
         if (randomValue > Constants.BONUS_RATE) {
             return false;
         } else {
@@ -59,21 +62,29 @@ public class BreakableWall extends Wall {
      * Instantiates a random bonus based on their probabilities at the same location.
      */
     private static Bonus createRandomBonus() {
-        Random randomValue = new Random().nextDouble();
-        double cumulativeProbability = 1.0;
-        if (randomValue <= cumulativeProbability) {
-            // Instantiate the bonus based on the type
-            switch (entry.getKey()) {
-                case TRIGGER_BOMB:
-                    return new BonusTriggerBomb();
-                case LIFE:
-                    return new BonusLife();
-                case SPEED:
-                    return new BonusSpeed();
-                default:
-                    throw new IllegalArgumentException("Unknown bonus type: " + entry.getKey());
+        double randomValue = new Random().nextDouble();
+        double cumulativeProbability = 0.0;
+
+        for (Map.Entry<BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
+            cumulativeProbability += entry.getValue();
+            if (randomValue <= cumulativeProbability) {
+                // Instantiate the bonus based on the type
+                switch (entry.getKey()) {
+                    case TRIGGER_BOMB:
+                        return new BonusTriggerBomb("bomb");
+                    case LIFE:
+                        return new BonusLife("life");
+                    case SPEED:
+                        return new BonusSpeed("speed");
+                    default:
+                        throw new IllegalArgumentException("Unknown bonus type: " + entry.getKey());
+                }
             }
         }
+        return null; // Should never reach here if probabilities sum to 1.0
+    }
+
+
     @Override
     public String toString() {
         return "BreakableWall{"
