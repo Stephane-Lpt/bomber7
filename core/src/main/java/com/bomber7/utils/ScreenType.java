@@ -124,7 +124,9 @@ public enum ScreenType {
          * @return a new {@link KeyBindingScreen} instance
          */
         public BomberScreen getScreen(Game game, Object... params) {
-            return new KeyBindingScreen(game);
+            int playerIndex = (int) params[0];
+
+            return new KeyBindingScreen(game, playerIndex);
         }
     };
 

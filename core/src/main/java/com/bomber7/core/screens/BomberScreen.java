@@ -39,9 +39,6 @@ public abstract class BomberScreen extends Stage implements Screen, MVCComponent
         this.game = (BomberGame) game;
         this.resources = this.game.getBomberResources();
         this.bgColor = resources.getSkin().getColor("darkBlue");
-
-        initView();
-        initController();
     }
 
     @Override

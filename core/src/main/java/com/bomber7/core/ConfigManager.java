@@ -95,7 +95,6 @@ public final class ConfigManager {
             Gdx.app.debug("ConfigManager", "No " + CONFIG_FILE + " found. Falling back to default config.");
             config = new Config();
         }
-        save();
     }
 
     /**

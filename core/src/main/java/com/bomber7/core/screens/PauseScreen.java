@@ -14,6 +14,9 @@ public class PauseScreen extends BomberScreen {
      */
     public PauseScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     @Override

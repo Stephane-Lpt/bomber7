@@ -3,7 +3,7 @@ package com.bomber7.utils;
 /**
  * Enum containing all the maps that exist in the game.
  */
-public enum Map {
+public enum GameMap {
     /**
      * ENSEEIHT's schoolyard map.
      */
@@ -65,7 +65,7 @@ public enum Map {
      * @param assetName the name of the map asset.
      * @param pointsToUnlock the number of points needed to unclock the map.
      */
-    Map(String assetName, int pointsToUnlock) {
+    GameMap(String assetName, int pointsToUnlock) {
         this.assetName = assetName;
         this.pointsToUnlock = pointsToUnlock;
     }

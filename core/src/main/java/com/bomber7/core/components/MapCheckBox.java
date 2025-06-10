@@ -15,7 +15,7 @@ import com.bomber7.core.model.Subject;
  import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.MVCComponent;
-import com.bomber7.utils.Map;
+import com.bomber7.utils.GameMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
     /**
      * The map this checkbox represents.
      */
-    private final Map map;
+    private final GameMap map;
 
     /**
      * Checkbox container which represents the borders of the checkbox that change accordingly to its state.
@@ -73,7 +73,7 @@ public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
      * @param map       the map associated with this checkbox
      * @param resources the resource manager for loading styles and assets
      */
-    public MapCheckBox(Map map, ResourceManager resources) {
+    public MapCheckBox(GameMap map, ResourceManager resources) {
         this.map = map;
         this.resources = resources;
 

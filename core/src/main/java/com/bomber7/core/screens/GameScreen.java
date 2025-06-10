@@ -24,6 +24,9 @@ public class GameScreen extends BomberScreen {
      */
     public GameScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     /**

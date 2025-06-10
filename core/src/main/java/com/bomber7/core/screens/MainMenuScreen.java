@@ -46,6 +46,9 @@ public class MainMenuScreen extends BomberScreen {
      */
     public MainMenuScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     @Override

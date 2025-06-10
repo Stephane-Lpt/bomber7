@@ -16,7 +16,7 @@ import com.bomber7.core.model.Subject;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.Dimensions;
-import com.bomber7.utils.Map;
+import com.bomber7.utils.GameMap;
 import com.bomber7.utils.ScreenType;
 
 /**
@@ -70,6 +70,9 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
      */
     public MapSelectionScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     @Override
@@ -90,10 +93,10 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
 
         table.setTitle(new Label(resources.getString("map_selection"), resources.getSkin(), "large"), cols);
 
-        mapCheckboxes = new MapCheckBox[Map.values().length];
+        mapCheckboxes = new MapCheckBox[GameMap.values().length];
 
-        for (int i = 0; i < Map.values().length; i++) {
-            mapCheckboxes[i] = new MapCheckBox(Map.values()[i], resources);
+        for (int i = 0; i < GameMap.values().length; i++) {
+            mapCheckboxes[i] = new MapCheckBox(GameMap.values()[i], resources);
             mapCheckboxes[i].registerObserver(this);
 
             table.add(mapCheckboxes[i])
@@ -134,7 +137,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
                 roundsNumberLabel.setText(String.valueOf(rounds));
 
                 if (rounds < checkedCount) {
-                    for (int i = Map.values().length - 1; i >= 0; i--) {
+                    for (int i = GameMap.values().length - 1; i >= 0; i--) {
                         if (mapCheckboxes[i].isChecked()) {
                             mapCheckboxes[i].uncheck();
                             break;
@@ -173,7 +176,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
     private void updateCheckedCount() {
         int count = 0;
 
-        for (int i = 0; i < Map.values().length; i++) {
+        for (int i = 0; i < GameMap.values().length; i++) {
             if (mapCheckboxes[i].isChecked()) {
                 count++;
             }

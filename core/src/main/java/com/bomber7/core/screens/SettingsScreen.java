@@ -1,6 +1,7 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
@@ -95,6 +96,9 @@ public class SettingsScreen extends BomberScreen {
      */
     public SettingsScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     @Override
@@ -262,11 +266,11 @@ public class SettingsScreen extends BomberScreen {
         }, resources));
 
         for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            int finalI = i;
+            int playerIndex = i;
             configPlayerButtons[i].addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    ScreenManager.getInstance().showScreen(ScreenType.KEY_BINDING, true, false, finalI);
+                    ScreenManager.getInstance().showScreen(ScreenType.KEY_BINDING, true, false, playerIndex);
                 }
             }, resources));
         }

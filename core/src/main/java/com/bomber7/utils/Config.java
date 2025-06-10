@@ -1,5 +1,8 @@
 package com.bomber7.utils;
 
+import com.badlogic.gdx.Gdx;
+import com.bomber7.core.controller.PlayerConfig;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -29,12 +32,24 @@ public class Config implements Serializable {
     private Language language;
 
     /**
+     * A list of PlayerConfig objects for player input controls.
+     */
+    private PlayerConfig[] playerConfigs;
+
+    /**
      * Constructs a new {@code Config} instance with default values.
      */
     public Config() {
         this.globalVolume = DefaultConfig.GLOBAL_VOLUME;
         this.musicVolume = DefaultConfig.MUSIC_VOLUME;
         this.language = DefaultConfig.LANGUAGE;
+
+        this.playerConfigs = new PlayerConfig[Constants.MAX_PLAYERS];
+
+        playerConfigs[0] = new PlayerConfig(DefaultConfig.getControlsForPlayer(0));
+        playerConfigs[1] = new PlayerConfig(DefaultConfig.getControlsForPlayer(1));
+        playerConfigs[2] = new PlayerConfig(DefaultConfig.getControlsForPlayer(2));
+        playerConfigs[3] = new PlayerConfig(DefaultConfig.getControlsForPlayer(3));
     }
 
     /**
@@ -46,6 +61,11 @@ public class Config implements Serializable {
         this.globalVolume = other.globalVolume;
         this.musicVolume = other.musicVolume;
         this.language = other.language;
+
+        this.playerConfigs = new PlayerConfig[other.playerConfigs.length];
+        for (int i = 0; i < other.playerConfigs.length; i++) {
+            this.playerConfigs[i] = new PlayerConfig(other.playerConfigs[i]);
+        }
     }
 
     /**
@@ -103,6 +123,29 @@ public class Config implements Serializable {
     }
 
     /**
+     * Sets the player config for player {@code player}.
+     *
+     * @param playerConfig the new {@code PlayerConfigf} to set
+     * @param player the id of the player this config should be set to
+     */
+    public void setPlayerConfig(PlayerConfig playerConfig, int player) {
+        this.playerConfigs[player] = playerConfig;
+    }
+
+    public void setPlayerControl(int playerIndex, Controls control, int keycode) {
+        playerConfigs[playerIndex].setKeyBinding(control, keycode);
+    }
+
+    /**
+     * Returns the config of the specified player.
+     *
+     * @return the player to get the config from
+     */
+    public PlayerConfig getPlayerConfig(int player) {
+        return this.playerConfigs[player];
+    }
+
+    /**
      * Compares this {@code Config} to another object for equality.
      * Two {@code Config} instances are equal all their attributes are equal.
      *
@@ -119,17 +162,20 @@ public class Config implements Serializable {
         }
         Config other = (Config) obj;
 
-        if (globalVolume != other.globalVolume) {
-            return false;
-        }
-        if (musicVolume != other.musicVolume) {
-            return false;
-        }
-        if (language != other.language) {
-            return false;
-        }
+        Gdx.app.debug("Config", "checking for equality");
+        Gdx.app.debug("Config", "" + this.playerConfigs[0].equals(other.playerConfigs[0]));
+        Gdx.app.debug("Config", "" + this.playerConfigs[1].equals(other.playerConfigs[1]));
+        Gdx.app.debug("Config", "" + this.playerConfigs[2].equals(other.playerConfigs[2]));
+        Gdx.app.debug("Config", "" + this.playerConfigs[3].equals(other.playerConfigs[3]));
 
-        return true;
+        return
+            this.globalVolume == other.globalVolume &&
+            this.musicVolume == other.musicVolume &&
+            this.language == other.language &&
+            this.playerConfigs[0].equals(other.playerConfigs[0]) &&
+            this.playerConfigs[1].equals(other.playerConfigs[1]) &&
+            this.playerConfigs[2].equals(other.playerConfigs[2]) &&
+            this.playerConfigs[3].equals(other.playerConfigs[3]);
     }
 
     @Override

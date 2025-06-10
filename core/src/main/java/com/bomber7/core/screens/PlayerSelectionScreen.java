@@ -45,6 +45,9 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
      */
     public PlayerSelectionScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     @Override
