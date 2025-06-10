@@ -146,9 +146,10 @@ public class CharacterTest {
     @Test
     public void testMoveLeft() {
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map,
-                10, 0, 100, 10, "path/to/sprite");
+                10, 10, 100, 10, "path/to/sprite");
+        int initialX = character.getPositionX();
         character.moveLeft();
-        assertEquals(0, character.getPositionX());
+        assertEquals(initialX - 10, character.getPositionX());
     }
 
     /**
@@ -156,10 +157,11 @@ public class CharacterTest {
      */
     @Test
     public void testMoveDown() {
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0,
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 10,
                 10, 100, 10, "path/to/sprite");
+        int initialY = character.getPositionY();
         character.moveDown();
-        assertEquals(0, character.getPositionY());
+        assertEquals(initialY + 10, character.getPositionY());
     }
 
     /**
