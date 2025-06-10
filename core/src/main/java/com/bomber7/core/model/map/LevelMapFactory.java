@@ -191,7 +191,7 @@ public final class LevelMapFactory {
                 throw new IllegalArgumentException("CSV files do not have the same number of rows.");
             }
 
-            for (int i = 0; i < backgroundRows.size(); i++) {
+            for (int i = backgroundRows.size() - 1; i >= 0; i--) {
                 int backgroundCols = backgroundRows.get(i).length;
                 int breakableCols = breakableRows.get(i).length;
                 int unbreakableCols = unbreakableRows.get(i).length;
