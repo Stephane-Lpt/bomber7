@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.core.model.square.Square;
 import java.util.List;
 import java.util.ArrayList;
@@ -18,10 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CharacterTest {
 
     /** Grid. */
-    private List<List<Square>> grid = new ArrayList<>();
-
-    /** Level map. */
-    private LevelMap map = new LevelMap(this.grid, 800, 600);
+    private LevelMap map = LevelMapFactory.createLevelMap("foy", 800, 600);
 
     /**
      * Test class for Character.
