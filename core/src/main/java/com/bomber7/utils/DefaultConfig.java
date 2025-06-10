@@ -77,6 +77,9 @@ public final class DefaultConfig {
         put(Controls.ACTIVATE_BOMB, Input.Keys.NUMPAD_7);
     }};
 
+    /**
+     * List of maps.
+     */
     private static final Map<Controls, Integer>[] ALL_CONTROLS = new Map[] {
         CONTROLS_PLAYER_1,
         CONTROLS_PLAYER_2,
@@ -84,6 +87,11 @@ public final class DefaultConfig {
         CONTROLS_PLAYER_4
     };
 
+    /**
+     * Returns the default key binding map for a given player.
+     * @param playerIndex the index of the player to get the default key binding map for
+     * @return key binding map of player {@code playerIndex}
+     */
     public static Map<Controls, Integer> getControlsForPlayer(int playerIndex) {
         if (playerIndex > Constants.MAX_PLAYERS) {
             throw new IllegalArgumentException("Unknown player index: " + playerIndex);

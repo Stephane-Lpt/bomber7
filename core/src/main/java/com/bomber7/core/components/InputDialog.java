@@ -12,12 +12,31 @@ import com.bomber7.core.ResourceManager;
 import com.bomber7.utils.Controls;
 import com.bomber7.utils.Dimensions;
 
+/**
+ * A dialog that listens for user key input to rebind controls for a specific player.
+ * <p>
+ * This dialog captures a single key press and sets it as the binding for a given control.
+ * It closes either when a key is pressed or when the escape key is pressed to cancel.
+ * </p>
+ */
 public class InputDialog extends Dialog {
 
-    public final static int CLOSE_KEY = Input.Keys.ESCAPE;
+    /**
+     * The key used to close the InputDialog without modifying the input key.
+     */
+    private final int closeKey = Input.Keys.ESCAPE;
 
-    public final int playerIndex;
+    /**
+     * The index of the player this InputDialog is associated with.
+     */
+    private final int playerIndex;
 
+    /**
+     * Creates a new InputDialog for rebinding controls of a given player.
+     *
+     * @param resources the ResourceManager
+     * @param playerIndex the index of the player whose control is being rebound
+     */
     public InputDialog(ResourceManager resources, int playerIndex) {
         super(resources.getString("press_any_key"), resources.getSkin());
 
@@ -34,12 +53,21 @@ public class InputDialog extends Dialog {
         getContentTable().padTop(Dimensions.COMPONENT_SPACING);
     }
 
+    /**
+     * This function sets a custom InputProcessor to listen for keyDown actions as soon as the dialog is shown.
+     * <p>
+     *     If the {@code closeKey} is pressed, the dialog is hidden without modifying the playerConfig.
+     *     If any other key is pressed, this key is set as the action for the control associated with this dialog.
+     *     Then, the dialog is hidden.
+     * </p>
+     * @param control
+     */
     private void startListening(Controls control) {
         Gdx.input.setInputProcessor(new InputAdapter() {
             @Override
             public boolean keyDown(int keycode) {
                 Gdx.app.debug("InputDialog", Input.Keys.toString(keycode) + " (" + keycode + ") pressed.");
-                if (keycode == CLOSE_KEY) {
+                if (keycode == closeKey) {
                     Gdx.app.debug(
                         "InputDialog",
                         "Closing dialog without modifying the binding."
@@ -57,6 +85,13 @@ public class InputDialog extends Dialog {
         });
     }
 
+    /**
+     * A custom show function that, additionally to calling the super show method, calls
+     * startListening and makes the dialog appear instantly instead of having a fade in.
+     * @param stage the stage this dialog is bound to
+     * @param control the control this dialog is supposed to modify
+     * @return the Dialog
+     */
     public Dialog show(Stage stage, Controls control) {
         super.show(stage);
         startListening(control);

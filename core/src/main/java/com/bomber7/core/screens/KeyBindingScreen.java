@@ -24,6 +24,9 @@ import com.bomber7.utils.ScreenType;
  */
 public class KeyBindingScreen extends BomberScreen implements InputProcessor {
 
+    /**
+     * The dialog that will be shown when a user clicks on any inputButton to rebind a control to a new key.
+     */
     private InputDialog inputDialog;
     /**
      * The index of the player this binding screen is associated to.
@@ -46,6 +49,7 @@ public class KeyBindingScreen extends BomberScreen implements InputProcessor {
      * Constructs a new KeyBindingScreen associated with the given game.
      *
      * @param game the Game instance this screen belongs to
+     * @param playerIndex the index of the player this screen is supposed to modify
      */
     public KeyBindingScreen(Game game, int playerIndex) {
         super(game);
@@ -57,6 +61,8 @@ public class KeyBindingScreen extends BomberScreen implements InputProcessor {
             public void hide() {
                 Gdx.input.setInputProcessor(getStage());
                 updateInputButtons();
+                getColor().a = 0f;
+                clearActions();
                 super.hide();
             }
         };

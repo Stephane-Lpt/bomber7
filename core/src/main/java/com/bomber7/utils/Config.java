@@ -1,6 +1,5 @@
 package com.bomber7.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.controller.PlayerConfig;
 
 import java.io.Serializable;
@@ -49,7 +48,7 @@ public class Config implements Serializable {
         playerConfigs[0] = new PlayerConfig(DefaultConfig.getControlsForPlayer(0));
         playerConfigs[1] = new PlayerConfig(DefaultConfig.getControlsForPlayer(1));
         playerConfigs[2] = new PlayerConfig(DefaultConfig.getControlsForPlayer(2));
-        playerConfigs[3] = new PlayerConfig(DefaultConfig.getControlsForPlayer(3));
+        playerConfigs[2 + 1] = new PlayerConfig(DefaultConfig.getControlsForPlayer(2 + 1));
     }
 
     /**
@@ -132,6 +131,12 @@ public class Config implements Serializable {
         this.playerConfigs[player] = playerConfig;
     }
 
+    /**
+     * Rebinds the action {@code control} to the given {@code keycode} for player {@code playerIndex}.
+     * @param playerIndex the index of the player to set the action for
+     * @param control the action to rebind
+     * @param keycode the new keycode
+     */
     public void setPlayerControl(int playerIndex, Controls control, int keycode) {
         playerConfigs[playerIndex].setKeyBinding(control, keycode);
     }
@@ -139,10 +144,11 @@ public class Config implements Serializable {
     /**
      * Returns the config of the specified player.
      *
+     * @param playerIndex the index of the player
      * @return the player to get the config from
      */
-    public PlayerConfig getPlayerConfig(int player) {
-        return this.playerConfigs[player];
+    public PlayerConfig getPlayerConfig(int playerIndex) {
+        return this.playerConfigs[playerIndex];
     }
 
     /**
@@ -162,20 +168,14 @@ public class Config implements Serializable {
         }
         Config other = (Config) obj;
 
-        Gdx.app.debug("Config", "checking for equality");
-        Gdx.app.debug("Config", "" + this.playerConfigs[0].equals(other.playerConfigs[0]));
-        Gdx.app.debug("Config", "" + this.playerConfigs[1].equals(other.playerConfigs[1]));
-        Gdx.app.debug("Config", "" + this.playerConfigs[2].equals(other.playerConfigs[2]));
-        Gdx.app.debug("Config", "" + this.playerConfigs[3].equals(other.playerConfigs[3]));
-
         return
-            this.globalVolume == other.globalVolume &&
-            this.musicVolume == other.musicVolume &&
-            this.language == other.language &&
-            this.playerConfigs[0].equals(other.playerConfigs[0]) &&
-            this.playerConfigs[1].equals(other.playerConfigs[1]) &&
-            this.playerConfigs[2].equals(other.playerConfigs[2]) &&
-            this.playerConfigs[3].equals(other.playerConfigs[3]);
+            this.globalVolume == other.globalVolume
+            && this.musicVolume == other.musicVolume
+            && this.language == other.language
+            && this.playerConfigs[0].equals(other.playerConfigs[0])
+            && this.playerConfigs[1].equals(other.playerConfigs[1])
+            && this.playerConfigs[2].equals(other.playerConfigs[2])
+            && this.playerConfigs[2 + 1].equals(other.playerConfigs[2 + 1]);
     }
 
     @Override

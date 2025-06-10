@@ -5,17 +5,29 @@ package com.bomber7.utils;
  * Includes movement directions and bomb-related actions.
  */
 public enum Controls {
-    /** Move upwards action */
+    /**
+     * Move upwards action.
+     */
     UP,
-    /** Move downwards action */
+    /**
+     * Move downwards action.
+     */
     DOWN,
-    /** Move left action */
+    /**
+     * Move left action.
+     */
     LEFT,
-    /** Move right action */
+    /**
+     * Move right action.
+     */
     RIGHT,
-    /** Drop/place a bomb action */
+    /**
+     * Drop/place a bomb action.
+     */
     DROP_BOMB,
-    /** Detonate/activate a bomb action */
+    /**
+     * Detonate/activate a bomb action.
+     */
     ACTIVATE_BOMB
 }
 
