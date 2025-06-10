@@ -173,7 +173,7 @@ public class BombTest {
         row4.add(new Square("empty"));
         grid.add(row4);
 
-        return new LevelMap(grid);
+        return new LevelMap(grid, 800, 600);
     }
 
     /**

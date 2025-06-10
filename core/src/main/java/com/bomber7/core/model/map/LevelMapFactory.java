@@ -45,7 +45,7 @@ public final class LevelMapFactory {
      * @return A LevelMap instance representing the specified map.
      * @throws IllegalArgumentException if the map directory is not found, is empty, or same type multiple CSV files.
      */
-    public static LevelMap createLevelMap(String mapName) {
+    public static LevelMap createLevelMap(String mapName, int windowWidth, int windowHeight) {
         File mapRootDirectory = searchMapFilesRootDirectory(mapName);
         if (mapRootDirectory == null || mapRootDirectory.listFiles() == null || mapRootDirectory.listFiles().length == 0) {
             throw new IllegalArgumentException(
@@ -106,7 +106,7 @@ public final class LevelMapFactory {
         List<List<Square>> checkerboard = LevelMapFactory.parseCsv(
             backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, LevelMapFactory.TEXTURE_MAP
         );
-        return new LevelMap(checkerboard);
+        return new LevelMap(checkerboard, windowWidth, windowHeight);
     }
 
     /**
@@ -191,7 +191,7 @@ public final class LevelMapFactory {
                 throw new IllegalArgumentException("CSV files do not have the same number of rows.");
             }
 
-            for (int i = 0; i < backgroundRows.size(); i++) {
+            for (int i = backgroundRows.size() - 1; i >= 0; i--) {
                 int backgroundCols = backgroundRows.get(i).length;
                 int breakableCols = breakableRows.get(i).length;
                 int unbreakableCols = unbreakableRows.get(i).length;

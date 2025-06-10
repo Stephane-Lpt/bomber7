@@ -10,6 +10,8 @@ import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BombType;
@@ -44,14 +46,14 @@ public abstract class Player extends Character {
      * Player Constructor.
      * @param name     Name of the player
      * @param map      Map
-     * @param x        X coordinate of the player
-     * @param y        Y coordinate of the player
+     * @param mapX     X-coordinate map of the player on the map
+     * @param mapY     Y-coordinate map of the player on the map
      * @param life     Life points of the player
      * @param speed    Speed of the player
      * @param spriteFP File path to the player's sprite
      */
-    public Player(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
-        super(name, map, x, y, life, speed, spriteFP);
+    public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
+        super(name, map, mapX, mapY, life, speed, spriteFP);
         this.nbBomb = 1;
         this.power = 1;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME
@@ -115,23 +117,21 @@ public abstract class Player extends Character {
      */
     public boolean dropBomb() {
         if (nbBomb >= 1) {
-            int currX = this.getPositionX(); // get our current X position
-            int currY = this.getPositionY(); // get our current Y position
-            Square currentSquare = this.map.getSquare(currX, currY);
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
-                    bombToDrop = new TriggerBomb(power, currX, currY);
+                    bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY());
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    bombToDrop = new TimeBomb(power, currX, currY);
+                    bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY());
                     break;
                 default:
                     bombToDrop = null;
             }
+            Square currentSquare = this.map.getSquare(this.getMapX(), this.getMapY());
             currentSquare.setMapElement(bombToDrop);
-            this.nbBomb--; // Decrease the number of bombs available
+            this.nbBomb--; // Decrease the number of bombs availables
             return true;
         } else {
             return false;

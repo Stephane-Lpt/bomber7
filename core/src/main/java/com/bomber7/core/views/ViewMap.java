@@ -22,7 +22,7 @@ public class ViewMap extends Actor {
     private final PolygonSpriteBatch spriteBatch;
 
     /** Scale factor for the map texture. */
-    private final float scale = 0.7f;
+    public static final float scale = 0.7f;
 
     /** The size of the scaled texture origin. */
     private float scaledTextureOrigin;
@@ -97,14 +97,14 @@ public class ViewMap extends Actor {
         totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * scale;
 
         originX = centerX - totalWidth / 2;
-        originY = centerY + totalHeight / 2;
+        originY = centerY - totalHeight / 2;
     }
 
     private void drawTextureRegion(TextureRegion textureRegion, int row, int col, float rotation) {
         spriteBatch.draw(
             textureRegion,
             originX + (row * scaledTextureSize),
-            originY - (col * scaledTextureSize),
+            originY + (col * scaledTextureSize),
             scaledTextureOrigin,
             scaledTextureOrigin,
             scaledTextureSize,
