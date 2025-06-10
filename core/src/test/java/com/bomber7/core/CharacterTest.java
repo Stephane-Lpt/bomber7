@@ -1,3 +1,5 @@
+package com.bomber7.core;
+
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
@@ -40,8 +42,8 @@ public class CharacterTest {
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
                 "path/to/sprite");
         assertEquals("Test", character.getName());
-        assertEquals(0, character.getPositionX());
-        assertEquals(0, character.getPositionY());
+        assertEquals(0, character.getMapX());
+        assertEquals(0, character.getMapY());
         assertEquals(100, character.getLife());
         assertEquals(10, character.getSpeed());
         assertEquals("path/to/sprite", character.getSpriteFP());

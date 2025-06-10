@@ -38,8 +38,12 @@ public abstract class Character {
     /** The life points of the character. */
     private int life;
     /** The X-axis position of the character on the map. */
-    private int x;
+    private int mapX;
     /** The Y-axis position of the character on the map. */
+    private int mapY;
+    /** Current X-Axis position of the character. */
+    private int x;
+    /** Current Y-Axis position of the character. */
     private int y;
     /** Moving status of player, needed for sprite animation. */
     private int movingStatus;
@@ -49,17 +53,17 @@ public abstract class Character {
      * @throws IllegalArgumentException in case an argument is not wrong
      * @param name     The name of the character
      * @param map      The map
-     * @param x        The X-axis position of the character
-     * @param y        The Y-axis position of the character
+     * @param mapX        The X-axis position of the character
+     * @param mapY        The Y-axis position of the character
      * @param life     The initial life points of the character
      * @param speed    The initial speed of the character
      * @param spriteFP The file path to the character's sprite image
      */
-    public Character(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
+    public Character(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name can't be null or empty");
         }
-        if ((x < 0) || (y < 0)) {
+        if ((mapX < 0) || (mapY < 0)) {
             throw new IllegalPositionOperationException("x or y values can not be negative");
         }
         if (life <= 0) {
@@ -72,13 +76,15 @@ public abstract class Character {
             throw new IllegalArgumentException("Sprite file path can't be null or empty");
         }
         this.name = name;
-        this.x = x;
-        this.y = y;
+        this.mapX = mapX;
+        this.mapY = mapY;
+        this.map = map;
+        this.x = this.map.getSquareCoordinates(mapX, mapY).getKey();
+        this.y = this.map.getSquareCoordinates(mapX, mapY).getValue();
         this.life = life;
         this.speed = speed;
         this.spriteFP = spriteFP;
         this.isAlive = true;
-        this.map = map;
         this.movingStatus = STANDING_STILL;
         this.score = 0;
     }
@@ -102,11 +108,27 @@ public abstract class Character {
     }
 
     /**
+     * Character current X-Axis position getter.
+     * @return x Current X-position
+     */
+    public int getMapX() {
+        return this.mapX;
+    }
+
+    /**
      * Character current Y-Axis position getter.
      * @return y Current Y-position
      */
     public int getPositionY() {
         return this.y;
+    }
+
+    /**
+     * Character current Y-Axis position getter.
+     * @return y Current Y-position
+     */
+    public int getMapY() {
+        return this.mapY;
     }
 
     /**
@@ -208,6 +230,7 @@ public abstract class Character {
      */
     public void setPositionX(int newX) {
         this.x = newX;
+        this.mapX = this.map.getSquareCoordinates(newX, this.y).getKey();
     }
 
     /**
@@ -218,6 +241,7 @@ public abstract class Character {
      */
     public void setPositionY(int newY) {
         this.y = newY;
+        this.mapY = this.map.getSquareCoordinates(this.x, newY).getValue();
     }
 
     /* ------[OTHER]------------------------------------ */
@@ -243,6 +267,7 @@ public abstract class Character {
     public void moveRight() {
         if (checkMove(getPositionX() + speed, getPositionY())) {
             this.x += speed;
+            this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
             this.movingStatus = MOVING_RIGHT;
         }
     }
@@ -253,6 +278,7 @@ public abstract class Character {
     public void moveLeft() {
         if (checkMove(getPositionX() - speed, getPositionY())) {
             this.x -= speed;
+            this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
             this.movingStatus = MOVING_LEFT;
         }
     }
@@ -263,6 +289,7 @@ public abstract class Character {
     public void moveDown() {
         if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y -= speed;
+            this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
             this.movingStatus = MOVING_DOWN;
         }
     }
@@ -273,6 +300,7 @@ public abstract class Character {
     public void moveUp() {
         if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y += speed;
+            this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
             this.movingStatus = MOVING_UP;
         }
     }

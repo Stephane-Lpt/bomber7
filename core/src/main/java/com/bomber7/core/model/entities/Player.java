@@ -117,21 +117,20 @@ public abstract class Player extends Character {
      */
     public boolean dropBomb() {
         if (nbBomb >= 1) {
-            Pair<Integer, Integer> playerPosition = map.getSquareCoordinates(this.getPositionX(), this.getPositionY());
-            Square currentSquare = this.map.getSquare(playerPosition.getKey(), playerPosition.getValue());
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
-                    bombToDrop = new TriggerBomb(power, playerPosition.getKey(), playerPosition.getValue());
+                    bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY());
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    bombToDrop = new TimeBomb(power, playerPosition.getKey(), playerPosition.getValue());
+                    bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY());
                     break;
                 default:
                     bombToDrop = null;
             }
-            currentSquare.setMapElement(bombToDrop); 
+            Square currentSquare = this.map.getSquare(this.getMapX(), this.getMapY());
+            currentSquare.setMapElement(bombToDrop);
             this.nbBomb--; // Decrease the number of bombs availables
             return true;
         } else {
