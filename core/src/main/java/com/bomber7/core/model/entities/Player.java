@@ -10,6 +10,8 @@ import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BombType;
@@ -115,23 +117,22 @@ public abstract class Player extends Character {
      */
     public boolean dropBomb() {
         if (nbBomb >= 1) {
-            int currX = this.getPositionX(); // get our current X position
-            int currY = this.getPositionY(); // get our current Y position
-            Square currentSquare = this.map.getSquare(currX, currY);
+            Pair<Integer, Integer> playerPosition = map.getSquareCoordinates(this.getPositionX(), this.getPositionY());
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
-                    bombToDrop = new TriggerBomb(power, currX, currY);
+                    bombToDrop = new TriggerBomb(power, playerPosition.getFirst(), playerPosition.getSecond());
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    bombToDrop = new TimeBomb(power, currX, currY);
+                    bombToDrop = new TimeBomb(power, playerPosition.getFirst(), playerPosition.getSecond());
                     break;
                 default:
                     bombToDrop = null;
             }
-            currentSquare.setMapElement(bombToDrop);
-            this.nbBomb--; // Decrease the number of bombs available
+            Square currentSquare = this.map.getSquare(playerPosition.getFirst(), playerPosition.getSecond());
+            currentSquare.setMapElement(bombToDrop); 
+            this.nbBomb--; // Decrease the number of bombs availables
             return true;
         } else {
             return false;
