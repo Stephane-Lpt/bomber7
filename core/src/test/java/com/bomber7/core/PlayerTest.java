@@ -34,7 +34,7 @@ class PlayerTest {
         this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
-        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 1, "sprite.png") {
+        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 32, "sprite.png") {
         };
         player.setTypeBomb(BombType.TIME);
         player.setNbBomb(1);

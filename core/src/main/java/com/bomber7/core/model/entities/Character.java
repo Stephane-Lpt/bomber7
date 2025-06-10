@@ -79,8 +79,8 @@ public abstract class Character {
         this.mapX = mapX;
         this.mapY = mapY;
         this.map = map;
-        this.x = this.map.getSquareCoordinates(mapX, mapY).getKey();
-        this.y = this.map.getSquareCoordinates(mapX, mapY).getValue();
+        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
+        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
         this.life = life;
         this.speed = speed;
         this.spriteFP = spriteFP;
@@ -287,7 +287,7 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
-        if (checkMove(getPositionX(), getPositionY() + speed)) {
+        if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
             this.movingStatus = MOVING_DOWN;
@@ -298,7 +298,7 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
-        if (checkMove(getPositionX(), getPositionY() - speed)) {
+        if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
             this.movingStatus = MOVING_UP;
