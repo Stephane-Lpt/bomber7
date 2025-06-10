@@ -54,5 +54,6 @@ public class TimeBomb extends Bomb {
     }
 
 
-}
+}// Explosion propagation in all four directions
+
 
