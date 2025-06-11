@@ -105,7 +105,7 @@ public abstract class Bomb extends MapElement {
 
                 // Check if the explosion reaches a character
                 for (Character character : characters) {
-                    if (character.getPositionX() == newX && character.getPositionY() == newY && character.isAlive()) {
+                    if (character.getMapX() == newX && character.getMapY() == newY && character.isAlive()) {
                         character.removeOneLife(); // Reduce the character's life by 1.
                     }
                 }
