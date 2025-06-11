@@ -86,8 +86,8 @@ public class LevelMapTest {
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(0, -1));
     }
 
-    @Test   
-    void testGetAbsoluteCoordinates(){
+    @Test
+    void testGetAbsoluteCoordinates() {
         // Create a 2x2 checkerboard grid
         List<List<Square>> checkerboard = new ArrayList<>();
         List<Square> row1 = new ArrayList<>();

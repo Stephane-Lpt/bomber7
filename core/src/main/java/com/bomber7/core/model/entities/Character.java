@@ -2,7 +2,6 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
-import com.bomber7.core.model.square.Wall;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;

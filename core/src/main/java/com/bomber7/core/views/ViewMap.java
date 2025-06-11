@@ -21,9 +21,6 @@ public class ViewMap extends Actor {
     /** Used to draw sprite to screen. */
     private final PolygonSpriteBatch spriteBatch;
 
-    /** Scale factor for the map texture. */
-    public static final float scale = 0.7f;
-
     /** The size of the scaled texture origin. */
     private float scaledTextureOrigin;
 
@@ -91,10 +88,10 @@ public class ViewMap extends Actor {
         int centerX = Gdx.graphics.getWidth() / 2;
         int centerY = Gdx.graphics.getHeight() / 2;
 
-        scaledTextureSize = Constants.TEXTURE_SIZE * scale;
+        scaledTextureSize = Constants.TEXTURE_SIZE * Constants.SCALE;
         scaledTextureOrigin = scaledTextureSize / 2f;
-        totalWidth = Constants.TEXTURE_SIZE * mapGrid.getWidth() * scale;
-        totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * scale;
+        totalWidth = Constants.TEXTURE_SIZE * mapGrid.getWidth() * Constants.SCALE;
+        totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * Constants.SCALE;
 
         originX = centerX - totalWidth / 2;
         originY = centerY - totalHeight / 2;

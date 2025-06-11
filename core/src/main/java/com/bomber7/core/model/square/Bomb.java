@@ -1,7 +1,6 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.entities.Character;
-import com.bomber7.core.model.map.LevelMap;
 
 import java.util.List;
 

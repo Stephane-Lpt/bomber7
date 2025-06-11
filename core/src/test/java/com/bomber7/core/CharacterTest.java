@@ -8,9 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.core.model.square.Square;
-import java.util.List;
-import java.util.ArrayList;
 
 import com.bomber7.core.model.entities.Character;
 import org.junit.jupiter.api.Test;

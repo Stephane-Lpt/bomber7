@@ -10,7 +10,6 @@ import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
