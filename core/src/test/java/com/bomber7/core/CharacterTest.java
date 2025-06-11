@@ -37,11 +37,11 @@ public class CharacterTest {
      */
     @Test
     public void testCharacterCreation() {
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1, 23, 100, 10,
                 "path/to/sprite");
         assertEquals("Test", character.getName());
-        assertEquals(0, character.getMapX());
-        assertEquals(0, character.getMapY());
+        assertEquals(1, character.getMapX());
+        assertEquals(23, character.getMapY());
         assertEquals(100, character.getLife());
         assertEquals(10, character.getSpeed());
         assertEquals("path/to/sprite", character.getSpriteFP());
@@ -134,11 +134,17 @@ public class CharacterTest {
      */
     @Test
     public void testMoveRight() {
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 0, 0, 100, 10,
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1, 23, 100, 35,
                 "path/to/sprite");
+        int initialMapX = character.getMapX();
         int initialX = character.getPositionX();
         character.moveRight();
-        assertEquals(initialX + 10, character.getPositionX());
+        assertEquals(initialMapX + 1, character.getMapX());
+        assertEquals(initialX + 30, character.getPositionX());
+
+        character.moveRight();
+        assertEquals(initialMapX + 1, character.getMapX());
+        assertEquals(initialX + 30, character.getPositionX());
     }
 
     /**
@@ -147,10 +153,15 @@ public class CharacterTest {
     @Test
     public void testMoveLeft() {
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map,
-                10, 10, 100, 10, "path/to/sprite");
+                2, 23, 100, 20, "path/to/sprite");
+        int initialMapX = character.getMapX();
         int initialX = character.getPositionX();
         character.moveLeft();
-        assertEquals(initialX - 10, character.getPositionX());
+        assertEquals(initialMapX - 1, character.getMapX());
+        assertEquals(initialX - 20, character.getPositionX());
+        character.moveLeft();
+        assertEquals(initialMapX - 1, character.getMapX());
+        assertEquals(initialX - 20, character.getPositionX());
     }
 
     /**
@@ -158,11 +169,15 @@ public class CharacterTest {
      */
     @Test
     public void testMoveDown() {
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 10,
-                10, 100, 10, "path/to/sprite");
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1,
+                24, 100, 10, "path/to/sprite");
         int initialY = character.getPositionY();
+        int initialMapY = character.getMapY();
         character.moveDown();
+        Square square = map.getSquare(2, 23);
+        assertEquals("foy", square.getTextureName());
         assertEquals(initialY - 10, character.getPositionY());
+        assertEquals(initialMapY - 1, character.getMapY());
     }
 
     /**

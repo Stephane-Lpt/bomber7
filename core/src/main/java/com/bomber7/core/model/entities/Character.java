@@ -1,6 +1,8 @@
 package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.Wall;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
@@ -312,8 +314,17 @@ public abstract class Character {
      * @return boolean
      */
     public boolean checkMove(int futureX, int futureY) {
-        // need collisions
-        return true;
+        int futureMapX = this.map.getSquareCoordinates(futureX, futureY).getKey();
+        int futureMapY = this.map.getSquareCoordinates(futureX, futureY).getValue();
+
+        if (futureMapX < 0 || futureMapY < 0 || futureMapX >= this.map.getWidth() || futureMapY >= this.map.getHeight()) {
+            return false; // Out of bounds
+        }
+
+        assert futureMapX == 2 : "kkk";
+        assert futureMapY == 22 : "iii";
+        Square square = this.map.getSquare(futureMapX, futureMapY);
+        return square.isWalkable();
     }
 
 }
