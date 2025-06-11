@@ -134,10 +134,16 @@ public class CharacterTest {
      */
     @Test
     public void testMoveRight() {
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1, 23, 100, 35,
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1, 23, 100, 30,
                 "path/to/sprite");
         int initialMapX = character.getMapX();
         int initialX = character.getPositionX();
+        assertEquals(1, initialMapX);
+        assertEquals(30, initialX);
+        int initialMapY = character.getMapY();
+        int initialY = character.getPositionY();
+        assertEquals(23, initialMapY);
+        assertEquals(535, initialY);
         character.moveRight();
         assertEquals(initialMapX + 1, character.getMapX());
         assertEquals(initialX + 30, character.getPositionX());
@@ -170,13 +176,14 @@ public class CharacterTest {
     @Test
     public void testMoveDown() {
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1,
-                24, 100, 10, "path/to/sprite");
+                23, 100, 20, "path/to/sprite");
         int initialY = character.getPositionY();
         int initialMapY = character.getMapY();
         character.moveDown();
-        Square square = map.getSquare(2, 23);
-        assertEquals("foy", square.getTextureName());
-        assertEquals(initialY - 10, character.getPositionY());
+        assertEquals(initialY - 20, character.getPositionY());
+        assertEquals(initialMapY - 1, character.getMapY());
+        character.moveDown();
+        assertEquals(initialY - 20, character.getPositionY());
         assertEquals(initialMapY - 1, character.getMapY());
     }
 
@@ -185,11 +192,16 @@ public class CharacterTest {
      */
     @Test
     public void testMoveUp() {
-        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 10,
-                10, 100, 10, "path/to/sprite");
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map, 1,
+                22, 100, 20, "path/to/sprite");
         int initialY = character.getPositionY();
+        int initialMapY = character.getMapY();
         character.moveUp();
-        assertEquals(initialY + 10, character.getPositionY());
+        assertEquals(initialY + 20, character.getPositionY());
+        assertEquals(initialMapY + 1, character.getMapY());
+        character.moveUp();
+        assertEquals(initialY + 20, character.getPositionY());
+        assertEquals(initialMapY + 1, character.getMapY());
     }
 
 }

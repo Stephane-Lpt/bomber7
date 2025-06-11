@@ -128,8 +128,8 @@ public class LevelMap {
         float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
         float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
 
-        return Pair.of((int) ((x - originX) / (Constants.TEXTURE_SIZE * ViewMap.scale)),
-                       (int) ((y - originY) / (Constants.TEXTURE_SIZE * ViewMap.scale)));
+        return Pair.of(Math.round(((x - originX) / (Constants.TEXTURE_SIZE * ViewMap.scale))),
+                       Math.round(((y - originY) / (Constants.TEXTURE_SIZE * ViewMap.scale))));
 
     }
 
