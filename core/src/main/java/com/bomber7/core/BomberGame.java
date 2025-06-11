@@ -1,8 +1,9 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
-import com.bomber7.core.screens.GameScreen;
-import com.bomber7.utils.ResourceManager;
+import com.bomber7.utils.ScreenType;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -11,12 +12,6 @@ import com.bomber7.utils.ResourceManager;
  * </p>
  */
 public class BomberGame extends Game {
-
-    /**
-     * Maximum number of human players allowed in the game.
-     */
-    public static final int MAX_PLAYERS = 4;
-
     /**
      * Resource manager responsible for loading and managing game assets.
      */
@@ -28,8 +23,12 @@ public class BomberGame extends Game {
      */
     @Override
     public void create() {
+        Gdx.app.setLogLevel(Application.LOG_DEBUG);
+        ScreenManager.getInstance().initialize(this);
+        ConfigManager.getInstance().initialize();
         resources = new ResourceManager();
-        setScreen(new GameScreen(this));
+
+        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
 
     /**
@@ -49,5 +48,12 @@ public class BomberGame extends Game {
      */
     public ResourceManager getBomberResources() {
         return resources;
+    }
+
+    /**
+     * Launches the game.
+     */
+    public void start() {
+        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
     }
 }

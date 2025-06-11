@@ -6,10 +6,28 @@ import java.util.Map;
  * Constant variables used in the app.
  */
 public final class Constants {
+    private Constants() { }
 
-    private Constants() {
-        throw new UnsupportedOperationException("Utility class for constants, cannot be instantiated.");
-    }
+    /**
+     * The maximum length for a player name.
+     */
+    public static final int MAX_PLAYER_NAME_LENGTH = 12;
+    /**
+     * Maximum number of players allowed in the game.
+     */
+    public static final int MIN_PLAYERS = 1;
+    /**
+     * Maximum number of human players allowed in the game.
+     */
+    public static final int MAX_PLAYERS = 4;
+    /**
+     * Maximum number of rounds allowed in a game.
+     */
+    public static final int MIN_ROUNDS = 1;
+    /**
+     * Maximum number of rounds allowed in a game.
+     */
+    public static final int MAX_ROUNDS = 10;
     /**
      * The size in pixels of map textures.
      */
