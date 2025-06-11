@@ -205,7 +205,7 @@ public abstract class Character {
      */
     public void setScore(int newScore) {
         if (newScore > this.score) {
-            this.speed = newScore;
+            this.score = newScore;
         } else {
             throw new IllegalScoreOperationException("Score value must be positive.");
         }
