@@ -65,7 +65,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
 
         table.setTitle(new Label(resources.getString("player_selection"), resources.getSkin(), "large"), cols);
 
-        for (int i = 0; i < playerSelectors.length; i++) {
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             playerBlueprintObservables[i] = new PlayerBlueprintObservable();
             playerSelectors[i] = new PlayerSelector(resources, playerBlueprintObservables[i], i);
             playerBlueprintObservables[i].registerObserver(this);
@@ -86,6 +86,8 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         goToMainMenuButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                game.getCandidate().reset();
+
                 ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, true, false);
             }
         }, resources));
@@ -93,6 +95,12 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
         goToMapSelectionButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
+                    if (playerBlueprintObservables[i].isValid() && !playerBlueprintObservables[i].isDisposed()) {
+                        game.getCandidate().addPlayer(playerBlueprintObservables[i].getPlayerBlueprint(), i);
+                    }
+                }
+
                 ScreenManager.getInstance().showScreen(ScreenType.MAP_SELECTION, true, true);
             }
         }, resources));
