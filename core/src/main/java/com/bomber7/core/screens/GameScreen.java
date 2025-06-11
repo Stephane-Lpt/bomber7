@@ -7,6 +7,7 @@ import com.bomber7.core.model.map.LevelMapFactory;
 
 import java.nio.file.Path;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.views.ViewMap;
