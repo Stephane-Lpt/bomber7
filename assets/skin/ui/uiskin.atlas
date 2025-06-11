@@ -1,45 +1,187 @@
 uiskin.png
-size: 714, 377
+size: 1017, 1547
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-button.dark.9
+crous.9
   rotate: false
-  xy: 50, 0
-  size: 664, 114
-  split: 166, 166, 29, 28
-  orig: 664, 114
+  xy: 0, 512
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
   offset: 0, 0
   index: -1
-button.light.9
+dark.gold.9
   rotate: false
-  xy: 0, 114
-  size: 664, 114
-  split: 166, 166, 29, 28
-  orig: 664, 114
+  xy: 73, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
   offset: 0, 0
   index: -1
-button.white.9
+dark.green.9
   rotate: false
-  xy: 0, 228
-  size: 664, 114
-  split: 166, 166, 29, 28
-  orig: 664, 114
+  xy: 173, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+dark.red.9
+  rotate: false
+  xy: 273, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+enseeiht.9
+  rotate: false
+  xy: 500, 512
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+foy.9
+  rotate: false
+  xy: 0, 1012
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+halle_aux_grains.9
+  rotate: false
+  xy: 500, 1012
+  size: 500, 500
+  split: 125, 125, 125, 125
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+inactive.9
+  rotate: false
+  xy: 373, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+light.blue.9
+  rotate: false
+  xy: 473, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+light.gold.9
+  rotate: false
+  xy: 573, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+light.green.9
+  rotate: false
+  xy: 673, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+light.red.9
+  rotate: false
+  xy: 773, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
   offset: 0, 0
   index: -1
 slider.9
   rotate: false
-  xy: 0, 342
-  size: 664, 35
-  split: 166, 166, 9, 9
-  orig: 664, 35
+  xy: 0, 1512
+  size: 500, 35
+  orig: 500, 35
+  offset: 0, 0
+  index: -1
+slider.fill.9
+  rotate: false
+  xy: 500, 1512
+  size: 500, 35
+  orig: 500, 35
   offset: 0, 0
   index: -1
 slider.knob.9
   rotate: false
+  xy: 38, 0
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+sprite.bde
+  rotate: false
+  xy: 471, 100
+  size: 272, 409
+  split: 0, 272, 0, 409
+  orig: 272, 409
+  offset: 0, 0
+  index: -1
+sprite.graduate.9
+  rotate: false
+  xy: 743, 100
+  size: 274, 412
+  split: 0, 0, 0, 0
+  pad: 69, 68, 103, 103
+  orig: 274, 412
+  offset: 0, 0
+  index: -1
+sprite.student
+  rotate: false
+  xy: 200, 100
+  size: 271, 409
+  split: 0, 271, 0, 409
+  orig: 271, 409
+  offset: 0, 0
+  index: -1
+transparent
+  rotate: false
   xy: 0, 0
-  size: 50, 50
-  split: 13, 12, 13, 12
-  orig: 50, 50
+  size: 6, 6
+  split: 0, 6, 0, 6
+  orig: 6, 6
+  offset: 0, 0
+  index: -1
+white.9
+  rotate: false
+  xy: 6, 0
+  size: 32, 32
+  split: 8, 8, 8, 8
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+white.gold.9
+  rotate: false
+  xy: 873, 0
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+white.green.9
+  rotate: false
+  xy: 0, 100
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+white.red.9
+  rotate: false
+  xy: 100, 100
+  size: 100, 100
+  split: 25, 25, 25, 25
+  orig: 100, 100
   offset: 0, 0
   index: -1

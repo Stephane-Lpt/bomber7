@@ -4,15 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.ResourceManager;
 
+/**
+ * The view that shows the game map in GameScreen.
+ */
 public class ViewMap extends Actor {
 
-    /** The Grid (https://www.youtube.com/watch?v=lILHEnz8fTk). */
+    /** The Grid ({@link <a href="https://www.youtube.com/watch?v=lILHEnz8fTk">YouTube video</a>}). */
     private final LevelMap mapGrid;
 
     /** The ressourceManager needed for sprites. */
