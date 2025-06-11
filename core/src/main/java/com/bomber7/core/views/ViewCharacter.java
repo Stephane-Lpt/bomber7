@@ -85,7 +85,7 @@ public class ViewCharacter {
      */
     public ViewCharacter(Character character) {
         this.character = character;
-        this.texture = new Texture(Gdx.files.internal(character.getSpriteFP()));
+        this.texture = new Texture(Gdx.files.internal(Bomberman));
         createAnimations();
     }
 
