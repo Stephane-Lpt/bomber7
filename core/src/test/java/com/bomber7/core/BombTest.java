@@ -1,5 +1,6 @@
 package com.bomber7.core;
 
+import com.bomber7.core.model.entities.Character;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
@@ -12,9 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit test for the Bomb class to verify its behavior.
@@ -35,6 +34,20 @@ public class BombTest {
      * Instance of LevelMap used as a shared resource for tests.
      */
     protected LevelMap levelMap;
+
+    /**
+     * Instance of Character used in our bomb test.
+     */
+    protected Character testCharacter;
+
+    /**
+     * Test class for Character.
+     */
+    private static class ConcreteCharacter extends Character {
+        ConcreteCharacter(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
+            super(name, map, x, y, life, speed, spriteFP);
+        }
+    }
 
     /**
      * Set up a larger LevelMap and shared resources
@@ -59,6 +72,13 @@ public class BombTest {
         Square bombSquare = levelMap.getSquare(2, 2);
         bombSquare.setMapElement(bomb);
 
+        // Place the characters
+        Character charInRange = new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, "char.png");
+        levelMap.addCharacter(charInRange);
+
+        Character charOutOfRange = new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, "char.png");
+        levelMap.addCharacter(charOutOfRange);
+
         // Activate the bomb
         bomb.activateBomb(levelMap);
 
@@ -75,11 +95,14 @@ public class BombTest {
         assertTrue(levelMap.getSquare(1, 1).getMapElement() instanceof UnbreakableWall);
         assertTrue(levelMap.getSquare(2, 4).getMapElement() instanceof UnbreakableWall);
 
-
         // Walls placed outside the explosion range
         assertNull(levelMap.getSquare(0, 2).getMapElement()); // Empty Square
         assertTrue(levelMap.getSquare(4, 3).getMapElement() instanceof BreakableWall); // Just behind another bloc
         assertTrue(levelMap.getSquare(2, 0).getMapElement() instanceof BreakableWall);
+
+        // Characters
+        assertFalse(charInRange.isAlive(), "The character within range should be dead");
+        assertTrue(charOutOfRange.isAlive(), "The character outside range should not be affected");
     }
 
     /**

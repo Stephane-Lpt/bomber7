@@ -1,7 +1,8 @@
 package com.bomber7.core.model.map;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.entities.Character;
+import java.util.ArrayList;
 import com.bomber7.core.views.ViewMap;
 import com.bomber7.utils.Constants;
 
@@ -21,6 +22,9 @@ public class LevelMap {
     /** A 2D list representing the checkerboard of squares in the level map. */
     private List<List<Square>> checkerboard;
 
+    /** List of Characters currently present on the map. */
+    private List<Character> characters;
+
     /**
      * Constructs a LevelMap with the specified checkerboard.
      *
@@ -28,6 +32,7 @@ public class LevelMap {
      */
     public LevelMap(List<List<Square>> checkerboard, int windowWidth, int windowHeight) {
         this.checkerboard = checkerboard;
+        this.characters = new ArrayList<>();
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
     }
@@ -82,6 +87,22 @@ public class LevelMap {
         return checkerboard.size();
     }
 
+    /**
+     * Adds a character to the Map.
+     * @param character the Character to add.
+     */
+    public void addCharacter(Character character) {
+        this.characters.add(character);
+    }
+
+    /**
+     * Returns the current list of characters on the map.
+     *
+     * @return a list of all characters currently on the map.
+     */
+    public List<Character> getCharacters() {
+        return new ArrayList<>(this.characters);
+    }
 
     /**
      * Returns the checkerboard of squares.
