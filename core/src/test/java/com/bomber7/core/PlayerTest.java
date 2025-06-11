@@ -8,6 +8,8 @@ import com.bomber7.core.model.square.BombType;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.TriggerBomb;
+import com.bomber7.core.model.square.UnbreakableWall;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +36,7 @@ class PlayerTest {
         this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
-        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 32, "sprite.png") {
+        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 10, "sprite.png") {
         };
         player.setTypeBomb(BombType.TIME);
         player.setNbBomb(1);
@@ -85,11 +87,13 @@ class PlayerTest {
         player.setNbBomb(3);
 
         // Drop 2 trigger bombs
-        player.moveDown(); // Going to (1,23)
+        assertEquals(23, player.getMapY(), "Player should be at (1,23) after moving down");
+        assertEquals(1, player.getMapX(), "Player should be at (1,23) after moving down");
         player.dropBomb(); // Drop at (1,23)
-        player.moveUp(); // Going back to (1,23)
-        player.moveRight();
-        player.dropBomb(); // Drop at (2,23)
+        player.moveDown(); // Going back to (1,22)
+        assertEquals(22, player.getMapY(), "Player should be at (1,22) after moving down");
+        assertEquals(1, player.getMapX(), "Player should be at (1,22) after moving down");
+        player.dropBomb(); // Drop at (1,22)
         System.out.println(player.getPower());
 
         assertEquals(2, player.getNbTriggeredBombDropped(), "Should have 2 TriggerBombs before activation");
@@ -97,12 +101,12 @@ class PlayerTest {
 
         // Check squares before activation
         Square square1 = this.foyLevelMap.getSquare(1, 22);
-        Square square2 = this.foyLevelMap.getSquare(2, 23);
-        Square square3 = this.foyLevelMap.getSquare(3, 23);
+        Square square2 = this.foyLevelMap.getSquare(1, 23);
+        Square square3 = this.foyLevelMap.getSquare(2, 24);
         Square square4 = this.foyLevelMap.getSquare(1, 21);
+        assertInstanceOf(TriggerBomb.class, square2.getMapElement(), "Expected TriggerBomb on (1,23)");
         assertInstanceOf(TriggerBomb.class, square1.getMapElement(), "Expected TriggerBomb on (1,22)");
-        assertInstanceOf(TriggerBomb.class, square2.getMapElement(), "Expected TriggerBomb on (2,23)");
-        assertInstanceOf(BreakableWall.class, square3.getMapElement(), "Expected BreakableWall on (3,23)");
+        assertInstanceOf(UnbreakableWall.class, square3.getMapElement(), "Expected UnbreakableWall on (2,24)");
         assertInstanceOf(BreakableWall.class, square4.getMapElement(), "Expected BreakableWall on (1,21)");
 
         // Activate all trigger bombs
@@ -110,10 +114,10 @@ class PlayerTest {
 
         // TriggerBombs should be activated
         assertEquals(0, player.getNbTriggeredBombDropped(), "Trigger bomb list should be empty after activation");
-        assertNull(square1.getMapElement(), "Expected square (1,23) to be cleared after explosion");
-        assertNull(square2.getMapElement(), "Expected square (2,23) to be cleared after explosion");
-        assertNull(square3.getMapElement(), "Expected null because wall should be broken on (3,23)");
-        assertNull(square4.getMapElement(), "Expected null because wall should be broken on (1,21)");
+        assertNull(square1.getMapElement(), "Expected square (1,24) to be cleared after explosion");
+        assertNull(square2.getMapElement(), "Expected square (1,23) to be cleared after explosion");
+        assertInstanceOf(UnbreakableWall.class, square3.getMapElement(), "Expected UnbreakableWall on (2,24)");
+        assertNull(square4.getMapElement(), "Expected null because wall should be broken on (1,22)");
     }
 
 }
