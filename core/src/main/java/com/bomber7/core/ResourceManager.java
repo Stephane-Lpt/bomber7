@@ -1,10 +1,13 @@
-package com.bomber7.utils;
+package com.bomber7.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bomber7.utils.Language;
+import com.bomber7.utils.SoundManager;
 
+// TODO : Make ResourcesManager a singleton
 /**
  * ResourceManager contains all the resources used by the game.
  */
@@ -20,7 +23,7 @@ public final class ResourceManager {
     /**
      * I18NBundle object that contains localized strings used in the game.
      */
-    private final I18NBundle bundle;
+    private I18NBundle bundle;
 
     /**
      * GameSounds object that encapsulates game sound effects.
@@ -39,7 +42,8 @@ public final class ResourceManager {
             Gdx.files.internal("skin/map/mapskin.json"),
             new TextureAtlas(Gdx.files.internal("skin/map/mapskin.atlas"))
         );
-        bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/english"));
+        Language language = ConfigManager.getInstance().getConfig().getLanguage();
+        bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/" + language.toString().toLowerCase()));
         sound = new SoundManager();
     }
 
@@ -89,5 +93,14 @@ public final class ResourceManager {
      */
     public SoundManager getSound() {
         return sound;
+    }
+
+    /**
+     * Updates the I18N bundle object accordingly to Config Manager's language.
+     */
+    public void updateLanguage() {
+        bundle = I18NBundle.createBundle(
+            Gdx.files.internal("i18n/" + ConfigManager.getInstance().getConfig().getLanguage().toString().toLowerCase())
+        );
     }
 }

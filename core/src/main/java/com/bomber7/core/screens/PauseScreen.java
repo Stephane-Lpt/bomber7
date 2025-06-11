@@ -1,9 +1,10 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Game;
+import com.bomber7.utils.ScreenType;
 
-/** * Represents a pause screen in the Bomber game.
- * This screen is displayed when the game is paused, allowing players to resume or exit.
+/**
+ * Pause screen.
  */
 public class PauseScreen extends BomberScreen {
     /**
@@ -13,6 +14,9 @@ public class PauseScreen extends BomberScreen {
      */
     public PauseScreen(Game game) {
         super(game);
+
+        initView();
+        initController();
     }
 
     @Override
@@ -24,4 +28,10 @@ public class PauseScreen extends BomberScreen {
     public void initController() {
 
     }
+
+    @Override
+    public ScreenType getScreenType() {
+        return ScreenType.PAUSE;
+    }
 }
+
