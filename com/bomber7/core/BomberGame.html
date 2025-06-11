@@ -50,7 +50,7 @@ loadScripts(document, 'script');</script>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -94,17 +94,6 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="field-summary" id="field-summary">
 <h2>Field Summary</h2>
-<div class="caption"><span>Fields</span></div>
-<div class="summary-table three-column-summary">
-<div class="table-header col-first">Modifier and Type</div>
-<div class="table-header col-second">Field</div>
-<div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#MAX_PLAYERS" class="member-name-link">MAX_PLAYERS</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Maximum number of human players allowed in the game.</div>
-</div>
-</div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-com.badlogic.gdx.Game">Fields inherited from class&nbsp;com.badlogic.gdx.Game</h3>
 <code>screen</code></div>
@@ -144,10 +133,15 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Called when the application is closed.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../utils/ResourceManager.html" title="class in com.bomber7.utils">ResourceManager</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBomberResources()" class="member-name-link">getBomberResources</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the <a href="../utils/ResourceManager.html" title="class in com.bomber7.utils"><code>ResourceManager</code></a> instance used by this game.</div>
+<div class="block">Returns the <a href="ResourceManager.html" title="class in com.bomber7.core"><code>ResourceManager</code></a> instance used by this game.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#start()" class="member-name-link">start</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Launches the game.</div>
 </div>
 </div>
 </div>
@@ -164,29 +158,6 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="details">
 <ul class="details-list">
-<!-- ============ FIELD DETAIL =========== -->
-<li>
-<section class="field-details" id="field-detail">
-<h2>Field Details</h2>
-<ul class="member-list">
-<li>
-<section class="detail" id="MAX_PLAYERS">
-<h3>MAX_PLAYERS</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">MAX_PLAYERS</span></div>
-<div class="block">Maximum number of human players allowed in the game.</div>
-<dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="see-list">
-<li><a href="../../../constant-values.html#com.bomber7.core.BomberGame.MAX_PLAYERS">Constant Field Values</a></li>
-</ul>
-</dd>
-</dl>
-</section>
-</li>
-</ul>
-</section>
-</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -231,12 +202,19 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getBomberResources()">
 <h3>getBomberResources</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../utils/ResourceManager.html" title="class in com.bomber7.utils">ResourceManager</a></span>&nbsp;<span class="element-name">getBomberResources</span>()</div>
-<div class="block">Returns the <a href="../utils/ResourceManager.html" title="class in com.bomber7.utils"><code>ResourceManager</code></a> instance used by this game.</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></span>&nbsp;<span class="element-name">getBomberResources</span>()</div>
+<div class="block">Returns the <a href="ResourceManager.html" title="class in com.bomber7.core"><code>ResourceManager</code></a> instance used by this game.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the resource manager for game assets</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="start()">
+<h3>start</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">start</span>()</div>
+<div class="block">Launches the game.</div>
 </section>
 </li>
 </ul>

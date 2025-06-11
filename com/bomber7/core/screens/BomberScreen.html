@@ -43,7 +43,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
@@ -71,25 +71,38 @@ loadScripts(document, 'script');</script>
 <h1 title="Class BomberScreen" class="title">Class BomberScreen</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance">com.badlogic.gdx.InputAdapter
+<div class="inheritance">com.badlogic.gdx.scenes.scene2d.Stage
 <div class="inheritance">com.bomber7.core.screens.BomberScreen</div>
+</div>
+</div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code>com.badlogic.gdx.Screen</code>, <code>com.badlogic.gdx.utils.Disposable</code></dd>
+<dd><code>com.badlogic.gdx.InputProcessor</code>, <code>com.badlogic.gdx.Screen</code>, <code>com.badlogic.gdx.utils.Disposable</code>, <code><a href="../../utils/MVCComponent.html" title="interface in com.bomber7.utils">MVCComponent</a></code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="GameScreen.html" title="class in com.bomber7.core.screens">GameScreen</a></code>, <code><a href="KeyBindingScreen.html" title="class in com.bomber7.core.screens">KeyBindingScreen</a></code>, <code><a href="LevelSetupScreen.html" title="class in com.bomber7.core.screens">LevelSetupScreen</a></code>, <code><a href="MainMenuScreen.html" title="class in com.bomber7.core.screens">MainMenuScreen</a></code>, <code><a href="PauseScreen.html" title="class in com.bomber7.core.screens">PauseScreen</a></code>, <code><a href="PlayerSetupScreen.html" title="class in com.bomber7.core.screens">PlayerSetupScreen</a></code>, <code><a href="SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></code></dd>
+<dd><code><a href="GameScreen.html" title="class in com.bomber7.core.screens">GameScreen</a></code>, <code><a href="KeyBindingScreen.html" title="class in com.bomber7.core.screens">KeyBindingScreen</a></code>, <code><a href="MainMenuScreen.html" title="class in com.bomber7.core.screens">MainMenuScreen</a></code>, <code><a href="MapSelectionScreen.html" title="class in com.bomber7.core.screens">MapSelectionScreen</a></code>, <code><a href="PauseScreen.html" title="class in com.bomber7.core.screens">PauseScreen</a></code>, <code><a href="PlayerSelectionScreen.html" title="class in com.bomber7.core.screens">PlayerSelectionScreen</a></code>, <code><a href="SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">BomberScreen</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements com.badlogic.gdx.Screen</span></div>
+<span class="extends-implements">extends com.badlogic.gdx.scenes.scene2d.Stage
+implements com.badlogic.gdx.Screen, <a href="../../utils/MVCComponent.html" title="interface in com.bomber7.utils">MVCComponent</a></span></div>
 <div class="block">An abstract Screen class that all bomber screens should inherit from.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<li>
+<section class="nested-class-summary" id="nested-class-summary">
+<h2>Nested Class Summary</h2>
+<div class="inherited-list">
+<h2 id="nested-classes-inherited-from-class-com.badlogic.gdx.scenes.scene2d.Stage">Nested classes/interfaces inherited from class&nbsp;com.badlogic.gdx.scenes.scene2d.Stage</h2>
+<code>com.badlogic.gdx.scenes.scene2d.Stage.TouchFocus</code></div>
+</section>
+</li>
 <!-- =========== FIELD SUMMARY =========== -->
 <li>
 <section class="field-summary" id="field-summary">
@@ -104,15 +117,10 @@ implements com.badlogic.gdx.Screen</span></div>
 <div class="col-last even-row-color">
 <div class="block">Game object.</div>
 </div>
-<div class="col-first odd-row-color"><code>protected final <a href="../../utils/ResourceManager.html" title="class in com.bomber7.utils">ResourceManager</a></code></div>
+<div class="col-first odd-row-color"><code>protected final <a href="../ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#resources" class="member-name-link">resources</a></code></div>
 <div class="col-last odd-row-color">
 <div class="block">Game resources.</div>
-</div>
-<div class="col-first even-row-color"><code>protected com.badlogic.gdx.scenes.scene2d.Stage</code></div>
-<div class="col-second even-row-color"><code><a href="#stage" class="member-name-link">stage</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">2D Stage object.</div>
 </div>
 </div>
 </section>
@@ -146,41 +154,42 @@ implements com.badlogic.gdx.Screen</span></div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dispose()" class="member-name-link">dispose</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hide()" class="member-name-link">hide</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initController()" class="member-name-link">initController</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">A method where all controls should be initialized (button clicks, etc..).</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initView()" class="member-name-link">initView</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="../../utils/ScreenType.html" title="enum class in com.bomber7.utils">ScreenType</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getScreenType()" class="member-name-link">getScreenType</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">A method where all view components should be initialized and positioned.</div>
+<div class="block">Returns the type of this screen.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hide()" class="member-name-link">hide</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render(float)" class="member-name-link">render</a><wbr>(float&nbsp;delta)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resize(int,int)" class="member-name-link">resize</a><wbr>(int&nbsp;width,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#render(float)" class="member-name-link">render</a><wbr>(float&nbsp;delta)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resize(int,int)" class="member-name-link">resize</a><wbr>(int&nbsp;width,
  int&nbsp;height)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resume()" class="member-name-link">resume</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#show()" class="member-name-link">show</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resume()" class="member-name-link">resume</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#show()" class="member-name-link">show</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
+<h3 id="methods-inherited-from-class-com.badlogic.gdx.scenes.scene2d.Stage">Methods inherited from class&nbsp;com.badlogic.gdx.scenes.scene2d.Stage</h3>
+<code>act, act, actorRemoved, addAction, addActor, addCaptureListener, addListener, addTouchFocus, calculateScissors, cancelTouchFocus, cancelTouchFocus, cancelTouchFocusExcept, clear, draw, getActionsRequestRendering, getActors, getBatch, getCamera, getDebugColor, getHeight, getKeyboardFocus, getRoot, getScrollFocus, getViewport, getWidth, hit, isDebugAll, isInsideViewport, keyDown, keyTyped, keyUp, mouseMoved, removeCaptureListener, removeListener, removeTouchFocus, screenToStageCoordinates, scrolled, setActionsRequestRendering, setDebugAll, setDebugInvisible, setDebugParentUnderMouse, setDebugTableUnderMouse, setDebugTableUnderMouse, setDebugUnderMouse, setKeyboardFocus, setRoot, setScrollFocus, setViewport, stageToScreenCoordinates, toScreenCoordinates, touchCancelled, touchDown, touchDragged, touchUp, unfocus, unfocusAll</code></div>
+<div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-com.bomber7.utils.MVCComponent">Methods inherited from interface&nbsp;com.bomber7.utils.<a href="../../utils/MVCComponent.html" title="interface in com.bomber7.utils">MVCComponent</a></h3>
+<code><a href="../../utils/MVCComponent.html#initController()">initController</a>, <a href="../../utils/MVCComponent.html#initView()">initView</a></code></div>
 </section>
 </li>
 </ul>
@@ -200,16 +209,9 @@ implements com.badlogic.gdx.Screen</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="stage">
-<h3>stage</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">com.badlogic.gdx.scenes.scene2d.Stage</span>&nbsp;<span class="element-name">stage</span></div>
-<div class="block">2D Stage object.</div>
-</section>
-</li>
-<li>
 <section class="detail" id="resources">
 <h3>resources</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../../utils/ResourceManager.html" title="class in com.bomber7.utils">ResourceManager</a></span>&nbsp;<span class="element-name">resources</span></div>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></span>&nbsp;<span class="element-name">resources</span></div>
 <div class="block">Game resources.</div>
 </section>
 </li>
@@ -240,20 +242,6 @@ implements com.badlogic.gdx.Screen</span></div>
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="initView()">
-<h3>initView</h3>
-<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initView</span>()</div>
-<div class="block">A method where all view components should be initialized and positioned.</div>
-</section>
-</li>
-<li>
-<section class="detail" id="initController()">
-<h3>initController</h3>
-<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initController</span>()</div>
-<div class="block">A method where all controls should be initialized (button clicks, etc..).</div>
-</section>
-</li>
 <li>
 <section class="detail" id="show()">
 <h3>show</h3>
@@ -324,6 +312,20 @@ implements com.badlogic.gdx.Screen</span></div>
 <dd><code>dispose</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.utils.Disposable</code></dd>
 <dt>Specified by:</dt>
 <dd><code>dispose</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.Screen</code></dd>
+<dt>Overrides:</dt>
+<dd><code>dispose</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.scenes.scene2d.Stage</code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getScreenType()">
+<h3>getScreenType</h3>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="../../utils/ScreenType.html" title="enum class in com.bomber7.utils">ScreenType</a></span>&nbsp;<span class="element-name">getScreenType</span>()</div>
+<div class="block">Returns the type of this screen.
+ Used in ScreenManager to avoid multiple stacks.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the screenType of the screen.</dd>
 </dl>
 </section>
 </li>
