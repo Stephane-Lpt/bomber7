@@ -16,6 +16,7 @@ import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BombType;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TriggerBomb;
+import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.square.TimeBomb;
 
 /**
@@ -51,8 +52,8 @@ public abstract class Player extends Character {
      * @param speed    Speed of the player
      * @param spriteFP File path to the player's sprite
      */
-    public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
-        super(name, map, mapX, mapY, life, speed, spriteFP);
+    public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
+        super(name, map, mapX, mapY, life, speed, gameCharacter);
         this.nbBomb = 1;
         this.power = 1;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME

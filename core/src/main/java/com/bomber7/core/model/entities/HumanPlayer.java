@@ -2,6 +2,7 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.controller.PlayerConfig;
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.utils.GameCharacter;
 
 /**
  * Human player class.
@@ -20,8 +21,8 @@ public class HumanPlayer extends Player {
      * @param mapY    The y-coordinate of the player
      * @param spriteFP The file path to the player's sprite
      */
-    public HumanPlayer(PlayerConfig config, LevelMap map, String name, int mapX, int mapY, String spriteFP) {
-        super(name, map, mapX, mapY, 1, 1, spriteFP);
+    public HumanPlayer(PlayerConfig config, LevelMap map, String name, int mapX, int mapY, GameCharacter gameCharacter) {
+        super(name, map, mapX, mapY, 1, 1, gameCharacter);
         this.config = config;
     }
 

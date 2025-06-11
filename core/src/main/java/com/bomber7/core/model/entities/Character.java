@@ -2,6 +2,7 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
@@ -24,7 +25,7 @@ public abstract class Character {
     private static final int MOVING_RIGHT = 4;
 
     /** The file path to the character's sprite image. */
-    private final String spriteFP;
+    private final GameCharacter gameCharacter;
     /** The name of the character. */
     private final String name;
     /** Indicates whether the character is alive or not. */
@@ -60,7 +61,7 @@ public abstract class Character {
      * @param speed    The initial speed of the character
      * @param spriteFP The file path to the character's sprite image
      */
-    public Character(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
+    public Character(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name can't be null or empty");
         }
@@ -73,9 +74,6 @@ public abstract class Character {
         if (speed <= 0) {
             throw new IllegalSpeedOperationException("Initial speed of character > 0");
         }
-        if (spriteFP == null || spriteFP.trim().isEmpty()) {
-            throw new IllegalArgumentException("Sprite file path can't be null or empty");
-        }
         this.name = name;
         this.mapX = mapX;
         this.mapY = mapY;
@@ -84,7 +82,7 @@ public abstract class Character {
         this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
         this.life = life;
         this.speed = speed;
-        this.spriteFP = spriteFP;
+        this.gameCharacter = gameCharacter;
         this.isAlive = true;
         this.movingStatus = STANDING_STILL;
         this.score = 0;
@@ -168,8 +166,8 @@ public abstract class Character {
      * Character current sprite path file.
      * @return spriteFP Current sprite path file
      */
-    public String getSpriteFP() {
-        return this.spriteFP;
+    public GameCharacter getGameCharacter() {
+        return this.gameCharacter;
     }
 
     /**
