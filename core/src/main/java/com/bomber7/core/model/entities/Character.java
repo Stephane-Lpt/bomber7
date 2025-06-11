@@ -93,6 +93,14 @@ public abstract class Character {
     /* ------[GETTERS]------------------------------------ */
 
     /**
+     * Character moving status getter.
+     * @return movingStatus Current moving status
+     */
+    public int getMovingStatus() {
+        return this.movingStatus;
+    }
+
+    /**
      * Character name getter.
      * @return name Current name
      */
