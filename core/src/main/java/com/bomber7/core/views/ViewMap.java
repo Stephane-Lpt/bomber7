@@ -10,9 +10,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
 
+/**
+ * The view that shows the game map in GameScreen.
+ */
 public class ViewMap extends Actor {
 
-    /** The Grid ({@link https://www.youtube.com/watch?v=lILHEnz8fTk YouTube video}). */
+    /** The Grid ({@link <a href="https://www.youtube.com/watch?v=lILHEnz8fTk">YouTube video</a>}). */
     private final LevelMap mapGrid;
 
     /** The ressourceManager needed for sprites. */

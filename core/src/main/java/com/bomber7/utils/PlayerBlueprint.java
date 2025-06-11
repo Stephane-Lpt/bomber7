@@ -6,7 +6,7 @@ package com.bomber7.utils;
  * <p>
  * The instance of a PlayerBlueprint is hold inside a {@link PlayerBlueprintObservable} to allow
  * null values (= player not configured). Is it then used when starting a game,
- * to create {@link com.bomber7.core.model.Character}.
+ * to create a character.
  * </p>
  *
  */

@@ -20,6 +20,9 @@ import com.bomber7.utils.GameMap;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A checkbox component used in MapSelection screen to allow the user select the map(s) he wants to play on.
+ */
 public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
     /**
      * The list of this subject's observers.
