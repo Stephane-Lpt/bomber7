@@ -2,6 +2,7 @@ package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.model.map.LevelMap;
@@ -9,6 +10,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.ResourceManager;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.util.List;
 
 public class ViewMap extends Actor {
 
@@ -38,15 +42,20 @@ public class ViewMap extends Actor {
     /** The Y coordinate of the origin point for drawing the map. */
     private float originY;
 
+    /** List of ViewCharacter */
+    private final List<ViewCharacter> viewCharacters;
+
     /**
      * Constructs a new ViewMap with the specified map grid and resource manager.
      * @param mapGrid the 2D array of Square objects representing the map
      * @param resourceManager the ResourceManager to manage textures and resources
+     * @param viewCharacters list of viewCharacter
      */
-    public ViewMap(LevelMap mapGrid, ResourceManager resourceManager) {
+    public ViewMap(LevelMap mapGrid, ResourceManager resourceManager, List<ViewCharacter> viewCharacters) {
         this.mapGrid = mapGrid;
         this.resourceManager = resourceManager;
         this.spriteBatch = new PolygonSpriteBatch();
+        this.viewCharacters = viewCharacters;
 
         updateDimensions();
     }
@@ -81,7 +90,14 @@ public class ViewMap extends Actor {
             }
         }
 
+        if (viewCharacters != null && !viewCharacters.isEmpty() && batch instanceof SpriteBatch) {
+            for (ViewCharacter viewCharacter : viewCharacters) {
+                viewCharacter.renderCharacter((SpriteBatch) batch);
+            }
+        }
+
         spriteBatch.end();
+
     }
 
     /**

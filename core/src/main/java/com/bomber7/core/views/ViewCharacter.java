@@ -155,19 +155,25 @@ public class ViewCharacter {
      * Determines the current animation based on the character's state.
      * @return The current animation to be displayed.
      */
+
+    public int getFalseState() {
+        return 3;
+    }
+
+
     private Animation<TextureRegion> getCurrentAnimation() {
-        switch (this.character.getState()) {
-            case "MOVING_RIGHT":
+        switch (getFalseState()) {
+            case 4:
                 return moveRight;
-            case "MOVING_LEFT":
+            case 3:
                 return moveLeft;
-            case "MOVING_UP":
+            case 1:
                 return moveUp;
-            case "MOVING_DOWN":
+            case 2:
                 return moveDown;
-            case "DIE":
+            case 5:
                 return die;
-            case "STANDING_STILL":
+            case 0:
             default:
                 return stand;
         }

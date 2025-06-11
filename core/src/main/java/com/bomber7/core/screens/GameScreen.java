@@ -5,9 +5,12 @@ import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.components.BomberTextButton;
+import com.bomber7.core.views.ViewCharacter;
 import com.bomber7.core.views.ViewMap;
 import com.bomber7.utils.Dimensions;
 
@@ -66,6 +69,8 @@ public class GameScreen extends BomberScreen {
         String mapName = "foy";
         /* Create a LevelMapFactory to load the map. */
         LevelMap levelMap = LevelMapFactory.createLevelMap(mapName, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        ArrayList<ViewCharacter> characters = new ArrayList<>();
+        characters.add(new Character("Patrick", levelMap, 1, 1, 2, 1, resources.getSkin()));
         /* Map view of the game. */
         ViewMap viewMap = new ViewMap(levelMap, resources);
 
