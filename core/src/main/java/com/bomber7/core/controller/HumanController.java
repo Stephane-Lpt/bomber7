@@ -12,7 +12,7 @@ import com.bomber7.core.model.entities.HumanPlayer;
  *
  * <p>
  * This controller is typically used to allow a human player to interact with
- * the game using customizable key bindings defined in a {@link Config} object.
+ * the game using customizable key bindings defined in a {@link PlayerConfig} object.
  * </p>
  */
 public class HumanController {
