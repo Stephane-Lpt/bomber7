@@ -1,6 +1,8 @@
 package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.Wall;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
@@ -79,8 +81,8 @@ public abstract class Character {
         this.mapX = mapX;
         this.mapY = mapY;
         this.map = map;
-        this.x = this.map.getSquareCoordinates(mapX, mapY).getKey();
-        this.y = this.map.getSquareCoordinates(mapX, mapY).getValue();
+        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
+        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
         this.life = life;
         this.speed = speed;
         this.spriteFP = spriteFP;
@@ -287,7 +289,7 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
-        if (checkMove(getPositionX(), getPositionY() + speed)) {
+        if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
             this.movingStatus = MOVING_DOWN;
@@ -298,7 +300,7 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
-        if (checkMove(getPositionX(), getPositionY() - speed)) {
+        if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
             this.movingStatus = MOVING_UP;
@@ -312,8 +314,17 @@ public abstract class Character {
      * @return boolean
      */
     public boolean checkMove(int futureX, int futureY) {
-        // need collisions
-        return true;
+        int futureMapX = this.map.getSquareCoordinates(futureX, futureY).getKey();
+        int futureMapY = this.map.getSquareCoordinates(futureX, futureY).getValue();
+
+        if (futureMapX < 0 || futureMapY < 0 || futureMapX >= this.map.getWidth() || futureMapY >= this.map.getHeight()) {
+            return false; // Out of bounds
+        }
+
+        assert futureMapX == 2 : "kkk";
+        assert futureMapY == 22 : "iii";
+        Square square = this.map.getSquare(futureMapX, futureMapY);
+        return square.isWalkable();
     }
 
 }

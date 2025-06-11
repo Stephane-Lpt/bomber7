@@ -102,6 +102,9 @@ public class Square extends ElementTexture {
      * @return false it there is a wall or a bomb, true otherwise
      */
     public boolean isWalkable() {
+        if (mapElement == null) {
+            return true; // No map element means the square is walkable
+        }
         if (mapElement instanceof Wall || mapElement instanceof Bomb) {
             return false;
         }
