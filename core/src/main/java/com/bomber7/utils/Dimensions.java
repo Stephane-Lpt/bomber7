@@ -8,9 +8,33 @@ public final class Dimensions {
     private Dimensions() { }
 
     /**
+     * The width of the PlayerSelector component.
+     */
+    public static final float PLAYER_SELECTOR_WIDTH = 175f;
+    /**
+     * The height of the PlayerSelector component.
+     */
+    public static final float PLAYER_SELECTOR_HEIGHT = 350;
+    /**
+     * The width of the PlayerSelector component.
+     */
+    public static final float MAP_CHECK_BOX_SIZE = 250f;
+    /**
      * Spacing between UI components (buttons, etc...).
      */
-    public static final float COMPONENT_SPACING = 50f;
+    public static final float COMPONENT_SPACING = 50F;
+    /**
+     * XS spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_XS = COMPONENT_SPACING / 8f;
+    /**
+     * Small spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_SM = COMPONENT_SPACING / 2f;
+    /**
+     * Large spacing between UI components (buttons, etc...).
+     */
+    public static final float COMPONENT_SPACING_LG = COMPONENT_SPACING / 4f;
 
     /**
      * Spacing between labels and other UI components.
@@ -38,13 +62,7 @@ public final class Dimensions {
     public static final float BUTTON_WIDTH_SM = 300f;
 
     /**
-     * Small button width.
+     * Border size for elements.
      */
-    public static final float VIEW_MAP_WIDTH = 80f;
-
-    /**
-     * Small button width.
-     */
-    public static final float VIEW_MAP_HEIGHT = 40f;
-
+    public static final float BORDER_SIZE = 5f;
 }
