@@ -65,7 +65,7 @@ public class GameScreen extends BomberScreen {
                     "test",
                     0,
                     0,
-                    GameCharacter.TEST.getDrawableName()
+                    GameCharacter.TEST
                 ),
                 resources
             )

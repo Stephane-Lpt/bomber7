@@ -82,7 +82,7 @@ public class ViewCharacter {
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
-        this.texture = resources.getCharacterSkin().getAtlas().findRegion(character.getSpriteFP()).getTexture();
+        this.texture = resources.getCharacterSkin().getAtlas().findRegion(character.getGameCharacter().getDrawableName()).getTexture();
         createAnimations();
     }
 
