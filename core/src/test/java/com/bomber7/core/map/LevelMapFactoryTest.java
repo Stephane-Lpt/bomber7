@@ -57,14 +57,14 @@ public class LevelMapFactoryTest {
 
     @Test
     void testCreateLevelMapOK() {
-        LevelMap levelMap = LevelMapFactory.createLevelMap("foy");
+        LevelMap levelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
         System.out.println(levelMap.toString());
     }
 
     @Test
     void testCreateLevelMapNonExistentDirectory() {
         assertThrows(IllegalArgumentException.class, () -> {
-            LevelMapFactory.createLevelMap("non_existent_map");
+            LevelMapFactory.createLevelMap("non_existent_map", 800, 600);
         });
     }
 
@@ -76,7 +76,7 @@ public class LevelMapFactoryTest {
         dir.mkdir();
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                LevelMapFactory.createLevelMap(dirName);
+                LevelMapFactory.createLevelMap(dirName, 800, 600);
             });
         } finally {
             // Clean up the directory after the test
@@ -93,7 +93,7 @@ public class LevelMapFactoryTest {
 
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                LevelMapFactory.createLevelMap(foyMapName);
+                LevelMapFactory.createLevelMap(foyMapName, 800, 600);
             });
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
@@ -108,7 +108,7 @@ public class LevelMapFactoryTest {
 
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                LevelMapFactory.createLevelMap(foyMapName);
+                LevelMapFactory.createLevelMap(foyMapName, 800, 600);
             });
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
@@ -122,7 +122,7 @@ public class LevelMapFactoryTest {
 
         try {
             assertThrows(IllegalArgumentException.class, () -> {
-                LevelMapFactory.createLevelMap(foyMapName);
+                LevelMapFactory.createLevelMap(foyMapName, 800, 600);
             });
         } finally {
             assertTrue(dummyFile.delete(), "Failed to delete dummy file");
@@ -136,7 +136,7 @@ public class LevelMapFactoryTest {
         assertTrue(dummyFile.createNewFile(), "Failed to create dummy background CSV");
 
         try {
-            LevelMap levelMap = LevelMapFactory.createLevelMap(foyMapName);
+            LevelMap levelMap = LevelMapFactory.createLevelMap(foyMapName, 800, 600);
             Square square = levelMap.getSquare(5, 23);
             // id = 33
             assertEquals("spruce-planks", square.getTextureName());
@@ -262,7 +262,7 @@ public class LevelMapFactoryTest {
     @Test
     void testParseCsvBackgroundTextureIdsMatch() throws Exception {
         String mapName = "foy";
-        LevelMap levelMap = LevelMapFactory.createLevelMap(mapName);
+        LevelMap levelMap = LevelMapFactory.createLevelMap(mapName, 800, 600);
 
         File backgroundCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Background.csv");
         File breakableCsv = new File(ProjectPaths.getMapDir() + "/" + mapName + "/le_foy_Breakable.csv");

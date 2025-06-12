@@ -5,6 +5,8 @@ import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.utils.ProjectPaths;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class LevelMapTest {
@@ -49,7 +52,7 @@ public class LevelMapTest {
         checkerboard.add(row1);
         checkerboard.add(row2);
 
-        LevelMap levelMap = new LevelMap(checkerboard);
+        LevelMap levelMap = new LevelMap(checkerboard, 800, 600);
 
         // Assert that the correct square is returned for each coordinate
         assertSame(square1, levelMap.getSquare(0, 0));
@@ -74,7 +77,7 @@ public class LevelMapTest {
         row.add(square); // (0,0)
         checkerboard.add(row);
 
-        LevelMap levelMap = new LevelMap(checkerboard);
+        LevelMap levelMap = new LevelMap(checkerboard, 800, 600);
 
         // Assert that accessing out-of-bounds coordinates throws IndexOutOfBoundsException
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(-1, 0));
@@ -82,4 +85,53 @@ public class LevelMapTest {
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(0, 1));
         assertThrows(IndexOutOfBoundsException.class, () -> levelMap.getSquare(0, -1));
     }
+
+    @Test
+    void testGetAbsoluteCoordinates() {
+        // Create a 2x2 checkerboard grid
+        List<List<Square>> checkerboard = new ArrayList<>();
+        List<Square> row1 = new ArrayList<>();
+        row1.add(new Square("texture1", null)); // (0,0)
+        row1.add(new Square("texture2", null)); // (1,0)
+
+        List<Square> row2 = new ArrayList<>();
+        row2.add(new Square("texture3", null)); // (0,1)
+        row2.add(new Square("texture4", null)); // (1,1)
+
+        checkerboard.add(row1);
+        checkerboard.add(row2);
+
+        LevelMap levelMap = new LevelMap(checkerboard, 800, 600);
+
+        // Assert that the absolute coordinates are correct
+        assertEquals(Pair.of(377, 277), levelMap.getAbsoluteCoordinates(0, 0));
+        assertEquals(Pair.of(400, 277), levelMap.getAbsoluteCoordinates(1, 0));
+        assertEquals(Pair.of(377, 300), levelMap.getAbsoluteCoordinates(0, 1));
+        assertEquals(Pair.of(400, 300), levelMap.getAbsoluteCoordinates(1, 1));
+    }
+
+    @Test
+    void testGetSquareCoordinates() {
+        // Create a 2x2 checkerboard grid
+        List<List<Square>> checkerboard = new ArrayList<>();
+        List<Square> row1 = new ArrayList<>();
+        row1.add(new Square("texture1", null)); // (0,0)
+        row1.add(new Square("texture2", null)); // (1,0)
+
+        List<Square> row2 = new ArrayList<>();
+        row2.add(new Square("texture3", null)); // (0,1)
+        row2.add(new Square("texture4", null)); // (1,1)
+
+        checkerboard.add(row1);
+        checkerboard.add(row2);
+
+        LevelMap levelMap = new LevelMap(checkerboard, 800, 600);
+
+        // Assert that the square coordinates are correct
+        assertEquals(Pair.of(0, 0), levelMap.getSquareCoordinates(380, 280));
+        assertEquals(Pair.of(1, 0), levelMap.getSquareCoordinates(405, 277));
+        assertEquals(Pair.of(0, 1), levelMap.getSquareCoordinates(380, 306));
+        assertEquals(Pair.of(1, 1), levelMap.getSquareCoordinates(410, 310));
+    }
+
 }
