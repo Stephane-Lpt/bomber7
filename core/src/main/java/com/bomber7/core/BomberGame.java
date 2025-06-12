@@ -61,6 +61,7 @@ public class BomberGame extends Game {
         ConfigManager.getInstance().initialize();
         resources = new ResourceManager();
         gameCandidate = new GameCandidate();
+        mapList = new ArrayList<>();
 
         ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
