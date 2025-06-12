@@ -1,5 +1,8 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.entities.Character;
+
+import java.util.List;
 
 /**
  * Represents a bomb in the game, which can explode and affect surrounding squares.
@@ -10,7 +13,7 @@ import com.bomber7.core.model.map.LevelMap;
  * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
  */
-public class Bomb extends MapElement {
+public abstract class Bomb extends MapElement {
 
     /**
      * The power of the bomb, which determines the range of its explosion.
@@ -90,11 +93,21 @@ public class Bomb extends MapElement {
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
+        // Retrieve all characters currently on the Map.
+        List<Character> characters = m.getCharacters();
+
         for (int[] direction : directions) {
 
             for (int i = 1; i <= power; i++) {
                 int newX = this.x + direction[0] * i;
                 int newY = this.y + direction[1] * i;
+
+                // Check if the explosion reaches a character
+                for (Character character : characters) {
+                    if (character.getMapX() == newX && character.getMapY() == newY && character.isAlive()) {
+                        character.removeOneLife();
+                    }
+                }
 
                 if (newX < 0 || newX >= m.getWidth() || newY < 0 || newY >= m.getHeight()) {
                     break;
@@ -107,11 +120,22 @@ public class Bomb extends MapElement {
                     break;
                 }
 
+
+
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m, newX, newY);
                     break;
                 }
+
+                if (potentialSquare.getMapElement() instanceof Bomb) {
+                    // If the square has another bomb, we can propagate the explosion to it
+                    Bomb otherBomb = (Bomb) potentialSquare.getMapElement();
+                    otherBomb.activateBomb(m);
+                    break;
+                }
+
+
                 // Regular propagation
                 onExplosion(m, newX, newY);
             }

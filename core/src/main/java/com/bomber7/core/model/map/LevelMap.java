@@ -1,8 +1,13 @@
 package com.bomber7.core.model.map;
 
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.entities.Character;
+import java.util.ArrayList;
+import com.bomber7.utils.Constants;
 
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 /**
  * Represents a level with a map in the game.
@@ -10,16 +15,29 @@ import java.util.List;
  */
 public class LevelMap {
 
+    /** Width of the window in pixels. */
+    private int windowWidth;
+    /** Height of the window in pixels. */
+    private int windowHeight;
+
     /** A 2D list representing the checkerboard of squares in the level map. */
     private List<List<Square>> checkerboard;
+
+    /** List of Characters currently present on the map. */
+    private List<Character> characters;
 
     /**
      * Constructs a LevelMap with the specified checkerboard.
      *
      * @param checkerboard a 2D list representing the checkerboard of squares
+     * @param windowWidth the width of the window in pixels
+     * @param windowHeight the height of the window in pixels
      */
-    public LevelMap(List<List<Square>> checkerboard) {
+    public LevelMap(List<List<Square>> checkerboard, int windowWidth, int windowHeight) {
         this.checkerboard = checkerboard;
+        this.characters = new ArrayList<>();
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
     }
 
     /**
@@ -70,6 +88,54 @@ public class LevelMap {
      */
     public int getHeight() {
         return checkerboard.size();
+    }
+
+    /**
+     * Adds a character to the Map.
+     * @param character the Character to add.
+     */
+    public void addCharacter(Character character) {
+        this.characters.add(character);
+    }
+
+    /**
+     * Returns the current list of characters on the map.
+     *
+     * @return a list of all characters currently on the map.
+     */
+    public List<Character> getCharacters() {
+        return new ArrayList<>(this.characters);
+    }
+
+    /**
+     * Returns the checkerboard of squares.
+     * @param x the x-coordinate of the square
+     * @param y the y-coordinate of the square
+     * @return the checkerboard of squares
+     */
+    public Pair<Integer, Integer> getAbsoluteCoordinates(int x, int y) {
+
+        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * Constants.SCALE) / 2;
+        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * Constants.SCALE) / 2;
+
+        return Pair.of((int) (originX + x * Constants.TEXTURE_SIZE * Constants.SCALE),
+            (int) (originY + y * Constants.TEXTURE_SIZE * Constants.SCALE));
+    }
+
+    /**
+     * Returns the absolute coordinates of the square at the specified coordinates.
+     * This method calculates the absolute pixel coordinates based on the current screen size and scale.
+     *
+     * @param x the x-coordinate of the square
+     * @param y the y-coordinate of the square
+     * @return a Pair containing the absolute x and y coordinates
+     */
+    public Pair<Integer, Integer> getSquareCoordinates(int x, int y) {
+        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * Constants.SCALE) / 2;
+        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * Constants.SCALE) / 2;
+
+        return Pair.of(Math.round(((x - originX) / (Constants.TEXTURE_SIZE * Constants.SCALE))),
+            Math.round(((y - originY) / (Constants.TEXTURE_SIZE * Constants.SCALE))));
     }
 
 }
