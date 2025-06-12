@@ -42,7 +42,7 @@ public class GameScreen extends BomberScreen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        /* =======[BUTTON]=============================================== */
+        /* =======[BUTTON]========================================================= */
 
         /* Buttons to go to key bindings menu. */
         TextButton settingsButton = new TextButton(resources.getString("options"), resources.getSkin());
@@ -59,18 +59,11 @@ public class GameScreen extends BomberScreen {
             .height(Dimensions.BUTTON_HEIGHT);
         mainTable.row();
 
-        /* =======[MAP VIEW]=============================================== */
+        /* =======[MAP VIEW]======================================================= */
 
-        /* Path to the tileset JSON file. */
-        Path tilesetJsonPath = ProjectPaths.getTileset();
-        /* Map name for the current game. */
-        String mapName = "foy";
-        /* Create a LevelMapFactory to load the map. */
-        LevelMap levelMap = LevelMapFactory.createLevelMap(mapName, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        /* Map view of the game. */
-        ViewMap viewMap = new ViewMap(levelMap, resources);
+        ViewMap viewMap = new ViewMap(game.getMapListElement(0), resources);
 
-        /* =======[FULL FRAME]=============================================== */
+        /* =======[FULL FRAME]===================================================== */
 
         mainTable.add(viewMap);
         this.addActor(mainTable);

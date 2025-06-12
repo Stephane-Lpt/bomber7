@@ -2,10 +2,27 @@ package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
 import com.bomber7.core.model.GameCandidate;
+import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.utils.Constants;
+import com.bomber7.utils.GameCharacter;
+import com.bomber7.utils.GameMap;
+import com.bomber7.utils.PlayerBlueprint;
+import com.bomber7.utils.PlayerStrategy;
+import com.bomber7.utils.ProjectPaths;
 import com.bomber7.utils.ScreenType;
+import com.bomber7.utils.SpawnPoints;
 
+import java.lang.reflect.Array;
+import java.nio.file.Path;
+import com.bomber7.utils.ProjectPaths; 
+import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.map.LevelMapFactory;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import com.badlogic.gdx.Application;
@@ -29,6 +46,8 @@ public class BomberGame extends Game {
      * When a game is started, the characters as well as the map is initialized used this object.
      */
     private GameCandidate gameCandidate;
+
+    private ArrayList<LevelMap> mapList;
 
     /**
      * Called once when the application is created.
@@ -54,6 +73,15 @@ public class BomberGame extends Game {
     public void dispose() {
         resources.dispose();
         super.dispose();
+    }
+
+    /**
+     * Returns a LevelMap from the mapList at the specified index.
+     * @param i
+     * @return the LevelMap at the specified index
+     */
+    public LevelMap getMapListElement(int i) {
+        return mapList.get(i);
     }
 
     /**
@@ -83,22 +111,54 @@ public class BomberGame extends Game {
 
         // Check if gameCandidate is properly initialized
         if (gameCandidate.getPlayerBlueprints() == null) {
-            Gdx.app.error("BomberGame", "GameCandidate is missing player configurations.");
-            throw new IllegalStateException("GameCandidate must have at least one player configured.");
+            Gdx.app.debug("BomberGame", "GameCandidate is missing player configurations.");
         }
 
         if (gameCandidate.getMaps() == null || gameCandidate.getMaps().isEmpty()) {
-            Gdx.app.error("BomberGame", "GameCandidate is missing map configurations.");
-            throw new IllegalStateException("GameCandidate must have at least one map configured.");
+            Gdx.app.debug("BomberGame", "GameCandidate is missing map configurations.");
         }
 
         if (gameCandidate.getRounds() < Constants.MIN_ROUNDS) {
-            Gdx.app.error("BomberGame", "GameCandidate has an invalid number of rounds.");
-            throw new IllegalStateException("GameCandidate must have a valid number of rounds.");
+            Gdx.app.debug("BomberGame", "GameCandidate has an invalid number of rounds.");
         }
 
-        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+        // Initialize the LevelMap list for each map in the gameCandidate
+        for (GameMap maps: gameCandidate.getMaps()) {
+            if (maps.getAssetName() != null && !maps.getAssetName().isEmpty()) {
+                /* Create a LevelMapFactory to load the map. */
+                LevelMap levelMap = LevelMapFactory.createLevelMap(maps.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+                mapList.add(levelMap);
+            }
+        }
+        
+        // Initialize characters based on the gameCandidate
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
+           if (gameCandidate.getPlayerBlueprints()[i] != null){
+                SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
+                if (gameCandidate.getPlayerBlueprints()[i].getStrategy() == PlayerStrategy.HUMAN) {
+                    HumanPlayer humanPlayer = new HumanPlayer(
+                        ConfigManager.getInstance().getConfig().getPlayerConfig(i),
+                        mapList.get(0),
+                        gameCandidate.getPlayerBlueprints()[i].getName(),
+                        spawnPointPlayer.getX(),
+                        spawnPointPlayer.getY(),
+                        gameCandidate.getPlayerBlueprints()[i].getCharacter()
+                        );
+                        mapList.get(0).addCharacter(humanPlayer);
+                } else {
+                }
+           }
 
+        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+        }
+    }
+
+    /**
+     * Verify status of the game : WIN, player dead, etc...
+     * Precondition : the gameCandidate must be initialized with players and maps.
+     */
+    public void checkGameWin() {
+        
     }
 
     /**
