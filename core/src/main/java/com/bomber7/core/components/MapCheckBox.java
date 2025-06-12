@@ -156,6 +156,14 @@ public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
     }
 
     /**
+     * Returns the map this checkbox represents.
+     * @return the GameMap that this checkbox represents
+     */
+    public GameMap getMap() {
+        return map;
+    }
+
+    /**
      * Returns whether the checkbox is checked or not.
      * @return {@code true} if checked, {@code false} otherwise.
      */
