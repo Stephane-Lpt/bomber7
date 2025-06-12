@@ -2,6 +2,7 @@ package com.bomber7.core.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.entities.HumanPlayer;
+import com.bomber7.utils.Controls;
 
 /**
  * The {@code HumanController} class is responsible for handling user input and
@@ -17,10 +18,10 @@ import com.bomber7.core.model.entities.HumanPlayer;
 public class HumanController {
 
     /** The HumanPlayer instance that this controller manages. */
-    private HumanPlayer player;
+    private final HumanPlayer player;
 
     /** The configuration object containing key bindings for the player. */
-    private Config playerConfig;
+    private final PlayerConfig playerConfig;
 
     /**
      * Constructs a HumanController for the specified player.
@@ -38,16 +39,16 @@ public class HumanController {
      * accordingly.
      */
     public void processKeys() {
-        if (Gdx.input.isKeyPressed(this.playerConfig.getUp())) {
+        if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.UP))) {
             this.player.moveUp();
         }
-        if (Gdx.input.isKeyPressed(this.playerConfig.getDown())) {
+        if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.DOWN))) {
             this.player.moveDown();
         }
-        if (Gdx.input.isKeyPressed(this.playerConfig.getLeft())) {
+        if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.LEFT))) {
             this.player.moveLeft();
         }
-        if (Gdx.input.isKeyPressed(this.playerConfig.getRight())) {
+        if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.RIGHT))) {
             this.player.moveRight();
         } else {
             this.player.setStandingStill();

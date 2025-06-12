@@ -3,7 +3,6 @@ package com.bomber7.core.model.map;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.entities.Character;
 import java.util.ArrayList;
-import com.bomber7.core.views.ViewMap;
 import com.bomber7.utils.Constants;
 
 import java.util.List;
@@ -110,10 +109,10 @@ public class LevelMap {
      */
     public Pair<Integer, Integer> getAbsoluteCoordinates(int x, int y){
 
-        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
-        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
+        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * Constants.SCALE ) / 2;
+        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * Constants.SCALE ) / 2;
 
-        return Pair.of((int) (originX + x * Constants.TEXTURE_SIZE * ViewMap.scale), (int) (originY + y * Constants.TEXTURE_SIZE * ViewMap.scale));
+        return Pair.of((int) (originX + x * Constants.TEXTURE_SIZE * Constants.SCALE), (int) (originY + y * Constants.TEXTURE_SIZE * Constants.SCALE));
     }
 
     /**
@@ -125,11 +124,11 @@ public class LevelMap {
      * @return a Pair containing the absolute x and y coordinates
      */
     public Pair<Integer, Integer> getSquareCoordinates(int x, int y){
-        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * ViewMap.scale ) / 2;
-        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * ViewMap.scale) / 2;
+        float originX =  (this.windowWidth - Constants.TEXTURE_SIZE * this.getWidth() * Constants.SCALE ) / 2;
+        float originY = (this.windowHeight - Constants.TEXTURE_SIZE * this.getHeight() * Constants.SCALE ) / 2;
 
-        return Pair.of((int) ((x - originX) / (Constants.TEXTURE_SIZE * ViewMap.scale)),
-                       (int) ((y - originY) / (Constants.TEXTURE_SIZE * ViewMap.scale)));
+        return Pair.of((int) ((x - originX) / (Constants.TEXTURE_SIZE * Constants.SCALE )),
+                       (int) ((y - originY) / (Constants.TEXTURE_SIZE * Constants.SCALE )));
 
     }
 

@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.entities.Character;
+import com.bomber7.utils.Constants;
 
 
 /**
@@ -22,16 +24,11 @@ public class ViewCharacter {
     /**
      * The Character model associated with this view.
      */
-    private Character character;
+    private final Character character;
     /**
      * The texture containing the character's sprite sheet.
      */
-    private Texture texture;
-
-    /**
-     * The constant size of a tile in the sprite sheet (in pixels).
-     */
-    protected static final int TILE_SIZE = 32;
+    private final Texture texture;
 
     /**
      * The number of columns.
@@ -83,9 +80,9 @@ public class ViewCharacter {
      *
      * @param character the character to be displayed
      */
-    public ViewCharacter(Character character) {
+    public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
-        this.texture = new Texture(Gdx.files.internal(Bomberman));
+        this.texture = resources.getCharacterSkin().getAtlas().findRegion(character.getSpriteFP()).getTexture();
         createAnimations();
     }
 
@@ -148,7 +145,13 @@ public class ViewCharacter {
         Animation<TextureRegion> currentAnimation = getCurrentAnimation();
         TextureRegion currentFrame = currentAnimation.getKeyFrame(Gdx.graphics.getDeltaTime(), true);
 
-        batch.draw(currentFrame, character.getPositionX(), character.getPositionY(), 1, 1);
+        batch.draw(
+            currentFrame,
+            character.getPositionX(),
+            character.getPositionY(),
+            Constants.TEXTURE_SIZE * Constants.SCALE,
+            Constants.TEXTURE_SIZE * Constants.SCALE
+        );
     }
 
     /**

@@ -2,7 +2,6 @@ package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.ResourceManager;
@@ -10,7 +9,6 @@ import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.ResourceManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.List;
@@ -28,9 +26,6 @@ public class ViewMap extends Actor {
 
     /** Used to draw sprite to screen. */
     private final PolygonSpriteBatch spriteBatch;
-
-    /** Scale factor for the map texture. */
-    public static final float scale = 0.7f;
 
     /** The size of the scaled texture origin. */
     private float scaledTextureOrigin;
@@ -96,6 +91,7 @@ public class ViewMap extends Actor {
 
         if (viewCharacters != null && !viewCharacters.isEmpty() && batch instanceof SpriteBatch) {
             for (ViewCharacter viewCharacter : viewCharacters) {
+                Gdx.app.debug("ViewMap", "Drawing character");
                 viewCharacter.renderCharacter((SpriteBatch) batch);
             }
         }
@@ -110,10 +106,10 @@ public class ViewMap extends Actor {
         int centerX = Gdx.graphics.getWidth() / 2;
         int centerY = Gdx.graphics.getHeight() / 2;
 
-        scaledTextureSize = Constants.TEXTURE_SIZE * scale;
+        scaledTextureSize = Constants.TEXTURE_SIZE * Constants.SCALE;
         scaledTextureOrigin = scaledTextureSize / 2f;
-        totalWidth = Constants.TEXTURE_SIZE * mapGrid.getWidth() * scale;
-        totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * scale;
+        totalWidth = Constants.TEXTURE_SIZE * mapGrid.getWidth() * Constants.SCALE;
+        totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * Constants.SCALE;
 
         originX = centerX - totalWidth / 2;
         originY = centerY - totalHeight / 2;

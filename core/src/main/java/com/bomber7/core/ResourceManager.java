@@ -21,6 +21,10 @@ public final class ResourceManager {
      */
     private final Skin mapSkin;
     /**
+     * Skin object that contains character textures and style definitions.
+     */
+    private final Skin characterSkin;
+    /**
      * I18NBundle object that contains localized strings used in the game.
      */
     private I18NBundle bundle;
@@ -41,6 +45,10 @@ public final class ResourceManager {
         mapSkin = new Skin(
             Gdx.files.internal("skin/map/mapskin.json"),
             new TextureAtlas(Gdx.files.internal("skin/map/mapskin.atlas"))
+        );
+        characterSkin = new Skin(
+            Gdx.files.internal("skin/characters/characterskin.json"),
+            new TextureAtlas(Gdx.files.internal("skin/characters/characterskin.atlas"))
         );
         Language language = ConfigManager.getInstance().getConfig().getLanguage();
         bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/" + language.toString().toLowerCase()));
@@ -72,6 +80,15 @@ public final class ResourceManager {
      */
     public Skin getMapSkin() {
         return mapSkin;
+    }
+
+    /**
+     * Returns the character skin used throughout the game.
+     *
+     * @return the loaded {@link Skin} object
+     */
+    public Skin getCharacterSkin() {
+        return characterSkin;
     }
 
     /**

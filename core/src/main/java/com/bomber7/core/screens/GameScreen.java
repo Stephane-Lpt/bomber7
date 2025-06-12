@@ -1,7 +1,8 @@
 package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.bomber7.core.ConfigManager;
+import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 
@@ -9,13 +10,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Game;
+import com.bomber7.utils.GameCharacter;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.bomber7.core.components.BomberTextButton;
 import com.bomber7.core.views.ViewCharacter;
 import com.bomber7.core.views.ViewMap;
-import com.bomber7.utils.Dimensions;
-
 import com.bomber7.utils.ProjectPaths;
 
 /**
@@ -45,23 +44,6 @@ public class GameScreen extends BomberScreen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        /* =======[BUTTON]=============================================== */
-
-        /* Buttons to go to key bindings menu. */
-        TextButton settingsButton = new TextButton(resources.getString("options"), resources.getSkin());
-        /* Buttons to go to key bindings menu. */
-        TextButton goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
-
-        mainTable.add(settingsButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .left();
-        mainTable.row();
-        mainTable.add(goBackButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT);
-        mainTable.row();
-
         /* =======[MAP VIEW]=============================================== */
 
         /* Path to the tileset JSON file. */
@@ -69,11 +51,27 @@ public class GameScreen extends BomberScreen {
         /* Map name for the current game. */
         String mapName = "foy";
         /* Create a LevelMapFactory to load the map. */
+
         LevelMap levelMap = LevelMapFactory.createLevelMap(mapName, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         ArrayList<ViewCharacter> characters = new ArrayList<>();
-        characters.add(new Character("Patrick", levelMap, 1, 1, 2, 1, resources.getSkin()));
+
+        characters.add(
+            new ViewCharacter(
+                new HumanPlayer(
+                    ConfigManager.getInstance().getConfig().getPlayerConfig(1),
+                    levelMap,
+                    "test",
+                    0,
+                    0,
+                    GameCharacter.TEST.getDrawableName()
+                ),
+                resources
+            )
+        );
+
         /* Map view of the game. */
-        ViewMap viewMap = new ViewMap(levelMap, resources);
+        ViewMap viewMap = new ViewMap(levelMap, resources, characters);
 
         /* =======[FULL FRAME]=============================================== */
 
@@ -88,6 +86,7 @@ public class GameScreen extends BomberScreen {
     public void initController() {
 
     }
+
     /**
      * Update the game screen for each frame.
      * @param delta time since the last frame
