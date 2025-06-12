@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.entities.Character;
 import com.bomber7.utils.Constants;
+import com.bomber7.core.model.entities.CharacterState.State;
 
 
 /**
@@ -165,20 +166,19 @@ public class ViewCharacter {
 
 
     private Animation<TextureRegion> getCurrentAnimation() {
-        switch (getFalseState()) {
-            case 4:
+        switch (character.getMovingStatus()) {
+            case MOVING_RIGHT:
                 return moveRight;
-            case 3:
+            case MOVING_LEFT:
                 return moveLeft;
-            case 1:
+            case MOVING_UP:
                 return moveUp;
-            case 2:
+            case MOVING_DOWN:
                 return moveDown;
-            case 5:
-                return die;
-            case 0:
-            default:
+            case STANDING_STILL:
                 return stand;
+            default:
+                return die;
         }
     }
 }

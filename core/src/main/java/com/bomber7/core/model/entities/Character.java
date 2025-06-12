@@ -4,6 +4,7 @@ import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.square.Wall;
+import com.bomber7.core.model.entities.CharacterState.State;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
@@ -13,17 +14,6 @@ import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
  * Classe Character.
  */
 public abstract class Character {
-
-    /** Standing still status constant. */
-    private static final int STANDING_STILL = 0;
-    /** Moving UP status constant. */
-    private static final int MOVING_UP = 1;
-    /** Moving DOWN status constant. */
-    private static final int MOVING_DOWN = 2;
-    /** Moving LEFT status constant. */
-    private static final int MOVING_LEFT = 3;
-    /** Moving RIGHT status constant. */
-    private static final int MOVING_RIGHT = 4;
 
     /** The file path to the character's sprite image. */
     private final GameCharacter gameCharacter;
@@ -49,7 +39,7 @@ public abstract class Character {
     /** Current Y-Axis position of the character. */
     private int y;
     /** Moving status of player, needed for sprite animation. */
-    private int movingStatus;
+    private State movingStatus;
 
     /**
      * Character Constructor.
@@ -88,7 +78,7 @@ public abstract class Character {
         this.speed = speed;
         this.gameCharacter = gameCharacter;
         this.isAlive = true;
-        this.movingStatus = STANDING_STILL;
+        this.movingStatus = State.STANDING_STILL;
         this.score = 0;
     }
 
@@ -98,7 +88,7 @@ public abstract class Character {
      * Character moving status getter.
      * @return movingStatus Current moving status
      */
-    public int getMovingStatus() {
+    public State getMovingStatus() {
         return this.movingStatus;
     }
 
@@ -232,6 +222,7 @@ public abstract class Character {
         }
         if (this.life == 0) {
             this.isAlive = false;
+            this.movingStatus = State.DIE;
         }
     }
 
@@ -269,7 +260,7 @@ public abstract class Character {
      * Caracter is standing still.
      */
     public void setStandingStill() {
-        this.movingStatus = STANDING_STILL;
+        this.movingStatus = State.STANDING_STILL;
     }
 
     /**
@@ -279,7 +270,7 @@ public abstract class Character {
         if (checkMove(getPositionX() + speed, getPositionY())) {
             this.x += speed;
             this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
-            this.movingStatus = MOVING_RIGHT;
+            this.movingStatus = State.MOVING_RIGHT;
         }
     }
 
@@ -290,7 +281,7 @@ public abstract class Character {
         if (checkMove(getPositionX() - speed, getPositionY())) {
             this.x -= speed;
             this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
-            this.movingStatus = MOVING_LEFT;
+            this.movingStatus = State.MOVING_LEFT;
         }
     }
 
@@ -301,7 +292,7 @@ public abstract class Character {
         if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
-            this.movingStatus = MOVING_DOWN;
+            this.movingStatus = State.MOVING_DOWN;
         }
     }
 
@@ -312,7 +303,7 @@ public abstract class Character {
         if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
-            this.movingStatus = MOVING_UP;
+            this.movingStatus = State.MOVING_UP;
         }
     }
 
