@@ -2,7 +2,12 @@ package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
 import com.bomber7.core.model.GameCandidate;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.ScreenType;
+
+import java.util.Arrays;
+import java.util.Objects;
+
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 
@@ -70,12 +75,30 @@ public class BomberGame extends Game {
 
     /**
      * Launches the game.
+     * Precondition : the gameCandidate must be initialized with players and maps.
      */
     public void start() {
         // Printing gameCandidate for debug
         Gdx.app.debug("BomberGame", "GameCandidate: " + gameCandidate.toString());
 
+        // Check if gameCandidate is properly initialized
+        if (gameCandidate.getPlayerBlueprints() == null) {
+            Gdx.app.error("BomberGame", "GameCandidate is missing player configurations.");
+            throw new IllegalStateException("GameCandidate must have at least one player configured.");
+        }
+
+        if (gameCandidate.getMaps() == null || gameCandidate.getMaps().isEmpty()) {
+            Gdx.app.error("BomberGame", "GameCandidate is missing map configurations.");
+            throw new IllegalStateException("GameCandidate must have at least one map configured.");
+        }
+
+        if (gameCandidate.getRounds() < Constants.MIN_ROUNDS) {
+            Gdx.app.error("BomberGame", "GameCandidate has an invalid number of rounds.");
+            throw new IllegalStateException("GameCandidate must have a valid number of rounds.");
+        }
+
         ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+
     }
 
     /**
