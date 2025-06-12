@@ -15,7 +15,11 @@
 <script type="text/javascript" src="../../../../../script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="package-declaration-page">
-<script type="text/javascript">var pathtoroot = "../../../../../";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "../../../../../";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -69,6 +73,10 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><a href="../package-summary.html">com.bomber7.core.model</a></div>
 <div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><a href="../entities/package-summary.html">com.bomber7.core.model.entities</a></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><a href="../exceptions/package-summary.html">com.bomber7.core.model.exceptions</a></div>
+<div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><a href="../map/package-summary.html">com.bomber7.core.model.map</a></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><a href="../texture/package-summary.html">com.bomber7.core.model.texture</a></div>
@@ -78,7 +86,8 @@ loadScripts(document, 'script');</script>
 </li>
 <li>
 <div id="class-summary">
-<div class="caption"><span>Classes</span></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="class-summary-tab0" role="tab" aria-selected="true" aria-controls="class-summary.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="class-summary-tab2" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab2', 2)" class="table-tab">Classes</button><button id="class-summary-tab3" role="tab" aria-selected="false" aria-controls="class-summary.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('class-summary', 'class-summary-tab3', 2)" class="table-tab">Enum Classes</button></div>
+<div id="class-summary.tabpanel" role="tabpanel" aria-labelledby="class-summary-tab0">
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
@@ -86,34 +95,40 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Represents a bomb in the game, which can explode and affect surrounding squares.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab3"><a href="BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab3">
+<div class="block">The <code>BombType</code> enum represents the different types of bombs that can be
+ used in the game.</div>
+</div>
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Represents a breakable wall in the game.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="MapElement.html" title="class in com.bomber7.core.model.square">MapElement</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="MapElement.html" title="class in com.bomber7.core.model.square">MapElement</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Abstract class representing a map element in the game.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Square.html" title="class in com.bomber7.core.model.square">Square</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Square.html" title="class in com.bomber7.core.model.square">Square</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Represents a square in the game, which can be a wall, a bomb, or any other future map element.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">The Timebomb class is a special type of Bomb that has a countdown
  timer.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">TriggerBomb is a type of bomb that can be manually activated by the player.</div>
 </div>
-<div class="col-first even-row-color class-summary class-summary-tab2"><a href="UnbreakableWall.html" title="class in com.bomber7.core.model.square">UnbreakableWall</a></div>
-<div class="col-last even-row-color class-summary class-summary-tab2">
+<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="UnbreakableWall.html" title="class in com.bomber7.core.model.square">UnbreakableWall</a></div>
+<div class="col-last odd-row-color class-summary class-summary-tab2">
 <div class="block">Represents an unbreakable wall in the game.</div>
 </div>
-<div class="col-first odd-row-color class-summary class-summary-tab2"><a href="Wall.html" title="class in com.bomber7.core.model.square">Wall</a></div>
-<div class="col-last odd-row-color class-summary class-summary-tab2">
+<div class="col-first even-row-color class-summary class-summary-tab2"><a href="Wall.html" title="class in com.bomber7.core.model.square">Wall</a></div>
+<div class="col-last even-row-color class-summary class-summary-tab2">
 <div class="block">Abstract class representing a wall in the game.</div>
+</div>
 </div>
 </div>
 </div>

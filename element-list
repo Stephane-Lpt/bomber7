@@ -2,6 +2,8 @@ com.bomber7.core
 com.bomber7.core.components
 com.bomber7.core.controller
 com.bomber7.core.model
+com.bomber7.core.model.entities
+com.bomber7.core.model.exceptions
 com.bomber7.core.model.map
 com.bomber7.core.model.square
 com.bomber7.core.model.texture
