@@ -2,6 +2,7 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.square.Wall;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
@@ -25,7 +26,7 @@ public abstract class Character {
     private static final int MOVING_RIGHT = 4;
 
     /** The file path to the character's sprite image. */
-    private final String spriteFP;
+    private final GameCharacter gameCharacter;
     /** The name of the character. */
     private final String name;
     /** Indicates whether the character is alive or not. */
@@ -59,9 +60,9 @@ public abstract class Character {
      * @param mapY        The Y-axis position of the character
      * @param life     The initial life points of the character
      * @param speed    The initial speed of the character
-     * @param spriteFP The file path to the character's sprite image
+     * @param gameCharacter The game character type
      */
-    public Character(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
+    public Character(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name can't be null or empty");
         }
@@ -74,8 +75,8 @@ public abstract class Character {
         if (speed <= 0) {
             throw new IllegalSpeedOperationException("Initial speed of character > 0");
         }
-        if (spriteFP == null || spriteFP.trim().isEmpty()) {
-            throw new IllegalArgumentException("Sprite file path can't be null or empty");
+        if (gameCharacter == null) {
+            throw new IllegalArgumentException("GameCharacter cannot be null");
         }
         this.name = name;
         this.mapX = mapX;
@@ -85,13 +86,21 @@ public abstract class Character {
         this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
         this.life = life;
         this.speed = speed;
-        this.spriteFP = spriteFP;
+        this.gameCharacter = gameCharacter;
         this.isAlive = true;
         this.movingStatus = STANDING_STILL;
         this.score = 0;
     }
 
     /* ------[GETTERS]------------------------------------ */
+
+    /**
+     * Character moving status getter.
+     * @return movingStatus Current moving status
+     */
+    public int getMovingStatus() {
+        return this.movingStatus;
+    }
 
     /**
      * Character name getter.
@@ -161,8 +170,8 @@ public abstract class Character {
      * Character current sprite path file.
      * @return spriteFP Current sprite path file
      */
-    public String getSpriteFP() {
-        return this.spriteFP;
+    public GameCharacter getGameCharacter() {
+        return this.gameCharacter;
     }
 
     /**
@@ -198,7 +207,7 @@ public abstract class Character {
      */
     public void setScore(int newScore) {
         if (newScore > this.score) {
-            this.speed = newScore;
+            this.score = newScore;
         } else {
             throw new IllegalScoreOperationException("Score value must be positive.");
         }
@@ -321,8 +330,6 @@ public abstract class Character {
             return false; // Out of bounds
         }
 
-        assert futureMapX == 2 : "kkk";
-        assert futureMapY == 22 : "iii";
         Square square = this.map.getSquare(futureMapX, futureMapY);
         return square.isWalkable();
     }

@@ -1,7 +1,3 @@
-/**
- * Classe Player.
- */
-
 package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
@@ -10,13 +6,12 @@ import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BombType;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TriggerBomb;
+import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.square.TimeBomb;
 
 /**
@@ -41,7 +36,6 @@ public abstract class Player extends Character {
      */
     private int power;
 
-
     /**
      * Player Constructor.
      * @param name     Name of the player
@@ -50,10 +44,10 @@ public abstract class Player extends Character {
      * @param mapY     Y-coordinate map of the player on the map
      * @param life     Life points of the player
      * @param speed    Speed of the player
-     * @param spriteFP File path to the player's sprite
+     * @param gameCharacter The game character type
      */
-    public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, String spriteFP) {
-        super(name, map, mapX, mapY, life, speed, spriteFP);
+    public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
+        super(name, map, mapX, mapY, life, speed, gameCharacter);
         this.nbBomb = 1;
         this.power = 1;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME

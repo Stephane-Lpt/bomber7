@@ -1,7 +1,6 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.entities.Character;
-import com.bomber7.core.model.map.LevelMap;
 
 import java.util.List;
 
@@ -105,8 +104,8 @@ public abstract class Bomb extends MapElement {
 
                 // Check if the explosion reaches a character
                 for (Character character : characters) {
-                    if (character.getPositionX() == newX && character.getPositionY() == newY && character.isAlive()) {
-                        character.removeOneLife(); // Reduce the character's life by 1.
+                    if (character.getMapX() == newX && character.getMapY() == newY && character.isAlive()) {
+                        character.removeOneLife();
                     }
                 }
 
@@ -128,6 +127,15 @@ public abstract class Bomb extends MapElement {
                     onExplosion(m, newX, newY);
                     break;
                 }
+
+                if (potentialSquare.getMapElement() instanceof Bomb) {
+                    // If the square has another bomb, we can propagate the explosion to it
+                    Bomb otherBomb = (Bomb) potentialSquare.getMapElement();
+                    otherBomb.activateBomb(m);
+                    break;
+                }
+
+
                 // Regular propagation
                 onExplosion(m, newX, newY);
             }

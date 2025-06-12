@@ -42,6 +42,8 @@ public final class LevelMapFactory {
      * Searches for the map files in the "assets/maps" directory and parses the related CSV files to create the map.
      *
      * @param mapName The name of the map to create.
+     * @param windowWidth The width of the game window.
+     * @param windowHeight The height of the game window.
      * @return A LevelMap instance representing the specified map.
      * @throws IllegalArgumentException if the map directory is not found, is empty, or same type multiple CSV files.
      */
