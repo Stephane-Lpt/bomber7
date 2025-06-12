@@ -19,7 +19,7 @@ public class HumanPlayer extends Player {
      * @param name     The name of the player
      * @param mapX    The x-coordinate of the player
      * @param mapY    The y-coordinate of the player
-     * @param spriteFP The file path to the player's sprite
+     * @param gameCharacter The game character type
      */
     public HumanPlayer(PlayerConfig config, LevelMap map, String name, int mapX, int mapY, GameCharacter gameCharacter) {
         super(name, map, mapX, mapY, 1, 1, gameCharacter);

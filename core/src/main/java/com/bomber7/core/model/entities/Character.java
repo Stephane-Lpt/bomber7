@@ -59,7 +59,7 @@ public abstract class Character {
      * @param mapY        The Y-axis position of the character
      * @param life     The initial life points of the character
      * @param speed    The initial speed of the character
-     * @param spriteFP The file path to the character's sprite image
+     * @param gameCharacter The game character type
      */
     public Character(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
         if (name == null || name.trim().isEmpty()) {
@@ -73,6 +73,9 @@ public abstract class Character {
         }
         if (speed <= 0) {
             throw new IllegalSpeedOperationException("Initial speed of character > 0");
+        }
+        if (gameCharacter == null) {
+            throw new IllegalArgumentException("GameCharacter cannot be null");
         }
         this.name = name;
         this.mapX = mapX;

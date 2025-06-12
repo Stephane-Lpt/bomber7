@@ -7,6 +7,8 @@ import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.UnbreakableWall;
+import com.bomber7.utils.GameCharacter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,12 +45,15 @@ public class BombTest {
      */
     protected Character testCharacter;
 
+    /** Game character. */
+    private GameCharacter gameCharacter = GameCharacter.STUDENT;
+
     /**
      * Test class for Character.
      */
     private static class ConcreteCharacter extends Character {
-        ConcreteCharacter(String name, LevelMap map, int x, int y, int life, int speed, String spriteFP) {
-            super(name, map, x, y, life, speed, spriteFP);
+        ConcreteCharacter(String name, LevelMap map, int x, int y, int life, int speed, GameCharacter gameCharacter) {
+            super(name, map, x, y, life, speed, gameCharacter);
         }
     }
 
@@ -76,10 +81,10 @@ public class BombTest {
         bombSquare.setMapElement(bomb);
 
         // Place the characters
-        Character charInRange = new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, "char.png");
+        Character charInRange = new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, gameCharacter);
         levelMap.addCharacter(charInRange);
 
-        Character charOutOfRange = new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, "char.png");
+        Character charOutOfRange = new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, gameCharacter);
         levelMap.addCharacter(charOutOfRange);
 
         // Activate the bomb

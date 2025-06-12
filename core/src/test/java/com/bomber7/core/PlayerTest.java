@@ -9,6 +9,7 @@ import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.core.model.square.UnbreakableWall;
+import com.bomber7.utils.GameCharacter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,18 +26,19 @@ class PlayerTest {
      * Instance of Player used for testing (reset before each test).
      */
     private Player player;
-
     /**
      * Instance of LevelMap (map = foy) used for testing (reset before each test).
      */
     private LevelMap foyLevelMap;
+    /** Game character. */
+    private GameCharacter gameCharacter = GameCharacter.STUDENT;
 
     @BeforeEach
     void setUp() {
         this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
-        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, "sprite.png") {
+        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter) {
         };
         player.setTypeBomb(BombType.TIME);
         player.setNbBomb(1);

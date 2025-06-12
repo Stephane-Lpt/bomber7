@@ -50,7 +50,7 @@ public abstract class Player extends Character {
      * @param mapY     Y-coordinate map of the player on the map
      * @param life     Life points of the player
      * @param speed    Speed of the player
-     * @param spriteFP File path to the player's sprite
+     * @param gameCharacter The game character type
      */
     public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
         super(name, map, mapX, mapY, life, speed, gameCharacter);
