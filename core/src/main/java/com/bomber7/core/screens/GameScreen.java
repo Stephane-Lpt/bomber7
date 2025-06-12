@@ -18,6 +18,7 @@ import com.bomber7.core.views.ViewCharacter;
 import com.bomber7.core.views.ViewMap;
 import com.bomber7.utils.ProjectPaths;
 
+
 /**
  * Represents the game screen in the Bomber7 game.
  * This screen displays the game map
@@ -27,6 +28,9 @@ public class GameScreen extends BomberScreen {
      * Constructs a new GameScreen associated with the given game.
      * @param game the Game instance this screen belongs to
      */
+
+    private HumanPlayer player;
+
     public GameScreen(Game game) {
         super(game);
 
@@ -57,16 +61,18 @@ public class GameScreen extends BomberScreen {
 
         ArrayList<ViewCharacter> characters = new ArrayList<>();
 
+        player = new HumanPlayer(
+            ConfigManager.getInstance().getConfig().getPlayerConfig(1),
+            levelMap,
+            "test",
+            1,
+            2,
+            GameCharacter.TEST
+        );
+
         characters.add(
             new ViewCharacter(
-                new HumanPlayer(
-                    ConfigManager.getInstance().getConfig().getPlayerConfig(1),
-                    levelMap,
-                    "test",
-                    0,
-                    0,
-                    GameCharacter.TEST
-                ),
+                player,
                 resources
             )
         );
@@ -75,6 +81,8 @@ public class GameScreen extends BomberScreen {
         ViewMap viewMap = new ViewMap(levelMap, resources, characters);
 
         /* =======[FULL FRAME]=============================================== */
+        player.moveUp();
+
 
         mainTable.add(viewMap);
         this.addActor(mainTable);
