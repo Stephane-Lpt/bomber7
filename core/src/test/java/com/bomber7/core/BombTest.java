@@ -114,6 +114,50 @@ public class BombTest {
     }
 
     /**
+     * Verified that a bomb explode other Bombs in range.
+     * @return
+     */
+    @Test
+    void testBombExplosionWithOtherBombs() {
+        // Create a Bomb at (x : 2, y : 2) with explosion power 3
+        Bomb bomb = new TimeBomb(3, 4, 1);
+
+        // Place the bomb in the map
+        Square bombSquare = levelMap.getSquare(4, 1);
+        bombSquare.setMapElement(bomb);
+
+        // Create another Bomb at (x : 2, y : 1) with explosion power 1
+        Bomb otherBomb = new TimeBomb(1, 3, 1);
+        Square otherBombSquare = levelMap.getSquare(3, 1);
+        otherBombSquare.setMapElement(otherBomb);
+
+        // Activate the first bomb
+        bomb.activateBomb(levelMap);
+
+        // The first bomb should be cleared after the explosion
+        assertNull(levelMap.getSquare(4, 1).getMapElement());
+
+        // The second bomb should also be cleared after being exploded by the first one
+        assertNull(levelMap.getSquare(3, 1).getMapElement());
+
+        // check unbreakable walls in 4,2 still exists
+        assertTrue(levelMap.getSquare(4, 2).getMapElement() instanceof UnbreakableWall,
+            "Unbreakable wall at (4, 2) should still exist after the explosion");
+
+        // Check that the breakable wall at (3, 2) is destroyed
+        assertNull(levelMap.getSquare(3, 2).getMapElement(),
+            "Breakable wall at (3, 2) should be destroyed after the explosion");
+        // Check that the breakable wall at (2, 2) is destroyed
+        assertNull(levelMap.getSquare(2, 1).getMapElement(),
+            "Breakable wall at (2, 1) should be destroyed after the explosion");
+
+        // Check that the breakable wall at (2, 2) is still exists
+        assertTrue(levelMap.getSquare(2, 2).getMapElement() instanceof BreakableWall,
+            "Breakable wall at (2, 2) should still exist after the explosion");
+
+    }
+
+    /**
      *  Create a larger LevelMap for complex test scenarios.
      *    U U B . .
      *    . U B . .
