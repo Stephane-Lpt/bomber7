@@ -11,6 +11,13 @@ public class Lwjgl3Launcher {
     private static final int DESKTOP_MIN_HEIGHT = 768;
     private static final String APPLICATION_NAME = "Bomber7";
 
+    /**
+     * The main method to launch the Bomber7 game on desktop platforms.
+     * It checks if a new JVM instance is required (for macOS support) and
+     * creates the application with the default configuration.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
         createApplication();

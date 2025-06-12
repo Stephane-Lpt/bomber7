@@ -30,4 +30,9 @@ public final class Constants {
      * The size in pixels of map textures.
      */
     public static final int TEXTURE_SIZE = 32;
+
+    /**
+     * The size in pixels of the player sprite.
+     */
+    public static final float SCALE = 0.7f;
 }

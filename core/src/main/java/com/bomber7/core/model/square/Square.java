@@ -95,6 +95,22 @@ public class Square extends ElementTexture {
         return mapElement;
     }
 
+    /**
+     * Checks if this square is walkable.
+     * A square is considered walkable if it does not have an associated map element.
+     *
+     * @return false if there is a wall or a bomb, true otherwise
+     */
+    public boolean isWalkable() {
+        if (mapElement == null) {
+            return true; // No map element means the square is walkable
+        }
+        if (mapElement instanceof Wall || mapElement instanceof Bomb) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         final int maxTRONCATE = 4;
