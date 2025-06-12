@@ -38,6 +38,14 @@ public class PlayerBlueprintObservable implements Subject {
     }
 
     /**
+     * Returns the playerBlueprint held by this observable.
+     * @return playerBlueprint of this observable
+     */
+    public PlayerBlueprint getPlayerBlueprint() {
+        return value;
+    }
+
+    /**
      * Wrapper of {@link PlayerBlueprint#setName(String)}.
      * It does not notify its observers when changed because no UI objects are
      * linked to the player's name.

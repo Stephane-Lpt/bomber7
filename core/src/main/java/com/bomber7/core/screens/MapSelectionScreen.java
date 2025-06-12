@@ -158,6 +158,8 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
         goToPlayerSelectionButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                game.getCandidate().reset();
+
                 ScreenManager.getInstance().showPreviousScreen(true, true);
             }
         }, resources));
@@ -165,6 +167,12 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
         startGameButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                for (MapCheckBox mapCheckBox : mapCheckboxes) {
+                    if (mapCheckBox.isChecked()) {
+                        game.getCandidate().addMap(mapCheckBox.getMap());
+                    }
+                }
+                game.getCandidate().setRounds(rounds);
                 game.start();
             }
         }, resources));
