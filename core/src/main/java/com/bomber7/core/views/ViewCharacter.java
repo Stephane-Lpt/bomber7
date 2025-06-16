@@ -81,6 +81,12 @@ public class ViewCharacter extends Actor {
      */
     private static final float FRAME_DURATION = 0.1f;
 
+
+    /**
+     * Time elapsed since the last frame was rendered.
+     */
+    private float stateTime;
+
     /**
      * Constructs a new ViewCharacter instance.
      *
@@ -89,7 +95,7 @@ public class ViewCharacter extends Actor {
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
         this.textureRegion = resources.getSpriteTextureRegion(character.getGameCharacter().getDrawableName());
-
+        this.stateTime = 0f;
         GlyphLayout nameContainer = new GlyphLayout();
         nameContainer.setText(resources.getSkin().getFont("pixelify-sm"), character.getName());
         nameLabelWidth = nameContainer.width;
@@ -156,7 +162,8 @@ public class ViewCharacter extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         Animation<TextureRegion> currentAnimation = getCurrentAnimation();
-        TextureRegion currentFrame = currentAnimation.getKeyFrame(Gdx.graphics.getDeltaTime(), true);
+        TextureRegion currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+        stateTime += Gdx.graphics.getDeltaTime();
 
         // Drawing character
         batch.draw(
