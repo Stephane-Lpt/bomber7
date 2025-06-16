@@ -49,9 +49,11 @@ public class BreakableWall extends Wall {
      * @return the texture file path
      */
     public Bonus onDestruction() {
+        //System.out.println(this.hasBonus);
         if (this.hasBonus) {
             return createRandomBonus();
         }
+        System.out.println("onDestruction retroune null");
         return null;
     }
 
@@ -62,16 +64,17 @@ public class BreakableWall extends Wall {
      */
     private boolean hasRandomBonus() {
         double randomValue = new Random().nextDouble();
+        System.out.println("IN hasRandomBonus() randomValue = " + randomValue);
         return randomValue <= Constants.BONUS_RATE;
     }
 
-    /** 
+    /**
      * Instantiates a random bonus based on their probabilities at the same location.
      */
     private static Bonus createRandomBonus() {
         double randomValue = new Random().nextDouble();
         double cumulativeProbability = 0.0;
-
+        System.out.println("IN createRandomBonus()");
         for (Map.Entry<BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
             cumulativeProbability += entry.getValue();
             if (randomValue <= cumulativeProbability) {
