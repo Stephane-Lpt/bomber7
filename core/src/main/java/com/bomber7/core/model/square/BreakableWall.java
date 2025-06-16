@@ -40,6 +40,7 @@ public class BreakableWall extends Wall {
      */
     public BreakableWall(String textureName) {
         super(textureName);
+        this.hasBonus = hasRandomBonus();
     }
 
     /**
@@ -61,11 +62,7 @@ public class BreakableWall extends Wall {
      */
     private boolean hasRandomBonus() {
         double randomValue = new Random().nextDouble();
-        if (randomValue > Constants.BONUS_RATE) {
-            return false;
-        } else {
-            return true;
-        }
+        return randomValue <= Constants.BONUS_RATE;
     }
 
     /** 

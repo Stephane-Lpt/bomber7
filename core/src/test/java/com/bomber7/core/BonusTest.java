@@ -1,5 +1,5 @@
 package com.bomber7.core;
-
+import org.junit.*;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
 import com.bomber7.core.model.square.BonusSpeed;
@@ -56,7 +56,7 @@ public class BonusTest {
         for (int i = 0; i < totalWalls; i++) {
             BreakableWall wall = new BreakableWall("test_wall_texture");
             Bonus droppedBonus = wall.onDestruction();
-            
+
             if (droppedBonus != null) {
                 bonusesDropped++;
             }
@@ -129,4 +129,5 @@ public class BonusTest {
                 throw new IllegalArgumentException("Unknown bonus type: " + bonusType);
         }
     }
+
 }
