@@ -91,7 +91,7 @@ public class ViewMap extends Actor {
 
         if (viewCharacters != null && !viewCharacters.isEmpty() && batch instanceof SpriteBatch) {
             for (ViewCharacter viewCharacter : viewCharacters) {
-                Gdx.app.debug("ViewMap", "Drawing character");
+//                Gdx.app.debug("ViewMap", "Drawing character");
                 viewCharacter.renderCharacter((SpriteBatch) batch);
             }
         }

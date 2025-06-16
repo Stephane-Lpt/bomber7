@@ -144,6 +144,13 @@ public class BomberGame extends Game {
     }
 
     /**
+     * Resumes the game after being paused.
+     */
+    public void resume() {
+        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+    }
+
+    /**
      * Pauses the game.
      */
     public void pause() {

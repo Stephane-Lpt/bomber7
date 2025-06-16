@@ -86,8 +86,7 @@ public class PauseScreen extends BomberScreen {
         resumeButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-//                game.resume();
-                // TODO
+                game.resume();
             }
         }));
 

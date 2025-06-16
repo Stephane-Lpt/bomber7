@@ -1,9 +1,13 @@
 package com.bomber7.core.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
 import com.bomber7.core.model.entities.HumanPlayer;
 import com.badlogic.gdx.Game;
 import com.bomber7.core.views.ViewCharacter;
 import com.bomber7.utils.Constants;
+import com.bomber7.utils.Controls;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.views.ViewMap;
@@ -63,7 +67,6 @@ public class GameScreen extends BomberScreen {
      */
     @Override
     public void initController() {
-
     }
 
     /**
@@ -71,9 +74,7 @@ public class GameScreen extends BomberScreen {
      * @param delta time since the last frame
      */
     public void render(float delta) {
-        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            game.getHumanControllers()[i].processKeys();
-        }
+        processInput();
 
         super.render(delta);
     }
@@ -81,5 +82,15 @@ public class GameScreen extends BomberScreen {
     @Override
     public ScreenType getScreenType() {
         return ScreenType.GAME;
+    }
+
+    public void processInput() {
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            game.pause();
+        }
+
+        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
+            game.getHumanControllers()[i].processKeys();
+        }
     }
 }
