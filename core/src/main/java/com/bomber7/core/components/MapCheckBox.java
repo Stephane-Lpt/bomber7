@@ -121,7 +121,7 @@ public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 updateBackground(false);
             }
-        }, resources));
+        }));
     }
 
     /**

@@ -9,16 +9,43 @@ import java.util.Map;
 /**
  * SoundManager manages sound effects used in the game.
  */
-public class SoundManager {
+public final class SoundManager {
+    /**
+     * The singleton instance of the SoundManager.
+     */
+    private static SoundManager instance;
     /**
      * A hashmap that contains all the sounds (values) mapped to a SoundType (key).
      */
     private final Map<SoundType, Sound> sounds = new HashMap<>();
 
     /**
-     * Loads all sounds into the sound map.
+     * Private constructor to enforce singleton pattern.
      */
-    public SoundManager() {
+    private SoundManager() {
+        super();
+    }
+
+    /**
+     * Retrieves the singleton instance of the {@code SoundManager}.
+     *
+     * @return the single {@code SoundManager} instance.
+     */
+    public static SoundManager getInstance() {
+        if (instance == null) {
+            instance = new SoundManager();
+        }
+        return instance;
+    }
+
+    /**
+     * Initializes the SoundManager manager.
+     * <p>
+     * This method must be called before any sound access / play occurs.
+     * </p>
+     *
+     */
+    public void initialize() {
         load(SoundType.HOVER, "sounds/hover.wav");
         load(SoundType.CLICK, "sounds/click.wav");
     }

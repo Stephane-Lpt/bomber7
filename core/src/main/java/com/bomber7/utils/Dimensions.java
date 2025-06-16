@@ -8,6 +8,14 @@ public final class Dimensions {
     private Dimensions() { }
 
     /**
+     * Menu logo width.
+     */
+    public static final float LOGO_WIDTH = 500f * 0.6f;
+    /**
+     * Menu logo height.
+     */
+    public static final float LOGO_HEIGHT = LOGO_WIDTH * 0.6f;
+    /**
      * The width of the PlayerSelector component.
      */
     public static final float PLAYER_SELECTOR_WIDTH = 175f;
