@@ -3,11 +3,9 @@ package com.bomber7.core;
 import com.badlogic.gdx.Game;
 import com.bomber7.core.controller.HumanController;
 import com.bomber7.core.model.GameCandidate;
-import com.bomber7.core.model.entities.Character;
 import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.utils.GameMap;
 import com.bomber7.utils.ScreenType;
@@ -15,6 +13,9 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
 import com.bomber7.utils.SpawnPoints;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -36,14 +37,9 @@ public class BomberGame extends Game {
     private LevelMap levelMap;
 
     /**
-     * List of players.
-     */
-    private Character[] characters;
-
-    /**
      * List of human player controllers.
      */
-    private HumanController[] humanControllers;
+    private List<HumanController> humanControllers;
 
     /**
      * Called once when the application is created.
@@ -59,8 +55,7 @@ public class BomberGame extends Game {
         SoundManager.getInstance().initialize();
         gameCandidate = new GameCandidate();
 
-        characters = new Character[Constants.MAX_PLAYERS];
-        humanControllers = new HumanController[Constants.MAX_PLAYERS];
+        humanControllers = new ArrayList<>();
 
 //        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
         start();
@@ -135,15 +130,15 @@ public class BomberGame extends Game {
         HumanController controller2 = new HumanController(player2);
         HumanController controller3 = new HumanController(player3);
 
-        characters[0] = player0;
-        characters[1] = player1;
-        characters[2] = player2;
-        characters[3] = player3;
+        levelMap.addCharacter(player0);
+        levelMap.addCharacter(player1);
+        levelMap.addCharacter(player2);
+        levelMap.addCharacter(player3);
 
-        humanControllers[0] = controller0;
-        humanControllers[1] = controller1;
-        humanControllers[2] = controller2;
-        humanControllers[3] = controller3;
+        humanControllers.add(controller0);
+        humanControllers.add(controller1);
+        humanControllers.add(controller2);
+        humanControllers.add(controller3);
         // TEMPORARY CODE END
 
         ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
@@ -181,14 +176,7 @@ public class BomberGame extends Game {
     /**
      * Returns the players currently present in the game.
      */
-    public Character[] getCharacters() {
-        return characters;
-    }
-
-    /**
-     * Returns the players currently present in the game.
-     */
-    public HumanController[] getHumanControllers() {
+    public List<HumanController> getHumanControllers() {
         return humanControllers;
     }
 }

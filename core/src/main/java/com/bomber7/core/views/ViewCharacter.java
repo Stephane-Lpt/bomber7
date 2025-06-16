@@ -1,7 +1,6 @@
 package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,7 +16,6 @@ import com.bomber7.utils.Dimensions;
  * A view component for displaying a character in our game. It renders
  * animations based on the associated sprite sheet and observes the state
  * of a Character.
- *
  * The animations include movements in different directions, a standing
  * state and a death animation.
  *
@@ -31,7 +29,7 @@ public class ViewCharacter extends Actor {
     /**
      * The texture containing the character's sprite sheet.
      */
-    private final Texture texture;
+    private final TextureRegion textureRegion;
 
     /**
      * The number of columns.
@@ -76,7 +74,7 @@ public class ViewCharacter extends Actor {
     /**
      * Width of player's name text.
      */
-    private float nameLabelWidth;
+    private final float nameLabelWidth;
 
     /**
      * Duration of the frame.
@@ -90,7 +88,7 @@ public class ViewCharacter extends Actor {
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
-        this.texture = resources.getCharacterSkin().getAtlas().findRegion(character.getGameCharacter().getDrawableName()).getTexture();
+        this.textureRegion = resources.getSpriteTextureRegion(character.getGameCharacter().getDrawableName());
 
         GlyphLayout nameContainer = new GlyphLayout();
         nameContainer.setText(resources.getSkin().getFont("pixelify-sm"), character.getName());
@@ -105,9 +103,9 @@ public class ViewCharacter extends Actor {
      * specific rows in the texture grid.
      */
     private void createAnimations() {
-        TextureRegion[][] region = TextureRegion.split(texture,
-            texture.getWidth() / FRAME_COLS,
-            texture.getHeight() / FRAME_ROWS);
+        TextureRegion[][] region = textureRegion.split(
+            textureRegion.getTexture().getWidth() / FRAME_COLS,
+            textureRegion.getTexture().getHeight() / FRAME_ROWS);
 
         moveRight = createAnimation(region, 0, 3, false);
         moveLeft = createMirroredAnimation(region, moveRight, false);

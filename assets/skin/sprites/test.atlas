@@ -1,0 +1,12 @@
+test.png
+size: 192, 224
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+test
+  rotate: false
+  xy: 0, 0
+  size: 192, 224
+  orig: 192, 224
+  offset: 0, 0
+  index: -1
