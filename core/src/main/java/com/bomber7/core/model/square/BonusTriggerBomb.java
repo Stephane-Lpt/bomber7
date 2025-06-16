@@ -1,5 +1,6 @@
 package com.bomber7.core.model.square;
-import java.nio.file.Path;
+
+import com.bomber7.core.model.entities.HumanPlayer;
 
 public class BonusTriggerBomb extends Bonus{
     /**
@@ -31,10 +32,15 @@ public class BonusTriggerBomb extends Bonus{
         super(textureFilePath);
     }
 
+    /**
+     * Applies the bonus effect to the player by changing their bomb type to TRIGGER if they currently use TIME bombs.
+     *
+     * @param player the player to which the bonus effect will be applied
+     */
     @Override
     public void applyBonusEffect(HumanPlayer player) {
-        if (player.getTypeBomb() == Bomb.CLASSIC_BOMB) {
-            player.setTypeBomb(Bomb.TRIGGER_BOMB);
+        if (player.getBombType() == BombType.TIME) {
+            player.setTypeBomb(BombType.TRIGGER);
         }
     }
 }

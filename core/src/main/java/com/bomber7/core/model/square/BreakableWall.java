@@ -42,6 +42,11 @@ public class BreakableWall extends Wall {
         super(textureName);
     }
 
+    /**
+     * Returns the texture file path for the breakable wall.
+     *
+     * @return the texture file path
+     */
     public Bonus onDestruction() {
         if (this.hasBonus) {
             return createRandomBonus();
@@ -49,6 +54,11 @@ public class BreakableWall extends Wall {
         return null;
     }
 
+    /**
+     * Checks if the breakable wall has a bonus.
+     *
+     * @return true if the wall has a bonus, false otherwise
+     */
     private boolean hasRandomBonus() {
         double randomValue = new Random().nextDouble();
         if (randomValue > Constants.BONUS_RATE) {

@@ -1,6 +1,6 @@
 package com.bomber7.core.model.square;
 
-import java.nio.file.Path;
+import com.bomber7.core.model.entities.HumanPlayer;
 
 public class BonusSpeed extends Bonus {
 

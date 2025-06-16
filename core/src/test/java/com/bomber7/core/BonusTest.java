@@ -60,6 +60,7 @@ public class BonusTest {
             if (droppedBonus != null) {
                 bonusesDropped++;
             }
+
         }
         
         // Calculate the actual drop rate
@@ -69,8 +70,8 @@ public class BonusTest {
         // Allow for some statistical variance (10% tolerance)
         double tolerance = 0.1;
         assertTrue(Math.abs(actualDropRate - expectedDropRate) <= tolerance,
-                   String.format("Actual drop rate (%.3f) should be close to expected rate (%.3f) within tolerance (%.1f)",
-                                actualDropRate, expectedDropRate, tolerance));
+                   String.format("Actual drop rate (%.3f) should be close to expected rate (%.3f) within tolerance (%.1f) bonusesDropped: %d, totalWalls: %d", 
+                                actualDropRate, expectedDropRate, tolerance, bonusesDropped, totalWalls));
     }
 
     /**
