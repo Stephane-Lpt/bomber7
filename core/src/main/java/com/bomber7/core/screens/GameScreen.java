@@ -47,18 +47,20 @@ public class GameScreen extends BomberScreen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
+        ViewMap viewMap = new ViewMap(game.getLevelMap(), resources);
+        mainTable.add(viewMap);
+
         for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            ViewCharacter characterView = new ViewCharacter(
-                game.getCharacters()[i],
-                resources
-            );
-            characterViews[i] = characterView;
+            if (game.getCharacters()[i] != null) {
+                ViewCharacter characterView = new ViewCharacter(
+                    game.getCharacters()[i],
+                    resources
+                );
+                characterViews[i] = characterView;
+                mainTable.add(characterView);
+            }
         }
 
-        /* Map view of the game. */
-        ViewMap viewMap = new ViewMap(game.getLevelMap(), resources, Arrays.asList(characterViews));
-
-        mainTable.add(viewMap);
         this.addActor(mainTable);
     }
 
@@ -90,7 +92,9 @@ public class GameScreen extends BomberScreen {
         }
 
         for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            game.getHumanControllers()[i].processKeys();
+            if (characterViews[i] != null) {
+                game.getHumanControllers()[i].processKeys();
+            }
         }
     }
 }

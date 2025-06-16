@@ -1,5 +1,6 @@
 package com.bomber7.core.model.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 
@@ -111,6 +112,7 @@ public abstract class Player extends Character {
      */
     public boolean dropBomb() {
         if (nbBomb >= 1) {
+            Gdx.app.debug("Player", this.getName() + " dropped a bomb");
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:

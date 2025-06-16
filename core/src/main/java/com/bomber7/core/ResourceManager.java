@@ -27,6 +27,10 @@ public final class ResourceManager {
      */
     private Skin characterSkin;
     /**
+     * Skin object that contains items textures and style definitions.
+     */
+    private Skin itemsSkin;
+    /**
      * I18NBundle object that contains localized strings used in the game.
      */
     private I18NBundle bundle;
@@ -70,6 +74,10 @@ public final class ResourceManager {
             Gdx.files.internal("skin/characters/characterskin.json"),
             new TextureAtlas(Gdx.files.internal("skin/characters/characterskin.atlas"))
         );
+        itemsSkin = new Skin(
+            Gdx.files.internal("skin/items/itemsskin.json"),
+            new TextureAtlas(Gdx.files.internal("skin/items/itemsskin.atlas"))
+        );
         Language language = ConfigManager.getInstance().getConfig().getLanguage();
         bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/" + language.toString().toLowerCase()));
     }
@@ -108,6 +116,15 @@ public final class ResourceManager {
      */
     public Skin getCharacterSkin() {
         return characterSkin;
+    }
+
+    /**
+     * Returns the character skin used throughout the game.
+     *
+     * @return the loaded {@link Skin} object
+     */
+    public Skin getItemsSkin() {
+        return itemsSkin;
     }
 
     /**

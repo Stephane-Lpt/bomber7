@@ -9,10 +9,12 @@ import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
+import com.bomber7.utils.GameMap;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SpawnPoints;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -60,7 +62,8 @@ public class BomberGame extends Game {
         characters = new Character[Constants.MAX_PLAYERS];
         humanControllers = new HumanController[Constants.MAX_PLAYERS];
 
-        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
+//        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
+        start();
     }
 
     /**
@@ -90,38 +93,40 @@ public class BomberGame extends Game {
         Gdx.app.debug("BomberGame", "GameCandidate: " + gameCandidate.toString());
         Gdx.app.debug("BomberGame", "Started game");
 
-        levelMap = LevelMapFactory.createLevelMap(gameCandidate.getMaps().get(0).getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        // TEMPORARY CODE START
+        // SHOULD BE REPLACED BY GAMECANDIDATE LOGIC
+        levelMap = LevelMapFactory.createLevelMap(GameMap.FOY.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         HumanPlayer player0 = new HumanPlayer(
             ConfigManager.getInstance().getConfig().getPlayerConfig(0),
             levelMap,
-            "test",
-            1,
-            2,
+            "Player 1",
+            SpawnPoints.PLAYER_1.getX(),
+            SpawnPoints.PLAYER_1.getY(),
             GameCharacter.TEST
         );
         HumanPlayer player1 = new HumanPlayer(
             ConfigManager.getInstance().getConfig().getPlayerConfig(1),
             levelMap,
-            "test",
-            1,
-            2,
+            "Player 2",
+            SpawnPoints.PLAYER_2.getX(),
+            SpawnPoints.PLAYER_2.getY(),
             GameCharacter.TEST
         );
         HumanPlayer player2 = new HumanPlayer(
             ConfigManager.getInstance().getConfig().getPlayerConfig(2),
             levelMap,
-            "test",
-            1,
-            2,
+            "Player 3",
+            SpawnPoints.PLAYER_3.getX(),
+            SpawnPoints.PLAYER_3.getY(),
             GameCharacter.TEST
         );
         HumanPlayer player3 = new HumanPlayer(
             ConfigManager.getInstance().getConfig().getPlayerConfig(3),
             levelMap,
-            "test",
-            1,
-            2,
+            "Player 4",
+            SpawnPoints.PLAYER_4.getX(),
+            SpawnPoints.PLAYER_4.getY(),
             GameCharacter.TEST
         );
 
@@ -139,6 +144,7 @@ public class BomberGame extends Game {
         humanControllers[1] = controller1;
         humanControllers[2] = controller2;
         humanControllers[3] = controller3;
+        // TEMPORARY CODE END
 
         ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
     }

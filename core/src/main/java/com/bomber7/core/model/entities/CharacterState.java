@@ -1,12 +1,9 @@
 package com.bomber7.core.model.entities;
 
-/** This class is used to define and manage the different states
- * a character can have in terms of movement and actions.
+/**
+ * Enum representing different animation states of a character.
  */
-public class CharacterState {
-
-    /** Enumeration representing the possible movement statuses of characters */
-    public enum State {
+public enum CharacterState {
         /** The character is not moving. */
         STANDING_STILL,
         /** The character is moving upwards. */
@@ -19,5 +16,4 @@ public class CharacterState {
         MOVING_RIGHT,
         /** The character has died. */
         DIE
-    }
 }
