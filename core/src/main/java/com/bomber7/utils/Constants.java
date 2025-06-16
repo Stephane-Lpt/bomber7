@@ -39,4 +39,14 @@ public final class Constants {
     public static final int HITBOX_WIDTH = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.75f);
     public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
 
+    /**
+     * The default bomb timer.
+     */
+    public static final float BOMB_TIMER = 5.0f;
+
+    /**
+     * Animation frame duration
+     */
+    public static final float FRAME_DURATION = 0.1f;
+
 }

@@ -1,14 +1,10 @@
 package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.square.Bomb;
-import com.bomber7.utils.Constants;
-
 
 /**
  * A view component for displaying a bomb in our game.
@@ -22,9 +18,9 @@ public class ViewBomb {
     private final Bomb bomb;
 
     /**
-     * The texture containing the bomb's sprite sheet.
+     * The texture containing the bombs's sprite sheet.
      */
-    private final Texture texture;
+    private final TextureRegion textureRegion;
 
     /**
      * The number of columns in the sprite sheet.
@@ -58,7 +54,7 @@ public class ViewBomb {
      */
     public ViewBomb(Bomb bomb, ResourceManager resources) {
         this.bomb = bomb;
-        this.texture = resources; // SVP
+        this.textureRegion = resources.getSpriteTextureRegion("time_bomb");
         createAnimations();
     }
 
@@ -68,10 +64,10 @@ public class ViewBomb {
      * specific rows in the texture grid.
      */
     private void createAnimations() {
-        TextureRegion[][] region = TextureRegion.split(texture,
-            texture.getWidth() / FRAME_COLS,
-            texture.getHeight() / FRAME_ROWS);
-
+        TextureRegion[][] region = textureRegion.split(
+            textureRegion.getTexture().getWidth() / FRAME_COLS,
+            textureRegion.getTexture().getHeight() / FRAME_ROWS
+        );
         active = createAnimation(region, 0, 4, true); // Active state animation
         explosion = createAnimation(region, 1, 1, false); // Explosion state animation
     }
@@ -111,7 +107,7 @@ public class ViewBomb {
                 return active;
             case EXPLODED:
                 return explosion;
-                
+
             default:
                 return null;
         }
