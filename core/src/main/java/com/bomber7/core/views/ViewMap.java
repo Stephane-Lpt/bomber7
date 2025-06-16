@@ -8,6 +8,7 @@ import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
 import com.bomber7.utils.Constants;
 
@@ -81,12 +82,16 @@ public class ViewMap extends Actor {
 //                        mapElementTextureRegion = resources.getSpriteTextureRegion(square.getMapElement().getTextureName());
                         // TODO: CORENTIN DOIT FAIRE EN SORTE QUE CA DESSINNE LA BONNE TEXTURE
                         mapElementTextureRegion = resources.getSpriteTextureRegion("time_bomb");
+                        Gdx.app.debug("ViewMap", "drawing bomb at pos " + row + ", " + col);
+                        if (square.getMapElement() instanceof TimeBomb) {
+                            ((TimeBomb) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
+                        }
                     } else if (square.getMapElement() instanceof Wall) {
                         mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                     }
                 }
 
-                if (mapElementTextureRegion != null) {
+                if (mapElementTextureRegion != null && square.getMapElement() != null) {
                     drawTextureRegion(batch, mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
                 }
             }

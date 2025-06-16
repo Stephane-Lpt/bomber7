@@ -111,6 +111,8 @@ public abstract class Player extends Character {
      * @return true if the bomb was successfully dropped, false otherwise
      */
     public boolean dropBomb() {
+        if(!this.isAlive()) return false;
+
         if (nbBomb >= 1) {
             Gdx.app.debug("Player", this.getName() + " dropped a bomb");
             Bomb bombToDrop;
@@ -127,7 +129,8 @@ public abstract class Player extends Character {
             }
             Square currentSquare = this.map.getSquare(this.getMapX(), this.getMapY());
             currentSquare.setMapElement(bombToDrop);
-            this.nbBomb--; // Decrease the number of bombs availables
+//            this.nbBomb--; // Decrease the number of bombs availables
+            this.setStandingStill();
             return true;
         } else {
             return false;
