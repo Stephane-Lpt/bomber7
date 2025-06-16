@@ -80,13 +80,13 @@ public class ViewMap extends Actor {
                     if (square.getMapElement() instanceof Bomb) {
 //                        mapElementTextureRegion = resources.getSpriteTextureRegion(square.getMapElement().getTextureName());
                         // TODO: CORENTIN DOIT FAIRE EN SORTE QUE CA DESSINNE LA BONNE TEXTURE
-                        // mapElementTextureRegion = resources.getSpriteTextureRegion("time_bomb");
+                        mapElementTextureRegion = resources.getSpriteTextureRegion("time_bomb");
                     } else if (square.getMapElement() instanceof Wall) {
                         mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                     }
                 }
 
-                if (mapElementTextureRegion != null) {
+                if (mapElementTextureRegion != null && square.hasMapElement()) {
                     drawTextureRegion(batch, mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
                 }
 

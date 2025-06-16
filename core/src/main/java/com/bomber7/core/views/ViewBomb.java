@@ -111,6 +111,7 @@ public class ViewBomb {
                 return active;
             case EXPLODED:
                 return explosion;
+                
             default:
                 return null;
         }
