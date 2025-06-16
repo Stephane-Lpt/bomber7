@@ -38,7 +38,7 @@ public class BomberGame extends Game {
         resources = new ResourceManager();
         gameCandidate = new GameCandidate();
 
-        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
+        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, false, false);
     }
 
     /**

@@ -19,14 +19,6 @@ import com.bomber7.utils.ScreenType;
  */
 public class MainMenuScreen extends BomberScreen {
     /**
-     * Main menu logo width.
-     */
-    private static final float LOGO_WIDTH = 500f * 0.6f;
-    /**
-     * Main menu logo height.
-     */
-    private static final float LOGO_HEIGHT = LOGO_WIDTH * 0.6f;
-    /**
      * Play button that switches screen to {@link PlayerSelectionScreen}.
      */
     private TextButton playButton;
@@ -67,8 +59,8 @@ public class MainMenuScreen extends BomberScreen {
         quitButton = new TextButton(resources.getString("quit"), resources.getSkin());
 
         table.add(logoImage)
-            .width(LOGO_WIDTH)
-            .height(LOGO_HEIGHT)
+            .width(Dimensions.LOGO_WIDTH)
+            .height(Dimensions.LOGO_HEIGHT)
             .spaceBottom(Dimensions.COMPONENT_SPACING * 2f)
             .fillX()
             .row();
