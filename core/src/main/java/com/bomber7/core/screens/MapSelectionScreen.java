@@ -145,7 +145,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
                     }
                 }
             }
-        }, resources));
+        }));
 
         increaseNumberOfRounds.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -153,7 +153,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
                 rounds = Math.min(Constants.MAX_ROUNDS, rounds + 1);
                 roundsNumberLabel.setText(String.valueOf(rounds));
             }
-        }, resources));
+        }));
 
         goToPlayerSelectionButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -162,7 +162,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
 
                 ScreenManager.getInstance().showPreviousScreen(true, true);
             }
-        }, resources));
+        }));
 
         startGameButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -175,7 +175,7 @@ public class MapSelectionScreen extends BomberScreen implements Observer {
                 game.getCandidate().setRounds(rounds);
                 game.start();
             }
-        }, resources));
+        }));
     }
 
     /**

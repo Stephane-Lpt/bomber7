@@ -1,12 +1,12 @@
-characterskin.png
-size: 192, 224
+trigger_bomb.png
+size: 135, 135
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-sprite-test
+trigger_bomb
   rotate: false
   xy: 0, 0
-  size: 192, 224
-  orig: 192, 224
+  size: 135, 135
+  orig: 135, 135
   offset: 0, 0
   index: -1

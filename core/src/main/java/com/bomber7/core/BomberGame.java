@@ -1,10 +1,21 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
+import com.bomber7.core.controller.HumanController;
 import com.bomber7.core.model.GameCandidate;
+import com.bomber7.core.model.entities.HumanPlayer;
+import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.map.LevelMapFactory;
+import com.bomber7.utils.GameCharacter;
+import com.bomber7.utils.GameMap;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SpawnPoints;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -14,16 +25,21 @@ import com.badlogic.gdx.Gdx;
  */
 public class BomberGame extends Game {
     /**
-     * Resource manager responsible for loading and managing game assets.
-     */
-    private ResourceManager resources;
-
-    /**
      * GameCandidate that holds the players, maps and rounds configured {@link com.bomber7.core.screens.PlayerSelectionScreen} and
      * {@link com.bomber7.core.screens.MapSelectionScreen}.
      * When a game is started, the characters as well as the map is initialized used this object.
      */
     private GameCandidate gameCandidate;
+
+    /**
+     * Current level map.
+     */
+    private LevelMap levelMap;
+
+    /**
+     * List of human player controllers.
+     */
+    private List<HumanController> humanControllers;
 
     /**
      * Called once when the application is created.
@@ -35,10 +51,14 @@ public class BomberGame extends Game {
 
         ScreenManager.getInstance().initialize(this);
         ConfigManager.getInstance().initialize();
-        resources = new ResourceManager();
+        ResourceManager.getInstance().initialize();
+        SoundManager.getInstance().initialize();
         gameCandidate = new GameCandidate();
 
-        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
+        humanControllers = new ArrayList<>();
+
+//        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
+        start();
     }
 
     /**
@@ -47,17 +67,9 @@ public class BomberGame extends Game {
      */
     @Override
     public void dispose() {
-        resources.dispose();
+        ResourceManager.getInstance().dispose();
+        SoundManager.getInstance().dispose();
         super.dispose();
-    }
-
-    /**
-     * Returns the {@link ResourceManager} instance used by this game.
-     *
-     * @return the resource manager for game assets
-     */
-    public ResourceManager getBomberResources() {
-        return resources;
     }
 
     /**
@@ -74,7 +86,68 @@ public class BomberGame extends Game {
     public void start() {
         // Printing gameCandidate for debug
         Gdx.app.debug("BomberGame", "GameCandidate: " + gameCandidate.toString());
+        Gdx.app.debug("BomberGame", "Started game");
 
+        // TEMPORARY CODE START
+        // SHOULD BE REPLACED BY GAMECANDIDATE LOGIC
+        levelMap = LevelMapFactory.createLevelMap(GameMap.FOY.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        HumanPlayer player0 = new HumanPlayer(
+            ConfigManager.getInstance().getConfig().getPlayerConfig(0),
+            levelMap,
+            "Player 1",
+            SpawnPoints.PLAYER_1.getX(),
+            SpawnPoints.PLAYER_1.getY(),
+            GameCharacter.TEST
+        );
+        HumanPlayer player1 = new HumanPlayer(
+            ConfigManager.getInstance().getConfig().getPlayerConfig(1),
+            levelMap,
+            "Player 2",
+            SpawnPoints.PLAYER_2.getX(),
+            SpawnPoints.PLAYER_2.getY(),
+            GameCharacter.TEST
+        );
+        HumanPlayer player2 = new HumanPlayer(
+            ConfigManager.getInstance().getConfig().getPlayerConfig(2),
+            levelMap,
+            "Player 3",
+            SpawnPoints.PLAYER_3.getX(),
+            SpawnPoints.PLAYER_3.getY(),
+            GameCharacter.TEST
+        );
+        HumanPlayer player3 = new HumanPlayer(
+            ConfigManager.getInstance().getConfig().getPlayerConfig(3),
+            levelMap,
+            "Player 4",
+            SpawnPoints.PLAYER_4.getX(),
+            SpawnPoints.PLAYER_4.getY(),
+            GameCharacter.TEST
+        );
+
+        HumanController controller0 = new HumanController(player0);
+        HumanController controller1 = new HumanController(player1);
+        HumanController controller2 = new HumanController(player2);
+        HumanController controller3 = new HumanController(player3);
+
+        levelMap.addCharacter(player0);
+        levelMap.addCharacter(player1);
+        levelMap.addCharacter(player2);
+        levelMap.addCharacter(player3);
+
+        humanControllers.add(controller0);
+        humanControllers.add(controller1);
+        humanControllers.add(controller2);
+        humanControllers.add(controller3);
+        // TEMPORARY CODE END
+
+        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+    }
+
+    /**
+     * Resumes the game after being paused.
+     */
+    public void resume() {
         ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
     }
 
@@ -91,5 +164,19 @@ public class BomberGame extends Game {
     public void stop() {
         gameCandidate.reset();
         ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
+    }
+
+    /**
+     * Returns the levelMap.
+     */
+    public LevelMap getLevelMap() {
+        return levelMap;
+    }
+
+    /**
+     * Returns the players currently present in the game.
+     */
+    public List<HumanController> getHumanControllers() {
+        return humanControllers;
     }
 }

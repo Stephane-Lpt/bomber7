@@ -9,7 +9,7 @@ public final class Constants {
     /**
      * Scale factor for batch elements (map, characters, etc...).
      */
-    public static final float SCALE = 0.7f;
+    public static final float SCALE = 0.85f;
 
     /**
      * The maximum length for a player name.

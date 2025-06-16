@@ -1,26 +1,26 @@
 package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.entities.Character;
 import com.bomber7.utils.Constants;
-import com.bomber7.core.model.entities.CharacterState.State;
+import com.bomber7.utils.Dimensions;
 
 
 /**
  * A view component for displaying a character in our game. It renders
  * animations based on the associated sprite sheet and observes the state
  * of a Character.
- *
  * The animations include movements in different directions, a standing
  * state and a death animation.
  *
  */
-public class ViewCharacter {
+public class ViewCharacter extends Actor {
 
     /**
      * The Character model associated with this view.
@@ -29,7 +29,7 @@ public class ViewCharacter {
     /**
      * The texture containing the character's sprite sheet.
      */
-    private final Texture texture;
+    private final TextureRegion textureRegion;
 
     /**
      * The number of columns.
@@ -72,6 +72,11 @@ public class ViewCharacter {
     private Animation<TextureRegion> die;
 
     /**
+     * Width of player's name text.
+     */
+    private final float nameLabelWidth;
+
+    /**
      * Duration of the frame.
      */
     private static final float FRAME_DURATION = 0.1f;
@@ -83,7 +88,12 @@ public class ViewCharacter {
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
-        this.texture = resources.getCharacterSkin().getAtlas().findRegion(character.getGameCharacter().getDrawableName()).getTexture();
+        this.textureRegion = resources.getSpriteTextureRegion(character.getGameCharacter().getDrawableName());
+
+        GlyphLayout nameContainer = new GlyphLayout();
+        nameContainer.setText(resources.getSkin().getFont("pixelify-sm"), character.getName());
+        nameLabelWidth = nameContainer.width;
+
         createAnimations();
     }
 
@@ -93,9 +103,9 @@ public class ViewCharacter {
      * specific rows in the texture grid.
      */
     private void createAnimations() {
-        TextureRegion[][] region = TextureRegion.split(texture,
-            texture.getWidth() / FRAME_COLS,
-            texture.getHeight() / FRAME_ROWS);
+        TextureRegion[][] region = textureRegion.split(
+            textureRegion.getTexture().getWidth() / FRAME_COLS,
+            textureRegion.getTexture().getHeight() / FRAME_ROWS);
 
         moveRight = createAnimation(region, 0, 3, false);
         moveLeft = createMirroredAnimation(region, moveRight, false);
@@ -139,13 +149,16 @@ public class ViewCharacter {
     }
 
     /**
-     * Renders the character on the screen.
-     * @param batch The SpriteBatch used for rendering.
+     * Method called by libGDX to draw the character.
+     * @param batch the Batch used for drawing
+     * @param parentAlpha the alpha value of the parent actor
      */
-    public void renderCharacter(SpriteBatch batch) {
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
         Animation<TextureRegion> currentAnimation = getCurrentAnimation();
         TextureRegion currentFrame = currentAnimation.getKeyFrame(Gdx.graphics.getDeltaTime(), true);
 
+        // Drawing character
         batch.draw(
             currentFrame,
             character.getPositionX(),
@@ -153,6 +166,29 @@ public class ViewCharacter {
             Constants.TEXTURE_SIZE * Constants.SCALE,
             Constants.TEXTURE_SIZE * Constants.SCALE
         );
+
+        // Drawing character name
+        ResourceManager.getInstance().getSkin().getFont("pixelify-sm").draw(
+            batch,
+            character.getName(),
+            character.getPositionX() - nameLabelWidth / 2 + (Constants.TEXTURE_SIZE * Constants.SCALE) / 2,
+            character.getPositionY() + Dimensions.COMPONENT_SPACING
+        );
+
+        // TODO: create debug mode
+        if (true) {
+            String debugPixelPos = "X: " + character.getPositionX() + ", Y: " + character.getPositionY();
+            String debugMapPos = "mX: " + character.getMapX() + ", mY: " + character.getMapY();
+            String debugState = "state: " + character.getMovingStatus();
+
+
+            ResourceManager.getInstance().getSkin().getFont("pixelify-sm").draw(
+                batch,
+                debugPixelPos + "\n" + debugMapPos + "\n" + debugState,
+                character.getPositionX(),
+                character.getPositionY() + Dimensions.LABEL_PADDING
+            );
+        }
     }
 
     /**

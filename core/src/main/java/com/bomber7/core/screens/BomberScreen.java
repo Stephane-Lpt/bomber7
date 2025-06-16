@@ -25,7 +25,7 @@ public abstract class BomberScreen extends Stage implements Screen, MVCComponent
      */
     protected final BomberGame game;
     /**
-     * Game resources.
+     * Reference to the ResourceManager instance for easier resources access.
      */
     protected final ResourceManager resources;
 
@@ -37,7 +37,7 @@ public abstract class BomberScreen extends Stage implements Screen, MVCComponent
         super(new ScreenViewport());
 
         this.game = (BomberGame) game;
-        this.resources = this.game.getBomberResources();
+        this.resources = ResourceManager.getInstance();
         this.bgColor = resources.getSkin().getColor("darkBlue");
     }
 
