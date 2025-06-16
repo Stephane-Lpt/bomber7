@@ -94,6 +94,10 @@ public class LevelMap {
         return checkerboard.size();
     }
 
+    /**
+     * Returns the name of the map.
+     * @return the name of the map
+     */
     public String getMapName() {
         return mapName;
     }

@@ -63,6 +63,8 @@ public class BomberGame extends Game {
 
     private boolean roundCompleted = false; // Tracks whether the current round is completed
 
+    private List<Character> players = new ArrayList<>();
+
     /**
      * Called once when the application is created.
      * Initializes the resource manager and sets the initial screen to the main menu.
@@ -99,15 +101,6 @@ public class BomberGame extends Game {
      */
     public LevelMap getMapListElement(int i) {
         return mapList.get(i);
-    }
-
-    /**
-     * Returns the {@link ResourceManager} instance used by this game.
-     *
-     * @return the resource manager for game assets
-     */
-    public ResourceManager getBomberResources() {
-        return resources;
     }
 
     /**
@@ -195,27 +188,42 @@ public class BomberGame extends Game {
 
 public void gameRound(LevelMap levelMap) {
     currentMap = levelMap;
-    
-    // Clear existing characters and reinitialize players for this map
-    // currentMap.clearCharacters();
-    
-    for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
-        if (gameCandidate.getPlayerBlueprints()[i] != null) {
-            SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
-            if (gameCandidate.getPlayerBlueprints()[i].getStrategy() == PlayerStrategy.HUMAN) {
-                HumanPlayer humanPlayer = new HumanPlayer(
-                    ConfigManager.getInstance().getConfig().getPlayerConfig(i),
-                    currentMap,
-                    gameCandidate.getPlayerBlueprints()[i].getName(),
-                    spawnPointPlayer.getX(),
-                    spawnPointPlayer.getY(),
-                    gameCandidate.getPlayerBlueprints()[i].getCharacter()
-                );
-                currentMap.addCharacter(humanPlayer);
+    currentMap.getCharacters().clear(); // Remove any old references
+
+    if (players.isEmpty()) {
+        // First round: instantiate players and add to both players list and current map
+        System.out.println("1st INIT");
+        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
+            if (gameCandidate.getPlayerBlueprints()[i] != null) {
+                SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
+                if (gameCandidate.getPlayerBlueprints()[i].getStrategy() == PlayerStrategy.HUMAN) {
+                    HumanPlayer humanPlayer = new HumanPlayer(
+                        ConfigManager.getInstance().getConfig().getPlayerConfig(i),
+                        currentMap,
+                        gameCandidate.getPlayerBlueprints()[i].getName(),
+                        spawnPointPlayer.getX(),
+                        spawnPointPlayer.getY(),
+                        gameCandidate.getPlayerBlueprints()[i].getCharacter()
+                    );
+                    players.add(humanPlayer);
+                    currentMap.addCharacter(humanPlayer);
+                }
+                // Add AIPlayer instantiation here if needed
             }
         }
+    } else {
+        // Not the first round: reset all players and add them to the new map
+        for (int i = 0; i < players.size(); i++) {
+            Character character = players.get(i);
+            SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
+            resetPlayer(character, spawnPointPlayer);
+            System.out.println("RESET PLAYER: " + character.getName() + " at " + spawnPointPlayer);
+            character.setMap(currentMap); // Make sure the player references the new map
+            System.out.println("ADD PLAYER: " + character.getName() + " to map " + currentMap.getMapName());
+            currentMap.addCharacter(character);
+        }
     }
-    
+
     ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
 }
 
@@ -231,7 +239,7 @@ public void advanceToNextRound() {
         gameRound(nextMap);
     } else {
         Gdx.app.debug("BomberGame", "All rounds completed. Returning to player setup screen.");
-        // ScreenManager.getInstance().showScreen(ScreenType.PLAYER_SETUP, false, false);
+        ScreenManager.getInstance().showScreen(ScreenType.PLAYER_SETUP, false, false);
     }
 }
 
@@ -304,7 +312,9 @@ public LevelMap getCurrentMap() {
     private void resetPlayer(Character player, SpawnPoints spawnPointPlayer) {
         player.setPositionX(spawnPointPlayer.getX());
         player.setPositionY(spawnPointPlayer.getY());
-        player.ressucitate();
+        if (!player.isAlive()) {
+            player.ressucitate();
+        }
     }
 
     public boolean isRoundCompleted() {
@@ -313,5 +323,20 @@ public LevelMap getCurrentMap() {
 
     public void setRoundCompleted(boolean roundCompleted) {
         this.roundCompleted = roundCompleted;
+    }
+
+    /**
+     * Pauses the game.
+     */
+    public void pause() {
+        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, true, true);
+    }
+
+    /**
+     * Stops the game.
+     */
+    public void stop() {
+        gameCandidate.reset();
+        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
 }

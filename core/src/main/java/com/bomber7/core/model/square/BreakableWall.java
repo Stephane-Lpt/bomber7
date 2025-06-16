@@ -1,6 +1,5 @@
 package com.bomber7.core.model.square;
 
-import java.nio.file.Path;
 import java.util.Map;
 import java.util.Random;
 
@@ -64,7 +63,6 @@ public class BreakableWall extends Wall {
      */
     private boolean hasRandomBonus() {
         double randomValue = new Random().nextDouble();
-        System.out.println("IN hasRandomBonus() randomValue = " + randomValue);
         return randomValue <= Constants.BONUS_RATE;
     }
 
@@ -74,7 +72,6 @@ public class BreakableWall extends Wall {
     private static Bonus createRandomBonus() {
         double randomValue = new Random().nextDouble();
         double cumulativeProbability = 0.0;
-        System.out.println("IN createRandomBonus()");
         for (Map.Entry<BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
             cumulativeProbability += entry.getValue();
             if (randomValue <= cumulativeProbability) {
