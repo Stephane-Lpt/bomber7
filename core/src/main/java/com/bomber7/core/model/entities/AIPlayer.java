@@ -1,6 +1,5 @@
 package com.bomber7.core.model.entities;
 
-import com.bomber7.core.controller.PlayerConfig;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.utils.GameCharacter;
 
@@ -18,8 +17,8 @@ public class AIPlayer extends Player {
      * @param mapY          The y-coordinate of the player
      * @param gameCharacter The game character type
      */
-    public AIPlayer(PlayerConfig config, LevelMap map, String name, int mapX, int mapY, GameCharacter gameCharacter) {
-        super(name, map, mapX, mapY, 1, 1, gameCharacter);
+    public AIPlayer(LevelMap map, int mapX, int mapY, GameCharacter gameCharacter) {
+        super("AI", map, mapX, mapY, 1, 1, gameCharacter);
     }
 
     /**
@@ -47,7 +46,7 @@ public class AIPlayer extends Player {
      * @param players The list of players in the game.
      * @return The nearest player, or null if no players are alive.
      */
-    private Player findNearestPlayer(Player[] players) {
+    public Player findNearestPlayer(Player[] players) {
         Player nearestPlayer = null;
         double minDistance = Double.MAX_VALUE;
         for (Player player : players) {
@@ -68,8 +67,8 @@ public class AIPlayer extends Player {
      * @return The distance between the two players.
      */
     private double calculateDistance(Player player) {
-        int deltaX = this.getPositionX() - player.getPositionX();
-        int deltaY = this.getPositionY() - player.getPositionY();
+        int deltaX = this.getMapX() - player.getMapX();
+        int deltaY = this.getMapY() - player.getMapY();
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
@@ -78,17 +77,24 @@ public class AIPlayer extends Player {
      * @param player The player to move towards.
      */
     private void moveTowardsPlayer(Player player) {
-        int playerX = player.getPositionX();
-        int playerY = player.getPositionY();
-        if (this.getPositionX() < playerX && checkMove(this.getPositionX() + this.getSpeed(), this.getPositionY())) {
+        int playerX = player.getMapX();
+        int playerY = player.getMapY();
+        boolean moved = false;
+        if (this.getMapX() < playerX && checkMove(this.getMapX() + this.getSpeed(), this.getMapY())) {
             this.moveRight();
-        } else if (this.getPositionX() > playerX && checkMove(this.getPositionX() - this.getSpeed(), this.getPositionY())) {
+            moved = true;
+        } else if (this.getMapX() > playerX && checkMove(this.getMapX() - this.getSpeed(), this.getMapY())) {
             this.moveLeft();
-        } else if (this.getPositionY() < playerY && checkMove(this.getPositionX(), this.getPositionY() + this.getSpeed())) {
+            moved = true;
+        }
+        if (this.getMapY() < playerY && checkMove(this.getMapX(), this.getMapY() + this.getSpeed())) {
             this.moveUp();
-        } else if (this.getPositionY() > playerY && checkMove(this.getPositionX(), this.getPositionY() - this.getSpeed())) {
+            moved = true;
+        } else if (this.getMapY() > playerY && checkMove(this.getMapX(), this.getMapY() - this.getSpeed())) {
             this.moveDown();
-        } else {
+            moved = true;
+        }
+        if (!moved) {
             moveRandomly();
         }
     }
@@ -101,22 +107,22 @@ public class AIPlayer extends Player {
         int direction = (int) (Math.random() * 4);
         switch (direction) {
             case 0:
-                if (checkMove(this.getPositionX() + this.getSpeed(), this.getPositionY())) {
+                if (checkMove(this.getMapX() + this.getSpeed(), this.getMapY())) {
                     this.moveRight();
                 }
                 break;
             case 1:
-                if (checkMove(this.getPositionX() - this.getSpeed(), this.getPositionY())) {
+                if (checkMove(this.getMapX() - this.getSpeed(), this.getMapY())) {
                     this.moveLeft();
                 }
                 break;
             case 2:
-                if (checkMove(this.getPositionX(), this.getPositionY() + this.getSpeed())) {
+                if (checkMove(this.getMapX(), this.getMapY() + this.getSpeed())) {
                     this.moveUp();
                 }
                 break;
             case 3:
-                if (checkMove(this.getPositionX(), this.getPositionY() - this.getSpeed())) {
+                if (checkMove(this.getMapX(), this.getMapY() - this.getSpeed())) {
                     this.moveDown();
                 }
                 break;
