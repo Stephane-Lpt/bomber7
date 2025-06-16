@@ -334,23 +334,7 @@ public abstract class Character {
     public boolean checkMove(int futureX, int futureY) {
         int futureMapX = this.map.getSquareCoordinates(futureX, futureY).getKey();
         int futureMapY = this.map.getSquareCoordinates(futureX, futureY).getValue();
-        // assert this.mapY == 23 : "mapY bad";
-        // assert this.mapX == 1 : "mapX bad";
-        // assert this.x == 30 : "x bad";
-        // assert this.y == 535 : "y bad";
 
-        // assert this.map.getAbsoluteCoordinates(this.mapX, this.mapY).getKey() == this.x : "1mapX != x";
-        // assert this.map.getAbsoluteCoordinates(this.mapX, this.mapY).getValue() == this.y : "1mapY != y";
-
-
-        // assert this.map.getSquareCoordinates(this.x, this.y).getKey() == this.mapX : "mapX != x";
-        // assert this.map.getSquareCoordinates(this.x, this.y).getValue() == this.mapY : "mapY != y";
-
-        // assert futureX == 30+speed : "futureX bad";
-        // assert futureY == 535 : "futureY bad";
-
-        // assert futureMapX == 2 : "futureMapX bad";
-        // assert futureMapY == 23 : "futureMapY bad";
         if (futureMapX < 0 || futureMapY < 0 || futureMapX >= this.map.getWidth() || futureMapY >= this.map.getHeight()) {
             return false; // Out of bounds
         }

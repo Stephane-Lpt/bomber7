@@ -27,11 +27,11 @@ public class KeyBindingScreen extends BomberScreen implements InputProcessor {
     /**
      * The dialog that will be shown when a user clicks on any inputButton to rebind a control to a new key.
      */
-    private InputDialog inputDialog;
+    private final InputDialog inputDialog;
     /**
      * The index of the player this binding screen is associated to.
      */
-    private int playerIndex;
+    private final int playerIndex;
     /**
      * A button to go back to the settings screen.
      */
@@ -125,14 +125,14 @@ public class KeyBindingScreen extends BomberScreen implements InputProcessor {
                 );
                 updateInputButtons();
             }
-        }, resources));
+        }));
 
         goBackButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ScreenManager.getInstance().showPreviousScreen(false, false);
             }
-        }, resources));
+        }));
 
         for (int i = 0; i < Controls.values().length; i++) {
             int controlIndex = i;
@@ -141,7 +141,7 @@ public class KeyBindingScreen extends BomberScreen implements InputProcessor {
                 public void clicked(InputEvent event, float x, float y) {
                     inputDialog.show(KeyBindingScreen.this, (Controls.values()[controlIndex]));
                 }
-            }, resources));
+            }));
         }
     }
 

@@ -28,6 +28,7 @@ import java.util.Objects;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.bomber7.utils.SoundManager;
 import com.badlogic.gdx.Screen;
 
 /**
@@ -37,11 +38,6 @@ import com.badlogic.gdx.Screen;
  * </p>
  */
 public class BomberGame extends Game {
-    /**
-     * Resource manager responsible for loading and managing game assets.
-     */
-    private ResourceManager resources;
-
     /**
      * GameCandidate that holds the players, maps and rounds configured {@link com.bomber7.core.screens.PlayerSelectionScreen} and
      * {@link com.bomber7.core.screens.MapSelectionScreen}.
@@ -77,7 +73,8 @@ public class BomberGame extends Game {
 
         ScreenManager.getInstance().initialize(this);
         ConfigManager.getInstance().initialize();
-        resources = new ResourceManager();
+        ResourceManager.getInstance().initialize();
+        SoundManager.getInstance().initialize();
         gameCandidate = new GameCandidate();
         mapList = new ArrayList<>();
 
@@ -90,7 +87,8 @@ public class BomberGame extends Game {
      */
     @Override
     public void dispose() {
-        resources.dispose();
+        ResourceManager.getInstance().dispose();
+        SoundManager.getInstance().dispose();
         super.dispose();
     }
 
