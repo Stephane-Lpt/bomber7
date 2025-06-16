@@ -110,7 +110,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current X-Axis position getter.
+     * Character current X-Axis position getter (pixels).
      * @return x Current X-position
      */
     public int getPositionX() {
@@ -118,7 +118,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current X-Axis position getter.
+     * Character current X-Axis position getter (map units).
      * @return x Current X-position
      */
     public int getMapX() {
@@ -126,7 +126,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current Y-Axis position getter.
+     * Character current Y-Axis position getter (pixels).
      * @return y Current Y-position
      */
     public int getPositionY() {
@@ -134,7 +134,7 @@ public abstract class Character {
     }
 
     /**
-     * Character current Y-Axis position getter.
+     * Character current Y-Axis position getter (map units).
      * @return y Current Y-position
      */
     public int getMapY() {
