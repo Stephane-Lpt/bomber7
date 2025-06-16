@@ -137,6 +137,7 @@ public abstract class Bomb extends MapElement {
         onExplosion(m, this.x, this.y);
         SoundManager.getInstance().play(SoundType.EXPLOSION);
 
+
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
