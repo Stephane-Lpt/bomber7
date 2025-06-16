@@ -34,6 +34,11 @@ public final class Constants {
     public static final int TEXTURE_SIZE = 32;
 
     /**
+     * The size in pixels of the player sprite.
+     */
+    public static final float SCALE = 0.7f;
+
+    /**
      * The chance of a bonus being dropped.
      */
     public final static double BONUS_RATE = 0.25; // 25% chance to drop a bonus
