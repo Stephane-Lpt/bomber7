@@ -36,7 +36,13 @@ public final class Constants {
      */
     public static final int TEXTURE_SIZE = 32;
 
+    /**
+     * Width of the hitbox of character.
+     */
     public static final int HITBOX_WIDTH = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.75f);
+    /**
+     * Height of the hitbox of character.
+     */
     public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
 
     /**
@@ -45,8 +51,17 @@ public final class Constants {
     public static final float BOMB_TIMER = 5.0f;
 
     /**
-     * Animation frame duration
+     * The default bomb timer.
+     */
+    public static final int DEFAULT_BOMB_POWER = 3;
+
+    /**
+     * Animation frame duration.
      */
     public static final float FRAME_DURATION = 0.1f;
 
+    /**
+     * Sound convert ratio to convert slider value to libgdx volume value.
+     */
+    public static final float VOLUME_CONVERT_RATIO = 100f;
 }

@@ -1,7 +1,9 @@
 package com.bomber7.utils;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.bomber7.core.ConfigManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,16 @@ public final class SoundManager {
      * A hashmap that contains all the sounds (values) mapped to a SoundType (key).
      */
     private final Map<SoundType, Sound> sounds = new HashMap<>();
+    /**
+     * A hashmap that contains all the music (values) mapped to a SoundType (key).
+     */
+    private final Map<SoundType, Music> musics = new HashMap<>();
+
+    /**
+     * Currently playing music.
+     */
+    private Music currentMusic;
+
 
     /**
      * Private constructor to enforce singleton pattern.
@@ -46,9 +58,14 @@ public final class SoundManager {
      *
      */
     public void initialize() {
-        load(SoundType.HOVER, "sounds/hover.wav");
-        load(SoundType.CLICK, "sounds/click.wav");
-        load(SoundType.EXPLOSION, "sounds/explosion.mp3");
+        loadSound(SoundType.HOVER, "sounds/hover.wav");
+        loadSound(SoundType.CLICK, "sounds/click.wav");
+        loadSound(SoundType.EXPLOSION, "sounds/explosion.mp3");
+
+        loadMusic(SoundType.BEAST_MODE, "sounds/beast_mode.mp3");
+        loadMusic(SoundType.ELEVATOR, "sounds/elevator.mp3");
+
+        currentMusic = null;
     }
 
     /**
@@ -56,8 +73,17 @@ public final class SoundManager {
      * @param type the sound to load
      * @param path the path to the sound asset
      */
-    private void load(SoundType type, String path) {
+    private void loadSound(SoundType type, String path) {
         sounds.put(type, Gdx.audio.newSound(Gdx.files.internal(path)));
+    }
+
+    /**
+     * Load a music.
+     * @param type the music to load
+     * @param path the path to the music asset
+     */
+    private void loadMusic(SoundType type, String path) {
+        musics.put(type, Gdx.audio.newMusic(Gdx.files.internal(path)));
     }
 
     /**
@@ -65,7 +91,44 @@ public final class SoundManager {
      * @param type the sound to play
      */
     public void play(SoundType type) {
-        sounds.get(type).play();
+        float volume = ConfigManager.getInstance().getConfig().getGlobalVolume() / Constants.VOLUME_CONVERT_RATIO;
+
+        sounds.get(type).play(volume);
+    }
+
+    /**
+     * Play a music.
+     * @param type the sound to play
+     */
+    public void playMusic(SoundType type) {
+        currentMusic = musics.get(type);
+        currentMusic.setLooping(true);
+        updateMusicVolume();
+        currentMusic.play();
+    }
+
+    /**
+     * Stops the currently playing music if any.
+     */
+    public void stopMusic() {
+        if (currentMusic != null) {
+            currentMusic.stop();
+        }
+    }
+
+    /**
+     * Updates music volume.
+     * Has to be called whenever the music volume is modified, so the modification is applied instantly.
+     */
+    public void updateMusicVolume() {
+        float volume = Math.min(
+            ConfigManager.getInstance().getConfig().getGlobalVolume(),
+            ConfigManager.getInstance().getConfig().getMusicVolume()
+        ) / Constants.VOLUME_CONVERT_RATIO;
+
+        if (currentMusic != null) {
+            currentMusic.setVolume(volume);
+        }
     }
 
     /**

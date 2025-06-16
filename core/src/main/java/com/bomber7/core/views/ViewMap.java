@@ -7,12 +7,12 @@ import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Bomb;
-import com.bomber7.core.model.square.Explosion;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
 import com.bomber7.utils.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ import java.util.List;
 public class ViewMap extends Actor {
 
     /** The Grid ({@link <a href="https://www.youtube.com/watch?v=lILHEnz8fTk">YouTube video</a>}). */
-    private final LevelMap mapGrid;
+    private final LevelMap levelMap;
 
     /** The resourceManager needed for sprites. */
     private final ResourceManager resources;
@@ -40,22 +40,27 @@ public class ViewMap extends Actor {
     /** The Y coordinate of the origin point for drawing the map. */
     private float originY;
 
-
     /**
      * List of characterViews (used to show the caracters on the map).
      */
     private final List<ViewCharacter> characterViews;
 
     /**
+     * List of viewEffects (used to show the effects on the map, such as explosions).
+     */
+    private final List<ViewEffect> effectViews;
+
+    /**
      * Constructs a new ViewMap with the specified map grid and resource manager.
-     * @param mapGrid the 2D array of Square objects representing the map
+     * @param levelMap the 2D array of Square objects representing the map
      * @param characterViews list of characters views to draw
      * @param resources the ResourceManager to manage textures and resources
      */
-    public ViewMap(LevelMap mapGrid, List<ViewCharacter> characterViews, ResourceManager resources) {
-        this.mapGrid = mapGrid;
+    public ViewMap(LevelMap levelMap, List<ViewCharacter> characterViews, ResourceManager resources) {
+        this.levelMap = levelMap;
         this.resources = resources;
         this.characterViews = characterViews;
+        this.effectViews = new ArrayList<>();
 
         updateDimensions();
     }
@@ -68,10 +73,27 @@ public class ViewMap extends Actor {
      */
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        updateDimensions();
 
-        for (int col = 0; col < mapGrid.getHeight(); col++) {
-            for (int row = 0; row < mapGrid.getWidth(); row++) {
-                Square square = mapGrid.getSquare(row, col);
+        drawMap(batch);
+        drawCharacters(batch, parentAlpha);
+        drawEffects(batch);
+    }
+
+    private void drawCharacters(Batch batch, float parentAlpha) {
+        for(ViewCharacter character : characterViews) {
+            character.draw(batch, parentAlpha);
+        }
+    }
+
+    /**
+     * Draws the map.
+     * @param batch the Batch used for drawing
+     */
+    private void drawMap(Batch batch) {
+        for (int col = 0; col < levelMap.getHeight(); col++) {
+            for (int row = 0; row < levelMap.getWidth(); row++) {
+                Square square = levelMap.getSquare(row, col);
 
                 // Background
                 TextureRegion squareTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getTextureName());
@@ -90,19 +112,10 @@ public class ViewMap extends Actor {
                     else if (square.getMapElement() instanceof Bomb) {
                         // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
-                            ((TimeBomb) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
+                            ((TimeBomb) square.getMapElement()).tick(levelMap, Gdx.graphics.getDeltaTime());
                         }
 
                         if (square.hasMapElement()) {
-                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                        }
-                    }
-                    // Explosion
-                    else if (square.getMapElement() instanceof Explosion) {
-                        ((Explosion) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
-
-                        // Checking for mapElement another time, in case if the explosion map element was deleted during the tick.
-                        if (square.getMapElement() instanceof Explosion) {
                             mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                         }
                     }
@@ -114,9 +127,42 @@ public class ViewMap extends Actor {
                 }
             }
         }
+    }
 
-        for(ViewCharacter character : characterViews) {
-            character.draw(batch, parentAlpha);
+    /**
+     * Draws / updates all the queued effects
+     * @param batch the Batch used for drawing
+     */
+    private void drawEffects(Batch batch) {
+        float delta = Gdx.graphics.getDeltaTime();
+
+        while (!levelMap.getEffectsQueue().empty()) {
+            Gdx.app.debug("ViewMap", "Adding an effect to the effectViews");
+            effectViews.add(new ViewEffect(levelMap.getEffectsQueue().pop()));
+        }
+
+        // Iterating from end to start so that removing elements doesn't cause IndexOutOfBounds
+        for (int i = effectViews.size() - 1; i >= 0; i--) {
+            ViewEffect effect = effectViews.get(i);
+
+            // Updating animation & removing it if finished
+            boolean isActive = effect.update(delta);
+            if (!isActive) {
+                effectViews.remove(i);
+                continue;
+            }
+
+            // Drawing
+            TextureRegion effectTexture = resources.getMapSkin()
+                .getAtlas()
+                .findRegion(effect.getCurrentTextureName());
+
+            Gdx.app.debug("ViewMap", "Drawing texture " + effect.getCurrentTextureName());
+
+            if (effectTexture != null) {
+                Gdx.app.debug("ViewMap", "Drawing effect");
+                drawTextureRegion(batch, effectTexture, (int) effect.getX(), (int) effect.getY(), 0f, 2f);
+            }
         }
     }
 
@@ -129,14 +175,14 @@ public class ViewMap extends Actor {
 
         scaledTextureSize = Constants.TEXTURE_SIZE * Constants.SCALE;
         scaledTextureOrigin = scaledTextureSize / 2f;
-        totalWidth = Constants.TEXTURE_SIZE * mapGrid.getWidth() * Constants.SCALE;
-        totalHeight = Constants.TEXTURE_SIZE * mapGrid.getHeight() * Constants.SCALE;
+        totalWidth = Constants.TEXTURE_SIZE * levelMap.getWidth() * Constants.SCALE;
+        totalHeight = Constants.TEXTURE_SIZE * levelMap.getHeight() * Constants.SCALE;
 
         originX = centerX - totalWidth / 2;
         originY = centerY - totalHeight / 2;
     }
 
-    private void drawTextureRegion(Batch batch, TextureRegion textureRegion, int row, int col, float rotation) {
+    private void drawTextureRegion(Batch batch, TextureRegion textureRegion, int row, int col, float rotation, float scale) {
         batch.draw(
             textureRegion,
             originX + (row * scaledTextureSize),
@@ -145,9 +191,13 @@ public class ViewMap extends Actor {
             scaledTextureOrigin,
             scaledTextureSize,
             scaledTextureSize,
-            1,
-            1,
+            scale,
+            scale,
             rotation
         );
+    }
+
+    private void drawTextureRegion(Batch batch, TextureRegion textureRegion, int row, int col, float rotation) {
+        drawTextureRegion(batch, textureRegion, row, col, rotation, 1f);
     }
 }

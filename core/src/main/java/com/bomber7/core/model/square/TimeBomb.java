@@ -40,15 +40,18 @@ public class TimeBomb extends Bomb {
      * @param delta the elapsed time (in seconds) to decrease
      */
     public void tick(LevelMap map, float delta) {
+        final float animationSwapDelta = 0.5f;
+
         if (map == null) {
             throw new NullPointerException("LevelMap cannot be null");
         }
+
         if (this.timeRemaining > 0) {
             this.timeRemaining -= delta;
 
             // Switching between textures every 0.5 seconds
             animationTimer += delta;
-            if (animationTimer >= 0.5f) {
+            if (animationTimer >= animationSwapDelta) {
                 textureToggle = !textureToggle;
                 this.setTextureName(textureToggle ? TEXTURE_PREFIX + "-2" : TEXTURE_PREFIX + "-1");
                 animationTimer = 0f;

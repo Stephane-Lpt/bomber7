@@ -1,6 +1,8 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.entities.Character;
+import com.bomber7.utils.Effect;
+import com.bomber7.utils.EffectType;
 import com.bomber7.utils.SoundManager;
 import com.bomber7.utils.SoundType;
 
@@ -107,7 +109,11 @@ public abstract class Bomb extends MapElement {
         Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
             sq.clearMapElement();
-            sq.setMapElement(new Explosion(xCord, yCord));
+            m.addEffect(new Effect(
+                xCord,
+                yCord,
+                EffectType.EXPLOSION
+            ));
         }
     }
 
@@ -129,14 +135,13 @@ public abstract class Bomb extends MapElement {
 
         // Give a new bomb in the inventory
 
-
         // Change the state to EXPLODED when the bomb is activated
         setState(BombState.EXPLODED);
 
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
-        SoundManager.getInstance().play(SoundType.EXPLOSION);
 
+        SoundManager.getInstance().play(SoundType.EXPLOSION);
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
@@ -171,7 +176,7 @@ public abstract class Bomb extends MapElement {
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m, newX, newY);
-                    break;
+//                    break;
                 }
 
                 if (potentialSquare.getMapElement() instanceof Bomb) {
@@ -180,7 +185,6 @@ public abstract class Bomb extends MapElement {
                     otherBomb.activateBomb(m);
                     break;
                 }
-
 
                 // Regular propagation
                 onExplosion(m, newX, newY);

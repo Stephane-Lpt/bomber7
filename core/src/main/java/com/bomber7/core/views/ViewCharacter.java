@@ -2,6 +2,7 @@ package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -76,12 +77,15 @@ public class ViewCharacter extends Actor {
      */
     private final float nameLabelWidth;
 
-
-
     /**
      * Time elapsed since the last frame was rendered.
      */
     private float stateTime;
+
+    /**
+     * Font used to print character's info.
+     */
+    private BitmapFont font;
 
     /**
      * Constructs a new ViewCharacter instance.
@@ -95,6 +99,9 @@ public class ViewCharacter extends Actor {
         GlyphLayout nameContainer = new GlyphLayout();
         nameContainer.setText(resources.getSkin().getFont("pixelify-sm"), character.getName());
         nameLabelWidth = nameContainer.width;
+
+        BitmapFont originalFont = ResourceManager.getInstance().getSkin().getFont("pixelify-sm");
+        font = new BitmapFont(originalFont.getData(), originalFont.getRegion(), originalFont.usesIntegerPositions());
 
         createAnimations();
     }
@@ -114,7 +121,7 @@ public class ViewCharacter extends Actor {
         moveUp = createAnimation(region, 2, 3);
         moveDown = createAnimation(region, 1, 3);
         stand = createAnimation(region, 5, 1);
-        die = new Animation<>(FRAME_DURATION, region[3][2]);
+        die = new Animation<>(Constants.FRAME_DURATION, region[3][2]);
     }
 
     /**
@@ -156,6 +163,9 @@ public class ViewCharacter extends Actor {
      */
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        if (!character.isAlive()) {
+            font.setColor(ResourceManager.getInstance().getSkin().getColor("darkRed"));
+        }
         Animation<TextureRegion> currentAnimation = getCurrentAnimation();
         TextureRegion currentFrame = currentAnimation.getKeyFrame(stateTime, true);
         stateTime += Gdx.graphics.getDeltaTime();
@@ -164,25 +174,24 @@ public class ViewCharacter extends Actor {
         batch.draw(
             currentFrame,
             character.getPositionX(),
-            character.getPositionY(),
+            character.getPositionY() + Constants.TEXTURE_SIZE * Constants.SCALE,
             Constants.TEXTURE_SIZE * Constants.SCALE,
             Constants.TEXTURE_SIZE * Constants.SCALE
         );
 
         // Drawing character name
-        ResourceManager.getInstance().getSkin().getFont("pixelify-sm").draw(
+        font.draw(
             batch,
             character.getName(),
             character.getPositionX() - nameLabelWidth / 2 + (Constants.TEXTURE_SIZE * Constants.SCALE) / 2,
-            character.getPositionY() + Dimensions.COMPONENT_SPACING
+            character.getPositionY() + Dimensions.COMPONENT_SPACING + Constants.TEXTURE_SIZE * Constants.SCALE
         );
 
-        // TODO: create debug mode
+        // Drawing debug info
         if (true) {
             String debugPixelPos = "X: " + character.getPositionX() + ", Y: " + character.getPositionY();
             String debugMapPos = "mX: " + character.getMapX() + ", mY: " + character.getMapY();
             String debugState = "state: " + character.getMovingStatus();
-
 
             ResourceManager.getInstance().getSkin().getFont("pixelify-sm").draw(
                 batch,

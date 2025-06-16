@@ -39,20 +39,30 @@ public class HumanController {
      * accordingly.
      */
     public void processKeys() {
+        boolean anyKeyPressed = false;
+
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.UP))) {
             this.player.moveUp();
+            anyKeyPressed = true;
         }
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.DOWN))) {
             this.player.moveDown();
+            anyKeyPressed = true;
         }
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.LEFT))) {
             this.player.moveLeft();
+            anyKeyPressed = true;
         }
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.RIGHT))) {
             this.player.moveRight();
+            anyKeyPressed = true;
         }
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.DROP_BOMB))) {
             this.player.dropBomb();
+            anyKeyPressed = true;
+        }
+        if (!anyKeyPressed) {
+            this.player.setStandingStill();
         }
     }
 

@@ -12,6 +12,7 @@ import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 import com.bomber7.utils.SpawnPoints;
 
 import java.util.ArrayList;
@@ -84,6 +85,8 @@ public class BomberGame extends Game {
      * Launches the game.
      */
     public void start() {
+        SoundManager.getInstance().stopMusic();
+        SoundManager.getInstance().playMusic(SoundType.BEAST_MODE);
         // Printing gameCandidate for debug
         Gdx.app.debug("BomberGame", "GameCandidate: " + gameCandidate.toString());
         Gdx.app.debug("BomberGame", "Started game");
@@ -117,7 +120,7 @@ public class BomberGame extends Game {
             GameCharacter.TEST
         );
         HumanPlayer player3 = new HumanPlayer(
-            ConfigManager.getInstance().getConfig().getPlayerConfig(3),
+            ConfigManager.getInstance().getConfig().getPlayerConfig(2+1),
             levelMap,
             "Player 4",
             SpawnPoints.PLAYER_4.getX(),
@@ -155,7 +158,7 @@ public class BomberGame extends Game {
      * Pauses the game.
      */
     public void pause() {
-        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, true, true);
+        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, false, false   );
     }
 
     /**
@@ -168,13 +171,15 @@ public class BomberGame extends Game {
 
     /**
      * Returns the levelMap.
+     * @return the current levelMap of the game.
      */
     public LevelMap getLevelMap() {
         return levelMap;
     }
 
     /**
-     * Returns the players currently present in the game.
+     * Returns the human player controllers.
+     * @return the list of humanControllers.
      */
     public List<HumanController> getHumanControllers() {
         return humanControllers;

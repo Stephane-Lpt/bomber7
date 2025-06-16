@@ -32,15 +32,23 @@ public enum SpawnPoints {
      * @param x
      * @param y
      */
-    private SpawnPoints(int x, int y) {
+    SpawnPoints(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Getter for spawn point X coordinate (square coordinate).
+     * @return the X coordinate of the square of the spawnpoint
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Getter for spawn point Y coordinate (square coordinate).
+     * @return the Y coordinate of the square of the spawnpoint
+     */
     public int getY() {
         return y;
     }

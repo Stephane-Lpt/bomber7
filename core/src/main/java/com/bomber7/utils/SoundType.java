@@ -18,5 +18,15 @@ public enum SoundType {
      * Sound played when a bomb explodes.
      */
     EXPLOSION,
+
+    /**
+     * Beast mode music.
+     */
+    BEAST_MODE,
+
+    /**
+     * Elevator music.
+     */
+    ELEVATOR,
 }
 

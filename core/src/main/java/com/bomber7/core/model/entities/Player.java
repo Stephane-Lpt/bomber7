@@ -13,6 +13,7 @@ import com.bomber7.core.model.square.BombType;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.utils.GameCharacter;
+import com.bomber7.utils.Constants;
 import com.bomber7.core.model.square.TimeBomb;
 
 /**
@@ -50,7 +51,7 @@ public abstract class Player extends Character {
     public Player(String name, LevelMap map, int mapX, int mapY, int life, int speed, GameCharacter gameCharacter) {
         super(name, map, mapX, mapY, life, speed, gameCharacter);
         this.nbBomb = 1;
-        this.power = 1;
+        this.power = Constants.DEFAULT_BOMB_POWER;
         this.typeBomb = BombType.TIME; // Default bomb type is TIME
         this.triggerBombsDropped = new ArrayList<>();
     }
@@ -111,7 +112,9 @@ public abstract class Player extends Character {
      * @return true if the bomb was successfully dropped, false otherwise
      */
     public boolean dropBomb() {
-        if(!this.isAlive()) return false;
+        if (!this.isAlive()) {
+            return false;
+        };
 
         if (nbBomb >= 1) {
             Gdx.app.debug("Player", this.getName() + " dropped a bomb");

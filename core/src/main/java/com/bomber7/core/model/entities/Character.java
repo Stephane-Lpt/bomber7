@@ -262,7 +262,6 @@ public abstract class Character {
      * Caracter is standing still.
      */
     public void setStandingStill() {
-        Gdx.app.debug("STANDING_STILL", this.getName());
         this.movingStatus = CharacterState.STANDING_STILL;
     }
 
@@ -270,7 +269,9 @@ public abstract class Character {
      * Move character to the right.
      */
     public void moveRight() {
-        if(!this.isAlive()) return;
+        if(!this.isAlive()) {
+            return;
+        };
 
         if (checkMove(getPositionX() + speed, getPositionY())) {
             this.x += speed;
@@ -283,7 +284,9 @@ public abstract class Character {
      * Move character to the left.
      */
     public void moveLeft() {
-        if(!this.isAlive()) return;
+        if(!this.isAlive()) {
+            return;
+        };
 
         if (checkMove(getPositionX() - speed, getPositionY())) {
             this.x -= speed;
@@ -296,7 +299,9 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
-        if(!this.isAlive()) return;
+        if(!this.isAlive()) {
+            return;
+        };
 
         if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
@@ -309,7 +314,9 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
-        if(!this.isAlive()) return;
+        if(!this.isAlive()) {
+            return;
+        };
 
         if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
