@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.utils.Constants;
-import com.bomber7.core.model.square.BombState.State;
 
 
 /**
