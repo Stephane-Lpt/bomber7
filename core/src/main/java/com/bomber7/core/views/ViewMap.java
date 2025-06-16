@@ -9,6 +9,7 @@ import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
 import com.bomber7.utils.Constants;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -74,12 +75,15 @@ public class ViewMap extends Actor {
                     if (square.getMapElement() instanceof Bomb) {
                         Gdx.app.debug("ViewMap", "drawing bomb at pos " + row + ", " + col);
                         mapElementTextureRegion = resources.getItemsSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                        if (square.getMapElement() instanceof TimeBomb) {
+                            ((TimeBomb) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
+                        }
                     } else if (square.getMapElement() instanceof Wall) {
                         mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                     }
                 }
 
-                if (mapElementTextureRegion != null) {
+                if (mapElementTextureRegion != null && square.getMapElement() != null) {
                     drawTextureRegion(batch, mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
                 }
             }
