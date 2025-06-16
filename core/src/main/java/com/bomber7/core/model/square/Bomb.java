@@ -136,6 +136,7 @@ public abstract class Bomb extends MapElement {
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
 
+
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
