@@ -28,9 +28,9 @@ public enum SpawnPoints {
     private final int y;
 
     /**
-     *
-     * @param x
-     * @param y
+     * SpawnPoint contructor.
+     * @param x the x coordinate of the spawn point
+     * @param y the y coordinate of the spawn point
      */
     SpawnPoints(int x, int y) {
         this.x = x;

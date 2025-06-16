@@ -108,7 +108,7 @@ public final class LevelMapFactory {
         List<List<Square>> checkerboard = LevelMapFactory.parseCsv(
             backgroundCsvFile, breakableCsvFile, unbreakableCsvFile, LevelMapFactory.TEXTURE_MAP
         );
-        return new LevelMap(checkerboard, windowWidth, windowHeight);
+        return new LevelMap(mapName, checkerboard, windowWidth, windowHeight);
     }
 
     /**

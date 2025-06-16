@@ -18,6 +18,14 @@ import java.util.List;
 public abstract class Bomb extends MapElement {
 
     /**
+     * Constants representing different types of bombs.
+     * CLASSIC_BOMB is a standard bomb that explodes after being placed.
+     * TRIGGER_BOMB is a bomb that can be manually triggered by the player.
+     */
+    public static final int CLASSIC_BOMB = 0;
+    public static final int TRIGGER_BOMB = 1;
+
+    /**
      * The power of the bomb, which determines the range of its explosion.
      */
     private final int power;
@@ -133,8 +141,6 @@ public abstract class Bomb extends MapElement {
             throw new NullPointerException("LevelMap cannot be null");
         }
 
-        // Give a new bomb in the inventory
-
         // Change the state to EXPLODED when the bomb is activated
         setState(BombState.EXPLODED);
 
@@ -173,10 +179,14 @@ public abstract class Bomb extends MapElement {
                     break;
                 }
 
+
+
+
+
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m, newX, newY);
-//                    break;
+                    break;
                 }
 
                 if (potentialSquare.getMapElement() instanceof Bomb) {

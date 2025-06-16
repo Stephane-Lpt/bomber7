@@ -1,5 +1,13 @@
 package com.bomber7.core.screens;
 
+
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.map.LevelMapFactory;
+import com.bomber7.core.BomberGame;
+
+import java.nio.file.Path;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.bomber7.core.controller.HumanController;
@@ -48,7 +56,9 @@ public class GameScreen extends BomberScreen {
                 characterViews.add(characterView);
         }
 
-        ViewMap viewMap = new ViewMap(game.getLevelMap(), characterViews, resources);
+        ViewMap viewMap = new ViewMap(game.getCurrentMap(), resources);
+
+        /* =======[FULL FRAME]===================================================== */
 
         mainTable.add(viewMap);
 
@@ -67,9 +77,26 @@ public class GameScreen extends BomberScreen {
      * @param delta time since the last frame
      */
     public void render(float delta) {
+        super.render(delta);
+
         processInput();
 
-        super.render(delta);
+        game.logCurrentRound();
+
+        // Display current map name
+        Gdx.app.debug("GameScreen", "Current map: " + game.getCurrentMap().getMapName());
+
+        if (!game.isRoundCompleted()) {
+            game.simulateEndOfRound();
+
+            if (game.checkGameWin()) {
+                Gdx.app.debug("GameScreen", "Round completed. Advancing to next round...");
+                game.setRoundCompleted(true);
+                game.advanceToNextRound();
+            }
+        } else {
+            Gdx.app.debug("GameScreen", "Round already completed. Waiting for next round.");
+        }
     }
 
     @Override

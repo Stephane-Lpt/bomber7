@@ -20,7 +20,13 @@ public class TimeBomb extends Bomb {
      */
     public static final String TEXTURE_PREFIX = "time-bomb";
 
+    /**
+     * Timer to determine when to switch beetween textures.
+     */
     private float animationTimer = 0f;
+    /**
+     * Used to toggle between two bomb textures for blinking.
+     */
     private boolean textureToggle = false;
 
     /**
