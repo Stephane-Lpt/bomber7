@@ -163,8 +163,13 @@ public abstract class Bomb extends MapElement {
 
                 // Check if the explosion reaches a character
                 for (Character character : characters) {
-                    if (character.getMapX() == newX && character.getMapY() == newY && character.isAlive()) {
-                        character.removeOneLife();
+                    if (character.isAlive()) {
+                        if (
+                            (character.getMapX() == newX && character.getMapY() == newY)
+                            || character.getMapX() == this.x && character.getMapY() == this.y
+                        ) {
+                            character.removeOneLife();
+                        }
                     }
                 }
 
@@ -178,10 +183,6 @@ public abstract class Bomb extends MapElement {
                 if (potentialSquare == null || potentialSquare.getMapElement() instanceof UnbreakableWall) {
                     break;
                 }
-
-
-
-
 
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {

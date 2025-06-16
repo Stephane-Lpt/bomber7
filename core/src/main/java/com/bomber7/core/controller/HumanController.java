@@ -39,6 +39,10 @@ public class HumanController {
      * accordingly.
      */
     public void processKeys() {
+        if (!this.player.isAlive()) {
+            return;
+        }
+
         boolean anyKeyPressed = false;
 
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.UP))) {

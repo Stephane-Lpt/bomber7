@@ -94,6 +94,7 @@ public class ViewCharacter extends Actor {
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
+        Gdx.app.debug("ViewCharacter", character.getGameCharacter().getDrawableName());
         this.textureRegion = resources.getSpriteTextureRegion(character.getGameCharacter().getDrawableName());
         this.stateTime = 0f;
         GlyphLayout nameContainer = new GlyphLayout();
@@ -174,7 +175,7 @@ public class ViewCharacter extends Actor {
         batch.draw(
             currentFrame,
             character.getPositionX(),
-            character.getPositionY() + Constants.TEXTURE_SIZE * Constants.SCALE,
+            character.getPositionY(),
             Constants.TEXTURE_SIZE * Constants.SCALE,
             Constants.TEXTURE_SIZE * Constants.SCALE
         );
@@ -184,7 +185,7 @@ public class ViewCharacter extends Actor {
             batch,
             character.getName(),
             character.getPositionX() - nameLabelWidth / 2 + (Constants.TEXTURE_SIZE * Constants.SCALE) / 2,
-            character.getPositionY() + Dimensions.COMPONENT_SPACING + Constants.TEXTURE_SIZE * Constants.SCALE
+            character.getPositionY() + Dimensions.COMPONENT_SPACING
         );
 
         // Drawing debug info

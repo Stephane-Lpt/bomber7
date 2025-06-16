@@ -1,16 +1,13 @@
 package com.bomber7.core.model.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
-
-import static com.bomber7.utils.Constants.HITBOX_HEIGHT;
-import static com.bomber7.utils.Constants.HITBOX_WIDTH;
 
 /**
  * Classe Character.
@@ -71,11 +68,8 @@ public abstract class Character {
             throw new IllegalArgumentException("GameCharacter cannot be null");
         }
         this.name = name;
-        this.mapX = mapX;
-        this.mapY = mapY;
         this.map = map;
-        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
-        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
+        setPositionXY(mapX, mapY);
         this.life = life;
         this.speed = speed;
         this.gameCharacter = gameCharacter;
@@ -233,23 +227,15 @@ public abstract class Character {
     }
 
     /**
-     * Character current X-Axis position setter.
-     * @param newX The new x-position to set
+     * Character current XY position setter.
+     * @param newMapX The new x-position to set
+     * @param newMapY The new Y-position to set
      */
-    public void setPositionX(int newX) {
-        this.x = newX;
-        this.mapX = this.map.getSquareCoordinates(newX, this.y).getKey();
-    }
-
-    /**
-     * Character current Y-Axis position setter.
-     * @param newY The new y-position to set
-     * @throws IllegalPositionOperationException If character is moving of more than
-     *                                           1 square
-     */
-    public void setPositionY(int newY) {
-        this.y = newY;
-        this.mapY = this.map.getSquareCoordinates(this.x, newY).getValue();
+    public void setPositionXY(int newMapX, int newMapY) {
+        this.mapX = newMapX;
+        this.mapY = newMapY;
+        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
+        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
     }
 
     /* ------[OTHER]------------------------------------ */
@@ -274,7 +260,7 @@ public abstract class Character {
             this.isAlive = true;
             this.life = 1;
             this.speed = 1;
-            this.movingStatus = STANDING_STILL;
+            this.movingStatus = CharacterState.STANDING_STILL;
         } else {
             throw new IllegalStateException("Character is already alive.");
         }
@@ -286,7 +272,7 @@ public abstract class Character {
     public void moveRight() {
         if(!this.isAlive()) {
             return;
-        };
+        }
 
         if (checkMove(getPositionX() + speed, getPositionY())) {
             this.x += speed;
@@ -301,7 +287,7 @@ public abstract class Character {
     public void moveLeft() {
         if(!this.isAlive()) {
             return;
-        };
+        }
 
         if (checkMove(getPositionX() - speed, getPositionY())) {
             this.x -= speed;
@@ -316,7 +302,7 @@ public abstract class Character {
     public void moveDown() {
         if(!this.isAlive()) {
             return;
-        };
+        }
 
         if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
@@ -331,7 +317,7 @@ public abstract class Character {
     public void moveUp() {
         if(!this.isAlive()) {
             return;
-        };
+        }
 
         if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
@@ -358,10 +344,10 @@ public abstract class Character {
 
         // Define the four corners of the hitbox (top-left, top-right, bottom-left, bottom-right)
         int[][] hitboxCorners = {
-            {futureX - HITBOX_WIDTH / 2, futureY + HITBOX_HEIGHT / 2}, // top-left corner
-            {futureX + HITBOX_WIDTH / 2, futureY + HITBOX_HEIGHT / 2}, // top-right corner
-            {futureX - HITBOX_WIDTH / 2, futureY - HITBOX_HEIGHT / 2}, // bottom-left corner
-            {futureX + HITBOX_WIDTH / 2, futureY - HITBOX_HEIGHT / 2}  // bottom-right corner
+            {futureX - Constants.HITBOX_WIDTH / 2, futureY + Constants.HITBOX_HEIGHT / 2}, // top-left corner
+            {futureX + Constants.HITBOX_WIDTH / 2, futureY + Constants.HITBOX_HEIGHT / 2}, // top-right corner
+            {futureX - Constants.HITBOX_WIDTH / 2, futureY - Constants.HITBOX_HEIGHT / 2}, // bottom-left corner
+            {futureX + Constants.HITBOX_WIDTH / 2, futureY - Constants.HITBOX_HEIGHT / 2}  // bottom-right corner
         };
 
         // Check if all corners are on walkable squares

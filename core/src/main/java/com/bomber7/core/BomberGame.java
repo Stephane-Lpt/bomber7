@@ -5,42 +5,21 @@ import com.bomber7.core.controller.HumanController;
 import com.bomber7.core.model.GameCandidate;
 import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.GameCharacter;
 import com.bomber7.utils.GameMap;
-import com.bomber7.utils.PlayerBlueprint;
 import com.bomber7.utils.PlayerStrategy;
-import com.bomber7.utils.ProjectPaths;
-import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.utils.GameCharacter;
-import com.bomber7.utils.GameMap;
 import com.bomber7.utils.ScreenType;
 import com.bomber7.utils.SpawnPoints;
 import com.bomber7.core.model.entities.Character;
 
-import java.lang.reflect.Array;
-import java.nio.file.Path;
-import com.bomber7.utils.ProjectPaths;
-import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.map.LevelMapFactory;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
-import com.badlogic.gdx.Screen;
 import com.bomber7.utils.SoundType;
-import com.bomber7.utils.SpawnPoints;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -98,19 +77,7 @@ public class BomberGame extends Game {
 
         humanControllers = new ArrayList<>();
 
-//        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
-        start();
-    }
-
-    /**
-     * Called when the application is closed.
-     * Disposes of game resources to free up memory.
-     */
-    @Override
-    public void dispose() {
-        ResourceManager.getInstance().dispose();
-        SoundManager.getInstance().dispose();
-        super.dispose();
+        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
 
     /**
@@ -175,6 +142,14 @@ public class BomberGame extends Game {
         currentRound = 1;
         roundCompleted = false;
         gameRound(mapList.get((currentRound - 1) % mapList.size()));
+
+        for (Character character : currentMap.getCharacters()) {
+            if (character instanceof HumanPlayer) {
+                humanControllers.add(new HumanController((HumanPlayer) character));
+            }
+        }
+
+        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
     }
 
     /**
@@ -209,67 +184,67 @@ public class BomberGame extends Game {
         return false;
     }
 
-public void gameRound(LevelMap levelMap) {
-    currentMap = levelMap;
-    currentMap.getCharacters().clear(); // Remove any old references
+    public void gameRound(LevelMap levelMap) {
+        currentMap = levelMap;
+        currentMap.getCharacters().clear(); // Remove any old references
 
-    if (players.isEmpty()) {
-        // First round: instantiate players and add to both players list and current map
-        System.out.println("1st INIT");
-        for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            if (gameCandidate.getPlayerBlueprints()[i] != null) {
-                SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
-                if (gameCandidate.getPlayerBlueprints()[i].getStrategy() == PlayerStrategy.HUMAN) {
-                    HumanPlayer humanPlayer = new HumanPlayer(
-                        ConfigManager.getInstance().getConfig().getPlayerConfig(i),
-                        currentMap,
-                        gameCandidate.getPlayerBlueprints()[i].getName(),
-                        spawnPointPlayer.getX(),
-                        spawnPointPlayer.getY(),
-                        gameCandidate.getPlayerBlueprints()[i].getCharacter()
-                    );
-                    players.add(humanPlayer);
-                    currentMap.addCharacter(humanPlayer);
+        if (players.isEmpty()) {
+            // First round: instantiate players and add to both players list and current map
+            Gdx.app.debug("BomberGame", "1st INIT");
+            for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
+                if (gameCandidate.getPlayerBlueprints()[i] != null) {
+                    SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
+                    if (gameCandidate.getPlayerBlueprints()[i].getStrategy() == PlayerStrategy.HUMAN) {
+                        HumanPlayer humanPlayer = new HumanPlayer(
+                            ConfigManager.getInstance().getConfig().getPlayerConfig(i),
+                            currentMap,
+                            gameCandidate.getPlayerBlueprints()[i].getName(),
+                            spawnPointPlayer.getX(),
+                            spawnPointPlayer.getY(),
+                            gameCandidate.getPlayerBlueprints()[i].getCharacter()
+                        );
+                        players.add(humanPlayer);
+                        currentMap.addCharacter(humanPlayer);
+                    }
+                    // Add AIPlayer instantiation here if needed
                 }
-                // Add AIPlayer instantiation here if needed
+            }
+        } else {
+            // Not the first round: reset all players and add them to the new map
+            for (int i = 0; i < players.size(); i++) {
+                Character character = players.get(i);
+                SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
+                resetPlayer(character, spawnPointPlayer);
+                System.out.println("RESET PLAYER: " + character.getName() + " at " + spawnPointPlayer);
+                character.setMap(currentMap); // Make sure the player references the new map
+                System.out.println("ADD PLAYER: " + character.getName() + " to map " + currentMap.getMapName());
+                currentMap.addCharacter(character);
             }
         }
-    } else {
-        // Not the first round: reset all players and add them to the new map
-        for (int i = 0; i < players.size(); i++) {
-            Character character = players.get(i);
-            SpawnPoints spawnPointPlayer = SpawnPoints.values()[i];
-            resetPlayer(character, spawnPointPlayer);
-            System.out.println("RESET PLAYER: " + character.getName() + " at " + spawnPointPlayer);
-            character.setMap(currentMap); // Make sure the player references the new map
-            System.out.println("ADD PLAYER: " + character.getName() + " to map " + currentMap.getMapName());
-            currentMap.addCharacter(character);
+
+        ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+    }
+
+
+    public void advanceToNextRound() {
+        Gdx.app.debug("BomberGame", "Advance to next round called. Current round: " + currentRound + ", Total rounds: " + gameCandidate.getRounds());
+
+        if (currentRound < gameCandidate.getRounds()) {
+            currentRound++;
+            roundCompleted = false;
+
+            // Get next map (cycle through maps)
+            LevelMap nextMap = mapList.get((currentRound - 1) % mapList.size());
+            gameRound(nextMap);
+        } else {
+            Gdx.app.debug("BomberGame", "All rounds completed. Returning to main menu.");
+            this.stop();
         }
     }
 
-    ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
-}
-
-
-public void advanceToNextRound() {
-    Gdx.app.debug("BomberGame", "Advance to next round called. Current round: " + currentRound + ", Total rounds: " + gameCandidate.getRounds());
-
-    if (currentRound < gameCandidate.getRounds()) {
-        currentRound++;
-        roundCompleted = false;
-
-        // Get next map (cycle through maps)
-        LevelMap nextMap = mapList.get((currentRound - 1) % mapList.size());
-        gameRound(nextMap);
-    } else {
-        Gdx.app.debug("BomberGame", "All rounds completed. Returning to player setup screen.");
-        ScreenManager.getInstance().showScreen(ScreenType.PLAYER_SETUP, false, false);
+    public LevelMap getCurrentMap() {
+        return currentMap;
     }
-}
-
-public LevelMap getCurrentMap() {
-    return currentMap;
-}
 
     /**
      * Simulates the end of a round by marking all players except one as dead.
@@ -334,8 +309,10 @@ public LevelMap getCurrentMap() {
     }
 
     private void resetPlayer(Character player, SpawnPoints spawnPointPlayer) {
-        player.setPositionX(spawnPointPlayer.getX());
-        player.setPositionY(spawnPointPlayer.getY());
+        player.setPositionXY(
+            spawnPointPlayer.getX(),
+            spawnPointPlayer.getY()
+        );
         if (!player.isAlive()) {
             player.ressucitate();
         }
@@ -368,6 +345,7 @@ public LevelMap getCurrentMap() {
      */
     public void stop() {
         gameCandidate.reset();
+        SoundManager.getInstance().stopMusic();
         ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
 
@@ -377,5 +355,16 @@ public LevelMap getCurrentMap() {
      */
     public List<HumanController> getHumanControllers() {
         return humanControllers;
+    }
+
+        /**
+     * Called when the application is closed.
+     * Disposes of game resources to free up memory.
+     */
+    @Override
+    public void dispose() {
+        ResourceManager.getInstance().dispose();
+        SoundManager.getInstance().dispose();
+        super.dispose();
     }
 }
