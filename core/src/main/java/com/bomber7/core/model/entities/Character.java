@@ -3,7 +3,6 @@ package com.bomber7.core.model.entities;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
-import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
@@ -225,7 +224,7 @@ public abstract class Character {
         }
         if (this.life == 0) {
             this.isAlive = false;
-            this.movingStatus = CharacterState.DIE;
+            this.movingStatus = CharacterState.DEAD;
         }
     }
 

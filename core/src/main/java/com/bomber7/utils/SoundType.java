@@ -13,5 +13,10 @@ public enum SoundType {
      * Sound played when clicking on a UI element.
      */
     CLICK,
+
+    /**
+     * Sound played when a bomb explodes.
+     */
+    EXPLOSION,
 }
 

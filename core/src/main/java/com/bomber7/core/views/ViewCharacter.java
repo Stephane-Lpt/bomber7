@@ -76,10 +76,6 @@ public class ViewCharacter extends Actor {
      */
     private final float nameLabelWidth;
 
-    /**
-     * Duration of the frame.
-     */
-    private static final float FRAME_DURATION = 0.1f;
 
 
     /**
@@ -133,7 +129,7 @@ public class ViewCharacter extends Actor {
         for (int i = 0; i < frameCount; i++) {
             frames[i] = region[row][i];
         }
-        return new Animation<>(FRAME_DURATION, frames);
+        return new Animation<>(Constants.FRAME_DURATION, frames);
     }
 
     /**
@@ -150,7 +146,7 @@ public class ViewCharacter extends Actor {
             mirroredFrames[i] = new TextureRegion(frames[i]);
             mirroredFrames[i].flip(true, false);
         }
-        return new Animation<>(FRAME_DURATION, mirroredFrames);
+        return new Animation<>(Constants.FRAME_DURATION, mirroredFrames);
     }
 
     /**

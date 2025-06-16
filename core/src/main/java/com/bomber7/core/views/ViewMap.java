@@ -7,6 +7,7 @@ import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Bomb;
+import com.bomber7.core.model.square.Explosion;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
@@ -72,27 +73,44 @@ public class ViewMap extends Actor {
             for (int row = 0; row < mapGrid.getWidth(); row++) {
                 Square square = mapGrid.getSquare(row, col);
 
+                // Background
                 TextureRegion squareTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getTextureName());
                 drawTextureRegion(batch, squareTextureRegion, row, col, square.computeRotation());
 
-                TextureRegion mapElementTextureRegion = null;
-
+                // MapElement
                 if (square.hasMapElement()) {
-                    if (square.getMapElement() instanceof Bomb) {
-//                        mapElementTextureRegion = resources.getSpriteTextureRegion(square.getMapElement().getTextureName());
-                        // TODO: CORENTIN DOIT FAIRE EN SORTE QUE CA DESSINNE LA BONNE TEXTURE
-                        mapElementTextureRegion = resources.getSpriteTextureRegion("time_bomb");
-                        Gdx.app.debug("ViewMap", "drawing bomb at pos " + row + ", " + col);
+                    TextureRegion mapElementTextureRegion = null;
+
+                    // Wall
+                    if (square.getMapElement() instanceof Wall) {
+                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    }
+
+                    // Bomb
+                    else if (square.getMapElement() instanceof Bomb) {
+                        // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
                         }
-                    } else if (square.getMapElement() instanceof Wall) {
-                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    }
-                }
 
-                if (mapElementTextureRegion != null && square.getMapElement() != null) {
-                    drawTextureRegion(batch, mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
+                        if (square.hasMapElement()) {
+                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                        }
+                    }
+                    // Explosion
+                    else if (square.getMapElement() instanceof Explosion) {
+                        ((Explosion) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
+
+                        // Checking for mapElement another time, in case if the explosion map element was deleted during the tick.
+                        if (square.getMapElement() instanceof Explosion) {
+                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                        }
+                    }
+
+                    // Actually drawing the mapElement
+                    if (mapElementTextureRegion != null && square.hasMapElement()) {
+                        drawTextureRegion(batch, mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
+                    }
                 }
             }
         }

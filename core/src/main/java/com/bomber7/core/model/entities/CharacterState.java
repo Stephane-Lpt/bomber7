@@ -15,5 +15,5 @@ public enum CharacterState {
         /** The character is moving to the right. */
         MOVING_RIGHT,
         /** The character has died. */
-        DIE
+        DEAD
 }

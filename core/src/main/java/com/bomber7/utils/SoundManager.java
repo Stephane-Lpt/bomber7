@@ -48,6 +48,7 @@ public final class SoundManager {
     public void initialize() {
         load(SoundType.HOVER, "sounds/hover.wav");
         load(SoundType.CLICK, "sounds/click.wav");
+        load(SoundType.EXPLOSION, "sounds/explosion.mp3");
     }
 
     /**
