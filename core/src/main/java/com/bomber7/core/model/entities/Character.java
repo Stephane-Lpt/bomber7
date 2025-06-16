@@ -271,6 +271,16 @@ public abstract class Character {
         this.movingStatus = STANDING_STILL;
     }
 
+    public void ressucitate() {
+        if (!this.isAlive) {
+            this.isAlive = true;
+            this.life = 1;
+            this.movingStatus = STANDING_STILL;
+        } else {
+            throw new IllegalStateException("Character is already alive.");
+        }
+    }
+
     /**
      * Move character to the right.
      */

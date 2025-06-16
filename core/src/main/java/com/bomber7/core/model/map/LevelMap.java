@@ -15,6 +15,9 @@ import org.apache.commons.lang3.tuple.Pair;
  */
 public class LevelMap {
 
+    /** The name of the map. */
+    private String mapName;
+
     /** Width of the window in pixels. */
     private int windowWidth;
     /** Height of the window in pixels. */
@@ -33,7 +36,8 @@ public class LevelMap {
      * @param windowWidth the width of the window in pixels
      * @param windowHeight the height of the window in pixels
      */
-    public LevelMap(List<List<Square>> checkerboard, int windowWidth, int windowHeight) {
+    public LevelMap(String mapName, List<List<Square>> checkerboard, int windowWidth, int windowHeight) {
+        this.mapName = mapName;
         this.checkerboard = checkerboard;
         this.characters = new ArrayList<>();
         this.windowWidth = windowWidth;
@@ -88,6 +92,10 @@ public class LevelMap {
      */
     public int getHeight() {
         return checkerboard.size();
+    }
+
+    public String getMapName() {
+        return mapName;
     }
 
     /**
