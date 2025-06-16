@@ -127,6 +127,9 @@ public abstract class Bomb extends MapElement {
             throw new NullPointerException("LevelMap cannot be null");
         }
 
+        // Give a new bomb in the inventory
+
+
         // Change the state to EXPLODED when the bomb is activated
         setState(BombState.EXPLODED);
 

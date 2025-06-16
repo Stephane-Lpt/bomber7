@@ -9,8 +9,10 @@ import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
+import com.bomber7.core.model.square.Bomb;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -86,6 +88,20 @@ public class ViewMap extends Actor {
                 if (mapElementTextureRegion != null) {
                     drawTextureRegion(mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
                 }
+
+
+                if (square.hasMapElement() && square.getMapElement() instanceof Bomb) {
+                    Bomb bomb = (Bomb) square.getMapElement();
+                    ViewBomb viewBomb = new ViewBomb(bomb, resourceManager);
+                    TextureRegion currentFrame = viewBomb.getCurrentAnimationFrame();
+                    batch.draw(
+                        currentFrame,
+                        originX + (row * scaledTextureSize),
+                        originY + (col * scaledTextureSize),
+                        scaledTextureSize,
+                        scaledTextureSize
+                    );
+                }
             }
         }
 
@@ -95,7 +111,6 @@ public class ViewMap extends Actor {
                 viewCharacter.renderCharacter((SpriteBatch) batch);
             }
         }
-
         spriteBatch.end();
     }
 

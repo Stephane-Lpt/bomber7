@@ -110,6 +110,11 @@ public abstract class Player extends Character {
      * @return true if the bomb was successfully dropped, false otherwise
      */
     public boolean dropBomb() {
+
+        if (nbBomb == 0) {
+            this.nbBomb = 1; // Ensure at least one bomb is available
+        }
+
         if (nbBomb >= 1) {
             Bomb bombToDrop;
             switch (this.typeBomb) {

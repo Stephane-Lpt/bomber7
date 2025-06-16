@@ -29,12 +29,12 @@ public class ViewBomb {
     /**
      * The number of columns in the sprite sheet.
      */
-    private final float FRAME_COLS = 8;
+    private final int FRAME_COLS = 8;
 
     /**
      * The numbers of rows.
      */
-    private final float FRAME_ROWS = 8;
+    private final int FRAME_ROWS = 8;
 
     /**
      * Animation for the active bomb state.
@@ -58,7 +58,7 @@ public class ViewBomb {
      */
     public ViewBomb(Bomb bomb, ResourceManager resources) {
         this.bomb = bomb;
-        this.texture = resources.getBombTexture(); // Assuming a method to get bomb texture
+        this.texture = resources; // SVP
         createAnimations();
     }
 
@@ -93,20 +93,12 @@ public class ViewBomb {
     }
 
     /**
-     * Renders the bomb on the screen.
-     * @param batch The SpriteBatch used for rendering.
+     * Retrieves the current animation frame based on the bomb's state.
+     * @return the current frame of the animation
      */
-    public void renderBomb(SpriteBatch batch) {
+    public TextureRegion getCurrentAnimationFrame() {
         Animation<TextureRegion> currentAnimation = getCurrentAnimation();
-        TextureRegion currentFrame = currentAnimation.getKeyFrame(Gdx.graphics.getDeltaTime(), true);
-
-        batch.draw(
-            currentFrame,
-            bomb.getX(),
-            bomb.getY(),
-            Constants.TEXTURE_SIZE * Constants.SCALE,
-            Constants.TEXTURE_SIZE * Constants.SCALE
-        );
+        return currentAnimation.getKeyFrame(Gdx.graphics.getDeltaTime(), true);
     }
 
     /**
