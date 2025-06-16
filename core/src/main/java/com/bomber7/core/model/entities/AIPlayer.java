@@ -18,7 +18,7 @@ public class AIPlayer extends Player {
      * @param gameCharacter The game character type
      */
     public AIPlayer(LevelMap map, int mapX, int mapY, GameCharacter gameCharacter) {
-        super("AI", map, mapX, mapY, 1, 1, gameCharacter);
+        super("AI", map, mapX, mapY, 1, 32, gameCharacter);
     }
 
     /**
@@ -79,54 +79,39 @@ public class AIPlayer extends Player {
     private void moveTowardsPlayer(Player player) {
         int playerX = player.getMapX();
         int playerY = player.getMapY();
-        boolean moved = false;
-        if (this.getMapX() < playerX && checkMove(this.getMapX() + this.getSpeed(), this.getMapY())) {
+        if (this.getMapX() < playerX) {
             this.moveRight();
-            moved = true;
-        } else if (this.getMapX() > playerX && checkMove(this.getMapX() - this.getSpeed(), this.getMapY())) {
+        } else if (this.getMapX() > playerX) {
             this.moveLeft();
-            moved = true;
         }
-        if (this.getMapY() < playerY && checkMove(this.getMapX(), this.getMapY() + this.getSpeed())) {
+        if (this.getMapY() < playerY) {
             this.moveUp();
-            moved = true;
-        } else if (this.getMapY() > playerY && checkMove(this.getMapX(), this.getMapY() - this.getSpeed())) {
+        } else if (this.getMapY() > playerY) {
             this.moveDown();
-            moved = true;
-        }
-        if (!moved) {
-            moveRandomly();
         }
     }
 
-    /**
-     * Moves the AI player randomly.
-     * This method is called when no players are found or when the AI cannot move towards a player.
-     */
-    private void moveRandomly() {
-        int direction = (int) (Math.random() * 4);
-        switch (direction) {
-            case 0:
-                if (checkMove(this.getMapX() + this.getSpeed(), this.getMapY())) {
-                    this.moveRight();
+        /**
+         * Moves the AI player randomly.
+         * This method is called when no players are found or when the AI cannot move towards a player.
+         */
+        private void moveRandomly() {
+            int initialX = this.getMapX();
+            int initialY = this.getMapY();
+            Runnable[] moves = new Runnable[] {
+                this::moveRight,
+                this::moveLeft,
+                this::moveUp,
+                this::moveDown
+            };
+            java.util.Collections.shuffle(java.util.Arrays.asList(moves));
+            for (Runnable move : moves) {
+                move.run();
+                if (this.getMapX() != initialX || this.getMapY() != initialY) {
+                    break; 
                 }
-                break;
-            case 1:
-                if (checkMove(this.getMapX() - this.getSpeed(), this.getMapY())) {
-                    this.moveLeft();
-                }
-                break;
-            case 2:
-                if (checkMove(this.getMapX(), this.getMapY() + this.getSpeed())) {
-                    this.moveUp();
-                }
-                break;
-            case 3:
-                if (checkMove(this.getMapX(), this.getMapY() - this.getSpeed())) {
-                    this.moveDown();
-                }
-                break;
+            }
         }
-    }
+
 
 }

@@ -27,8 +27,8 @@ class AIPlayerTest {
         levelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
         aiPlayer = new AIPlayer(levelMap, 1, 1, gameCharacter);
         players = new Player[] {
-            new Player("Player1", levelMap, 0, 24, 3, 1, gameCharacter) {},
-            new Player("Player2", levelMap, 0, 34, 3, 1, gameCharacter) {}
+            new Player("Player2", levelMap, 0, 34, 3, 1, gameCharacter) {}, 
+            new Player("Player1", levelMap, 0, 24, 3, 1, gameCharacter) {}
         };
     }
 
@@ -56,7 +56,6 @@ class AIPlayerTest {
 
     }
 
-
     /**
      * Tests the AIPlayer's movement when there are no players.
      * The AI should move randomly when no players are present.
@@ -64,10 +63,10 @@ class AIPlayerTest {
     @Test
     void testMoveRandomlyWhenNoPlayers() {
         Player[] noPlayers = new Player[0];
-        int initialX = aiPlayer.getPositionX();
-        int initialY = aiPlayer.getPositionY();
+        int initialX = aiPlayer.getMapX();
+        int initialY = aiPlayer.getMapY();
         aiPlayer.moveAI(noPlayers);
-        assertTrue(initialX != aiPlayer.getPositionX() || initialY != aiPlayer.getPositionY(),
+        assertTrue(initialX != aiPlayer.getMapX() || initialY != aiPlayer.getMapY(),
             "AI should move randomly when no players are present");
     }
 
@@ -80,6 +79,6 @@ class AIPlayerTest {
         Player nearestPlayer = players[1];
         Player foundPlayer = aiPlayer.findNearestPlayer(players);
         assertEquals(nearestPlayer, foundPlayer, 
-        "The nearest player should be Player2 at (3,3), and not Player1 at (5,5)");
+        "The nearest player should be Player1 at (0,24), and not Player2 at (0,34)");
     }
 }
