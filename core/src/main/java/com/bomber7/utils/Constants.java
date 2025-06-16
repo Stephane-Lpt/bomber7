@@ -35,4 +35,8 @@ public final class Constants {
      * The size in pixels of map textures.
      */
     public static final int TEXTURE_SIZE = 32;
+
+    public static final int HITBOX_WIDTH = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.75f);
+    public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
+
 }
