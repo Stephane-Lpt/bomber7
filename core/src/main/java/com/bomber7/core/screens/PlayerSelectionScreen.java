@@ -90,7 +90,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
 
                 ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, true, false);
             }
-        }, resources));
+        }));
 
         goToMapSelectionButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class PlayerSelectionScreen extends BomberScreen implements Observer {
 
                 ScreenManager.getInstance().showScreen(ScreenType.MAP_SELECTION, true, true);
             }
-        }, resources));
+        }));
     }
 
     @Override

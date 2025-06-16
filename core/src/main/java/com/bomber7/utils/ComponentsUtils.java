@@ -24,11 +24,10 @@ public final class ComponentsUtils {
      * using the {@link SoundType#CLICK} sound type.
      *
      * @param original the original {@code ClickListener} to wrap.
-     * @param resources the {@code ResourceManager} used to play the sound.
      * @return a new {@code ClickListener} that adds a sound effect to the {@code touchDown} event,
      *         while delegating all events to the original listener.
      */
-    public static ClickListener addSoundEffect(ClickListener original, ResourceManager resources) {
+    public static ClickListener addSoundEffect(ClickListener original) {
         return new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -37,7 +36,7 @@ public final class ComponentsUtils {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                resources.getSound().play(SoundType.CLICK);
+                SoundManager.getInstance().play(SoundType.CLICK);
                 return original.touchDown(event, x, y, pointer, button);
             }
 

@@ -5,35 +5,55 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bomber7.utils.Language;
-import com.bomber7.utils.SoundManager;
 
-// TODO : Make ResourcesManager a singleton
 /**
- * ResourceManager contains all the resources used by the game.
+ * A singleton manager responsible for loading, saving, and managing the resources used in the game (textures, skin, bundles).
  */
 public final class ResourceManager {
     /**
+     * The singleton instance of the ResourceManager.
+     */
+    private static ResourceManager instance;
+    /**
      * Skin object that contains UI textures and style definitions.
      */
-    private final Skin skin;
+    private Skin skin;
     /**
      * Skin object that contains map textures and style definitions.
      */
-    private final Skin mapSkin;
+    private Skin mapSkin;
     /**
      * I18NBundle object that contains localized strings used in the game.
      */
     private I18NBundle bundle;
 
     /**
-     * GameSounds object that encapsulates game sound effects.
+     * Private constructor to enforce singleton pattern.
      */
-    private final SoundManager sound;
+    private ResourceManager() {
+        super();
+    }
 
     /**
-     * Initializes all resources.
+     * Retrieves the singleton instance of the {@code ConfigManager}.
+     *
+     * @return the single {@code ConfigManager} instance.
      */
-    public ResourceManager() {
+    public static ResourceManager getInstance() {
+        if (instance == null) {
+            instance = new ResourceManager();
+        }
+        return instance;
+    }
+
+    /**
+     * Initializes the ResourceManager manager.
+     * <p>
+     * This method must be called before any config access occurs.
+     * </p>
+     *
+     */
+    public void initialize() {
         skin = new Skin(
             Gdx.files.internal("skin/ui/uiskin.json"),
             new TextureAtlas(Gdx.files.internal("skin/ui/uiskin.atlas"))
@@ -44,7 +64,6 @@ public final class ResourceManager {
         );
         Language language = ConfigManager.getInstance().getConfig().getLanguage();
         bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/" + language.toString().toLowerCase()));
-        sound = new SoundManager();
     }
 
     /**
@@ -53,7 +72,7 @@ public final class ResourceManager {
      */
     public void dispose() {
         skin.dispose();
-        sound.dispose();
+        mapSkin.dispose();
     }
 
     /**
@@ -83,16 +102,6 @@ public final class ResourceManager {
      */
     public String getString(String key) {
         return bundle.get(key);
-    }
-
-
-    /**
-     * Returns the sound manager.
-     *
-     * @return the {@link SoundManager} object containing sound effects
-     */
-    public SoundManager getSound() {
-        return sound;
     }
 
     /**

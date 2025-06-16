@@ -90,21 +90,21 @@ public class MainMenuScreen extends BomberScreen {
             public void clicked(InputEvent event, float x, float y) {
                 ScreenManager.getInstance().showScreen(ScreenType.PLAYER_SETUP, true, false);
             }
-        }, resources));
+        }));
 
         settingsButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, true, false);
             }
-        }, resources));
+        }));
 
         quitButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
-        }, resources));
+        }));
     }
 
     @Override
