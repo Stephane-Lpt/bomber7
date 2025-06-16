@@ -25,7 +25,7 @@ public final class ResourceManager {
     /**
      * Skin object that contains character textures and style definitions.
      */
-    private final Skin characterSkin;
+    private Skin characterSkin;
     /**
      * I18NBundle object that contains localized strings used in the game.
      */
