@@ -4,6 +4,7 @@ package com.bomber7.core.screens;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
+import com.bomber7.core.BomberGame;
 
 import java.nio.file.Path;
 import com.badlogic.gdx.Game;
@@ -42,7 +43,7 @@ public class GameScreen extends BomberScreen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        /* =======[BUTTON]=============================================== */
+        /* =======[BUTTON]========================================================= */
 
         /* Buttons to go to key bindings menu. */
         TextButton settingsButton = new TextButton(resources.getString("options"), resources.getSkin());
@@ -59,18 +60,11 @@ public class GameScreen extends BomberScreen {
             .height(Dimensions.BUTTON_HEIGHT);
         mainTable.row();
 
-        /* =======[MAP VIEW]=============================================== */
+        /* =======[MAP VIEW]======================================================= */
 
-        /* Path to the tileset JSON file. */
-        Path tilesetJsonPath = ProjectPaths.getTileset();
-        /* Map name for the current game. */
-        String mapName = "foy";
-        /* Create a LevelMapFactory to load the map. */
-        LevelMap levelMap = LevelMapFactory.createLevelMap(mapName, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        /* Map view of the game. */
-        ViewMap viewMap = new ViewMap(levelMap, resources);
+        ViewMap viewMap = new ViewMap(game.getCurrentMap(), resources);
 
-        /* =======[FULL FRAME]=============================================== */
+        /* =======[FULL FRAME]===================================================== */
 
         mainTable.add(viewMap);
         this.addActor(mainTable);
@@ -83,12 +77,27 @@ public class GameScreen extends BomberScreen {
     public void initController() {
 
     }
-    /**
-     * Update the game screen for each frame.
-     * @param delta time since the last frame
-     */
+
+    @Override
     public void render(float delta) {
         super.render(delta);
+
+        game.logCurrentRound();
+
+        //display current map name
+        Gdx.app.debug("GameScreen", "Current map: " + game.getCurrentMap().getMapName());
+        
+        if (!game.isRoundCompleted()) {
+            game.simulateEndOfRound();
+
+            if (game.checkGameWin()) {
+                Gdx.app.debug("GameScreen", "Round completed. Advancing to next round...");
+                game.setRoundCompleted(true);
+                game.advanceToNextRound();
+            }
+        } else {
+            Gdx.app.debug("GameScreen", "Round already completed. Waiting for next round.");
+        }
     }
 
     @Override

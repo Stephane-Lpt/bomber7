@@ -51,6 +51,14 @@ public class GameCandidate {
     }
 
     /**
+     * Returns the player blueprints as an array of {@code PlayerBlueprint}.
+     * @return the player blueprints
+     */
+    public PlayerBlueprint[] getPlayerBlueprints() {
+        return playerBlueprints;
+    }
+
+    /**
      * Returns the selected maps as a list of {@code GameMap}.
      * @return the maps list
      */

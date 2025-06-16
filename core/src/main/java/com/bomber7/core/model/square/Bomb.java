@@ -13,7 +13,7 @@ import java.util.List;
  * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
  */
-public abstract abstract class Bomb extends MapElement {
+public abstract class Bomb extends MapElement {
 
     /**
      * Constants representing different types of bombs.

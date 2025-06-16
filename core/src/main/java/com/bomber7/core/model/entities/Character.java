@@ -212,6 +212,10 @@ public abstract class Character {
         }
     }
 
+    public void setMap(LevelMap newMap) {
+        this.map = newMap;
+    }
+
     /**
      * Increases the character's life by one.
      */
@@ -269,6 +273,17 @@ public abstract class Character {
      */
     public void setStandingStill() {
         this.movingStatus = STANDING_STILL;
+    }
+
+    public void ressucitate() {
+        if (!this.isAlive) {
+            this.isAlive = true;
+            this.life = 1;
+            this.speed = 1;
+            this.movingStatus = STANDING_STILL;
+        } else {
+            throw new IllegalStateException("Character is already alive.");
+        }
     }
 
     /**
