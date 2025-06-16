@@ -195,13 +195,13 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             public void clicked(InputEvent event, float x, float y) {
                 playerBlueprint.setCharacter(playerBlueprint.getCharacter().previous());
             }
-        }, resources));
+        }));
         changePlayerSkinRightButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 playerBlueprint.setCharacter(playerBlueprint.getCharacter().next());
             }
-        }, resources));
+        }));
 
         // Buttons to change AI difficulty (Peaceful, Beginner or Pro)
         changePlayerStrategyLeftButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
@@ -209,13 +209,13 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             public void clicked(InputEvent event, float x, float y) {
                 playerBlueprint.setStrategy(playerBlueprint.getStrategy().previous());
             }
-        }, resources));
+        }));
         changePlayerStrategyRightButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 playerBlueprint.setStrategy(playerBlueprint.getStrategy().next());
             }
-        }, resources));
+        }));
 
         addPlayerButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -227,14 +227,14 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
                 // TODO : make sure that observers are unsubscribed at some point
                 playerBlueprint.notifyObservers();
             }
-        }, resources));
+        }));
 
         characterBackgroundButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 playerBlueprint.dispose();
             }
-        }, resources));
+        }));
     }
 
     /**

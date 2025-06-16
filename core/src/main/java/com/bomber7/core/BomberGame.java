@@ -1,9 +1,11 @@
 package com.bomber7.core;
 
 import com.badlogic.gdx.Game;
+import com.bomber7.core.model.GameCandidate;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.bomber7.utils.SoundManager;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -13,9 +15,11 @@ import com.badlogic.gdx.Gdx;
  */
 public class BomberGame extends Game {
     /**
-     * Resource manager responsible for loading and managing game assets.
+     * GameCandidate that holds the players, maps and rounds configured {@link com.bomber7.core.screens.PlayerSelectionScreen} and
+     * {@link com.bomber7.core.screens.MapSelectionScreen}.
+     * When a game is started, the characters as well as the map is initialized used this object.
      */
-    private ResourceManager resources;
+    private GameCandidate gameCandidate;
 
     /**
      * Called once when the application is created.
@@ -24,9 +28,12 @@ public class BomberGame extends Game {
     @Override
     public void create() {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
+
         ScreenManager.getInstance().initialize(this);
         ConfigManager.getInstance().initialize();
-        resources = new ResourceManager();
+        ResourceManager.getInstance().initialize();
+        SoundManager.getInstance().initialize();
+        gameCandidate = new GameCandidate();
 
         ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
@@ -37,23 +44,41 @@ public class BomberGame extends Game {
      */
     @Override
     public void dispose() {
-        resources.dispose();
+        ResourceManager.getInstance().dispose();
+        SoundManager.getInstance().dispose();
         super.dispose();
     }
 
     /**
-     * Returns the {@link ResourceManager} instance used by this game.
-     *
-     * @return the resource manager for game assets
+     * Returns the gameCandidate used to create the game.
+     * @return the game candidate instance
      */
-    public ResourceManager getBomberResources() {
-        return resources;
+    public GameCandidate getCandidate() {
+        return gameCandidate;
     }
 
     /**
      * Launches the game.
      */
     public void start() {
+        // Printing gameCandidate for debug
+        Gdx.app.debug("BomberGame", "GameCandidate: " + gameCandidate.toString());
+
         ScreenManager.getInstance().showScreen(ScreenType.GAME, false, false);
+    }
+
+    /**
+     * Pauses the game.
+     */
+    public void pause() {
+        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, true, true);
+    }
+
+    /**
+     * Stops the game.
+     */
+    public void stop() {
+        gameCandidate.reset();
+        ScreenManager.getInstance().showScreen(ScreenType.MAIN_MENU, false, false);
     }
 }

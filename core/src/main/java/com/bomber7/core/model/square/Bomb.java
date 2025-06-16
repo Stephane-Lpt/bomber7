@@ -13,7 +13,7 @@ import java.util.List;
  * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
  */
-public abstract class Bomb extends MapElement {
+public abstract abstract class Bomb extends MapElement {
 
     /**
      * Constants representing different types of bombs.
@@ -113,7 +113,7 @@ public abstract class Bomb extends MapElement {
                 // Check if the explosion reaches a character
                 for (Character character : characters) {
                     if (character.getMapX() == newX && character.getMapY() == newY && character.isAlive()) {
-                        character.removeOneLife(); // Reduce the character's life by 1.
+                        character.removeOneLife();
                     }
                 }
 
@@ -130,11 +130,22 @@ public abstract class Bomb extends MapElement {
 
 
 
+
+
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m, newX, newY);
                     break;
                 }
+
+                if (potentialSquare.getMapElement() instanceof Bomb) {
+                    // If the square has another bomb, we can propagate the explosion to it
+                    Bomb otherBomb = (Bomb) potentialSquare.getMapElement();
+                    otherBomb.activateBomb(m);
+                    break;
+                }
+
+
                 // Regular propagation
                 onExplosion(m, newX, newY);
             }

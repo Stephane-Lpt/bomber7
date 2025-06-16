@@ -218,7 +218,7 @@ public class SettingsScreen extends BomberScreen {
                 resources.updateLanguage();
                 ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, false, false);
             }
-        }, resources));
+        }));
 
         changeLanguageRightButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -233,7 +233,7 @@ public class SettingsScreen extends BomberScreen {
                 resources.updateLanguage();
                 ScreenManager.getInstance().showScreen(ScreenType.SETTINGS, false, false);
             }
-        }, resources));
+        }));
 
         unsavedChangesDialog.setOnResult(save -> {
             if (save) {
@@ -254,7 +254,7 @@ public class SettingsScreen extends BomberScreen {
                     ScreenManager.getInstance().showPreviousScreen(false, false);
                 }
             }
-        }, resources));
+        }));
 
         saveChangesButton.addListener(ComponentsUtils.addSoundEffect(new ClickListener() {
             @Override
@@ -262,7 +262,7 @@ public class SettingsScreen extends BomberScreen {
                 ConfigManager.getInstance().saveModifications();
                 updateSaveButtonState();
             }
-        }, resources));
+        }));
 
         for (int i = 0; i < Constants.MAX_PLAYERS; i++) {
             int playerIndex = i;
@@ -271,7 +271,7 @@ public class SettingsScreen extends BomberScreen {
                 public void clicked(InputEvent event, float x, float y) {
                     ScreenManager.getInstance().showScreen(ScreenType.KEY_BINDING, true, false, playerIndex);
                 }
-            }, resources));
+            }));
         }
 
         globalVolumeSlider.addListener(new ChangeListener() {
@@ -294,8 +294,8 @@ public class SettingsScreen extends BomberScreen {
             }
         });
 
-        globalVolumeSlider.addListener(ComponentsUtils.addSoundEffect(new ClickListener() { }, resources));
-        musicVolumeSlider.addListener(ComponentsUtils.addSoundEffect(new ClickListener() { }, resources));
+        globalVolumeSlider.addListener(ComponentsUtils.addSoundEffect(new ClickListener() { }));
+        musicVolumeSlider.addListener(ComponentsUtils.addSoundEffect(new ClickListener() { }));
     }
 
     /**

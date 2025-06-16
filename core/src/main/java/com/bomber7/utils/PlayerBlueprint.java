@@ -91,4 +91,12 @@ public class PlayerBlueprint {
         // TODO
         return true;
     }
+
+    /**
+     * Returns a string that describes the player with Name|Strategy|Character syntax.
+     */
+    @Override
+    public String toString() {
+        return name + "|" + strategy + "|" + character;
+    }
 }

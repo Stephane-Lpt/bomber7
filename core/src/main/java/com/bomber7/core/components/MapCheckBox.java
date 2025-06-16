@@ -121,7 +121,7 @@ public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                 updateBackground(false);
             }
-        }, resources));
+        }));
     }
 
     /**
@@ -153,6 +153,14 @@ public class MapCheckBox extends BomberTable implements MVCComponent, Subject {
                 checkbox.setBackground(uncheckedUp);
             }
         }
+    }
+
+    /**
+     * Returns the map this checkbox represents.
+     * @return the GameMap that this checkbox represents
+     */
+    public GameMap getMap() {
+        return map;
     }
 
     /**
