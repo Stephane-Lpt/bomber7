@@ -3,11 +3,15 @@ package com.bomber7.core.model.entities;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
+
+import static com.bomber7.utils.Constants.HITBOX_HEIGHT;
+import static com.bomber7.utils.Constants.HITBOX_WIDTH;
 
 /**
  * Classe Character.
@@ -267,6 +271,8 @@ public abstract class Character {
      * Move character to the right.
      */
     public void moveRight() {
+        if(!this.isAlive()) return;
+
         if (checkMove(getPositionX() + speed, getPositionY())) {
             this.x += speed;
             this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
@@ -278,6 +284,8 @@ public abstract class Character {
      * Move character to the left.
      */
     public void moveLeft() {
+        if(!this.isAlive()) return;
+
         if (checkMove(getPositionX() - speed, getPositionY())) {
             this.x -= speed;
             this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
@@ -289,6 +297,8 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
+        if(!this.isAlive()) return;
+
         if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
@@ -300,6 +310,8 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
+        if(!this.isAlive()) return;
+
         if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
@@ -314,15 +326,43 @@ public abstract class Character {
      * @return boolean
      */
     public boolean checkMove(int futureX, int futureY) {
+        // Convert pixel coordinates to map grid coordinates
         int futureMapX = this.map.getSquareCoordinates(futureX, futureY).getKey();
         int futureMapY = this.map.getSquareCoordinates(futureX, futureY).getValue();
 
+        // Check if the center position is outside the map bounds
         if (futureMapX < 0 || futureMapY < 0 || futureMapX >= this.map.getWidth() || futureMapY >= this.map.getHeight()) {
-            return false; // Out of bounds
+            return false;
         }
 
-        Square square = this.map.getSquare(futureMapX, futureMapY);
-        return square.isWalkable();
+        // Define the four corners of the hitbox (top-left, top-right, bottom-left, bottom-right)
+        int[][] hitboxCorners = {
+            {futureX - HITBOX_WIDTH / 2, futureY + HITBOX_HEIGHT / 2}, // top-left corner
+            {futureX + HITBOX_WIDTH / 2, futureY + HITBOX_HEIGHT / 2}, // top-right corner
+            {futureX - HITBOX_WIDTH / 2, futureY - HITBOX_HEIGHT / 2}, // bottom-left corner
+            {futureX + HITBOX_WIDTH / 2, futureY - HITBOX_HEIGHT / 2}  // bottom-right corner
+        };
+
+        // Check if all corners are on walkable squares
+        for (int[] corner : hitboxCorners) {
+            int x = this.map.getSquareCoordinates(corner[0], corner[1]).getKey();
+            int y = this.map.getSquareCoordinates(corner[0], corner[1]).getValue();
+
+            // Make sure the corner is within the map bounds
+            if (x < 0 || y < 0 || x >= this.map.getWidth() || y >= this.map.getHeight()) {
+                return false;
+            }
+
+            // If the square at this corner is not walkable, the move is invalid
+            Square square = this.map.getSquare(x, y);
+            if (!square.isWalkable()) {
+                return false;
+            }
+        }
+
+        // Optionally check the center square as well (can be removed if not needed)
+        return this.map.getSquare(futureMapX, futureMapY).isWalkable();
     }
+
 
 }
