@@ -16,15 +16,15 @@ import org.apache.commons.lang3.tuple.Pair;
 public class LevelMap {
 
     /** Width of the window in pixels. */
-    private int windowWidth;
+    private final int windowWidth;
     /** Height of the window in pixels. */
-    private int windowHeight;
+    private final int windowHeight;
 
     /** A 2D list representing the checkerboard of squares in the level map. */
-    private List<List<Square>> checkerboard;
+    private final List<List<Square>> checkerboard;
 
     /** List of Characters currently present on the map. */
-    private List<Character> characters;
+    private final List<Character> characters;
 
     /**
      * Constructs a LevelMap with the specified checkerboard.

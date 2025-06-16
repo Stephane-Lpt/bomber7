@@ -2,19 +2,16 @@ package com.bomber7.core.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
-import com.bomber7.core.model.entities.HumanPlayer;
+import com.bomber7.core.controller.HumanController;
+import com.bomber7.core.model.entities.Character;
 import com.badlogic.gdx.Game;
 import com.bomber7.core.views.ViewCharacter;
-import com.bomber7.utils.Constants;
-import com.bomber7.utils.Controls;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.views.ViewMap;
-import jdk.vm.ci.meta.Constant;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -22,18 +19,12 @@ import java.util.Arrays;
  * This screen displays the game map
  */
 public class GameScreen extends BomberScreen {
-
-
-    ViewCharacter[] characterViews;
-
     /**
      * Constructs a new GameScreen associated with the given game.
      * @param game the Game instance this screen belongs to
      */
     public GameScreen(Game game) {
         super(game);
-
-        characterViews = new ViewCharacter[Constants.MAX_PLAYERS];
 
         initView();
         initController();
@@ -47,19 +38,19 @@ public class GameScreen extends BomberScreen {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        ViewMap viewMap = new ViewMap(game.getLevelMap(), resources);
-        mainTable.add(viewMap);
+        List<ViewCharacter> characterViews = new ArrayList<>();
 
-        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            if (game.getCharacters()[i] != null) {
+        for(Character character : game.getLevelMap().getCharacters()) {
                 ViewCharacter characterView = new ViewCharacter(
-                    game.getCharacters()[i],
+                    character,
                     resources
                 );
-                characterViews[i] = characterView;
-                mainTable.add(characterView);
-            }
+                characterViews.add(characterView);
         }
+
+        ViewMap viewMap = new ViewMap(game.getLevelMap(), characterViews, resources);
+
+        mainTable.add(viewMap);
 
         this.addActor(mainTable);
     }
@@ -91,10 +82,8 @@ public class GameScreen extends BomberScreen {
             game.pause();
         }
 
-        for(int i = 0; i < Constants.MAX_PLAYERS; i++) {
-            if (characterViews[i] != null) {
-                game.getHumanControllers()[i].processKeys();
-            }
+        for(HumanController humanController : game.getHumanControllers()) {
+            humanController.processKeys();
         }
     }
 }

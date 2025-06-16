@@ -2,6 +2,7 @@ package com.bomber7.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bomber7.utils.Language;
@@ -22,14 +23,6 @@ public final class ResourceManager {
      * Skin object that contains map textures and style definitions.
      */
     private Skin mapSkin;
-    /**
-     * Skin object that contains character textures and style definitions.
-     */
-    private Skin characterSkin;
-    /**
-     * Skin object that contains items textures and style definitions.
-     */
-    private Skin itemsSkin;
     /**
      * I18NBundle object that contains localized strings used in the game.
      */
@@ -70,14 +63,6 @@ public final class ResourceManager {
             Gdx.files.internal("skin/map/mapskin.json"),
             new TextureAtlas(Gdx.files.internal("skin/map/mapskin.atlas"))
         );
-        characterSkin = new Skin(
-            Gdx.files.internal("skin/characters/characterskin.json"),
-            new TextureAtlas(Gdx.files.internal("skin/characters/characterskin.atlas"))
-        );
-        itemsSkin = new Skin(
-            Gdx.files.internal("skin/items/itemsskin.json"),
-            new TextureAtlas(Gdx.files.internal("skin/items/itemsskin.atlas"))
-        );
         Language language = ConfigManager.getInstance().getConfig().getLanguage();
         bundle = I18NBundle.createBundle(Gdx.files.internal("i18n/" + language.toString().toLowerCase()));
     }
@@ -110,21 +95,14 @@ public final class ResourceManager {
     }
 
     /**
-     * Returns the character skin used throughout the game.
+     * Returns the texture region of a sprite based on given sprite texture name.
      *
-     * @return the loaded {@link Skin} object
+     * @param spriteName the name of the sprite texture
+     * @return the texture region of the specified sprite
      */
-    public Skin getCharacterSkin() {
-        return characterSkin;
-    }
-
-    /**
-     * Returns the character skin used throughout the game.
-     *
-     * @return the loaded {@link Skin} object
-     */
-    public Skin getItemsSkin() {
-        return itemsSkin;
+    public TextureRegion getSpriteTextureRegion(String spriteName) {
+        return new TextureAtlas(Gdx.files.internal("skin/sprites/" + spriteName + ".atlas"))
+                .findRegion(spriteName);
     }
 
     /**

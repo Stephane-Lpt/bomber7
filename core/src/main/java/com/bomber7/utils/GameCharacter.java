@@ -8,7 +8,7 @@ public enum GameCharacter {
     /**
      * Default character.
      */
-    TEST("sprite-test", 0),
+    TEST("test", 0),
 
     /**
      * Default character.
