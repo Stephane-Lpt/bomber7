@@ -7,17 +7,12 @@ import com.bomber7.core.model.entities.Character;
 import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.core.views.ViewCharacter;
 import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
-import com.bomber7.utils.GameMap;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
-import com.bomber7.utils.SoundType;
-
-import java.util.ArrayList;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -26,11 +21,6 @@ import java.util.ArrayList;
  * </p>
  */
 public class BomberGame extends Game {
-    /**
-     * Resource manager responsible for loading and managing game assets.
-     */
-    private ResourceManager resources;
-
     /**
      * GameCandidate that holds the players, maps and rounds configured {@link com.bomber7.core.screens.PlayerSelectionScreen} and
      * {@link com.bomber7.core.screens.MapSelectionScreen}.
@@ -63,7 +53,8 @@ public class BomberGame extends Game {
 
         ScreenManager.getInstance().initialize(this);
         ConfigManager.getInstance().initialize();
-        resources = new ResourceManager();
+        ResourceManager.getInstance().initialize();
+        SoundManager.getInstance().initialize();
         gameCandidate = new GameCandidate();
 
         characters = new Character[Constants.MAX_PLAYERS];
@@ -78,17 +69,9 @@ public class BomberGame extends Game {
      */
     @Override
     public void dispose() {
-        resources.dispose();
+        ResourceManager.getInstance().dispose();
+        SoundManager.getInstance().dispose();
         super.dispose();
-    }
-
-    /**
-     * Returns the {@link ResourceManager} instance used by this game.
-     *
-     * @return the resource manager for game assets
-     */
-    public ResourceManager getBomberResources() {
-        return resources;
     }
 
     /**
