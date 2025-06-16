@@ -113,12 +113,12 @@ public class ViewCharacter extends Actor {
             textureRegion.getTexture().getWidth() / FRAME_COLS,
             textureRegion.getTexture().getHeight() / FRAME_ROWS);
 
-        moveRight = createAnimation(region, 0, 3, false);
+        moveRight = createAnimation(region, 0, 3);
         moveLeft = createMirroredAnimation(region, moveRight, false);
-        moveUp = createAnimation(region, 2, 3, false);
-        moveDown = createAnimation(region, 1, 3, false);
-        stand = createAnimation(region, 5, 1, false);
-        die = createAnimation(region, 4, 6, false);
+        moveUp = createAnimation(region, 2, 3);
+        moveDown = createAnimation(region, 1, 3);
+        stand = createAnimation(region, 5, 1);
+        die = new Animation<>(FRAME_DURATION, region[3][2]);
     }
 
     /**
@@ -126,10 +126,9 @@ public class ViewCharacter extends Actor {
      * @param region the 2D array of texture regions.
      * @param row  the row index.
      * @param frameCount the number of frames in the row.
-     * @param loop Whether the animation should loop continuously.
      * @return an Animation instance
      */
-    private Animation<TextureRegion> createAnimation(TextureRegion[][] region, int row, int frameCount, boolean loop) {
+    private Animation<TextureRegion> createAnimation(TextureRegion[][] region, int row, int frameCount) {
         TextureRegion[] frames = new TextureRegion[frameCount];
         for (int i = 0; i < frameCount; i++) {
             frames[i] = region[row][i];
