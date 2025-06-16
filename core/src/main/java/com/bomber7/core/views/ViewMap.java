@@ -1,7 +1,6 @@
 package com.bomber7.core.views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.bomber7.core.ResourceManager;
@@ -12,7 +11,6 @@ import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
 import com.bomber7.utils.Constants;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.List;
 
@@ -41,14 +39,22 @@ public class ViewMap extends Actor {
     /** The Y coordinate of the origin point for drawing the map. */
     private float originY;
 
+
+    /**
+     * List of characterViews (used to show the caracters on the map).
+     */
+    private final List<ViewCharacter> characterViews;
+
     /**
      * Constructs a new ViewMap with the specified map grid and resource manager.
      * @param mapGrid the 2D array of Square objects representing the map
+     * @param characterViews list of characters views to draw
      * @param resources the ResourceManager to manage textures and resources
      */
-    public ViewMap(LevelMap mapGrid, ResourceManager resources) {
+    public ViewMap(LevelMap mapGrid, List<ViewCharacter> characterViews, ResourceManager resources) {
         this.mapGrid = mapGrid;
         this.resources = resources;
+        this.characterViews = characterViews;
 
         updateDimensions();
     }
@@ -73,8 +79,10 @@ public class ViewMap extends Actor {
 
                 if (square.hasMapElement()) {
                     if (square.getMapElement() instanceof Bomb) {
+//                        mapElementTextureRegion = resources.getSpriteTextureRegion(square.getMapElement().getTextureName());
+                        // TODO: CORENTIN DOIT FAIRE EN SORTE QUE CA DESSINNE LA BONNE TEXTURE
+                        mapElementTextureRegion = resources.getSpriteTextureRegion("time_bomb");
                         Gdx.app.debug("ViewMap", "drawing bomb at pos " + row + ", " + col);
-                        mapElementTextureRegion = resources.getItemsSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(mapGrid, Gdx.graphics.getDeltaTime());
                         }
@@ -87,6 +95,10 @@ public class ViewMap extends Actor {
                     drawTextureRegion(batch, mapElementTextureRegion, row, col, square.getMapElement().computeRotation());
                 }
             }
+        }
+
+        for(ViewCharacter character : characterViews) {
+            character.draw(batch, parentAlpha);
         }
     }
 

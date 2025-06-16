@@ -1,7 +1,6 @@
 package com.bomber7.core.controller;
 
 import com.badlogic.gdx.Gdx;
-import com.bomber7.core.model.entities.CharacterState;
 import com.bomber7.core.model.entities.HumanPlayer;
 import com.bomber7.utils.Controls;
 
@@ -55,12 +54,6 @@ public class HumanController {
         if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.DROP_BOMB))) {
             this.player.dropBomb();
         }
-
-//        else {
-//            if (this.player.getMovingStatus() != CharacterState.STANDING_STILL) {
-//                this.player.setStandingStill();
-//            }
-//        }
     }
 
 }
