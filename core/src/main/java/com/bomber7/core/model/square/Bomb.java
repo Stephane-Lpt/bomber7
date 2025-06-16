@@ -1,6 +1,7 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.entities.Character;
+import com.bomber7.core.model.entities.CharacterState.State;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public abstract class Bomb extends MapElement {
     private int y;
 
     /**
+     * The current state of the bomb.
+     */
+    private BombState state;
+
+    /**
      * Constructs a Bomb with a specified explosion power and texture file path.
      *
      * @param p power of the bomb, must be a positive integer.
@@ -49,6 +55,7 @@ public abstract class Bomb extends MapElement {
         this.power = p;
         this.x = x;
         this.y = y;
+        this.state = BombState.PLACED;
     }
 
     /**
@@ -57,6 +64,38 @@ public abstract class Bomb extends MapElement {
      */
     public int getPower() {
         return this.power;
+    }
+
+    /**
+     * Returns the current state of the bomb.
+     * @return the bomb's state.
+     */
+    public BombState getState() {
+        return this.state;
+    }
+
+    /**
+     * Sets the state of the bomb.
+     * @param newState the new state of the bomb.
+     */
+    public void setState(BombState newState) {
+        this.state = newState;
+    }
+
+    /**
+     * Returns the X-coordinate of the bomb.
+     * @return the X-coordinate.
+     */
+    public int getX() {
+        return this.x;
+    }
+
+    /**
+     * Returns the Y-coordinate of the bomb.
+     * @return the Y-coordinate.
+     */
+    public int getY() {
+        return this.y;
     }
 
     /**
@@ -87,6 +126,10 @@ public abstract class Bomb extends MapElement {
         if (m == null) {
             throw new NullPointerException("LevelMap cannot be null");
         }
+
+        // Change the state to EXPLODED when the bomb is activated
+        setState(BombState.EXPLODED);
+
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
 
