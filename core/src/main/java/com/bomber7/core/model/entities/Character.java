@@ -2,6 +2,7 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
@@ -12,17 +13,6 @@ import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
  * Classe Character.
  */
 public abstract class Character {
-
-    /** Standing still status constant. */
-    private static final int STANDING_STILL = 0;
-    /** Moving UP status constant. */
-    private static final int MOVING_UP = 1;
-    /** Moving DOWN status constant. */
-    private static final int MOVING_DOWN = 2;
-    /** Moving LEFT status constant. */
-    private static final int MOVING_LEFT = 3;
-    /** Moving RIGHT status constant. */
-    private static final int MOVING_RIGHT = 4;
 
     /** The file path to the character's sprite image. */
     private final GameCharacter gameCharacter;
@@ -48,7 +38,7 @@ public abstract class Character {
     /** Current Y-Axis position of the character. */
     private int y;
     /** Moving status of player, needed for sprite animation. */
-    private int movingStatus;
+    private CharacterState movingStatus;
 
     /**
      * Character Constructor.
@@ -78,16 +68,13 @@ public abstract class Character {
             throw new IllegalArgumentException("GameCharacter cannot be null");
         }
         this.name = name;
-        this.mapX = mapX;
-        this.mapY = mapY;
         this.map = map;
-        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
-        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
+        setPositionXY(mapX, mapY);
         this.life = life;
         this.speed = speed;
         this.gameCharacter = gameCharacter;
         this.isAlive = true;
-        this.movingStatus = STANDING_STILL;
+        this.movingStatus = CharacterState.STANDING_STILL;
         this.score = 0;
     }
 
@@ -97,7 +84,7 @@ public abstract class Character {
      * Character moving status getter.
      * @return movingStatus Current moving status
      */
-    public int getMovingStatus() {
+    public CharacterState getMovingStatus() {
         return this.movingStatus;
     }
 
@@ -235,27 +222,20 @@ public abstract class Character {
         }
         if (this.life == 0) {
             this.isAlive = false;
+            this.movingStatus = CharacterState.DEAD;
         }
     }
 
     /**
-     * Character current X-Axis position setter.
-     * @param newX The new x-position to set
+     * Character current XY position setter.
+     * @param newMapX The new x-position to set
+     * @param newMapY The new Y-position to set
      */
-    public void setPositionX(int newX) {
-        this.x = newX;
-        this.mapX = this.map.getSquareCoordinates(newX, this.y).getKey();
-    }
-
-    /**
-     * Character current Y-Axis position setter.
-     * @param newY The new y-position to set
-     * @throws IllegalPositionOperationException If character is moving of more than
-     *                                           1 square
-     */
-    public void setPositionY(int newY) {
-        this.y = newY;
-        this.mapY = this.map.getSquareCoordinates(this.x, newY).getValue();
+    public void setPositionXY(int newMapX, int newMapY) {
+        this.mapX = newMapX;
+        this.mapY = newMapY;
+        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
+        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
     }
 
     /* ------[OTHER]------------------------------------ */
@@ -272,7 +252,7 @@ public abstract class Character {
      * Caracter is standing still.
      */
     public void setStandingStill() {
-        this.movingStatus = STANDING_STILL;
+        this.movingStatus = CharacterState.STANDING_STILL;
     }
 
     public void ressucitate() {
@@ -280,7 +260,7 @@ public abstract class Character {
             this.isAlive = true;
             this.life = 1;
             this.speed = 1;
-            this.movingStatus = STANDING_STILL;
+            this.movingStatus = CharacterState.STANDING_STILL;
         } else {
             throw new IllegalStateException("Character is already alive.");
         }
@@ -290,10 +270,14 @@ public abstract class Character {
      * Move character to the right.
      */
     public void moveRight() {
+        if(!this.isAlive()) {
+            return;
+        }
+
         if (checkMove(getPositionX() + speed, getPositionY())) {
             this.x += speed;
             this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
-            this.movingStatus = MOVING_RIGHT;
+            this.movingStatus = CharacterState.MOVING_RIGHT;
         }
     }
 
@@ -301,10 +285,14 @@ public abstract class Character {
      * Move character to the left.
      */
     public void moveLeft() {
+        if(!this.isAlive()) {
+            return;
+        }
+
         if (checkMove(getPositionX() - speed, getPositionY())) {
             this.x -= speed;
             this.mapX = this.map.getSquareCoordinates(this.x, this.y).getKey();
-            this.movingStatus = MOVING_LEFT;
+            this.movingStatus = CharacterState.MOVING_LEFT;
         }
     }
 
@@ -312,10 +300,14 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
+        if(!this.isAlive()) {
+            return;
+        }
+
         if (checkMove(getPositionX(), getPositionY() - speed)) {
             this.y -= speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
-            this.movingStatus = MOVING_DOWN;
+            this.movingStatus = CharacterState.MOVING_DOWN;
         }
     }
 
@@ -323,10 +315,14 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
+        if(!this.isAlive()) {
+            return;
+        }
+
         if (checkMove(getPositionX(), getPositionY() + speed)) {
             this.y += speed;
             this.mapY = this.map.getSquareCoordinates(this.x, this.y).getValue();
-            this.movingStatus = MOVING_UP;
+            this.movingStatus = CharacterState.MOVING_UP;
         }
     }
 
@@ -337,15 +333,43 @@ public abstract class Character {
      * @return boolean
      */
     public boolean checkMove(int futureX, int futureY) {
+        // Convert pixel coordinates to map grid coordinates
         int futureMapX = this.map.getSquareCoordinates(futureX, futureY).getKey();
         int futureMapY = this.map.getSquareCoordinates(futureX, futureY).getValue();
 
+        // Check if the center position is outside the map bounds
         if (futureMapX < 0 || futureMapY < 0 || futureMapX >= this.map.getWidth() || futureMapY >= this.map.getHeight()) {
-            return false; // Out of bounds
+            return false;
         }
 
-        Square square = this.map.getSquare(futureMapX, futureMapY);
-        return square.isWalkable();
+        // Define the four corners of the hitbox (top-left, top-right, bottom-left, bottom-right)
+        int[][] hitboxCorners = {
+            {futureX - Constants.HITBOX_WIDTH / 2, futureY + Constants.HITBOX_HEIGHT / 2}, // top-left corner
+            {futureX + Constants.HITBOX_WIDTH / 2, futureY + Constants.HITBOX_HEIGHT / 2}, // top-right corner
+            {futureX - Constants.HITBOX_WIDTH / 2, futureY - Constants.HITBOX_HEIGHT / 2}, // bottom-left corner
+            {futureX + Constants.HITBOX_WIDTH / 2, futureY - Constants.HITBOX_HEIGHT / 2}  // bottom-right corner
+        };
+
+        // Check if all corners are on walkable squares
+        for (int[] corner : hitboxCorners) {
+            int x = this.map.getSquareCoordinates(corner[0], corner[1]).getKey();
+            int y = this.map.getSquareCoordinates(corner[0], corner[1]).getValue();
+
+            // Make sure the corner is within the map bounds
+            if (x < 0 || y < 0 || x >= this.map.getWidth() || y >= this.map.getHeight()) {
+                return false;
+            }
+
+            // If the square at this corner is not walkable, the move is invalid
+            Square square = this.map.getSquare(x, y);
+            if (!square.isWalkable()) {
+                return false;
+            }
+        }
+
+        // Optionally check the center square as well (can be removed if not needed)
+        return this.map.getSquare(futureMapX, futureMapY).isWalkable();
     }
+
 
 }

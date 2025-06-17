@@ -1,14 +1,16 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.entities.Character;
+import com.bomber7.utils.Effect;
+import com.bomber7.utils.EffectType;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 
 import java.util.List;
 
 /**
  * Represents a bomb in the game, which can explode and affect surrounding squares.
- *
  * The bomb has a power that determines the range of its explosion.
- *
  * The Bomb class extends the MapElement class and can be placed on a map where it can
  * later be activated to trigger an explosion that affects adjacent squares on the
  * Level map.
@@ -26,15 +28,20 @@ public abstract class Bomb extends MapElement {
     /**
      * The power of the bomb, which determines the range of its explosion.
      */
-    private int power;
+    private final int power;
     /**
      * The X-coordinate of the bomb.
      */
-    private int x;
+    private final int x;
     /**
      * The Y-coordinate of the bomb.
      */
-    private int y;
+    private final int y;
+
+    /**
+     * The current state of the bomb.
+     */
+    private BombState state;
 
     /**
      * Constructs a Bomb with a specified explosion power and texture file path.
@@ -57,6 +64,7 @@ public abstract class Bomb extends MapElement {
         this.power = p;
         this.x = x;
         this.y = y;
+        this.state = BombState.PLACED;
     }
 
     /**
@@ -65,6 +73,38 @@ public abstract class Bomb extends MapElement {
      */
     public int getPower() {
         return this.power;
+    }
+
+    /**
+     * Returns the current state of the bomb.
+     * @return the bomb's state.
+     */
+    public BombState getState() {
+        return this.state;
+    }
+
+    /**
+     * Sets the state of the bomb.
+     * @param newState the new state of the bomb.
+     */
+    public void setState(BombState newState) {
+        this.state = newState;
+    }
+
+    /**
+     * Returns the X-coordinate of the bomb.
+     * @return the X-coordinate.
+     */
+    public int getX() {
+        return this.x;
+    }
+
+    /**
+     * Returns the Y-coordinate of the bomb.
+     * @return the Y-coordinate.
+     */
+    public int getY() {
+        return this.y;
     }
 
     /**
@@ -77,6 +117,11 @@ public abstract class Bomb extends MapElement {
         Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
             sq.clearMapElement();
+            m.addEffect(new Effect(
+                xCord,
+                yCord,
+                EffectType.EXPLOSION
+            ));
         }
     }
 
@@ -95,8 +140,14 @@ public abstract class Bomb extends MapElement {
         if (m == null) {
             throw new NullPointerException("LevelMap cannot be null");
         }
+
+        // Change the state to EXPLODED when the bomb is activated
+        setState(BombState.EXPLODED);
+
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
+
+        SoundManager.getInstance().play(SoundType.EXPLOSION);
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
@@ -112,8 +163,13 @@ public abstract class Bomb extends MapElement {
 
                 // Check if the explosion reaches a character
                 for (Character character : characters) {
-                    if (character.getMapX() == newX && character.getMapY() == newY && character.isAlive()) {
-                        character.removeOneLife();
+                    if (character.isAlive()) {
+                        if (
+                            (character.getMapX() == newX && character.getMapY() == newY)
+                            || character.getMapX() == this.x && character.getMapY() == this.y
+                        ) {
+                            character.removeOneLife();
+                        }
                     }
                 }
 
@@ -128,10 +184,6 @@ public abstract class Bomb extends MapElement {
                     break;
                 }
 
-
-
-
-
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m, newX, newY);
@@ -144,7 +196,6 @@ public abstract class Bomb extends MapElement {
                     otherBomb.activateBomb(m);
                     break;
                 }
-
 
                 // Regular propagation
                 onExplosion(m, newX, newY);

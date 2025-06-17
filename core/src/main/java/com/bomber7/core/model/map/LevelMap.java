@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import com.bomber7.utils.Constants;
 
 import java.util.List;
+import java.util.Stack;
 
+import com.bomber7.utils.Effect;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
@@ -19,15 +21,18 @@ public class LevelMap {
     private String mapName;
 
     /** Width of the window in pixels. */
-    private int windowWidth;
+    private final int windowWidth;
     /** Height of the window in pixels. */
-    private int windowHeight;
+    private final int windowHeight;
 
     /** A 2D list representing the checkerboard of squares in the level map. */
-    private List<List<Square>> checkerboard;
+    private final List<List<Square>> checkerboard;
 
     /** List of Characters currently present on the map. */
-    private List<Character> characters;
+    private final List<Character> characters;
+
+    /** List of effects currently present on the map. */
+    private final Stack<Effect> effectsQueue;
 
     /**
      * Constructs a LevelMap with the specified checkerboard.
@@ -40,6 +45,7 @@ public class LevelMap {
         this.mapName = mapName;
         this.checkerboard = checkerboard;
         this.characters = new ArrayList<>();
+        this.effectsQueue = new Stack<>();
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
     }
@@ -148,6 +154,22 @@ public class LevelMap {
 
         return Pair.of(Math.round(((x - originX) / (Constants.TEXTURE_SIZE * Constants.SCALE))),
             Math.round(((y - originY) / (Constants.TEXTURE_SIZE * Constants.SCALE))));
+    }
+
+    /**
+     * Adds an effect to the queue of effects that the view should process.
+     * @param effect the effect to add
+     */
+    public void addEffect(Effect effect) {
+        effectsQueue.push(effect);
+    }
+
+    /**
+     * Returns the queue of effects that have not been processed yet.
+     * @return stack of effects
+     */
+    public Stack<Effect> getEffectsQueue() {
+        return effectsQueue;
     }
 
 }

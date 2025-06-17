@@ -9,6 +9,11 @@ public final class Constants {
     private Constants() { }
 
     /**
+     * Scale factor for batch elements (map, characters, etc...).
+     */
+    public static final float SCALE = 0.85f;
+
+    /**
      * The maximum length for a player name.
      */
     public static final int MAX_PLAYER_NAME_LENGTH = 12;
@@ -34,16 +39,39 @@ public final class Constants {
     public static final int TEXTURE_SIZE = 32;
 
     /**
-     * The size in pixels of the player sprite.
+     * Width of the hitbox of character.
      */
-    public static final float SCALE = 0.7f;
+    public static final int HITBOX_WIDTH = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.75f);
+    /**
+     * Height of the hitbox of character.
+     */
+    public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
+
+    /**
+     * The default bomb timer.
+     */
+    public static final float BOMB_TIMER = 5.0f;
+
+    /**
+     * The default bomb timer.
+     */
+    public static final int DEFAULT_BOMB_POWER = 3;
+
+    /**
+     * Animation frame duration.
+     */
+    public static final float FRAME_DURATION = 0.1f;
+
+    /**
+     * Sound convert ratio to convert slider value to libgdx volume value.
+     */
+    public static final float VOLUME_CONVERT_RATIO = 100f;
 
     /**
      * The chance of a bonus being dropped.
      */
     public final static double BONUS_RATE = 0.25; // 25% chance to drop a bonus
 
-    
     public static enum BONUS_TYPE {
         TRIGGER_BOMB,
         LIFE,

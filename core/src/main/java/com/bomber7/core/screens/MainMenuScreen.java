@@ -13,6 +13,8 @@ import com.bomber7.core.ScreenManager;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.ScreenType;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 
 /**
  * The main menu of the game.
@@ -110,5 +112,11 @@ public class MainMenuScreen extends BomberScreen {
     @Override
     public ScreenType getScreenType() {
         return ScreenType.MAIN_MENU;
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        SoundManager.getInstance().playMusic(SoundType.ELEVATOR);
     }
 }

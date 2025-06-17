@@ -8,6 +8,11 @@ public enum GameCharacter {
     /**
      * Default character.
      */
+    TEST("test", 0),
+
+    /**
+     * Default character.
+     */
     STUDENT("sprite-student", 0),
 
     /**

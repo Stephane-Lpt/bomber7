@@ -10,7 +10,7 @@ import com.bomber7.utils.GameCharacter;
 public class HumanPlayer extends Player {
 
     /** The configuration for the player controls. */
-    private PlayerConfig config;
+    private final PlayerConfig config;
 
     /**
      * HumanPlayer Constructor.

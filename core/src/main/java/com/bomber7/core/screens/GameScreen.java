@@ -1,20 +1,19 @@
 package com.bomber7.core.screens;
 
 
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.bomber7.core.model.map.LevelMap;
-import com.bomber7.core.model.map.LevelMapFactory;
-import com.bomber7.core.BomberGame;
-
-import java.nio.file.Path;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.bomber7.core.controller.HumanController;
+import com.bomber7.core.model.entities.Character;
+import com.bomber7.core.views.ViewCharacter;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.views.ViewMap;
-import com.bomber7.utils.Dimensions;
 
-import com.bomber7.utils.ProjectPaths;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Represents the game screen in the Bomber7 game.
@@ -37,36 +36,23 @@ public class GameScreen extends BomberScreen {
      */
     @Override
     public void initView() {
-
-        /* =======[GENERAL PURPOSES]=============================================== */
-
         Table mainTable = new Table();
         mainTable.setFillParent(true);
 
-        /* =======[BUTTON]========================================================= */
+        List<ViewCharacter> characterViews = new ArrayList<>();
 
-        /* Buttons to go to key bindings menu. */
-        TextButton settingsButton = new TextButton(resources.getString("options"), resources.getSkin());
-        /* Buttons to go to key bindings menu. */
-        TextButton goBackButton = new TextButton(resources.getString("go_back"), resources.getSkin());
+        for(Character character : game.getCurrentMap().getCharacters()) {
+                ViewCharacter characterView = new ViewCharacter(
+                    character,
+                    resources
+                );
+                characterViews.add(characterView);
+        }
 
-        mainTable.add(settingsButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT)
-            .left();
-        mainTable.row();
-        mainTable.add(goBackButton)
-            .width(Dimensions.BUTTON_WIDTH)
-            .height(Dimensions.BUTTON_HEIGHT);
-        mainTable.row();
-
-        /* =======[MAP VIEW]======================================================= */
-
-        ViewMap viewMap = new ViewMap(game.getCurrentMap(), resources);
-
-        /* =======[FULL FRAME]===================================================== */
+        ViewMap viewMap = new ViewMap(game.getCurrentMap(), characterViews, resources);
 
         mainTable.add(viewMap);
+
         this.addActor(mainTable);
     }
 
@@ -75,33 +61,45 @@ public class GameScreen extends BomberScreen {
      */
     @Override
     public void initController() {
-
     }
 
-    @Override
+    /**
+     * Update the game screen for each frame.
+     * @param delta time since the last frame
+     */
     public void render(float delta) {
-        super.render(delta);
+        processInput();
 
-        game.logCurrentRound();
+//        game.logCurrentRound();
+//        Gdx.app.debug("GameScreen", "Current map: " + game.getCurrentMap().getMapName());
 
-        //display current map name
-        Gdx.app.debug("GameScreen", "Current map: " + game.getCurrentMap().getMapName());
-        
         if (!game.isRoundCompleted()) {
-            game.simulateEndOfRound();
+//            game.simulateEndOfRound();
 
             if (game.checkGameWin()) {
                 Gdx.app.debug("GameScreen", "Round completed. Advancing to next round...");
                 game.setRoundCompleted(true);
                 game.advanceToNextRound();
-            }
+             }
         } else {
             Gdx.app.debug("GameScreen", "Round already completed. Waiting for next round.");
         }
+
+        super.render(delta);
     }
 
     @Override
     public ScreenType getScreenType() {
         return ScreenType.GAME;
+    }
+
+    public void processInput() {
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            game.pause();
+        }
+
+        for(HumanController humanController : game.getHumanControllers()) {
+            humanController.processKeys();
+        }
     }
 }

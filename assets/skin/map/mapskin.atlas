@@ -1,1243 +1,1306 @@
 mapskin.png
-size: 128, 1440
+size: 128, 1464
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 azalea-top
   rotate: false
-  xy: 0, 0
+  xy: 96, 24
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 baby-foot-1
   rotate: false
-  xy: 32, 0
+  xy: 0, 56
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 baby-foot-2
   rotate: false
-  xy: 64, 0
+  xy: 32, 56
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 baby-foot-3
   rotate: false
-  xy: 96, 0
+  xy: 64, 56
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 baby-foot-4
   rotate: false
-  xy: 0, 32
+  xy: 96, 56
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 baby-foot-5
   rotate: false
-  xy: 32, 32
+  xy: 0, 88
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 baby-foot-6
   rotate: false
-  xy: 64, 32
+  xy: 32, 88
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bar-end
   rotate: false
-  xy: 96, 32
+  xy: 64, 88
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bar-part
   rotate: false
-  xy: 0, 64
+  xy: 96, 88
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bar-side
   rotate: false
-  xy: 32, 64
+  xy: 0, 120
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 barrel-top-open
   rotate: false
-  xy: 64, 64
+  xy: 32, 120
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 barrel
   rotate: false
-  xy: 96, 64
+  xy: 64, 120
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 barrier-crous-corner
   rotate: false
-  xy: 0, 96
+  xy: 96, 120
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 barrier-crous-long
   rotate: false
-  xy: 32, 96
+  xy: 0, 152
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bbal-corner-lg
   rotate: false
-  xy: 64, 96
+  xy: 32, 152
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bbal-side
   rotate: false
-  xy: 96, 96
+  xy: 64, 152
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bball-corner-sm
   rotate: false
-  xy: 0, 128
+  xy: 96, 152
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bball
   rotate: false
-  xy: 32, 128
+  xy: 0, 184
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 beehive-end
   rotate: false
-  xy: 64, 128
+  xy: 32, 184
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 birch-planks
   rotate: false
-  xy: 96, 128
+  xy: 64, 184
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 black-column
   rotate: false
-  xy: 0, 160
+  xy: 96, 184
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 black-concrete-powder
   rotate: false
-  xy: 32, 160
+  xy: 0, 216
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 blue-concrete
   rotate: false
-  xy: 64, 160
+  xy: 32, 216
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 blue-ice
   rotate: false
-  xy: 96, 160
+  xy: 64, 216
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bookshelf3
   rotate: false
-  xy: 0, 192
+  xy: 96, 216
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 bricks
   rotate: false
-  xy: 32, 192
+  xy: 0, 248
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 brown-stained-glass
   rotate: false
-  xy: 64, 192
+  xy: 32, 248
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 carpet-red-2
   rotate: false
-  xy: 96, 192
+  xy: 64, 248
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 carpet-red
   rotate: false
-  xy: 0, 224
+  xy: 96, 248
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 chiseled-deepslate
   rotate: false
-  xy: 32, 224
+  xy: 0, 280
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-1
   rotate: false
-  xy: 64, 224
+  xy: 32, 280
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-2
   rotate: false
-  xy: 96, 224
+  xy: 64, 280
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-3
   rotate: false
-  xy: 0, 256
+  xy: 96, 280
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-4
   rotate: false
-  xy: 32, 256
+  xy: 0, 312
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-5
   rotate: false
-  xy: 64, 256
+  xy: 32, 312
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-6
   rotate: false
-  xy: 96, 256
+  xy: 64, 312
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-7
   rotate: false
-  xy: 0, 288
+  xy: 96, 312
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-8
   rotate: false
-  xy: 32, 288
+  xy: 0, 344
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 churros-9
   rotate: false
-  xy: 64, 288
+  xy: 32, 344
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 cobblestone
   rotate: false
-  xy: 96, 288
+  xy: 64, 344
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 column
   rotate: false
-  xy: 0, 320
+  xy: 96, 344
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crafting-table-top-2
   rotate: false
-  xy: 32, 320
+  xy: 0, 376
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crafting-table-top
   rotate: false
-  xy: 64, 320
+  xy: 32, 376
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-cashier-1
   rotate: false
-  xy: 96, 320
+  xy: 64, 376
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-cashier-2
   rotate: false
-  xy: 0, 352
+  xy: 96, 376
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-cashier-3
   rotate: false
-  xy: 32, 352
+  xy: 0, 408
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-cashier-4
   rotate: false
-  xy: 64, 352
+  xy: 32, 408
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-door-1
   rotate: false
-  xy: 96, 352
+  xy: 64, 408
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-door-2
   rotate: false
-  xy: 0, 384
+  xy: 96, 408
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-food-1
   rotate: false
-  xy: 32, 384
+  xy: 0, 440
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-food-2
   rotate: false
-  xy: 64, 384
+  xy: 32, 440
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-food-3
   rotate: false
-  xy: 96, 384
+  xy: 64, 440
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-food-4
   rotate: false
-  xy: 0, 416
+  xy: 96, 440
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-foy-corner-left
   rotate: false
-  xy: 32, 416
+  xy: 0, 472
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-foy-corner-right
   rotate: false
-  xy: 64, 416
+  xy: 32, 472
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-foy-corner
   rotate: false
-  xy: 96, 416
+  xy: 64, 472
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-table-corner
   rotate: false
-  xy: 0, 448
+  xy: 96, 472
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-table-long
   rotate: false
-  xy: 32, 448
+  xy: 0, 504
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 crous-table-side
   rotate: false
-  xy: 64, 448
+  xy: 32, 504
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 cyber-grass
   rotate: false
-  xy: 96, 448
+  xy: 64, 504
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 cyber-tower
   rotate: false
-  xy: 0, 480
+  xy: 96, 504
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 deepslate-tiles
   rotate: false
-  xy: 32, 480
+  xy: 0, 536
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 door
   rotate: false
-  xy: 64, 480
+  xy: 32, 536
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 drums-1
   rotate: false
-  xy: 96, 480
+  xy: 64, 536
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 drums-2
   rotate: false
-  xy: 0, 512
+  xy: 96, 536
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 emerald-block
   rotate: false
-  xy: 32, 512
+  xy: 0, 568
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+explosion-1
+  rotate: false
+  xy: 0, 0
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+explosion-2
+  rotate: false
+  xy: 24, 0
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+explosion-3
+  rotate: false
+  xy: 48, 0
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+explosion-4
+  rotate: false
+  xy: 72, 0
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+explosion-5
+  rotate: false
+  xy: 96, 0
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
 fletching-table-top
   rotate: false
-  xy: 64, 512
+  xy: 32, 568
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 floor-white-corner
   rotate: false
-  xy: 96, 512
+  xy: 64, 568
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 floor-white-side
   rotate: false
-  xy: 0, 544
+  xy: 96, 568
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 furnace-top
   rotate: false
-  xy: 32, 544
+  xy: 0, 600
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-corner-lg
   rotate: false
-  xy: 64, 544
+  xy: 32, 600
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-double
   rotate: false
-  xy: 96, 544
+  xy: 64, 600
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-full
   rotate: false
-  xy: 0, 576
+  xy: 96, 600
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-long
   rotate: false
-  xy: 32, 576
+  xy: 0, 632
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-particular
   rotate: false
-  xy: 64, 576
+  xy: 32, 632
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-side-corner-sm
   rotate: false
-  xy: 96, 576
+  xy: 64, 632
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grass-side
   rotate: false
-  xy: 0, 608
+  xy: 96, 632
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 green-concrete-powder
   rotate: false
-  xy: 32, 608
+  xy: 0, 664
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 green-wool
   rotate: false
-  xy: 64, 608
+  xy: 32, 664
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 grey-terracotta-weathered-copper
   rotate: false
-  xy: 96, 608
+  xy: 64, 664
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 hall-chair
   rotate: false
-  xy: 0, 640
+  xy: 96, 664
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horizontal-connection
   rotate: false
-  xy: 32, 640
+  xy: 0, 696
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 invisible
   rotate: false
-  xy: 64, 640
+  xy: 32, 696
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 iron-bars
   rotate: false
-  xy: 96, 640
+  xy: 64, 696
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 jungle-leaves
   rotate: false
-  xy: 0, 672
+  xy: 96, 696
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-corner-lg
   rotate: false
-  xy: 32, 672
+  xy: 0, 728
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-corner-sm
   rotate: false
-  xy: 64, 672
+  xy: 32, 728
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-double
   rotate: false
-  xy: 96, 672
+  xy: 64, 728
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-full
   rotate: false
-  xy: 0, 704
+  xy: 96, 728
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-long
   rotate: false
-  xy: 32, 704
+  xy: 0, 760
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-particular
   rotate: false
-  xy: 64, 704
+  xy: 32, 760
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 leaves-side
   rotate: false
-  xy: 96, 704
+  xy: 64, 760
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 light-gray-terracotta
   rotate: false
-  xy: 0, 736
+  xy: 96, 760
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lime-concrete-powder
   rotate: false
-  xy: 32, 736
+  xy: 0, 792
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lime-concrete
   rotate: false
-  xy: 64, 736
+  xy: 32, 792
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-bricks-corner-lg
   rotate: false
-  xy: 96, 736
+  xy: 64, 792
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-bricks-corner-md
   rotate: false
-  xy: 0, 768
+  xy: 96, 792
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-bricks-corner-sm
   rotate: false
-  xy: 32, 768
+  xy: 0, 824
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-bricks-full
   rotate: false
-  xy: 64, 768
+  xy: 32, 824
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-bricks-long
   rotate: false
-  xy: 96, 768
+  xy: 64, 824
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-bricks-side
   rotate: false
-  xy: 0, 800
+  xy: 96, 824
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 lodestone-side
   rotate: false
-  xy: 32, 800
+  xy: 0, 856
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 oak-planks
   rotate: false
-  xy: 64, 800
+  xy: 32, 856
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 piano-1
   rotate: false
-  xy: 96, 800
+  xy: 64, 856
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 piano-2
   rotate: false
-  xy: 0, 832
+  xy: 96, 856
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 piano-3
   rotate: false
-  xy: 32, 832
+  xy: 0, 888
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 piano-4
   rotate: false
-  xy: 64, 832
+  xy: 32, 888
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ping-pong-1
   rotate: false
-  xy: 96, 832
+  xy: 64, 888
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ping-pong-2
   rotate: false
-  xy: 0, 864
+  xy: 96, 888
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ping-pong-3
   rotate: false
-  xy: 32, 864
+  xy: 0, 920
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ping-pong-4
   rotate: false
-  xy: 64, 864
+  xy: 32, 920
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ping-pong-5
   rotate: false
-  xy: 96, 864
+  xy: 64, 920
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ping-pong-6
   rotate: false
-  xy: 0, 896
+  xy: 96, 920
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 plangs-long
   rotate: false
-  xy: 32, 896
+  xy: 0, 952
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 plank-leaves-corner-lg
   rotate: false
-  xy: 64, 896
+  xy: 32, 952
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 plank-leaves-corner
   rotate: false
-  xy: 96, 896
+  xy: 64, 952
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 plank-leaves-side
   rotate: false
-  xy: 0, 928
+  xy: 96, 952
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 planks-corner-2
   rotate: false
-  xy: 32, 928
+  xy: 0, 984
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 planks-corner-3
   rotate: false
-  xy: 64, 928
+  xy: 32, 984
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 planks-corner
   rotate: false
-  xy: 96, 928
+  xy: 64, 984
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 planks-edge
   rotate: false
-  xy: 0, 960
+  xy: 96, 984
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 planks-side
   rotate: false
-  xy: 32, 960
+  xy: 0, 1016
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pressure-plate
   rotate: false
-  xy: 64, 960
+  xy: 32, 1016
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pyramid-1
   rotate: false
-  xy: 96, 960
+  xy: 64, 1016
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pyramid-2
   rotate: false
-  xy: 0, 992
+  xy: 96, 1016
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pyramid-3
   rotate: false
-  xy: 32, 992
+  xy: 0, 1048
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pyramid-4
   rotate: false
-  xy: 64, 992
+  xy: 32, 1048
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-carpet
   rotate: false
-  xy: 96, 992
+  xy: 64, 1048
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-concrete
   rotate: false
-  xy: 0, 1024
+  xy: 96, 1048
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-nether-bricks-black-stone-vertical
   rotate: false
-  xy: 32, 1024
+  xy: 0, 1080
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-nether-bricks-black-stone
   rotate: false
-  xy: 64, 1024
+  xy: 32, 1080
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-nether-bricks
   rotate: false
-  xy: 96, 1024
+  xy: 64, 1080
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-stained-glass
   rotate: false
-  xy: 0, 1056
+  xy: 96, 1080
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-terracotta
   rotate: false
-  xy: 32, 1056
+  xy: 0, 1112
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 red-wool
   rotate: false
-  xy: 64, 1056
+  xy: 32, 1112
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 redstone-block
   rotate: false
-  xy: 96, 1056
+  xy: 64, 1112
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scaffolding-top-2
   rotate: false
-  xy: 0, 1088
+  xy: 96, 1112
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scaffolding-top
   rotate: false
-  xy: 32, 1088
+  xy: 0, 1144
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-1
   rotate: false
-  xy: 64, 1088
+  xy: 32, 1144
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-2
   rotate: false
-  xy: 96, 1088
+  xy: 64, 1144
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-3
   rotate: false
-  xy: 0, 1120
+  xy: 96, 1144
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-4
   rotate: false
-  xy: 32, 1120
+  xy: 0, 1176
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-5
   rotate: false
-  xy: 64, 1120
+  xy: 32, 1176
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-6
   rotate: false
-  xy: 96, 1120
+  xy: 64, 1176
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-7
   rotate: false
-  xy: 0, 1152
+  xy: 96, 1176
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-8
   rotate: false
-  xy: 32, 1152
+  xy: 0, 1208
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-9
   rotate: false
-  xy: 64, 1152
+  xy: 32, 1208
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-10
   rotate: false
-  xy: 96, 1152
+  xy: 64, 1208
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-11
   rotate: false
-  xy: 0, 1184
+  xy: 96, 1208
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-12
   rotate: false
-  xy: 32, 1184
+  xy: 0, 1240
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-13
   rotate: false
-  xy: 64, 1184
+  xy: 32, 1240
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-14
   rotate: false
-  xy: 96, 1184
+  xy: 64, 1240
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-15
   rotate: false
-  xy: 0, 1216
+  xy: 96, 1240
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-16
   rotate: false
-  xy: 32, 1216
+  xy: 0, 1272
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-17
   rotate: false
-  xy: 64, 1216
+  xy: 32, 1272
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-18
   rotate: false
-  xy: 96, 1216
+  xy: 64, 1272
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-19
   rotate: false
-  xy: 0, 1248
+  xy: 96, 1272
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-20
   rotate: false
-  xy: 32, 1248
+  xy: 0, 1304
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 scene-21
   rotate: false
-  xy: 64, 1248
+  xy: 32, 1304
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 smooth-stone-2
   rotate: false
-  xy: 96, 1248
+  xy: 64, 1304
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 smooth-stone
   rotate: false
-  xy: 0, 1280
+  xy: 96, 1304
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 spruce-planks
   rotate: false
-  xy: 32, 1280
+  xy: 0, 1336
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 spruce-trapdoor
   rotate: false
-  xy: 64, 1280
+  xy: 32, 1336
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 stone-bricks
   rotate: false
-  xy: 96, 1280
+  xy: 64, 1336
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 stool
   rotate: false
-  xy: 0, 1312
+  xy: 96, 1336
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 table
   rotate: false
-  xy: 32, 1312
+  xy: 0, 1368
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 tables-green
   rotate: false
-  xy: 64, 1312
+  xy: 32, 1368
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 tables-red
   rotate: false
-  xy: 96, 1312
+  xy: 64, 1368
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 terracota-stonebricks
   rotate: false
-  xy: 0, 1344
+  xy: 96, 1368
   size: 32, 32
   orig: 32, 32
+  offset: 0, 0
+  index: -1
+time-bomb-1
+  rotate: false
+  xy: 0, 24
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+time-bomb-2
+  rotate: false
+  xy: 24, 24
+  size: 24, 24
+  orig: 24, 24
   offset: 0, 0
   index: -1
 tnt-top
   rotate: false
-  xy: 32, 1344
+  xy: 0, 1400
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+trigger-bomb-1
+  rotate: false
+  xy: 48, 24
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+trigger-bomb-2
+  rotate: false
+  xy: 72, 24
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
 vertical-connection
   rotate: false
-  xy: 64, 1344
+  xy: 32, 1400
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 weathered-copper-trapdoor
   rotate: false
-  xy: 96, 1344
+  xy: 64, 1400
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 weathered-copper
   rotate: false
-  xy: 0, 1376
+  xy: 96, 1400
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 weathered-cut-copper
   rotate: false
-  xy: 32, 1376
+  xy: 0, 1432
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 white-terracotta
   rotate: false
-  xy: 64, 1376
+  xy: 32, 1432
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 white-wool
   rotate: false
-  xy: 96, 1376
+  xy: 64, 1432
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 yellow-concrete
   rotate: false
-  xy: 0, 1408
+  xy: 96, 1432
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

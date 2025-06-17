@@ -83,6 +83,7 @@ public class Config implements Serializable {
      */
     public void setGlobalVolume(int volume) {
         this.globalVolume = volume;
+        SoundManager.getInstance().updateMusicVolume();
     }
 
     /**
@@ -101,6 +102,7 @@ public class Config implements Serializable {
      */
     public void setMusicVolume(int volume) {
         this.musicVolume = volume;
+        SoundManager.getInstance().updateMusicVolume();
     }
 
     /**

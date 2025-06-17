@@ -1,6 +1,7 @@
 package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.utils.Constants;
 
 /**
  * The Timebomb class is a special type of Bomb that has a countdown
@@ -15,14 +16,18 @@ public class TimeBomb extends Bomb {
     private float timeRemaining;
 
     /**
-     * The texture name associated with the TimeBomb.
+     * The texture name prefix associated with the TimeBomb.
      */
-    public static final String TEXTURE_NAME = "time_bomb";
+    public static final String TEXTURE_PREFIX = "time-bomb";
 
     /**
-     * The default countdown timer value for the TimeBomb.
+     * Timer to determine when to switch beetween textures.
      */
-    private static final float DEFAULT_TIMER = 5.0f;
+    private float animationTimer = 0f;
+    /**
+     * Used to toggle between two bomb textures for blinking.
+     */
+    private boolean textureToggle = false;
 
     /**
      * Constructs a TimeBomb with the specified explosion power, sprite file path and timer.
@@ -31,8 +36,8 @@ public class TimeBomb extends Bomb {
      * @param y the Y-coordinate
      */
     public TimeBomb(int p, int x, int y) {
-        super(p, x, y, TimeBomb.TEXTURE_NAME);
-        this.timeRemaining = TimeBomb.DEFAULT_TIMER;
+        super(p, x, y, TimeBomb.TEXTURE_PREFIX + "-1");
+        this.timeRemaining = Constants.BOMB_TIMER;
     }
 
     /**
@@ -41,11 +46,23 @@ public class TimeBomb extends Bomb {
      * @param delta the elapsed time (in seconds) to decrease
      */
     public void tick(LevelMap map, float delta) {
+        final float animationSwapDelta = 0.5f;
+
         if (map == null) {
             throw new NullPointerException("LevelMap cannot be null");
         }
+
         if (this.timeRemaining > 0) {
             this.timeRemaining -= delta;
+
+            // Switching between textures every 0.5 seconds
+            animationTimer += delta;
+            if (animationTimer >= animationSwapDelta) {
+                textureToggle = !textureToggle;
+                this.setTextureName(textureToggle ? TEXTURE_PREFIX + "-2" : TEXTURE_PREFIX + "-1");
+                animationTimer = 0f;
+            }
+
             if (this.timeRemaining <= 0) {
                 this.timeRemaining = 0;
                 activateBomb(map);
@@ -61,7 +78,5 @@ public class TimeBomb extends Bomb {
         return this.timeRemaining;
     }
 
-
-}// Explosion propagation in all four directions
-
+}
 

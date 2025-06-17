@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
 import com.bomber7.utils.GameCharacter;
+
 import com.bomber7.core.model.entities.Character;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -147,6 +148,7 @@ public class CharacterTest {
         character.moveRight();
         assertEquals(initialMapX + 1, character.getMapX());
         assertEquals(initialX + 30, character.getPositionX());
+
         character.moveRight();
         assertEquals(initialMapX + 1, character.getMapX());
         assertEquals(initialX + 30, character.getPositionX());

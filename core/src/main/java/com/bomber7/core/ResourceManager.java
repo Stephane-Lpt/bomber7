@@ -2,6 +2,7 @@ package com.bomber7.core;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bomber7.utils.Language;
@@ -91,6 +92,17 @@ public final class ResourceManager {
      */
     public Skin getMapSkin() {
         return mapSkin;
+    }
+
+    /**
+     * Returns the texture region of a sprite based on given sprite texture name.
+     *
+     * @param spriteName the name of the sprite texture
+     * @return the texture region of the specified sprite
+     */
+    public TextureRegion getSpriteTextureRegion(String spriteName) {
+        return new TextureAtlas(Gdx.files.internal("skin/sprites/" + spriteName + ".atlas"))
+                .findRegion(spriteName);
     }
 
     /**

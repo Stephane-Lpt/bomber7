@@ -26,6 +26,7 @@ class PlayerTest {
      * Instance of Player used for testing (reset before each test).
      */
     private Player player;
+
     /**
      * Instance of LevelMap (map = foy) used for testing (reset before each test).
      */

@@ -39,7 +39,7 @@ public abstract class ElementTexture {
     /**
      * The texture image for this element.
      */
-    private final String textureName;
+    private String textureName;
 
     /**
      * Whether to flip the texture vertically.
@@ -87,6 +87,15 @@ public abstract class ElementTexture {
      */
     public String getTextureName() {
         return this.textureName;
+    }
+
+    /**
+     * Sets the name of the texture for this element.
+     *
+     * @param textureName the texture file path
+     */
+    public void setTextureName(String textureName) {
+        this.textureName = textureName;
     }
 
     /**
