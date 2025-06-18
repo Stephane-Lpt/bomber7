@@ -137,7 +137,6 @@ public class ViewMap extends Actor {
         float delta = Gdx.graphics.getDeltaTime();
 
         while (!levelMap.getEffectsQueue().empty()) {
-            Gdx.app.debug("ViewMap", "Adding an effect to the effectViews");
             effectViews.add(new ViewEffect(levelMap.getEffectsQueue().pop()));
         }
 
@@ -157,10 +156,7 @@ public class ViewMap extends Actor {
                 .getAtlas()
                 .findRegion(effect.getCurrentTextureName());
 
-            Gdx.app.debug("ViewMap", "Drawing texture " + effect.getCurrentTextureName());
-
             if (effectTexture != null) {
-                Gdx.app.debug("ViewMap", "Drawing effect");
                 drawTextureRegion(batch, effectTexture, (int) effect.getX(), (int) effect.getY(), 0f, 2f);
             }
         }

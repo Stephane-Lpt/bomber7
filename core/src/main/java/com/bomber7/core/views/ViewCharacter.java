@@ -94,7 +94,6 @@ public class ViewCharacter extends Actor {
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
-        Gdx.app.debug("ViewCharacter", character.getGameCharacter().getDrawableName());
         this.textureRegion = resources.getSpriteTextureRegion(character.getGameCharacter().getDrawableName());
         this.stateTime = 0f;
         GlyphLayout nameContainer = new GlyphLayout();
@@ -189,14 +188,15 @@ public class ViewCharacter extends Actor {
         );
 
         // Drawing debug info
-        if (true) {
+        if (false) {
             String debugPixelPos = "X: " + character.getPositionX() + ", Y: " + character.getPositionY();
             String debugMapPos = "mX: " + character.getMapX() + ", mY: " + character.getMapY();
             String debugState = "state: " + character.getMovingStatus();
+            String debugScore = "score: " + character.getScore();
 
             ResourceManager.getInstance().getSkin().getFont("pixelify-sm").draw(
                 batch,
-                debugPixelPos + "\n" + debugMapPos + "\n" + debugState,
+                debugPixelPos + "\n" + debugMapPos + "\n" + debugState + "\n" + debugScore,
                 character.getPositionX(),
                 character.getPositionY() + Dimensions.LABEL_PADDING
             );

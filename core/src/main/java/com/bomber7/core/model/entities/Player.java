@@ -15,6 +15,9 @@ import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.utils.Constants;
 import com.bomber7.core.model.square.TimeBomb;
+import com.bomber7.utils.Score;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 
 /**
  * Class Player.
@@ -117,22 +120,24 @@ public abstract class Player extends Character {
         };
 
         if (nbBomb >= 1) {
-            Gdx.app.debug("Player", this.getName() + " dropped a bomb");
+            addScore(Score.DROP_BOMB);
+
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
-                    bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY());
+                    bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY(), this);
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY());
+                    SoundManager.getInstance().play(SoundType.BOMB_CHARGE); // TODO : problème tests?
+                    bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY(), this);
                     break;
                 default:
                     bombToDrop = null;
             }
             Square currentSquare = this.map.getSquare(this.getMapX(), this.getMapY());
             currentSquare.setMapElement(bombToDrop);
-//            this.nbBomb--; // Decrease the number of bombs availables
+            this.nbBomb--;  // Decrease the number of bombs availables
             this.setStandingStill();
             return true;
         } else {

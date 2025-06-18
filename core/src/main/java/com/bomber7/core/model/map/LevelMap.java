@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Stack;
 
 import com.bomber7.utils.Effect;
+import com.bomber7.utils.GameMap;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
@@ -19,6 +20,8 @@ public class LevelMap {
 
     /** The name of the map. */
     private String mapName;
+    /** The type of the map. */
+    private GameMap mapType;
 
     /** Width of the window in pixels. */
     private final int windowWidth;
@@ -43,6 +46,7 @@ public class LevelMap {
      */
     public LevelMap(String mapName, List<List<Square>> checkerboard, int windowWidth, int windowHeight) {
         this.mapName = mapName;
+        this.mapType = GameMap.valueOf(mapName.toUpperCase());
         this.checkerboard = checkerboard;
         this.characters = new ArrayList<>();
         this.effectsQueue = new Stack<>();
@@ -106,6 +110,14 @@ public class LevelMap {
      */
     public String getMapName() {
         return mapName;
+    }
+
+    /**
+     * Returns the type of the map.
+     * @return the type of the map
+     */
+    public GameMap getMapType() {
+        return mapType;
     }
 
     /**

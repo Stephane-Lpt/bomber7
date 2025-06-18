@@ -18,9 +18,9 @@ public final class Constants {
      */
     public static final int MAX_PLAYER_NAME_LENGTH = 12;
     /**
-     * Maximum number of players allowed in the game.
+     * Minimum number of players allowed in the game.
      */
-    public static final int MIN_PLAYERS = 1;
+    public static final int MIN_PLAYERS = 2;
     /**
      * Maximum number of human players allowed in the game.
      */
@@ -50,7 +50,7 @@ public final class Constants {
     /**
      * The default bomb timer.
      */
-    public static final float BOMB_TIMER = 5.0f;
+    public static final float BOMB_TIMER = 2.5f;
 
     /**
      * The default bomb timer.
@@ -86,4 +86,14 @@ public final class Constants {
         BONUS_TYPE.LIFE, 0.4,
         BONUS_TYPE.SPEED, 0.4
     );
+
+    /**
+     * Interval (in seconds) at which alive players are awarded points for staying alive.
+     */
+    public static final float ALIVE_SCORE_TIMER = 10f;
+
+    /**
+     * Minimum player score.
+     */
+    public static final int MIN_PLAYER_SCORE = 0;
 }

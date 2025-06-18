@@ -4,12 +4,16 @@ package com.bomber7.core.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.bomber7.core.components.PlayerScoreBoard;
 import com.bomber7.core.controller.HumanController;
 import com.bomber7.core.model.entities.Character;
+import com.bomber7.core.model.entities.Player;
 import com.bomber7.core.views.ViewCharacter;
+import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.ScreenType;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.bomber7.core.views.ViewMap;
+import com.bomber7.utils.SoundManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +24,9 @@ import java.util.List;
  * This screen displays the game map
  */
 public class GameScreen extends BomberScreen {
+
+    List<PlayerScoreBoard> scoreboards;
+
     /**
      * Constructs a new GameScreen associated with the given game.
      * @param game the Game instance this screen belongs to
@@ -38,8 +45,10 @@ public class GameScreen extends BomberScreen {
     public void initView() {
         Table mainTable = new Table();
         mainTable.setFillParent(true);
+//        mainTable.setDebug(true);
 
         List<ViewCharacter> characterViews = new ArrayList<>();
+        scoreboards = new ArrayList<>();
 
         for(Character character : game.getCurrentMap().getCharacters()) {
                 ViewCharacter characterView = new ViewCharacter(
@@ -51,7 +60,25 @@ public class GameScreen extends BomberScreen {
 
         ViewMap viewMap = new ViewMap(game.getCurrentMap(), characterViews, resources);
 
-        mainTable.add(viewMap);
+        mainTable.add(viewMap)
+            .expandX()
+            .expandY();
+
+        Table scoreTable = new Table();
+
+        for(Character character : game.getCurrentMap().getCharacters()) {
+            Player player = (Player) character;
+            PlayerScoreBoard scoreBoard = new PlayerScoreBoard(player);
+            scoreboards.add(scoreBoard);
+            scoreTable.add(scoreBoard)
+                .right()
+                .spaceBottom(Dimensions.COMPONENT_SPACING_SM)
+                .row();
+        }
+
+        mainTable.add(scoreTable)
+            .right()
+            .padRight(Dimensions.COMPONENT_SPACING_LG);
 
         this.addActor(mainTable);
     }
@@ -70,22 +97,19 @@ public class GameScreen extends BomberScreen {
     public void render(float delta) {
         processInput();
 
-//        game.logCurrentRound();
-//        Gdx.app.debug("GameScreen", "Current map: " + game.getCurrentMap().getMapName());
-
-        if (!game.isRoundCompleted()) {
-//            game.simulateEndOfRound();
-
-            if (game.checkGameWin()) {
-                Gdx.app.debug("GameScreen", "Round completed. Advancing to next round...");
-                game.setRoundCompleted(true);
-                game.advanceToNextRound();
-             }
-        } else {
-            Gdx.app.debug("GameScreen", "Round already completed. Waiting for next round.");
+        for (PlayerScoreBoard scoreBoard : scoreboards) {
+            scoreBoard.refresh();
         }
 
+        game.update();
+
         super.render(delta);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        SoundManager.getInstance().playFightMusic();
     }
 
     @Override

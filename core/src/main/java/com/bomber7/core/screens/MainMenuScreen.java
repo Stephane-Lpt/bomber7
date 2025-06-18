@@ -110,13 +110,13 @@ public class MainMenuScreen extends BomberScreen {
     }
 
     @Override
-    public ScreenType getScreenType() {
-        return ScreenType.MAIN_MENU;
+    public void show() {
+        super.show();
+        SoundManager.getInstance().playMenuMusic(SoundType.GUITAR);
     }
 
     @Override
-    public void show() {
-        super.show();
-        SoundManager.getInstance().playMusic(SoundType.ELEVATOR);
+    public ScreenType getScreenType() {
+        return ScreenType.MAIN_MENU;
     }
 }
