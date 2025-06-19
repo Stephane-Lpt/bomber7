@@ -98,11 +98,10 @@ class PlayerTest {
         assertEquals(22, player.getMapY(), "Player should be at (1,22) after moving down");
         assertEquals(1, player.getMapX(), "Player should be at (1,22) after moving down");
         player.dropBomb(); // Drop at (1,22)
+
         System.out.println(player.getPower());
 
         assertEquals(2, player.getNbTriggeredBombDropped(), "Should have 2 TriggerBombs before activation");
-
-
 
         // Check squares before activation
         Square square1 = this.foyLevelMap.getSquare(1, 22);

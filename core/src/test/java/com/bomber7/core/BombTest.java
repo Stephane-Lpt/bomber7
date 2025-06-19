@@ -11,6 +11,7 @@ import com.bomber7.utils.GameCharacter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.List;
@@ -78,18 +79,22 @@ public class BombTest {
         TimeBomb bomb = Mockito.spy(new TimeBomb(3, 2, 2, testCharacter));
 
         // Quand playSong est appelée, ne rien faire (override)
-        Mockito.doNothing().when(bomb).playSong();
+        Mockito.doNothing().when(bomb).playExplosionSound();
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(2, 2);
         bombSquare.setMapElement(bomb);
 
         // Place the characters
-        Character charInRange = new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, gameCharacter);
+        Character charInRange = Mockito.spy(new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, gameCharacter));
         levelMap.addCharacter(charInRange);
 
-        Character charOutOfRange = new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, gameCharacter);
+        Character charOutOfRange = Mockito.spy(new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, gameCharacter));
         levelMap.addCharacter(charOutOfRange);
+
+        // Quand playDeadSound est appelée, ne rien faire (override)
+        Mockito.doNothing().when(charInRange).playDeadSound();
+        Mockito.doNothing().when(charOutOfRange).playDeadSound();
 
         // Activate the bomb
         bomb.activateBomb(levelMap);
@@ -126,7 +131,7 @@ public class BombTest {
         Bomb bomb = Mockito.spy(new TimeBomb(3, 4, 1, testCharacter));
 
         // Quand playSong est appelée, ne rien faire (override)
-        Mockito.doNothing().when(bomb).playSong();
+        Mockito.doNothing().when(bomb).playExplosionSound();
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(4, 1);
@@ -134,7 +139,7 @@ public class BombTest {
 
         // Create another Bomb at (x : 2, y : 1) with explosion power 1
         Bomb otherBomb = Mockito.spy(new TimeBomb(1, 3, 1, this.testCharacter));
-        Mockito.doNothing().when(otherBomb).playSong();
+        Mockito.doNothing().when(otherBomb).playExplosionSound();
         Square otherBombSquare = levelMap.getSquare(3, 1);
         otherBombSquare.setMapElement(otherBomb);
 

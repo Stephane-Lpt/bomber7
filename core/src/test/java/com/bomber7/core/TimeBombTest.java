@@ -5,6 +5,7 @@ import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.utils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -31,7 +32,8 @@ public class TimeBombTest extends BombTest {
         super.setUp(); // initialize the map
 
         // Instantiate a TimeBomb at position (2, 3) with a timer of 5 sec
-        timeBomb = new TimeBomb(2, 2, 3, super.testCharacter);
+        timeBomb = Mockito.spy(new TimeBomb(2, 2, 3, super.testCharacter));
+        Mockito.doNothing().when(timeBomb).playExplosionSound();
     }
 
     /**

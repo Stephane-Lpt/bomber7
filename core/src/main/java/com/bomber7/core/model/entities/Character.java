@@ -247,7 +247,7 @@ public abstract class Character implements Comparable<Character> {
             throw new IllegalStateException("Character cannot have negative life.");
         }
         if (this.life == 0) {
-            SoundManager.getInstance().play(SoundType.DEATH);
+            playDeadSound();
             this.isAlive = false;
             addScore(Score.DEAD);
             this.movingStatus = CharacterState.DEAD;
@@ -258,6 +258,7 @@ public abstract class Character implements Comparable<Character> {
 
     /**
      * Resets a character to its initial state (lives, position, etc...).
+     * Does not reset the score because it should keep it between rounds.
      */
     public void reset() {
         this.isAlive = true;
@@ -390,16 +391,24 @@ public abstract class Character implements Comparable<Character> {
         return this.map.getSquare(futureMapX, futureMapY).isWalkable();
     }
 
-        /**
-         * Compares this character to another character based on their score.
-         * @param other the character to compare to
-         * @return a negative integer if this character has a higher score than the other;
-         *         zero if their scores are equal;
-         *         a positive integer if this character has a lower score than the other
-         */
-        @Override
-        public int compareTo(Character other) {
-            // Descending order (higher score comes first)
-            return Integer.compare(other.score, this.score);
-        }
+    /**
+     * Compares this character to another character based on their score.
+     * @param other the character to compare to
+     * @return a negative integer if this character has a higher score than the other;
+     *         zero if their scores are equal;
+     *         a positive integer if this character has a lower score than the other
+     */
+    @Override
+    public int compareTo(Character other) {
+        // Descending order (higher score comes first)
+        return Integer.compare(other.score, this.score);
+    }
+
+    /**
+     * Play death sound.
+     * It is a distinct method so that it can be removed in tests later.
+     */
+    public void playDeadSound() {
+        SoundManager.getInstance().play(SoundType.DEATH);
+    }
 }

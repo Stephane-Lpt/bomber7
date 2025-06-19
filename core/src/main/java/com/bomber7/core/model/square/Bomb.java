@@ -108,23 +108,16 @@ public abstract class Bomb extends MapElement {
     public void onExplosion(LevelMap m, int xCord, int yCord) {
         Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
-            Gdx.app.debug("Bomb", "MapElement before explosion: " + sq.getMapElement());
+//            Gdx.app.debug("Bomb", "MapElement before explosion: " + sq.getMapElement());
             sq.clearMapElement();
             m.addEffect(new Effect(
                 xCord,
                 yCord,
                 EffectType.EXPLOSION
             ));
-            Gdx.app.debug("Bomb", "MapElement after explosion: " + sq.getMapElement());
-            Gdx.app.debug("Bomb", "instanceOfBonus: " + (sq.getMapElement() instanceof Bonus));
+//            Gdx.app.debug("Bomb", "MapElement after explosion: " + sq.getMapElement());
+//            Gdx.app.debug("Bomb", "instanceOfBonus: " + (sq.getMapElement() instanceof Bonus));
         }
-    }
-
-    /**
-     * Play the song.
-     */
-    public void playSong() {
-        SoundManager.getInstance().play(SoundType.EXPLOSION);
     }
 
     /**
@@ -148,7 +141,7 @@ public abstract class Bomb extends MapElement {
         if (planter instanceof Player) {
             ((Player) planter).setNbBomb(1);
         }
-        playSong();
+        playExplosionSound();
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
@@ -209,5 +202,13 @@ public abstract class Bomb extends MapElement {
                 onExplosion(m, newX, newY);
             }
         }
+    }
+
+    /**
+     * Play explosion sound.
+     * It is a distinct method so that it can be removed in tests later.
+     */
+    public void playExplosionSound() {
+        SoundManager.getInstance().play(SoundType.EXPLOSION);
     }
 }

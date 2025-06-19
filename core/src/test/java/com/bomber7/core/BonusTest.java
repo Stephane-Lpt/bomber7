@@ -1,6 +1,5 @@
 package com.bomber7.core;
 
-import org.junit.*;
 import com.bomber7.utils.BonusType;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
@@ -8,7 +7,6 @@ import com.bomber7.core.model.square.BonusSpeed;
 import com.bomber7.core.model.square.BonusTriggerBomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.Constants.BONUS_TYPE;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.RepeatedTest;
@@ -112,7 +110,7 @@ public class BonusTest {
             double tolerance = 0.10;
             assertTrue(Math.abs(actualFrequency - expectedFrequency) <= tolerance,
                        String.format("Bonus type %s: actual frequency (%.3f) should be close to expected (%.3f) within tolerance (%.1f)",
-                                    entry.getKey(), actualFrequency, expectedFrequency, tolerance));
+                                    bonusType, actualFrequency, expectedFrequency, tolerance));
         }
     }
 
