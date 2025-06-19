@@ -6,9 +6,13 @@ import com.badlogic.gdx.utils.Array;
 /**
  * List of spawnpoint for each player.
  */
-public class SpawnPoint {
+public final class SpawnPoint {
 
-    // Immutable list of spawn points
+    private SpawnPoint() { }
+
+    /**
+     * List of spawn points for each player.
+     */
     private static final Array<GridPoint2> SPAWN_POINTS = new Array<>(new GridPoint2[] {
         new GridPoint2(1, 23),   // Spawnpoint of player 1
         new GridPoint2(33, 1),   // Spawnpoint of player 2

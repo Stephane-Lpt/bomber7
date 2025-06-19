@@ -26,8 +26,8 @@ public class BonusSpeed extends Bonus {
     /**
      * Constructs a BonusSpeed without specifying flip options (false by default).
      * Useful for ids that don't need id_masks.
-     * 
-     * @param textureFilePath
+     *
+     * @param textureFilePath the file path to the texture image for the bonus
      */
     public BonusSpeed(String textureFilePath) {
         super(textureFilePath);
@@ -37,8 +37,7 @@ public class BonusSpeed extends Bonus {
     public void applyBonusEffect(HumanPlayer player) {
         // Managing displaying the bonus effect
         int currentSpeed = player.getSpeed();
-        currentSpeed ++;
+        currentSpeed++;
         player.setSpeed(currentSpeed);
     }
-    
 }

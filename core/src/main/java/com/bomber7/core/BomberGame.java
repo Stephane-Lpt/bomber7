@@ -21,7 +21,6 @@ import java.util.List;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
-import com.bomber7.utils.SoundType;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -71,7 +70,6 @@ public class BomberGame extends Game {
 
     /**
      * Time elapsed since the last time players were credited points for being alive during a game.
-     * TODO: there may be a bug when this timer works incorrectly when the game is being paused (scoreboard or pause menu).
      */
     private float aliveScoreTimer;
 
@@ -145,7 +143,7 @@ public class BomberGame extends Game {
      * Pauses the game.
      */
     public void pause() {
-        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, false, false   );
+        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, false, false);
     }
 
     /**
@@ -231,17 +229,17 @@ public class BomberGame extends Game {
             return false;
         }
 
-        List<Character> characters = currentMap.getCharacters();
+        List<Character> mapCharacters = currentMap.getCharacters();
         int aliveCount = 0;
 
-        for (Character character : characters) {
+        for (Character character : mapCharacters) {
             if (character.isAlive()) {
                 aliveCount++;
             }
         }
 
         if (aliveCount == 1) {
-            for (Character character : characters) {
+            for (Character character : mapCharacters) {
                 if (character.isAlive()) {
                     Gdx.app.debug("BomberGame", character.getName() + " wins the round!");
                     character.addScore(Score.WIN);
@@ -258,7 +256,7 @@ public class BomberGame extends Game {
      * Precondition: the game is not finished
      */
     public void nextRound() {
-        if(isLastRound()) {
+        if (isLastRound()) {
             Gdx.app.debug("BomberGame", "Last round was played. Stopping the game.");
             stop();
         }
@@ -329,7 +327,9 @@ public class BomberGame extends Game {
      */
     private LevelMap getNextMap() {
         GameMap mapToCreate = gameCandidate.getMaps().get((currentRound - 1) % gameCandidate.getMaps().size());
-        LevelMap levelMap = LevelMapFactory.createLevelMap(mapToCreate.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        LevelMap levelMap = LevelMapFactory.createLevelMap(
+            mapToCreate.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
+            );
         return levelMap;
     }
 

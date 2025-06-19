@@ -9,11 +9,27 @@ import com.bomber7.utils.Effect;
  */
 public class ViewEffect extends Actor {
 
+    /**
+     * Time Remaining.
+     */
     private float timeRemaining;
+    /**
+     * Animation Timer.
+     */
     private float animationTimer;
+    /**
+     * Current Frame Index.
+     */
     private int currentFrameIndex;
+    /**
+     * Visual effect variable.
+     */
     private Effect effect;
 
+    /**
+     * Constructor for the visual effect.
+     * @param effect
+     */
     public ViewEffect(Effect effect) {
         this.setX(effect.getX());
         this.setY(effect.getY());
@@ -23,10 +39,19 @@ public class ViewEffect extends Actor {
         this.currentFrameIndex = 0;
     }
 
+    /**
+     * Returns the texture name.
+     * @return the texture name
+     */
     String getCurrentTextureName() {
         return effect.getType().getFrames()[currentFrameIndex].toLowerCase();
     }
 
+    /**
+     * Updates the animation.
+     * @param delta
+     * @return time remaining
+     */
     public boolean update(float delta) {
         if (timeRemaining > 0) {
             timeRemaining -= delta;

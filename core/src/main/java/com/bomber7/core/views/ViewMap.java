@@ -81,7 +81,7 @@ public class ViewMap extends Actor {
     }
 
     private void drawCharacters(Batch batch, float parentAlpha) {
-        for(ViewCharacter character : characterViews) {
+        for (ViewCharacter character : characterViews) {
             character.draw(batch, parentAlpha);
         }
     }
@@ -105,18 +105,19 @@ public class ViewMap extends Actor {
 
                     // Wall
                     if (square.getMapElement() instanceof Wall) {
-                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    }
-
-                    // Bomb
-                    else if (square.getMapElement() instanceof Bomb) {
+                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(
+                            square.getMapElement().getTextureName()
+                            );
+                    } else if (square.getMapElement() instanceof Bomb) {
                         // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(levelMap, Gdx.graphics.getDeltaTime());
                         }
 
                         if (square.hasMapElement()) {
-                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(
+                                square.getMapElement().getTextureName()
+                                );
                         }
                     }
 
@@ -130,7 +131,7 @@ public class ViewMap extends Actor {
     }
 
     /**
-     * Draws / updates all the queued effects
+     * Draws / updates all the queued effects.
      * @param batch the Batch used for drawing
      */
     private void drawEffects(Batch batch) {

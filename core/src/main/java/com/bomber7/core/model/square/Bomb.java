@@ -23,11 +23,12 @@ public abstract class Bomb extends MapElement {
     /**
      * Constants representing different types of bombs.
      * CLASSIC_BOMB is a standard bomb that explodes after being placed.
-     * TRIGGER_BOMB is a bomb that can be manually triggered by the player.
      */
     public static final int CLASSIC_BOMB = 0;
+    /**
+     * TRIGGER_BOMB is a bomb that can be manually triggered by the player.
+     */
     public static final int TRIGGER_BOMB = 1;
-
     /**
      * The power of the bomb, which determines the range of its explosion.
      */

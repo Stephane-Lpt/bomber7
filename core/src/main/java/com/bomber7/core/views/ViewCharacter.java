@@ -42,12 +42,12 @@ public class ViewCharacter extends Actor {
      */
     private static final int FRAME_ROWS = 7;
 
-    /*
+    /**
      * Animation for moving to the right.
      */
     private Animation<TextureRegion> moveRight;
 
-    /*
+    /**
      * Animation for moving to the left.
      */
     private Animation<TextureRegion> moveLeft;
@@ -91,6 +91,7 @@ public class ViewCharacter extends Actor {
      * Constructs a new ViewCharacter instance.
      *
      * @param character the character to be displayed
+     * @param resources the resources accessed
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
@@ -112,16 +113,24 @@ public class ViewCharacter extends Actor {
      * specific rows in the texture grid.
      */
     private void createAnimations() {
+        final int rowMoveLeft = 0;
+        final int rowMoveDown = 1;
+        final int rowMoveUp = 2;
+        final int rowStand = 5;
+        final int frameLoop = 3;
+        final int singleFrame = 1;
+        final int spriteSheetL3 = 3;
+        final int spriteSheetC2 = 2;
         TextureRegion[][] region = textureRegion.split(
             textureRegion.getTexture().getWidth() / FRAME_COLS,
             textureRegion.getTexture().getHeight() / FRAME_ROWS);
 
-        moveRight = createAnimation(region, 0, 3);
+        moveRight = createAnimation(region, rowMoveLeft, frameLoop);
         moveLeft = createMirroredAnimation(region, moveRight, false);
-        moveUp = createAnimation(region, 2, 3);
-        moveDown = createAnimation(region, 1, 3);
-        stand = createAnimation(region, 5, 1);
-        die = new Animation<>(Constants.FRAME_DURATION, region[3][2]);
+        moveUp = createAnimation(region, rowMoveUp, frameLoop);
+        moveDown = createAnimation(region, rowMoveDown, frameLoop);
+        stand = createAnimation(region, rowStand, singleFrame);
+        die = new Animation<>(Constants.FRAME_DURATION, region[spriteSheetL3][spriteSheetC2]);
     }
 
     /**
@@ -146,7 +155,9 @@ public class ViewCharacter extends Actor {
      * @param loop Whether the animation should loop.
      * @return The mirrored animation.
      */
-    private Animation<TextureRegion> createMirroredAnimation(TextureRegion[][] region, Animation<TextureRegion> baseAnimation, boolean loop) {
+    private Animation<TextureRegion> createMirroredAnimation(
+        TextureRegion[][] region, Animation<TextureRegion> baseAnimation, boolean loop
+        ) {
         TextureRegion[] frames = baseAnimation.getKeyFrames();
         TextureRegion[] mirroredFrames = new TextureRegion[frames.length];
         for (int i = 0; i < frames.length; i++) {

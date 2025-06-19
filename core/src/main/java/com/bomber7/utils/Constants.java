@@ -70,21 +70,27 @@ public final class Constants {
     /**
      * The chance of a bonus being dropped.
      */
-    public final static double BONUS_RATE = 0.25; // 25% chance to drop a bonus
+    public static final double BONUS_RATE = 0.25; // 25% chance to drop a bonus
 
-    public static enum BONUS_TYPE {
+    /**
+     * Enum representing the types of bonuses that can be dropped.
+     */
+    public enum BonusType {
+        /** Trigger Bomb Bonus. */
         TRIGGER_BOMB,
+        /** Extra Life Bonus. */
         LIFE,
+        /** Speed Bonus. */
         SPEED
     }
     /**
      * A map of the probabilities of each bonus of being dropped.
      * All probabilities add up to one.
      */
-    public static final Map<BONUS_TYPE, Double> BONUS_PROBABILITIES = Map.of(
-        BONUS_TYPE.TRIGGER_BOMB, 0.2,
-        BONUS_TYPE.LIFE, 0.4,
-        BONUS_TYPE.SPEED, 0.4
+    public static final Map<BonusType, Double> BONUS_PROBABILITIES = Map.of(
+        BonusType.TRIGGER_BOMB, 0.2,
+        BonusType.LIFE, 0.4,
+        BonusType.SPEED, 0.4
     );
 
     /**

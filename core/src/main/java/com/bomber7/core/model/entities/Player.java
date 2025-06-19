@@ -1,6 +1,5 @@
 package com.bomber7.core.model.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 
@@ -117,7 +116,7 @@ public abstract class Player extends Character {
     public boolean dropBomb() {
         if (!this.isAlive()) {
             return false;
-        };
+        }
 
         if (nbBomb >= 1) {
             addScore(Score.DROP_BOMB);
@@ -129,7 +128,7 @@ public abstract class Player extends Character {
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    SoundManager.getInstance().play(SoundType.BOMB_CHARGE); // TODO : problème tests?
+                    SoundManager.getInstance().play(SoundType.BOMB_CHARGE);
                     bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY(), this);
                     break;
                 default:
