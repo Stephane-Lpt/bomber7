@@ -1,5 +1,6 @@
 package com.bomber7.core.model.square;
 
+import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.texture.ElementTexture;
 
 /**
@@ -82,9 +83,27 @@ public class Square extends ElementTexture {
      * This method sets the map element to null.
      */
     public void clearMapElement() {
-        this.mapElement = null;
+        if (mapElement instanceof BreakableWall) {
+//            Bonus potentialBonus = ((BreakableWall) mapElement).onDestruction();
+//            Gdx.app.debug("Square", "Setting bonus to " + potentialBonus);
+//
+//            this.setMapElement(potentialBonus); // either null or a bonus
+//
+//            Gdx.app.debug("Square", "Current map element: " + potentialBonus);
+//            Gdx.app.debug("Square", "instanceOfBonus: " + (mapElement instanceof Bonus));
+//            this.setMapElement(
+//                new BreakableWall(
+//                    "bonus_heart",
+//                    false,
+//                    false,
+//                    false
+//                )
+//            );
+            mapElement = null;
+        } else {
+            mapElement = null;
+        }
     }
-
 
     /**
      * Returns the map element associated with this square.

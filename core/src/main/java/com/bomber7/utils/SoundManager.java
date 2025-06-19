@@ -33,7 +33,7 @@ public final class SoundManager {
      * Used to randomly select a fight track when starting a fight.
      */
     private final List<SoundType> fightTracks = Arrays.asList(
-        SoundType.BRAIN_ROT, SoundType.BEAST_MODE, SoundType.EPIC_FIGHT_1, SoundType.EPIC_FIGHT_2, SoundType.EPIC_FIGHT_3
+        SoundType.EPIC_FIGHT_1, SoundType.EPIC_FIGHT_2, SoundType.EPIC_FIGHT_3, SoundType.ARCADE, SoundType.BEAST_MODE
     );
 
     /**
@@ -80,7 +80,6 @@ public final class SoundManager {
      *
      */
     public void initialize() {
-        loadSound(SoundType.HOVER, "sounds/hover.wav");
         loadSound(SoundType.CLICK, "sounds/click.wav");
         loadSound(SoundType.EXPLOSION, "sounds/explosion.mp3");
         loadSound(SoundType.BOMB_CHARGE, "sounds/bomb_charge.mp3");
@@ -88,17 +87,19 @@ public final class SoundManager {
         loadSound(SoundType.FOOTSTEP_2, "sounds/footstep_2.mp3");
         loadSound(SoundType.FOOTSTEP_3, "sounds/footstep_3.mp3");
         loadSound(SoundType.GAME_OVER, "sounds/game_over.mp3");
+        loadSound(SoundType.DEATH, "sounds/death.mp3");
 
-        loadMusic(SoundType.BEAST_MODE, "sounds/beast_mode.mp3");
         loadMusic(SoundType.ELEVATOR, "sounds/elevator.mp3");
         loadMusic(SoundType.GUITAR, "sounds/guitar.mp3");
         loadMusic(SoundType.EPIC_FIGHT_1, "sounds/epic_fight_1.mp3");
         loadMusic(SoundType.EPIC_FIGHT_2, "sounds/epic_fight_2.mp3");
         loadMusic(SoundType.EPIC_FIGHT_3, "sounds/epic_fight_3.mp3");
-        loadMusic(SoundType.BRAIN_ROT, "sounds/brain_rot.mp3");
+        loadMusic(SoundType.ARCADE, "sounds/arcade.mp3");
+        loadMusic(SoundType.BEAST_MODE, "sounds/beastmode.mp3");
 
         currentMusic = null;
         currentMusicType = null;
+        currentFightMusic = null;
     }
 
     /**
@@ -137,7 +138,7 @@ public final class SoundManager {
     public void playMenuMusic(SoundType type) {
         if (type == currentMusicType) {
             return;
-}
+        }
 
         // Pauses fight music.
         if (currentFightMusic != null && currentFightMusic.isPlaying()) {
@@ -221,6 +222,9 @@ public final class SoundManager {
 
         if (currentMusic != null) {
             currentMusic.setVolume(volume);
+        }
+        if (currentFightMusic != null) {
+            currentFightMusic.setVolume(volume);
         }
     }
 

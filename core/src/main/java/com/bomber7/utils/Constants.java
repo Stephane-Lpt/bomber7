@@ -68,36 +68,9 @@ public final class Constants {
     public static final float VOLUME_CONVERT_RATIO = 100f;
 
     /**
-     * The chance of a bonus being dropped.
+     * The chance of a bonus being dropped once a breakable wall is destroyed.
      */
-    public static final double BONUS_RATE = 0.25; // 25% chance to drop a bonus
-
-    /**
-     * The maximum number of bonuses that can be dropped at once.
-     */
-    public enum BonusType {
-        /**
-         * A bonus that triggers a bomb explosion.
-         */
-        TRIGGER_BOMB,
-        /**
-         * A bonus that gives the player an extra life.
-         */
-        LIFE,
-        /**
-         * A bonus that increases the player's speed.
-         */
-        SPEED
-    }
-    /**
-     * A map of the probabilities of each bonus of being dropped.
-     * All probabilities add up to one.
-     */
-    public static final Map<BonusType, Double> BONUS_PROBABILITIES = Map.of(
-        BonusType.TRIGGER_BOMB, 0.2,
-        BonusType.LIFE, 0.4,
-        BonusType.SPEED, 0.4
-    );
+    public final static double BONUS_RATE = 0.25;
 
     /**
      * Interval (in seconds) at which alive players are awarded points for staying alive.
@@ -108,4 +81,11 @@ public final class Constants {
      * Minimum player score.
      */
     public static final int MIN_PLAYER_SCORE = 0;
+
+    /** The default life of a player. */
+    public static final int DEFAULT_LIFE = 1;
+
+    /** The default speed of a player. */
+    public static final int DEFAULT_SPEED = 1;
+
 }

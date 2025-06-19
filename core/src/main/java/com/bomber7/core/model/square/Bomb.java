@@ -108,12 +108,15 @@ public abstract class Bomb extends MapElement {
     public void onExplosion(LevelMap m, int xCord, int yCord) {
         Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
+//            Gdx.app.debug("Bomb", "MapElement before explosion: " + sq.getMapElement());
             sq.clearMapElement();
             m.addEffect(new Effect(
                 xCord,
                 yCord,
                 EffectType.EXPLOSION
             ));
+//            Gdx.app.debug("Bomb", "MapElement after explosion: " + sq.getMapElement());
+//            Gdx.app.debug("Bomb", "instanceOfBonus: " + (sq.getMapElement() instanceof Bonus));
         }
     }
 
@@ -138,8 +141,7 @@ public abstract class Bomb extends MapElement {
         if (planter instanceof Player) {
             ((Player) planter).setNbBomb(((Player) planter).getNbBomb() + 1);
         }
-
-        SoundManager.getInstance().play(SoundType.EXPLOSION); // TODO : problème tests?
+        playExplosionSound();
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
@@ -161,10 +163,10 @@ public abstract class Bomb extends MapElement {
                             || character.getMapX() == this.x && character.getMapY() == this.y
                         ) {
                             if (character == planter) {
-                                Gdx.app.debug("Bomb", planter.getName() + " suicided.");
+                                //Gdx.app.debug("Bomb", planter.getName() + " suicided.");
                                 character.addScore(Score.SUICIDE);
                             } else {
-                                Gdx.app.debug("Bomb", planter.getName() + " killed " + character);
+                                //Gdx.app.debug("Bomb", planter.getName() + " killed " + character);
                                 planter.addScore(Score.KILL);
                             }
                             character.removeOneLife();
@@ -200,5 +202,13 @@ public abstract class Bomb extends MapElement {
                 onExplosion(m, newX, newY);
             }
         }
+    }
+
+    /**
+     * Play explosion sound.
+     * It is a distinct method so that it can be removed in tests later.
+     */
+    public void playExplosionSound() {
+        SoundManager.getInstance().play(SoundType.EXPLOSION);
     }
 }

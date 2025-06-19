@@ -2,6 +2,7 @@ package com.bomber7.core.model.entities;
 
 import com.bomber7.core.controller.PlayerConfig;
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 
 /**
@@ -22,7 +23,7 @@ public class HumanPlayer extends Player {
      * @param gameCharacter The game character type
      */
     public HumanPlayer(PlayerConfig config, LevelMap map, String name, int mapX, int mapY, GameCharacter gameCharacter) {
-        super(name, map, mapX, mapY, 1, 1, gameCharacter);
+        super(name, map, mapX, mapY, Constants.DEFAULT_LIFE, Constants.DEFAULT_SPEED, gameCharacter);
         this.config = config;
     }
 

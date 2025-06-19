@@ -1,12 +1,12 @@
 package com.bomber7.core;
-import org.junit.*;
+
+import com.bomber7.utils.BonusType;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
 import com.bomber7.core.model.square.BonusSpeed;
 import com.bomber7.core.model.square.BonusTriggerBomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.Constants.BonusType;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.RepeatedTest;
@@ -101,23 +101,23 @@ public class BonusTest {
         int totalBonuses = bonusCount.values().stream().mapToInt(Integer::intValue).sum();
 
         // Verify each bonus type appears with roughly the expected frequency
-        for (Map.Entry<Constants.BonusType, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
-            Class<? extends Bonus> bonusClass = getBonusClassFromType(entry.getKey());
-            double expectedFrequency = entry.getValue();
+        for (BonusType bonusType : BonusType.values()) {
+            Class<? extends Bonus> bonusClass = getBonusClassFromType(bonusType);
+            double expectedFrequency = bonusType.getDropRate();
             double actualFrequency = (double) bonusCount.get(bonusClass) / totalBonuses;
 
             // Allow for statistical variance (10% tolerance for distribution)
             double tolerance = 0.10;
             assertTrue(Math.abs(actualFrequency - expectedFrequency) <= tolerance,
                        String.format("Bonus type %s: actual frequency (%.3f) should be close to expected (%.3f) within tolerance (%.1f)",
-                                    entry.getKey(), actualFrequency, expectedFrequency, tolerance));
+                                    bonusType, actualFrequency, expectedFrequency, tolerance));
         }
     }
 
     /**
      * Helper method to convert BonusType enum to corresponding Bonus class.
      */
-    private Class<? extends Bonus> getBonusClassFromType(Constants.BonusType bonusType) {
+    private Class<? extends Bonus> getBonusClassFromType(BonusType bonusType) {
         switch (bonusType) {
             case TRIGGER_BOMB:
                 return BonusTriggerBomb.class;

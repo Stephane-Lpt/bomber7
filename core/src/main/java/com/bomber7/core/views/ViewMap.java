@@ -7,6 +7,7 @@ import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Bomb;
+import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
@@ -105,17 +106,22 @@ public class ViewMap extends Actor {
 
                     // Wall
                     if (square.getMapElement() instanceof Wall) {
-                        mapElementTextureRegion =
-                            resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    } else if (square.getMapElement() instanceof Bomb) {
+                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    }
+                    // Bonus
+                    else if (square.getMapElement() instanceof Bonus) {
+                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    }
+                    // Bomb
+                    else if (square.getMapElement() instanceof Bomb) {
                         // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(levelMap, Gdx.graphics.getDeltaTime());
                         }
 
                         if (square.hasMapElement()) {
-                            mapElementTextureRegion =
-                                resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                            Gdx.app.debug("ViewMap", "Drawing bomb + " + (square.getMapElement().getTextureName()));
+                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                         }
                     }
 

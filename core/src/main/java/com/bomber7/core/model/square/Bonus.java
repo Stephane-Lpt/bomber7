@@ -1,5 +1,6 @@
 package com.bomber7.core.model.square;
-import com.bomber7.core.model.entities.HumanPlayer;
+
+import com.bomber7.core.model.entities.Player;
 
 public abstract class Bonus extends MapElement {
 
@@ -34,6 +35,6 @@ public abstract class Bonus extends MapElement {
      *
      * @param player the player to which the bonus effect will be applied
      */
-    public void applyBonusEffect(HumanPlayer player) { }
+    public abstract void applyBonusEffect(Player player);
 
 }

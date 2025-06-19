@@ -65,6 +65,10 @@ public class HumanController {
             this.player.dropBomb();
             anyKeyPressed = true;
         }
+        if (Gdx.input.isKeyPressed(this.playerConfig.getKeyBinding(Controls.ACTIVATE_BOMB))) {
+            this.player.activateAllTriggerBombs();
+            anyKeyPressed = true;
+        }
         if (!anyKeyPressed) {
             this.player.setStandingStill();
         }

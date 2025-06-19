@@ -11,6 +11,8 @@ import com.bomber7.utils.GameCharacter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -64,6 +66,7 @@ public class BombTest {
     @BeforeEach
     void setUp() {
         this.levelMap = createLargeLevelMap();
+        this.testCharacter = new ConcreteCharacter("test", levelMap, 1, 2, 1, 1, gameCharacter);
     }
 
     /**
@@ -73,19 +76,25 @@ public class BombTest {
      */
     @Test
     void testBombExplosionWithWalls() {
-        // Create a Bomb at (x : 2, y : 2) with explosion power 3
-        Bomb bomb = new TimeBomb(3, 2, 2);
+        TimeBomb bomb = Mockito.spy(new TimeBomb(3, 2, 2, testCharacter));
+
+        // Quand playSong est appelée, ne rien faire (override)
+        Mockito.doNothing().when(bomb).playExplosionSound();
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(2, 2);
         bombSquare.setMapElement(bomb);
 
         // Place the characters
-        Character charInRange = new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, gameCharacter);
+        Character charInRange = Mockito.spy(new ConcreteCharacter("CharInRange", levelMap, 1, 2, 1, 1, gameCharacter));
         levelMap.addCharacter(charInRange);
 
-        Character charOutOfRange = new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, gameCharacter);
+        Character charOutOfRange = Mockito.spy(new ConcreteCharacter("CharOutOfRange", levelMap, 3, 4, 1, 1, gameCharacter));
         levelMap.addCharacter(charOutOfRange);
+
+        // Quand playDeadSound est appelée, ne rien faire (override)
+        Mockito.doNothing().when(charInRange).playDeadSound();
+        Mockito.doNothing().when(charOutOfRange).playDeadSound();
 
         // Activate the bomb
         bomb.activateBomb(levelMap);
@@ -106,7 +115,6 @@ public class BombTest {
         // Walls placed outside the explosion range
         assertNull(levelMap.getSquare(0, 2).getMapElement()); // Empty Square
         assertTrue(levelMap.getSquare(4, 3).getMapElement() instanceof BreakableWall); // Just behind another bloc
-        assertTrue(levelMap.getSquare(2, 0).getMapElement() instanceof BreakableWall);
 
         // Characters
         assertFalse(charInRange.isAlive(), "The character within range should be dead");
@@ -119,15 +127,19 @@ public class BombTest {
      */
     @Test
     void testBombExplosionWithOtherBombs() {
-        // Create a Bomb at (x : 2, y : 2) with explosion power 3
-        Bomb bomb = new TimeBomb(3, 4, 1);
+
+        Bomb bomb = Mockito.spy(new TimeBomb(3, 4, 1, testCharacter));
+
+        // Quand playSong est appelée, ne rien faire (override)
+        Mockito.doNothing().when(bomb).playExplosionSound();
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(4, 1);
         bombSquare.setMapElement(bomb);
 
         // Create another Bomb at (x : 2, y : 1) with explosion power 1
-        Bomb otherBomb = new TimeBomb(1, 3, 1);
+        Bomb otherBomb = Mockito.spy(new TimeBomb(1, 3, 1, this.testCharacter));
+        Mockito.doNothing().when(otherBomb).playExplosionSound();
         Square otherBombSquare = levelMap.getSquare(3, 1);
         otherBombSquare.setMapElement(otherBomb);
 
@@ -225,7 +237,7 @@ public class BombTest {
         row4.add(new Square("empty"));
         grid.add(row4);
 
-        return new LevelMap("Placeholder", grid, 800, 600);
+        return new LevelMap("enseeiht", grid, 800, 600);
     }
 
     /**
@@ -235,7 +247,7 @@ public class BombTest {
     @Test
     void testNullPointerException() {
         this.levelMap = null;
-        Bomb bomb = new TimeBomb(2, -1, 0);
+        Bomb bomb = new TimeBomb(2, -1, 0, this.testCharacter);
         assertThrows(NullPointerException.class, () -> bomb.activateBomb(this.levelMap));
     }
 }

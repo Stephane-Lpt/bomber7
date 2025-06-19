@@ -63,7 +63,7 @@ public class PlayerScoreBoard extends Table implements MVCComponent {
         bombLabel = new Label("", ResourceManager.getInstance().getSkin());
 
         Image coinImage = new Image(ResourceManager.getInstance().getSkin().getDrawable("coin"));
-        bombImage = new Image(ResourceManager.getInstance().getSkin().getDrawable("time_bomb"));
+        bombImage = new Image(ResourceManager.getInstance().getSkin().getDrawable("bomb"));
         heartImage = new Image(ResourceManager.getInstance().getSkin().getDrawable("heart_full.9"));
 
         // Name

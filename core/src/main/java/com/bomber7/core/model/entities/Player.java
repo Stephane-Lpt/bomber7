@@ -9,6 +9,7 @@ import java.util.List;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BombType;
+import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.utils.GameCharacter;
@@ -107,6 +108,13 @@ public abstract class Player extends Character {
         this.typeBomb = bombType;
     }
 
+    /**
+     * Play song.
+     */
+    public void playSong() {
+        SoundManager.getInstance().play(SoundType.BOMB_CHARGE);
+    }
+
     /* ------[OTHER]------------------------------------ */
 
     /**
@@ -128,7 +136,7 @@ public abstract class Player extends Character {
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    SoundManager.getInstance().play(SoundType.BOMB_CHARGE); // TODO : problème tests?
+                    playSong();
                     bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY(), this);
                     break;
                 default:
@@ -181,6 +189,59 @@ public abstract class Player extends Character {
      */
     public void addPower() {
         this.power++;
+    }
+
+    /**
+     * Moves the character to the right with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveRight() {
+        super.moveRight();
+        collectBonus();
+    }
+
+    /**
+     * Moves the character to the left with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveLeft() {
+        super.moveLeft();
+        collectBonus();
+    }
+
+    /**
+     * Moves the character down with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveDown() {
+        super.moveDown();
+        collectBonus();
+
+    }
+
+    /**
+     * Moves the character up with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveUp() {
+        super.moveUp();
+        collectBonus();
+    }
+
+    /**
+     * Checks whether the square where the player is situated has a bonus or not,
+     * and if it does, collects it and applies it to the player.
+     */
+    public void collectBonus() {
+        Square currentSquare = map.getSquare(this.getMapX(), this.getMapY());
+        if (currentSquare.hasMapElement() && currentSquare.getMapElement() instanceof Bonus) {
+            ((Bonus) currentSquare.getMapElement()).applyBonusEffect(this);
+            currentSquare.clearMapElement();
+        }
     }
 
 }
