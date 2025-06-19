@@ -141,7 +141,7 @@ public abstract class Bomb extends MapElement {
         if (planter instanceof Player) {
             ((Player) planter).setNbBomb(((Player) planter).getNbBomb() + 1);
         }
-        playExplosionSound();
+        this.playExplosionSound();
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
