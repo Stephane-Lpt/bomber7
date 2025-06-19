@@ -85,6 +85,14 @@ public abstract class Player extends Character {
         return this.triggerBombsDropped.size();
     }
 
+    /**
+     * Get List<TriggerBomb>.
+     *
+     */
+    public List<TriggerBomb> getTriggerBombsDropped() {
+        return this.triggerBombsDropped;
+    }
+
     /* ------[SETTERS]------------------------------------ */
 
     /**
@@ -109,14 +117,22 @@ public abstract class Player extends Character {
     }
 
     /**
+     *  Sets the List of TriggerBombs dropped by the player.
+     *  @param triggerBombsDropped The new list of TriggerBombs
+     */
+    public void setTriggerBombsDropped(List<TriggerBomb> triggerBombsDropped) {
+        this.triggerBombsDropped.clear();
+        this.triggerBombsDropped.addAll(triggerBombsDropped);
+    }
+
+    /* ------[OTHER]------------------------------------ */
+    
+    /**
      * Play song.
      */
     public void playSong() {
         SoundManager.getInstance().play(SoundType.BOMB_CHARGE);
     }
-
-    /* ------[OTHER]------------------------------------ */
-
     /**
      * Allow the Player to drop a bomb.
      * @return true if the bomb was successfully dropped, false otherwise
