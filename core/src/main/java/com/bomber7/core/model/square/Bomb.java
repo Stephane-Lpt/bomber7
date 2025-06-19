@@ -136,7 +136,7 @@ public abstract class Bomb extends MapElement {
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
         if (planter instanceof Player) {
-            ((Player) planter).setNbBomb(1);
+            ((Player) planter).setNbBomb(((Player) planter).getNbBomb() + 1);
         }
 
         SoundManager.getInstance().play(SoundType.EXPLOSION); // TODO : problème tests?

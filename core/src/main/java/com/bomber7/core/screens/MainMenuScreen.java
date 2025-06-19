@@ -120,9 +120,4 @@ public class MainMenuScreen extends BomberScreen {
         return ScreenType.MAIN_MENU;
     }
 
-    @Override
-    public void show() {
-        super.show();
-        SoundManager.getInstance().playMusic(SoundType.ELEVATOR);
-    }
 }
