@@ -119,4 +119,5 @@ public class MainMenuScreen extends BomberScreen {
     public ScreenType getScreenType() {
         return ScreenType.MAIN_MENU;
     }
+
 }

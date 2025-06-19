@@ -121,6 +121,13 @@ public abstract class Bomb extends MapElement {
     }
 
     /**
+     * Play the song.
+     */
+    public void playSong() {
+        SoundManager.getInstance().play(SoundType.EXPLOSION);
+    }
+
+    /**
      * Activates the bomb, causing it to explode and affect surrounding squares.
      * The explosion propagates in all four cardinal directions (up, down, left, right)
      * based on the bomb's power.
@@ -141,8 +148,7 @@ public abstract class Bomb extends MapElement {
         if (planter instanceof Player) {
             ((Player) planter).setNbBomb(1);
         }
-
-        SoundManager.getInstance().play(SoundType.EXPLOSION); // TODO : problème tests?
+        playSong();
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
@@ -164,10 +170,10 @@ public abstract class Bomb extends MapElement {
                             || character.getMapX() == this.x && character.getMapY() == this.y
                         ) {
                             if (character == planter) {
-                                Gdx.app.debug("Bomb", planter.getName() + " suicided.");
+                                //Gdx.app.debug("Bomb", planter.getName() + " suicided.");
                                 character.addScore(Score.SUICIDE);
                             } else {
-                                Gdx.app.debug("Bomb", planter.getName() + " killed " + character);
+                                //Gdx.app.debug("Bomb", planter.getName() + " killed " + character);
                                 planter.addScore(Score.KILL);
                             }
                             character.removeOneLife();

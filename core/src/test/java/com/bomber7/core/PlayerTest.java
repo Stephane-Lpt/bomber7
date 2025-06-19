@@ -13,6 +13,7 @@ import com.bomber7.utils.GameCharacter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -39,8 +40,8 @@ class PlayerTest {
         this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
-        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter) {
-        };
+        player = Mockito.spy(new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter){});
+        Mockito.doNothing().when(player).playSong();
         player.setTypeBomb(BombType.TIME);
         player.setNbBomb(1);
     }
@@ -100,6 +101,7 @@ class PlayerTest {
         System.out.println(player.getPower());
 
         assertEquals(2, player.getNbTriggeredBombDropped(), "Should have 2 TriggerBombs before activation");
+
 
 
         // Check squares before activation
