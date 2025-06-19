@@ -74,7 +74,7 @@ public class BombTest {
     @Test
     void testBombExplosionWithWalls() {
         // Create a Bomb at (x : 2, y : 2) with explosion power 3
-        Bomb bomb = new TimeBomb(3, 2, 2);
+        Bomb bomb = new TimeBomb(3, 2, 2, testCharacter);
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(2, 2);
@@ -120,14 +120,14 @@ public class BombTest {
     @Test
     void testBombExplosionWithOtherBombs() {
         // Create a Bomb at (x : 2, y : 2) with explosion power 3
-        Bomb bomb = new TimeBomb(3, 4, 1);
+        Bomb bomb = new TimeBomb(3, 4, 1, this.testCharacter);
 
         // Place the bomb in the map
         Square bombSquare = levelMap.getSquare(4, 1);
         bombSquare.setMapElement(bomb);
 
         // Create another Bomb at (x : 2, y : 1) with explosion power 1
-        Bomb otherBomb = new TimeBomb(1, 3, 1);
+        Bomb otherBomb = new TimeBomb(1, 3, 1, this.testCharacter);
         Square otherBombSquare = levelMap.getSquare(3, 1);
         otherBombSquare.setMapElement(otherBomb);
 
@@ -235,7 +235,7 @@ public class BombTest {
     @Test
     void testNullPointerException() {
         this.levelMap = null;
-        Bomb bomb = new TimeBomb(2, -1, 0);
+        Bomb bomb = new TimeBomb(2, -1, 0, this.testCharacter);
         assertThrows(NullPointerException.class, () -> bomb.activateBomb(this.levelMap));
     }
 }

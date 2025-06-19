@@ -30,7 +30,7 @@ public class TimeBombTest extends BombTest {
         super.setUp(); // initialize the map
 
         // Instantiate a TimeBomb at position (2, 3) with a timer of 5 sec
-        timeBomb = new TimeBomb(2, 2, 3);
+        timeBomb = new TimeBomb(2, 2, 3, super.testCharacter);
     }
 
     /**
