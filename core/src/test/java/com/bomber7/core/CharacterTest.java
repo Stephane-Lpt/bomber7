@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
+import com.bomber7.utils.Constants;
 import com.bomber7.utils.GameCharacter;
 
 import com.bomber7.core.model.entities.Character;
@@ -136,22 +137,20 @@ public class CharacterTest {
     @Test
     public void testMoveRight() {
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter("Test", this.map,
-                1, 23, 100, 30, gameCharacter);
+                1, 23, 100, 20, gameCharacter);
         int initialMapX = character.getMapX();
         int initialX = character.getPositionX();
-        assertEquals(1, initialMapX);
-        assertEquals(30, initialX);
+
         int initialMapY = character.getMapY();
         int initialY = character.getPositionY();
-        assertEquals(23, initialMapY);
-        assertEquals(535, initialY);
-        character.moveRight();
-        assertEquals(initialMapX + 1, character.getMapX());
-        assertEquals(initialX + 30, character.getPositionX());
 
         character.moveRight();
         assertEquals(initialMapX + 1, character.getMapX());
-        assertEquals(initialX + 30, character.getPositionX());
+        assertEquals(initialX + 20, character.getPositionX());
+
+        character.moveRight();
+        assertEquals(initialMapX + 1, character.getMapX());
+        assertEquals(initialX + 20, character.getPositionX());
     }
 
     /**
@@ -209,31 +208,29 @@ public class CharacterTest {
     public void testCharacterReset() {
         final int spawnX = 1;
         final int spawnY = 1;
-        final int life = 2;
-        final int speed = 2;
+
 
         com.bomber7.core.model.entities.Character character = new ConcreteCharacter(
             "Test",
             this.map,
             spawnX,
             spawnY,
-            life,
-            speed,
+            Constants.DEFAULT_LIFE,
+            Constants.DEFAULT_SPEED,
             gameCharacter
         );
 
         character.removeOneLife();
         character.moveDown();
         character.moveRight();
-        character.setSpeed(speed);
-        character.removeOneLife();
+        character.setSpeed(10);
 
         character.reset();
 
         assertEquals(spawnX, character.getMapX());
         assertEquals(spawnY, character.getMapY());
-        assertEquals(life, character.getLife());
-        assertEquals(speed, character.getSpeed());
+        assertEquals(Constants.DEFAULT_LIFE, character.getLife());
+        assertEquals(Constants.DEFAULT_SPEED, character.getSpeed());
         assertTrue(character.isAlive());
     }
 

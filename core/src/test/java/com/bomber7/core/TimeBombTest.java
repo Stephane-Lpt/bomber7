@@ -2,6 +2,7 @@ package com.bomber7.core;
 
 import com.bomber7.core.model.square.TimeBomb;
 
+import com.bomber7.utils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,10 +41,10 @@ public class TimeBombTest extends BombTest {
     @Test
     void testTimeBombCountdownAndActivation() {
         // Simulate a tick with 3 seconds passed
-        timeBomb.tick(levelMap, 3.0f);
+        timeBomb.tick(levelMap, 1.0f);
 
         // Ensure the timer is updated correctly
-        assertEquals(2.0f, timeBomb.getTimer(), 0.01f);
+        assertEquals(Constants.BOMB_TIMER - 1.0f, timeBomb.getTimer(), 0.01f);
 
         // Another tick
         timeBomb.tick(levelMap, 2.0f);

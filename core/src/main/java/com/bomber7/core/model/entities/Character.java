@@ -258,7 +258,8 @@ public abstract class Character implements Comparable<Character> {
      */
     public void reset() {
         this.isAlive = true;
-        this.life = 1;
+        this.life = Constants.DEFAULT_LIFE;
+        this.speed = Constants.DEFAULT_SPEED;
         this.movingStatus = CharacterState.STANDING_STILL;
         this.mapX = spawnPoint.x;
         this.mapY = spawnPoint.y;

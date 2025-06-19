@@ -107,6 +107,13 @@ public abstract class Player extends Character {
         this.typeBomb = bombType;
     }
 
+    /**
+     * Play song.
+     */
+    public void playSong() {
+        SoundManager.getInstance().play(SoundType.BOMB_CHARGE);
+    }
+
     /* ------[OTHER]------------------------------------ */
 
     /**
@@ -128,7 +135,7 @@ public abstract class Player extends Character {
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    SoundManager.getInstance().play(SoundType.BOMB_CHARGE); // TODO : problème tests?
+                    playSong();
                     bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY(), this);
                     break;
                 default:

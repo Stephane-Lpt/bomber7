@@ -108,4 +108,11 @@ public final class Constants {
      * Minimum player score.
      */
     public static final int MIN_PLAYER_SCORE = 0;
+
+    /** The default life of a player. */
+    public static final int DEFAULT_LIFE = 1;
+
+    /** The default speed of a player. */
+    public static final int DEFAULT_SPEED = 1;
+
 }
