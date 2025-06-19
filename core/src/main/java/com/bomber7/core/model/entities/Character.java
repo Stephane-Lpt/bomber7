@@ -214,10 +214,15 @@ public abstract class Character implements Comparable<Character> {
      *                                        (negative)
      */
     public void addScore(int score) {
-        int newScore = Math.max(getScore() + score, Constants.MIN_PLAYER_SCORE);
+        int newScore = Math.max(this.score + score, Constants.MIN_PLAYER_SCORE);
         setScore(newScore);
     }
 
+    /**
+     * Sets the character's map to a new one.
+     * @param newMap The new LevelMap to set for the character
+     * @throws IllegalArgumentException If the new map is null
+     */
     public void setMap(LevelMap newMap) {
         this.map = newMap;
     }
@@ -230,8 +235,8 @@ public abstract class Character implements Comparable<Character> {
     }
 
     /**
-     * Decreases the character's life by one. If the life count reaches zero, the
-     * character is marked as not alive (dead).
+     * Decreases the character's life by one. If the life count reaches zero.
+     * The character is marked as not alive (dead).
      */
     public void removeOneLife() {
         if (this.life > 0) {
@@ -249,7 +254,7 @@ public abstract class Character implements Comparable<Character> {
     /* ------[OTHER]------------------------------------ */
 
     /**
-     * Resets a character to its initial state (lives, position, etc...)
+     * Resets a character to its initial state (lives, position, etc...).
      */
     public void reset() {
         this.isAlive = true;
@@ -280,7 +285,7 @@ public abstract class Character implements Comparable<Character> {
      * Move character to the right.
      */
     public void moveRight() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -295,7 +300,7 @@ public abstract class Character implements Comparable<Character> {
      * Move character to the left.
      */
     public void moveLeft() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -310,7 +315,7 @@ public abstract class Character implements Comparable<Character> {
      * Move character Down.
      */
     public void moveDown() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -325,7 +330,7 @@ public abstract class Character implements Comparable<Character> {
      * Move character Up.
      */
     public void moveUp() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 

@@ -21,7 +21,6 @@ import java.util.List;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.SoundManager;
-import com.bomber7.utils.SoundType;
 
 /**
  * Main class of the Bomber7 game, extending LibGDX's {@link com.badlogic.gdx.Game} class.
@@ -145,7 +144,7 @@ public class BomberGame extends Game {
      * Pauses the game.
      */
     public void pause() {
-        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, false, false   );
+        ScreenManager.getInstance().showScreen(ScreenType.PAUSE, false, false);
     }
 
     /**
@@ -231,10 +230,9 @@ public class BomberGame extends Game {
             return false;
         }
 
-        List<Character> characters = currentMap.getCharacters();
         int aliveCount = 0;
 
-        for (Character character : characters) {
+        for (Character character : this.characters) {
             if (character.isAlive()) {
                 aliveCount++;
             }
@@ -258,7 +256,7 @@ public class BomberGame extends Game {
      * Precondition: the game is not finished
      */
     public void nextRound() {
-        if(isLastRound()) {
+        if (isLastRound()) {
             Gdx.app.debug("BomberGame", "Last round was played. Stopping the game.");
             stop();
         }
@@ -329,7 +327,8 @@ public class BomberGame extends Game {
      */
     private LevelMap getNextMap() {
         GameMap mapToCreate = gameCandidate.getMaps().get((currentRound - 1) % gameCandidate.getMaps().size());
-        LevelMap levelMap = LevelMapFactory.createLevelMap(mapToCreate.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        LevelMap levelMap = LevelMapFactory.createLevelMap(mapToCreate.getAssetName(),
+            Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         return levelMap;
     }
 

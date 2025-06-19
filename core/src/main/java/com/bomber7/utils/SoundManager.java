@@ -5,7 +5,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.bomber7.core.ConfigManager;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -29,14 +28,30 @@ public final class SoundManager {
      */
     private final Map<SoundType, Music> musics = new HashMap<>();
 
+    /**
+     * A list of fight music tracks.
+     * Used to randomly select a fight track when starting a fight.
+     */
     private final List<SoundType> fightTracks = Arrays.asList(
         SoundType.BRAIN_ROT, SoundType.BEAST_MODE, SoundType.EPIC_FIGHT_1, SoundType.EPIC_FIGHT_2, SoundType.EPIC_FIGHT_3
     );
 
-    private Music currentMusic;                // Menu music
+    /**
+     * The currently playing music.
+     * Used to avoid playing the same music multiple times.
+     */
+    private Music currentMusic;
+    /**
+     * The type of the currently playing music.
+     * Used to avoid playing the same music multiple times.
+     */
     private SoundType currentMusicType;
+    /**
+     * The currently playing fight music.
+     * Used to avoid playing the same fight music multiple times.
+     */
     private Music currentFightMusic;
-    private SoundType currentFightMusicType;
+
 
     /**
      * Private constructor to enforce singleton pattern.
@@ -120,7 +135,9 @@ public final class SoundManager {
      * @param type the music type to play
      */
     public void playMenuMusic(SoundType type) {
-        if (type == currentMusicType) return;
+        if (type == currentMusicType) {
+            return;
+}
 
         // Pauses fight music.
         if (currentFightMusic != null && currentFightMusic.isPlaying()) {
@@ -142,7 +159,9 @@ public final class SoundManager {
      * Starts random fight music if none exists.
      */
     public void playFightMusic() {
-        if (currentFightMusic != null && currentFightMusic.isPlaying()) return;
+        if (currentFightMusic != null && currentFightMusic.isPlaying()) {
+            return;
+        }
 
         stopCurrentMenuMusic(); // Stop any general music
 
@@ -154,7 +173,6 @@ public final class SoundManager {
 
         SoundType randomType = fightTracks.get(new Random().nextInt(fightTracks.size()));
         currentFightMusic = musics.get(randomType);
-        currentFightMusicType = randomType;
 
         currentFightMusic.setLooping(true);
         updateMusicVolume();
@@ -168,7 +186,6 @@ public final class SoundManager {
         if (currentFightMusic != null) {
             currentFightMusic.stop();
             currentFightMusic = null;
-            currentFightMusicType = null;
         }
     }
 

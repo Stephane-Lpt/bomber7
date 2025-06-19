@@ -2,7 +2,7 @@ package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.entities.HumanPlayer;
 
-public class BonusTriggerBomb extends Bonus{
+public class BonusTriggerBomb extends Bonus {
     /**
      * Constructs a BonusTriggerBomb with the specified texture file path.
      *
