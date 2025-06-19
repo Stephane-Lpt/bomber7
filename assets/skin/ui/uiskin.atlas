@@ -1,11 +1,40 @@
 uiskin.png
-size: 1017, 1547
+size: 1000, 2581
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+a.slider.9
+  rotate: false
+  xy: 176, 0
+  size: 500, 35
+  orig: 500, 35
+  offset: 0, 0
+  index: -1
+a.slider.fill.9
+  rotate: false
+  xy: 0, 35
+  size: 500, 35
+  orig: 500, 35
+  offset: 0, 0
+  index: -1
+a.slider.knob.9
+  rotate: false
+  xy: 500, 35
+  size: 35, 35
+  orig: 35, 35
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 50, 0
+  size: 30, 30
+  split: 0, 30, 0, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
 crous.9
   rotate: false
-  xy: 0, 512
+  xy: 0, 956
   size: 500, 500
   split: 125, 125, 125, 125
   orig: 500, 500
@@ -13,7 +42,7 @@ crous.9
   index: -1
 dark.gold.9
   rotate: false
-  xy: 73, 0
+  xy: 535, 35
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -21,7 +50,7 @@ dark.gold.9
   index: -1
 dark.green.9
   rotate: false
-  xy: 173, 0
+  xy: 635, 35
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -29,7 +58,7 @@ dark.green.9
   index: -1
 dark.red.9
   rotate: false
-  xy: 273, 0
+  xy: 735, 35
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -37,7 +66,7 @@ dark.red.9
   index: -1
 enseeiht.9
   rotate: false
-  xy: 500, 512
+  xy: 500, 956
   size: 500, 500
   split: 125, 125, 125, 125
   orig: 500, 500
@@ -45,7 +74,7 @@ enseeiht.9
   index: -1
 foy.9
   rotate: false
-  xy: 0, 1012
+  xy: 0, 1456
   size: 500, 500
   split: 125, 125, 125, 125
   orig: 500, 500
@@ -53,15 +82,31 @@ foy.9
   index: -1
 halle_aux_grains.9
   rotate: false
-  xy: 500, 1012
+  xy: 500, 1456
   size: 500, 500
   split: 125, 125, 125, 125
   orig: 500, 500
   offset: 0, 0
   index: -1
+heart_full.9
+  rotate: false
+  xy: 80, 0
+  size: 32, 32
+  split: 8, 8, 8, 8
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+heart_none.9
+  rotate: false
+  xy: 112, 0
+  size: 32, 32
+  split: 8, 8, 8, 8
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 inactive.9
   rotate: false
-  xy: 373, 0
+  xy: 835, 35
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -69,7 +114,7 @@ inactive.9
   index: -1
 light.blue.9
   rotate: false
-  xy: 473, 0
+  xy: 0, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -77,7 +122,7 @@ light.blue.9
   index: -1
 light.gold.9
   rotate: false
-  xy: 573, 0
+  xy: 100, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -85,7 +130,7 @@ light.gold.9
   index: -1
 light.green.9
   rotate: false
-  xy: 673, 0
+  xy: 200, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -93,36 +138,23 @@ light.green.9
   index: -1
 light.red.9
   rotate: false
-  xy: 773, 0
+  xy: 300, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
   offset: 0, 0
   index: -1
-slider.9
+main_menu
   rotate: false
-  xy: 0, 1512
-  size: 500, 35
-  orig: 500, 35
-  offset: 0, 0
-  index: -1
-slider.fill.9
-  rotate: false
-  xy: 500, 1512
-  size: 500, 35
-  orig: 500, 35
-  offset: 0, 0
-  index: -1
-slider.knob.9
-  rotate: false
-  xy: 38, 0
-  size: 35, 35
-  orig: 35, 35
+  xy: 0, 1956
+  size: 934, 625
+  split: 234, 233, 156, 156
+  orig: 934, 625
   offset: 0, 0
   index: -1
 sprite.bde
   rotate: false
-  xy: 471, 100
+  xy: 700, 135
   size: 272, 409
   split: 0, 272, 0, 409
   orig: 272, 409
@@ -130,19 +162,26 @@ sprite.bde
   index: -1
 sprite.graduate.9
   rotate: false
-  xy: 743, 100
+  xy: 271, 544
   size: 274, 412
-  split: 0, 0, 0, 0
-  pad: 69, 68, 103, 103
+  split: 69, 68, 103, 103
   orig: 274, 412
   offset: 0, 0
   index: -1
 sprite.student
   rotate: false
-  xy: 200, 100
+  xy: 0, 544
   size: 271, 409
   split: 0, 271, 0, 409
   orig: 271, 409
+  offset: 0, 0
+  index: -1
+time_bomb
+  rotate: false
+  xy: 6, 0
+  size: 22, 22
+  split: 0, 22, 0, 22
+  orig: 22, 22
   offset: 0, 0
   index: -1
 transparent
@@ -153,9 +192,17 @@ transparent
   orig: 6, 6
   offset: 0, 0
   index: -1
+trigger_bomb
+  rotate: false
+  xy: 28, 0
+  size: 22, 22
+  split: 0, 22, 0, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
 white.9
   rotate: false
-  xy: 6, 0
+  xy: 144, 0
   size: 32, 32
   split: 8, 8, 8, 8
   orig: 32, 32
@@ -163,7 +210,7 @@ white.9
   index: -1
 white.gold.9
   rotate: false
-  xy: 873, 0
+  xy: 400, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -171,7 +218,7 @@ white.gold.9
   index: -1
 white.green.9
   rotate: false
-  xy: 0, 100
+  xy: 500, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100
@@ -179,7 +226,7 @@ white.green.9
   index: -1
 white.red.9
   rotate: false
-  xy: 100, 100
+  xy: 600, 135
   size: 100, 100
   split: 25, 25, 25, 25
   orig: 100, 100

@@ -7,6 +7,7 @@ import com.bomber7.core.screens.MainMenuScreen;
 import com.bomber7.core.screens.PlayerSelectionScreen;
 import com.bomber7.core.screens.MapSelectionScreen;
 import com.bomber7.core.screens.PauseScreen;
+import com.bomber7.core.screens.ScoreBoardScreen;
 import com.bomber7.core.screens.SettingsScreen;
 import com.bomber7.core.screens.KeyBindingScreen;
 
@@ -127,6 +128,23 @@ public enum ScreenType {
             int playerIndex = (int) params[0];
 
             return new KeyBindingScreen(game, playerIndex);
+        }
+    },
+
+
+    /**
+     * The scoreboard screen shown after each round.
+     */
+    SCOREBOARD {
+        /**
+         * Creates and returns the scoreboard screen instance.
+         *
+         * @param game the current game instance
+         * @param params optional parameters used to initialize the screen
+         * @return a new {@link ScoreBoardScreen} instance
+         */
+        public BomberScreen getScreen(Game game, Object... params) {
+            return new ScoreBoardScreen(game);
         }
     };
 

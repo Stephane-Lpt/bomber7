@@ -2,6 +2,7 @@ package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.utils.Constants;
+import com.bomber7.core.model.entities.Character;
 
 /**
  * The Timebomb class is a special type of Bomb that has a countdown
@@ -34,9 +35,10 @@ public class TimeBomb extends Bomb {
      * @param p power of the bomb
      * @param x the X-coordinate
      * @param y the Y-coordinate
+     * @param c the character that planted this bomb
      */
-    public TimeBomb(int p, int x, int y) {
-        super(p, x, y, TimeBomb.TEXTURE_PREFIX + "-1");
+    public TimeBomb(int p, int x, int y, Character c) {
+        super(p, x, y, TimeBomb.TEXTURE_PREFIX + "-1", c);
         this.timeRemaining = Constants.BOMB_TIMER;
     }
 

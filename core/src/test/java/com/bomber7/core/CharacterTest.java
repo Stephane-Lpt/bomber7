@@ -205,4 +205,36 @@ public class CharacterTest {
         assertEquals(initialMapY + 1, character.getMapY());
     }
 
+    @Test
+    public void testCharacterReset() {
+        final int spawnX = 1;
+        final int spawnY = 1;
+        final int life = 2;
+        final int speed = 2;
+
+        com.bomber7.core.model.entities.Character character = new ConcreteCharacter(
+            "Test",
+            this.map,
+            spawnX,
+            spawnY,
+            life,
+            speed,
+            gameCharacter
+        );
+
+        character.removeOneLife();
+        character.moveDown();
+        character.moveRight();
+        character.setSpeed(speed);
+        character.removeOneLife();
+
+        character.reset();
+
+        assertEquals(spawnX, character.getMapX());
+        assertEquals(spawnY, character.getMapY());
+        assertEquals(life, character.getLife());
+        assertEquals(speed, character.getSpeed());
+        assertTrue(character.isAlive());
+    }
+
 }

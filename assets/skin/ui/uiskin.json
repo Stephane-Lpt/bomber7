@@ -131,9 +131,9 @@
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
     "default-horizontal": {
-      "background": "slider.9",
-      "knob": "slider.knob.9",
-      "knobBefore": "slider.fill.9"
+      "background": "a.slider.9",
+      "knob": "a.slider.knob.9",
+      "knobBefore": "a.slider.fill.9"
     }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {

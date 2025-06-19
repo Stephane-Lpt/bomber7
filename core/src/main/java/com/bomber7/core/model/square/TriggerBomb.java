@@ -1,5 +1,6 @@
 package com.bomber7.core.model.square;
 import com.bomber7.core.model.map.LevelMap;
+import com.bomber7.core.model.entities.Character;
 
 /**
  * TriggerBomb is a type of bomb that can be manually activated by the player.
@@ -16,10 +17,11 @@ public class TriggerBomb extends Bomb {
      * @param power explosion power of the bomb
      * @param x X-coordinate
      * @param y Y-coordinate
+     * @param c the character that planted this bomb
      */
 
-    public TriggerBomb(int power, int x, int y) {
-        super(power, x, y, TriggerBomb.TEXTURE_PREFIX + "-1");
+    public TriggerBomb(int power, int x, int y, Character c) {
+        super(power, x, y, TriggerBomb.TEXTURE_PREFIX + "-1", c);
     }
 
     /**

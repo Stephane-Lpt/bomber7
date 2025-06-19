@@ -5,8 +5,11 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.bomber7.core.ConfigManager;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * SoundManager manages sound effects used in the game.
@@ -26,9 +29,28 @@ public final class SoundManager {
     private final Map<SoundType, Music> musics = new HashMap<>();
 
     /**
-     * Currently playing music.
+     * A list of fight music tracks.
+     * Used to randomly select a fight track when starting a fight.
+     */
+    private final List<SoundType> fightTracks = Arrays.asList(
+        SoundType.BRAIN_ROT, SoundType.BEAST_MODE, SoundType.EPIC_FIGHT_1, SoundType.EPIC_FIGHT_2, SoundType.EPIC_FIGHT_3
+    );
+
+    /**
+     * The currently playing music.
+     * Used to avoid playing the same music multiple times.
      */
     private Music currentMusic;
+    /**
+     * The type of the currently playing music.
+     * Used to avoid playing the same music multiple times.
+     */
+    private SoundType currentMusicType;
+    /**
+     * The currently playing fight music.
+     * Used to avoid playing the same fight music multiple times.
+     */
+    private Music currentFightMusic;
 
 
     /**
@@ -61,11 +83,22 @@ public final class SoundManager {
         loadSound(SoundType.HOVER, "sounds/hover.wav");
         loadSound(SoundType.CLICK, "sounds/click.wav");
         loadSound(SoundType.EXPLOSION, "sounds/explosion.mp3");
+        loadSound(SoundType.BOMB_CHARGE, "sounds/bomb_charge.mp3");
+        loadSound(SoundType.FOOTSTEP_1, "sounds/footstep_1.mp3");
+        loadSound(SoundType.FOOTSTEP_2, "sounds/footstep_2.mp3");
+        loadSound(SoundType.FOOTSTEP_3, "sounds/footstep_3.mp3");
+        loadSound(SoundType.GAME_OVER, "sounds/game_over.mp3");
 
         loadMusic(SoundType.BEAST_MODE, "sounds/beast_mode.mp3");
         loadMusic(SoundType.ELEVATOR, "sounds/elevator.mp3");
+        loadMusic(SoundType.GUITAR, "sounds/guitar.mp3");
+        loadMusic(SoundType.EPIC_FIGHT_1, "sounds/epic_fight_1.mp3");
+        loadMusic(SoundType.EPIC_FIGHT_2, "sounds/epic_fight_2.mp3");
+        loadMusic(SoundType.EPIC_FIGHT_3, "sounds/epic_fight_3.mp3");
+        loadMusic(SoundType.BRAIN_ROT, "sounds/brain_rot.mp3");
 
         currentMusic = null;
+        currentMusicType = null;
     }
 
     /**
@@ -97,22 +130,82 @@ public final class SoundManager {
     }
 
     /**
-     * Play a music.
-     * @param type the sound to play
+     * Play menu or general music.
+     * Automatically pauses fight music if it's playing.
+     * @param type the music type to play
      */
-    public void playMusic(SoundType type) {
+    public void playMenuMusic(SoundType type) {
+        if (type == currentMusicType) {
+            return;
+}
+
+        // Pauses fight music.
+        if (currentFightMusic != null && currentFightMusic.isPlaying()) {
+            currentFightMusic.pause();
+        }
+
+        stopCurrentMenuMusic();
+
         currentMusic = musics.get(type);
         currentMusic.setLooping(true);
+        currentMusicType = type;
+
         updateMusicVolume();
         currentMusic.play();
     }
 
     /**
-     * Stops the currently playing music if any.
+     * Play or resume fight music from saved position.
+     * Starts random fight music if none exists.
      */
-    public void stopMusic() {
+    public void playFightMusic() {
+        if (currentFightMusic != null && currentFightMusic.isPlaying()) {
+            return;
+        }
+
+        stopCurrentMenuMusic(); // Stop any general music
+
+        if (currentFightMusic != null) {
+            updateMusicVolume();
+            currentFightMusic.play();
+            return;
+        }
+
+        SoundType randomType = fightTracks.get(new Random().nextInt(fightTracks.size()));
+        currentFightMusic = musics.get(randomType);
+
+        currentFightMusic.setLooping(true);
+        updateMusicVolume();
+        currentFightMusic.play();
+    }
+
+    /**
+     * Resets the fight music.
+     */
+    public void resetFightMusic() {
+        if (currentFightMusic != null) {
+            currentFightMusic.stop();
+            currentFightMusic = null;
+        }
+    }
+
+    /**
+     * Pauses fight music.
+     */
+    public void pauseFightMusic() {
+        if (currentFightMusic != null && currentFightMusic.isPlaying()) {
+            currentFightMusic.pause();
+        }
+    }
+
+    /**
+     * Stops the currently playing menu/general music.
+     */
+    private void stopCurrentMenuMusic() {
         if (currentMusic != null) {
             currentMusic.stop();
+            currentMusic = null;
+            currentMusicType = null;
         }
     }
 

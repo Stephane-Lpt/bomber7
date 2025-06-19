@@ -13,6 +13,8 @@ import com.bomber7.core.components.BomberTable;
 import com.bomber7.utils.ComponentsUtils;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.ScreenType;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 
 /**
  * Pause screen.
@@ -103,6 +105,12 @@ public class PauseScreen extends BomberScreen {
                 game.stop();
             }
         }));
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        SoundManager.getInstance().playMenuMusic(SoundType.ELEVATOR);
     }
 
     @Override

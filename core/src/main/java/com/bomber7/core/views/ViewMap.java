@@ -81,7 +81,7 @@ public class ViewMap extends Actor {
     }
 
     private void drawCharacters(Batch batch, float parentAlpha) {
-        for(ViewCharacter character : characterViews) {
+        for (ViewCharacter character : characterViews) {
             character.draw(batch, parentAlpha);
         }
     }
@@ -105,18 +105,17 @@ public class ViewMap extends Actor {
 
                     // Wall
                     if (square.getMapElement() instanceof Wall) {
-                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    }
-
-                    // Bomb
-                    else if (square.getMapElement() instanceof Bomb) {
+                        mapElementTextureRegion =
+                            resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    } else if (square.getMapElement() instanceof Bomb) {
                         // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(levelMap, Gdx.graphics.getDeltaTime());
                         }
 
                         if (square.hasMapElement()) {
-                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                            mapElementTextureRegion =
+                                resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                         }
                     }
 
@@ -130,14 +129,13 @@ public class ViewMap extends Actor {
     }
 
     /**
-     * Draws / updates all the queued effects
+     * Draws / updates all the queued effects.
      * @param batch the Batch used for drawing
      */
     private void drawEffects(Batch batch) {
         float delta = Gdx.graphics.getDeltaTime();
 
         while (!levelMap.getEffectsQueue().empty()) {
-            Gdx.app.debug("ViewMap", "Adding an effect to the effectViews");
             effectViews.add(new ViewEffect(levelMap.getEffectsQueue().pop()));
         }
 
@@ -157,10 +155,7 @@ public class ViewMap extends Actor {
                 .getAtlas()
                 .findRegion(effect.getCurrentTextureName());
 
-            Gdx.app.debug("ViewMap", "Drawing texture " + effect.getCurrentTextureName());
-
             if (effectTexture != null) {
-                Gdx.app.debug("ViewMap", "Drawing effect");
                 drawTextureRegion(batch, effectTexture, (int) effect.getX(), (int) effect.getY(), 0f, 2f);
             }
         }

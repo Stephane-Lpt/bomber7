@@ -18,9 +18,9 @@ public final class Constants {
      */
     public static final int MAX_PLAYER_NAME_LENGTH = 12;
     /**
-     * Maximum number of players allowed in the game.
+     * Minimum number of players allowed in the game.
      */
-    public static final int MIN_PLAYERS = 1;
+    public static final int MIN_PLAYERS = 2;
     /**
      * Maximum number of human players allowed in the game.
      */
@@ -50,7 +50,7 @@ public final class Constants {
     /**
      * The default bomb timer.
      */
-    public static final float BOMB_TIMER = 5.0f;
+    public static final float BOMB_TIMER = 2.5f;
 
     /**
      * The default bomb timer.
@@ -70,22 +70,47 @@ public final class Constants {
     /**
      * The chance of a bonus being dropped.
      */
-    public final static double BONUS_RATE = 0.25; // 25% chance to drop a bonus
+    public static final double BONUS_RATE = 0.25; // 25% chance to drop a bonus
 
-    public static enum BONUS_TYPE {
+    /**
+     * The maximum number of bonuses that can be dropped at once.
+     */
+    public enum BonusType {
+        /**
+         * A bonus that triggers a bomb explosion.
+         */
         TRIGGER_BOMB,
+        /**
+         * A bonus that gives the player an extra life.
+         */
         LIFE,
+        /**
+         * A bonus that increases the player's speed.
+         */
         SPEED,
+        /**
+         * A bonus that allows the player to drop an additional bomb.
+         */
         ADD_BOMB
     }
     /**
      * A map of the probabilities of each bonus of being dropped.
      * All probabilities add up to one.
      */
-    public static final Map<BONUS_TYPE, Double> BONUS_PROBABILITIES = Map.of(
-        BONUS_TYPE.TRIGGER_BOMB, 0.1,
-        BONUS_TYPE.LIFE, 3.0,
-        BONUS_TYPE.SPEED, 3.0,
-        BONUS_TYPE.ADD_BOMB, 3.0
+    public static final Map<BonusType, Double> BONUS_PROBABILITIES = Map.of(
+        BonusType.TRIGGER_BOMB, 0.1,
+        BonusType.LIFE, 0.3,
+        BonusType.SPEED, 0.3,
+        BonusType.ADD_BOMB, 0.3
     );
+
+    /**
+     * Interval (in seconds) at which alive players are awarded points for staying alive.
+     */
+    public static final float ALIVE_SCORE_TIMER = 10f;
+
+    /**
+     * Minimum player score.
+     */
+    public static final int MIN_PLAYER_SCORE = 0;
 }

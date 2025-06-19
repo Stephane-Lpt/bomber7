@@ -1,5 +1,6 @@
 package com.bomber7.core.model.entities;
 
+import com.badlogic.gdx.math.GridPoint2;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.utils.Constants;
@@ -8,11 +9,12 @@ import com.bomber7.core.model.exceptions.IllegalLifeOperationException;
 import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
+import com.bomber7.utils.Score;
 
 /**
  * Classe Character.
  */
-public abstract class Character {
+public abstract class Character implements Comparable<Character> {
 
     /** The file path to the character's sprite image. */
     private final GameCharacter gameCharacter;
@@ -39,6 +41,8 @@ public abstract class Character {
     private int y;
     /** Moving status of player, needed for sprite animation. */
     private CharacterState movingStatus;
+    /** The spawnpoint (initial position) of the character. */
+    private final GridPoint2 spawnPoint;
 
     /**
      * Character Constructor.
@@ -69,13 +73,17 @@ public abstract class Character {
         }
         this.name = name;
         this.map = map;
-        setPositionXY(mapX, mapY);
+        this.spawnPoint = new GridPoint2(mapX, mapY);
+        this.mapX = mapX;
+        this.mapY = mapY;
+        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
+        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
         this.life = life;
         this.speed = speed;
         this.gameCharacter = gameCharacter;
         this.isAlive = true;
         this.movingStatus = CharacterState.STANDING_STILL;
-        this.score = 0;
+        this.score = Constants.MIN_PLAYER_SCORE;
     }
 
     /* ------[GETTERS]------------------------------------ */
@@ -191,14 +199,30 @@ public abstract class Character {
      * @throws IllegalScoreOperationException If new score value not valid
      *                                        (negative)
      */
-    public void setScore(int newScore) {
-        if (newScore > this.score) {
+    private void setScore(int newScore) {
+        if (newScore >= Constants.MIN_PLAYER_SCORE) {
             this.score = newScore;
         } else {
             throw new IllegalScoreOperationException("Score value must be positive.");
         }
     }
 
+    /**
+     * Add a given score to the character.
+     * @param score The score points to add to the character
+     * @throws IllegalScoreOperationException If new score value not valid
+     *                                        (negative)
+     */
+    public void addScore(int score) {
+        int newScore = Math.max(this.score + score, Constants.MIN_PLAYER_SCORE);
+        setScore(newScore);
+    }
+
+    /**
+     * Sets the character's map to a new one.
+     * @param newMap The new LevelMap to set for the character
+     * @throws IllegalArgumentException If the new map is null
+     */
     public void setMap(LevelMap newMap) {
         this.map = newMap;
     }
@@ -211,8 +235,8 @@ public abstract class Character {
     }
 
     /**
-     * Decreases the character's life by one. If the life count reaches zero, the
-     * character is marked as not alive (dead).
+     * Decreases the character's life by one. If the life count reaches zero.
+     * The character is marked as not alive (dead).
      */
     public void removeOneLife() {
         if (this.life > 0) {
@@ -222,23 +246,25 @@ public abstract class Character {
         }
         if (this.life == 0) {
             this.isAlive = false;
+            addScore(Score.DEAD);
             this.movingStatus = CharacterState.DEAD;
         }
     }
 
-    /**
-     * Character current XY position setter.
-     * @param newMapX The new x-position to set
-     * @param newMapY The new Y-position to set
-     */
-    public void setPositionXY(int newMapX, int newMapY) {
-        this.mapX = newMapX;
-        this.mapY = newMapY;
-        this.x = this.map.getAbsoluteCoordinates(mapX, mapY).getKey();
-        this.y = this.map.getAbsoluteCoordinates(mapX, mapY).getValue();
-    }
-
     /* ------[OTHER]------------------------------------ */
+
+    /**
+     * Resets a character to its initial state (lives, position, etc...).
+     */
+    public void reset() {
+        this.isAlive = true;
+        this.life = 1;
+        this.movingStatus = CharacterState.STANDING_STILL;
+        this.mapX = spawnPoint.x;
+        this.mapY = spawnPoint.y;
+        this.x = this.map.getAbsoluteCoordinates(spawnPoint.x, spawnPoint.y).getKey();
+        this.y = this.map.getAbsoluteCoordinates(spawnPoint.x, spawnPoint.y).getValue();
+    }
 
     /**
      * Character current state of life.
@@ -255,22 +281,11 @@ public abstract class Character {
         this.movingStatus = CharacterState.STANDING_STILL;
     }
 
-    public void ressucitate() {
-        if (!this.isAlive) {
-            this.isAlive = true;
-            this.life = 1;
-            this.speed = 1;
-            this.movingStatus = CharacterState.STANDING_STILL;
-        } else {
-            throw new IllegalStateException("Character is already alive.");
-        }
-    }
-
     /**
      * Move character to the right.
      */
     public void moveRight() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -285,7 +300,7 @@ public abstract class Character {
      * Move character to the left.
      */
     public void moveLeft() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -300,7 +315,7 @@ public abstract class Character {
      * Move character Down.
      */
     public void moveDown() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -315,7 +330,7 @@ public abstract class Character {
      * Move character Up.
      */
     public void moveUp() {
-        if(!this.isAlive()) {
+        if (!this.isAlive()) {
             return;
         }
 
@@ -371,5 +386,16 @@ public abstract class Character {
         return this.map.getSquare(futureMapX, futureMapY).isWalkable();
     }
 
-
+        /**
+         * Compares this character to another character based on their score.
+         * @param other the character to compare to
+         * @return a negative integer if this character has a higher score than the other;
+         *         zero if their scores are equal;
+         *         a positive integer if this character has a lower score than the other
+         */
+        @Override
+        public int compareTo(Character other) {
+            // Descending order (higher score comes first)
+            return Integer.compare(other.score, this.score);
+        }
 }
