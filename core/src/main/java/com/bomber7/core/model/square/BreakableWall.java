@@ -4,13 +4,17 @@ import java.util.Map;
 import java.util.Random;
 
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.Constants.BONUS_TYPE;
+import com.bomber7.utils.Constants.BonusType;
 
 /**
  * Represents a breakable wall in the game.
  */
 public class BreakableWall extends Wall {
 
+    /**
+     * Indicates whether this breakable wall has a bonus.
+     * The bonus is randomly assigned when the wall is created.
+     */
     private boolean hasBonus;
 
     /**
@@ -31,11 +35,11 @@ public class BreakableWall extends Wall {
         this.hasBonus = hasRandomBonus();
     }
 
-    /*
+    /**
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureName the texture name for this square for the breakable wall
+     * @param textureName the file path to the texture image for the wall
      */
     public BreakableWall(String textureName) {
         super(textureName);
@@ -68,11 +72,12 @@ public class BreakableWall extends Wall {
 
     /**
      * Instantiates a random bonus based on their probabilities at the same location.
+     *  @return a Bonus object of a random type (TRIGGER_BOMB, LIFE, or SPEED)
      */
     private static Bonus createRandomBonus() {
         double randomValue = new Random().nextDouble();
         double cumulativeProbability = 0.0;
-        for (Map.Entry<BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
+        for (Map.Entry<BonusType, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
             cumulativeProbability += entry.getValue();
             if (randomValue <= cumulativeProbability) {
                 // Instantiate the bonus based on the type

@@ -8,7 +8,9 @@ import com.badlogic.gdx.utils.Array;
  */
 public class SpawnPoint {
 
-    // Immutable list of spawn points
+    /**
+     * The maximum number of players supported in the game.
+     */
     private static final Array<GridPoint2> SPAWN_POINTS = new Array<>(new GridPoint2[] {
         new GridPoint2(1, 23),   // Spawnpoint of player 1
         new GridPoint2(33, 1),   // Spawnpoint of player 2

@@ -42,12 +42,12 @@ public class ViewCharacter extends Actor {
      */
     private static final int FRAME_ROWS = 7;
 
-    /*
+    /**
      * Animation for moving to the right.
      */
     private Animation<TextureRegion> moveRight;
 
-    /*
+    /**
      * Animation for moving to the left.
      */
     private Animation<TextureRegion> moveLeft;
@@ -91,6 +91,7 @@ public class ViewCharacter extends Actor {
      * Constructs a new ViewCharacter instance.
      *
      * @param character the character to be displayed
+     *  @param resources the ResourceManager instance to access resources
      */
     public ViewCharacter(Character character, ResourceManager resources) {
         this.character = character;
@@ -146,7 +147,8 @@ public class ViewCharacter extends Actor {
      * @param loop Whether the animation should loop.
      * @return The mirrored animation.
      */
-    private Animation<TextureRegion> createMirroredAnimation(TextureRegion[][] region, Animation<TextureRegion> baseAnimation, boolean loop) {
+    private Animation<TextureRegion> createMirroredAnimation(TextureRegion[][] region,
+        Animation<TextureRegion> baseAnimation, boolean loop) {
         TextureRegion[] frames = baseAnimation.getKeyFrames();
         TextureRegion[] mirroredFrames = new TextureRegion[frames.length];
         for (int i = 0; i < frames.length; i++) {

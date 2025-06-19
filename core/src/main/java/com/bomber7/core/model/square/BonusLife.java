@@ -6,7 +6,8 @@ public class BonusLife extends Bonus {
     /**
      * Constructs a BonusLife with the specified texture file path.
      *
-     * @param textureFilePath the file path to the texture image for the bonus
+     *  @param textureName the name of the texture for the bonus
+     * @param textureId id of the texture
      * @param verticalFlip whether to flip the texture vertically
      * @param horizontalFlip whether to flip the texture horizontally
      * @param diagonalFlip whether to flip the texture diagonally
@@ -35,5 +36,4 @@ public class BonusLife extends Bonus {
     public void applyBonusEffect(HumanPlayer player) {
         player.addOneLife();
     }
-    
 }
