@@ -83,6 +83,8 @@ public class BreakableWall extends Wall {
                         return new BonusLife("life");
                     case SPEED:
                         return new BonusSpeed("speed");
+                    case ADD_BOMB:
+                        return new BonusAddBomb("add_bomb");
                     default:
                         throw new IllegalArgumentException("Unknown bonus type: " + entry.getKey());
                 }

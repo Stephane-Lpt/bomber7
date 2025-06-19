@@ -75,15 +75,17 @@ public final class Constants {
     public static enum BONUS_TYPE {
         TRIGGER_BOMB,
         LIFE,
-        SPEED
+        SPEED,
+        ADD_BOMB
     }
     /**
      * A map of the probabilities of each bonus of being dropped.
      * All probabilities add up to one.
      */
     public static final Map<BONUS_TYPE, Double> BONUS_PROBABILITIES = Map.of(
-        BONUS_TYPE.TRIGGER_BOMB, 0.2,
-        BONUS_TYPE.LIFE, 0.4,
-        BONUS_TYPE.SPEED, 0.4
+        BONUS_TYPE.TRIGGER_BOMB, 0.1,
+        BONUS_TYPE.LIFE, 3.0,
+        BONUS_TYPE.SPEED, 3.0,
+        BONUS_TYPE.ADD_BOMB, 3.0
     );
 }
