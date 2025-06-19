@@ -37,8 +37,7 @@ public class BreakableWall extends Wall {
     /**
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
-     *
-     * @param textureName the file path to the texture image for the wall
+     * @param textureName the texture name for this square for the breakable wall
      */
     public BreakableWall(String textureName) {
         super(textureName);

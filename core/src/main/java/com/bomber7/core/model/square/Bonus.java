@@ -31,9 +31,7 @@ public abstract class Bonus extends MapElement {
     /**
      * Applies the bonus effect to the player or game state.
      * This method should be overridden by subclasses to implement specific bonus effects.
-     *
      * @param player the player to which the bonus effect will be applied
      */
     public abstract void applyBonusEffect(Player player);
-
 }

@@ -121,8 +121,7 @@ public class GameScreen extends BomberScreen {
     }
 
     /**
-     * Processes user input for the game screen.
-     * This method checks for key presses and updates the game state accordingly.
+     * Processes the Escape key in order to pause the game.
      */
     public void processInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {

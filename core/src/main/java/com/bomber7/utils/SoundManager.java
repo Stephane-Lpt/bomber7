@@ -29,29 +29,28 @@ public final class SoundManager {
     private final Map<SoundType, Music> musics = new HashMap<>();
 
     /**
-     * A list of fight music tracks.
-     * Used to randomly select a fight track when starting a fight.
+     * List of game music tracks.
+     * Used to randomly select a track when needed.
      */
     private final List<SoundType> fightTracks = Arrays.asList(
         SoundType.EPIC_FIGHT_1, SoundType.EPIC_FIGHT_2, SoundType.EPIC_FIGHT_3, SoundType.ARCADE, SoundType.BEAST_MODE
     );
 
     /**
-     * The currently playing music.
-     * Used to avoid playing the same music multiple times.
+     * The currently playing menu music.
+     * If no music is playing, this is null.
      */
     private Music currentMusic;
     /**
-     * The type of the currently playing music.
-     * Used to avoid playing the same music multiple times.
+     * The type of the currently playing menu music.
      */
     private SoundType currentMusicType;
+
     /**
      * The currently playing fight music.
-     * Used to avoid playing the same fight music multiple times.
+     * If no fight music is playing, this is null.
      */
     private Music currentFightMusic;
-
 
     /**
      * Private constructor to enforce singleton pattern.

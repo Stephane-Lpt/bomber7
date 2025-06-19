@@ -211,19 +211,16 @@ public abstract class Character implements Comparable<Character> {
 
     /**
      * Add a given score to the character.
-     * @param score The score points to add to the character
-     * @throws IllegalScoreOperationException If new score value not valid
-     *                                        (negative)
+     * @param scoreToAdd The score points to add to the character
      */
-    public void addScore(int score) {
-        int newScore = Math.max(this.score + score, Constants.MIN_PLAYER_SCORE);
+    public void addScore(int scoreToAdd) {
+        int newScore = Math.max(getScore() + scoreToAdd, Constants.MIN_PLAYER_SCORE);
         setScore(newScore);
     }
 
     /**
      * Sets the character's map to a new one.
      * @param newMap The new LevelMap to set for the character
-     * @throws IllegalArgumentException If the new map is null
      */
     public void setMap(LevelMap newMap) {
         this.map = newMap;
@@ -372,16 +369,16 @@ public abstract class Character implements Comparable<Character> {
 
         // Check if all corners are on walkable squares
         for (int[] corner : hitboxCorners) {
-            int x = this.map.getSquareCoordinates(corner[0], corner[1]).getKey();
-            int y = this.map.getSquareCoordinates(corner[0], corner[1]).getValue();
+            int cornerX = this.map.getSquareCoordinates(corner[0], corner[1]).getKey();
+            int cornerY = this.map.getSquareCoordinates(corner[0], corner[1]).getValue();
 
             // Make sure the corner is within the map bounds
-            if (x < 0 || y < 0 || x >= this.map.getWidth() || y >= this.map.getHeight()) {
+            if (cornerX < 0 || cornerY < 0 || cornerX >= this.map.getWidth() || cornerY >= this.map.getHeight()) {
                 return false;
             }
 
             // If the square at this corner is not walkable, the move is invalid
-            Square square = this.map.getSquare(x, y);
+            Square square = this.map.getSquare(cornerX, cornerY);
             if (!square.isWalkable()) {
                 return false;
             }

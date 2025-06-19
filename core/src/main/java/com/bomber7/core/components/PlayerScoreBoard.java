@@ -11,36 +11,22 @@ import com.bomber7.utils.MVCComponent;
 
 public class PlayerScoreBoard extends Table implements MVCComponent {
 
-    /**
-     * The player associated with this scoreboard.
-     */
+    /** The player associated with this scoreboard. */
     private Player player;
-    /**
-     * Labels to display player's score, health, and number of bombs.
-     */
+    /** The label displaying the player's score. */
     private Label scoreLabel;
-    /**
-     * Label to display player's health.
-     */
+    /** The label displaying the player's health. */
     private Label healthLabel;
-    /**
-     * Label to display player's number of bombs.
-     */
+    /** The label displaying the player's bombs. */
     private Label bombLabel;
-    /**
-     * Images to represent the player's health and bombs.
-     */
+    /** The image displaying the player's life. */
     private Image heartImage;
-    /**
-     * Image to represent the player's bombs.
-     */
+    /** The image displaying the player's bombs. */
     private Image bombImage;
 
     /**
-     * Constructor for PlayerScoreBoard.
-     * Initializes the scoreboard with the player's information.
-     *
-     * @param player The player whose score board is to be created.
+     * The player's scoreboard.
+     * @param player
      */
     public PlayerScoreBoard(Player player) {
         this.player = player;
@@ -49,9 +35,6 @@ public class PlayerScoreBoard extends Table implements MVCComponent {
         initController();
     }
 
-    /**
-     * Sets the player for this scoreboard.
-     */
     @Override
     public void initView() {
 //        setDebug(true);
@@ -93,10 +76,6 @@ public class PlayerScoreBoard extends Table implements MVCComponent {
             .spaceRight(Dimensions.COMPONENT_SPACING_XS);
     }
 
-    /**
-     * Initializes the controller for this component.
-     * Currently, it does not perform any actions.
-     */
     @Override
     public void initController() {
 

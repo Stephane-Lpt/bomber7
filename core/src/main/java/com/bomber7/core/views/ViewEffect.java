@@ -44,9 +44,8 @@ public class ViewEffect extends Actor {
     }
 
     /**
-     * Returns the effect associated with this ViewEffect.
-     *
-     * @return the effect
+     * Returns the current texture name of the effect.
+     * @return the current texture name
      */
     String getCurrentTextureName() {
         return effect.getType().getFrames()[currentFrameIndex].toLowerCase();

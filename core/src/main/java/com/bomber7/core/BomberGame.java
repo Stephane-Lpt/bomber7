@@ -70,7 +70,6 @@ public class BomberGame extends Game {
 
     /**
      * Time elapsed since the last time players were credited points for being alive during a game.
-     * TODO: there may be a bug when this timer works incorrectly when the game is being paused (scoreboard or pause menu).
      */
     private float aliveScoreTimer;
 
@@ -230,16 +229,17 @@ public class BomberGame extends Game {
             return false;
         }
 
+        List<Character> mapCharacters = currentMap.getCharacters();
         int aliveCount = 0;
 
-        for (Character character : this.characters) {
+        for (Character character : mapCharacters) {
             if (character.isAlive()) {
                 aliveCount++;
             }
         }
 
         if (aliveCount == 1) {
-            for (Character character : characters) {
+            for (Character character : mapCharacters) {
                 if (character.isAlive()) {
                     Gdx.app.debug("BomberGame", character.getName() + " wins the round!");
                     character.addScore(Score.WIN);
@@ -327,8 +327,9 @@ public class BomberGame extends Game {
      */
     private LevelMap getNextMap() {
         GameMap mapToCreate = gameCandidate.getMaps().get((currentRound - 1) % gameCandidate.getMaps().size());
-        LevelMap levelMap = LevelMapFactory.createLevelMap(mapToCreate.getAssetName(),
-            Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        LevelMap levelMap = LevelMapFactory.createLevelMap(
+            mapToCreate.getAssetName(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
+        );
         return levelMap;
     }
 
