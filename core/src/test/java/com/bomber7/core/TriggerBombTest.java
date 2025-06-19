@@ -1,6 +1,9 @@
 package com.bomber7.core;
 
+import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.TriggerBomb;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -42,9 +45,9 @@ public class TriggerBombTest extends BombTest {
     void testTriggerBombActivation() {
         triggerBomb.trigger(levelMap);
         // Check that the affected squares match the expectations
-        assertNull(levelMap.getSquare(2, 2).getMapElement());
-        assertNull(levelMap.getSquare(3, 2).getMapElement());
-        assertNull(levelMap.getSquare(2, 1).getMapElement());
+        assertFalse(levelMap.getSquare(2, 2).getMapElement() instanceof BreakableWall);
+        assertFalse(levelMap.getSquare(3, 2).getMapElement() instanceof BreakableWall);
+        assertFalse(levelMap.getSquare(2, 1).getMapElement() instanceof BreakableWall);
         assertNotNull(levelMap.getSquare(0, 2)); // Stopped by unbreakable walls
     }
 

@@ -83,22 +83,9 @@ public class Square extends ElementTexture {
      */
     public void clearMapElement() {
         if (mapElement instanceof BreakableWall) {
-//            Bonus potentialBonus = ((BreakableWall) mapElement).onDestruction();
-//            Gdx.app.debug("Square", "Setting bonus to " + potentialBonus);
-//
-//            this.setMapElement(potentialBonus); // either null or a bonus
-//
-//            Gdx.app.debug("Square", "Current map element: " + potentialBonus);
-//            Gdx.app.debug("Square", "instanceOfBonus: " + (mapElement instanceof Bonus));
-//            this.setMapElement(
-//                new BreakableWall(
-//                    "bonus_heart",
-//                    false,
-//                    false,
-//                    false
-//                )
-//            );
-            mapElement = null;
+            Bonus potentialBonus = ((BreakableWall) mapElement).onDestruction();
+
+            this.setMapElement(potentialBonus); // either null or a bonus
         } else {
             mapElement = null;
         }

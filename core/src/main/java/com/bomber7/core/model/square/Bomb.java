@@ -105,12 +105,14 @@ public abstract class Bomb extends MapElement {
         Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
 //            Gdx.app.debug("Bomb", "MapElement before explosion: " + sq.getMapElement());
-            sq.clearMapElement();
-            m.addEffect(new Effect(
-                xCord,
-                yCord,
-                EffectType.EXPLOSION
-            ));
+            if (!(sq.getMapElement() instanceof Bonus)) {
+                sq.clearMapElement();
+                m.addEffect(new Effect(
+                    xCord,
+                    yCord,
+                    EffectType.EXPLOSION
+                ));
+            }
 //            Gdx.app.debug("Bomb", "MapElement after explosion: " + sq.getMapElement());
 //            Gdx.app.debug("Bomb", "instanceOfBonus: " + (sq.getMapElement() instanceof Bonus));
         }

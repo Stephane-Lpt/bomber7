@@ -104,8 +104,8 @@ public class BombTest {
         assertNull(levelMap.getSquare(2, 2).getMapElement());
 
         // BreakableWall at these positions should be destroyed.
-        assertNull(levelMap.getSquare(2, 1).getMapElement());
-        assertNull(levelMap.getSquare(3, 2).getMapElement());
+        assertFalse(levelMap.getSquare(2, 1).getMapElement() instanceof BreakableWall);
+        assertFalse(levelMap.getSquare(3, 2).getMapElement() instanceof BreakableWall);
 
         // UnbreakableWall at these positions should not be affected
         assertTrue(levelMap.getSquare(1, 1).getMapElement() instanceof UnbreakableWall);
@@ -156,10 +156,10 @@ public class BombTest {
             "Unbreakable wall at (4, 2) should still exist after the explosion");
 
         // Check that the breakable wall at (3, 2) is destroyed
-        assertNull(levelMap.getSquare(3, 2).getMapElement(),
+        assertFalse(levelMap.getSquare(3, 2).getMapElement() instanceof BreakableWall,
             "Breakable wall at (3, 2) should be destroyed after the explosion");
         // Check that the breakable wall at (2, 2) is destroyed
-        assertNull(levelMap.getSquare(2, 1).getMapElement(),
+        assertFalse(levelMap.getSquare(2, 1).getMapElement() instanceof BreakableWall,
             "Breakable wall at (2, 1) should be destroyed after the explosion");
 
         // Check that the breakable wall at (2, 2) is still exists

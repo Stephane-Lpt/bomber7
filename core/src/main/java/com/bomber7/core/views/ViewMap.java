@@ -81,6 +81,11 @@ public class ViewMap extends Actor {
         drawEffects(batch);
     }
 
+    /**
+     * Draws the characters.
+     * @param batch the Batch used for drawing
+     * @param parentAlpha the alpha value of the parent actor
+     */
     private void drawCharacters(Batch batch, float parentAlpha) {
         for (ViewCharacter character : characterViews) {
             character.draw(batch, parentAlpha);
