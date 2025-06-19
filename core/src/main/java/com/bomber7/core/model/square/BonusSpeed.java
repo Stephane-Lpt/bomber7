@@ -35,8 +35,7 @@ public class BonusSpeed extends Bonus {
     public void applyBonusEffect(Player player) {
         // Managing displaying the bonus effect
         int currentSpeed = player.getSpeed();
-        currentSpeed ++;
+        currentSpeed++;
         player.setSpeed(currentSpeed);
     }
-
 }

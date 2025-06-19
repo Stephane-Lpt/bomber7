@@ -25,7 +25,10 @@ import java.util.List;
  */
 public class GameScreen extends BomberScreen {
 
-    List<PlayerScoreBoard> scoreboards;
+    /**
+     * List of scoreboards for each player in the game.
+     */
+    private List<PlayerScoreBoard> scoreboards;
 
     /**
      * Constructs a new GameScreen associated with the given game.
@@ -50,7 +53,7 @@ public class GameScreen extends BomberScreen {
         List<ViewCharacter> characterViews = new ArrayList<>();
         scoreboards = new ArrayList<>();
 
-        for(Character character : game.getCurrentMap().getCharacters()) {
+        for (Character character : game.getCurrentMap().getCharacters()) {
                 ViewCharacter characterView = new ViewCharacter(
                     character,
                     resources
@@ -66,7 +69,7 @@ public class GameScreen extends BomberScreen {
 
         Table scoreTable = new Table();
 
-        for(Character character : game.getCurrentMap().getCharacters()) {
+        for (Character character : game.getCurrentMap().getCharacters()) {
             Player player = (Player) character;
             PlayerScoreBoard scoreBoard = new PlayerScoreBoard(player);
             scoreboards.add(scoreBoard);
@@ -117,12 +120,16 @@ public class GameScreen extends BomberScreen {
         return ScreenType.GAME;
     }
 
+    /**
+     * Processes user input for the game screen.
+     * This method checks for key presses and updates the game state accordingly.
+     */
     public void processInput() {
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             game.pause();
         }
 
-        for(HumanController humanController : game.getHumanControllers()) {
+        for (HumanController humanController : game.getHumanControllers()) {
             humanController.processKeys();
         }
     }

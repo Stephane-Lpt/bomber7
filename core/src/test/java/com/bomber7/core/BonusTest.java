@@ -1,12 +1,14 @@
 package com.bomber7.core;
-import com.bomber7.utils.BonusType;
+
 import org.junit.*;
+import com.bomber7.utils.BonusType;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
 import com.bomber7.core.model.square.BonusSpeed;
 import com.bomber7.core.model.square.BonusTriggerBomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.utils.Constants;
+import com.bomber7.utils.Constants.BONUS_TYPE;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.RepeatedTest;
@@ -115,7 +117,7 @@ public class BonusTest {
     }
 
     /**
-     * Helper method to convert BONUS_TYPE enum to corresponding Bonus class.
+     * Helper method to convert BonusType enum to corresponding Bonus class.
      */
     private Class<? extends Bonus> getBonusClassFromType(BonusType bonusType) {
         switch (bonusType) {

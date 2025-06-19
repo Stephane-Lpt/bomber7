@@ -82,7 +82,7 @@ public class ViewMap extends Actor {
     }
 
     private void drawCharacters(Batch batch, float parentAlpha) {
-        for(ViewCharacter character : characterViews) {
+        for (ViewCharacter character : characterViews) {
             character.draw(batch, parentAlpha);
         }
     }
@@ -135,7 +135,7 @@ public class ViewMap extends Actor {
     }
 
     /**
-     * Draws / updates all the queued effects
+     * Draws / updates all the queued effects.
      * @param batch the Batch used for drawing
      */
     private void drawEffects(Batch batch) {

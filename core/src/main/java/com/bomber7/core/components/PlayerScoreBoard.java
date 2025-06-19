@@ -11,13 +11,37 @@ import com.bomber7.utils.MVCComponent;
 
 public class PlayerScoreBoard extends Table implements MVCComponent {
 
+    /**
+     * The player associated with this scoreboard.
+     */
     private Player player;
+    /**
+     * Labels to display player's score, health, and number of bombs.
+     */
     private Label scoreLabel;
+    /**
+     * Label to display player's health.
+     */
     private Label healthLabel;
+    /**
+     * Label to display player's number of bombs.
+     */
     private Label bombLabel;
+    /**
+     * Images to represent the player's health and bombs.
+     */
     private Image heartImage;
+    /**
+     * Image to represent the player's bombs.
+     */
     private Image bombImage;
 
+    /**
+     * Constructor for PlayerScoreBoard.
+     * Initializes the scoreboard with the player's information.
+     *
+     * @param player The player whose score board is to be created.
+     */
     public PlayerScoreBoard(Player player) {
         this.player = player;
 
@@ -25,6 +49,9 @@ public class PlayerScoreBoard extends Table implements MVCComponent {
         initController();
     }
 
+    /**
+     * Sets the player for this scoreboard.
+     */
     @Override
     public void initView() {
 //        setDebug(true);
@@ -66,13 +93,17 @@ public class PlayerScoreBoard extends Table implements MVCComponent {
             .spaceRight(Dimensions.COMPONENT_SPACING_XS);
     }
 
+    /**
+     * Initializes the controller for this component.
+     * Currently, it does not perform any actions.
+     */
     @Override
     public void initController() {
 
     }
 
     /**
-     * Update view accordingly to current player state
+     * Update view accordingly to current player state.
      */
     public void refresh() {
         refreshScore();

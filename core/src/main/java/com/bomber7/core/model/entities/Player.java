@@ -1,6 +1,5 @@
 package com.bomber7.core.model.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 
@@ -118,7 +117,7 @@ public abstract class Player extends Character {
     public boolean dropBomb() {
         if (!this.isAlive()) {
             return false;
-        };
+        }
 
         if (nbBomb >= 1) {
             addScore(Score.DROP_BOMB);

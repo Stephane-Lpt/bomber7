@@ -2,7 +2,6 @@ package com.bomber7.core.model.square;
 
 import java.util.Random;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.utils.BonusType;
 import com.bomber7.utils.Constants;
 
@@ -11,6 +10,10 @@ import com.bomber7.utils.Constants;
  */
 public class BreakableWall extends Wall {
 
+    /**
+     * Indicates whether this breakable wall has a bonus.
+     * The bonus is randomly assigned when the wall is created.
+     */
     private boolean hasBonus;
 
     /**
@@ -31,11 +34,11 @@ public class BreakableWall extends Wall {
         this.hasBonus = hasRandomBonus();
     }
 
-    /*
+    /**
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
      *
-     * @param textureName the texture name for this square for the breakable wall
+     * @param textureName the file path to the texture image for the wall
      */
     public BreakableWall(String textureName) {
         super(textureName);

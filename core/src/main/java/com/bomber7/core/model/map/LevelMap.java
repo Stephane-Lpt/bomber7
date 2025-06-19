@@ -40,6 +40,7 @@ public class LevelMap {
     /**
      * Constructs a LevelMap with the specified checkerboard.
      *
+     * @param mapName the name of the map
      * @param checkerboard a 2D list representing the checkerboard of squares
      * @param windowWidth the width of the window in pixels
      * @param windowHeight the height of the window in pixels
