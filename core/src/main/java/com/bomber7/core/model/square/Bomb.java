@@ -1,8 +1,10 @@
 package com.bomber7.core.model.square;
+import com.bomber7.core.model.entities.Player;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.entities.Character;
 import com.bomber7.utils.Effect;
 import com.bomber7.utils.EffectType;
+import com.bomber7.utils.Score;
 import com.bomber7.utils.SoundManager;
 import com.bomber7.utils.SoundType;
 
@@ -20,11 +22,12 @@ public abstract class Bomb extends MapElement {
     /**
      * Constants representing different types of bombs.
      * CLASSIC_BOMB is a standard bomb that explodes after being placed.
-     * TRIGGER_BOMB is a bomb that can be manually triggered by the player.
      */
     public static final int CLASSIC_BOMB = 0;
+    /**
+     * TRIGGER_BOMB is a bomb that can be manually triggered by the player.
+     */
     public static final int TRIGGER_BOMB = 1;
-
     /**
      * The power of the bomb, which determines the range of its explosion.
      */
@@ -37,11 +40,10 @@ public abstract class Bomb extends MapElement {
      * The Y-coordinate of the bomb.
      */
     private final int y;
-
     /**
-     * The current state of the bomb.
+     * The character that planted this bomb.
      */
-    private BombState state;
+    private final Character planter;
 
     /**
      * Constructs a Bomb with a specified explosion power and texture file path.
@@ -50,6 +52,7 @@ public abstract class Bomb extends MapElement {
      * @param x X-coordinate of the bomb on the map.
      * @param y Y-coordinate of the bomb on the map.
      * @param textureName The texture name associated with the bomb.
+     * @param c the character that planted the bomb.
      * //@param verticalFlip    Indicates whether the texture is vertically flipped.
      * //@param horizontalFlip  Indicates whether the texture is horizontally flipped.
      * //@param diagonalFlip    Indicates whether the texture is diagonally flipped.
@@ -57,14 +60,15 @@ public abstract class Bomb extends MapElement {
     public Bomb(int p,
                 int x,
                 int y,
-                String textureName
+                String textureName,
+                Character c
                 ) {
 
         super(textureName);
         this.power = p;
         this.x = x;
         this.y = y;
-        this.state = BombState.PLACED;
+        this.planter = c;
     }
 
     /**
@@ -73,22 +77,6 @@ public abstract class Bomb extends MapElement {
      */
     public int getPower() {
         return this.power;
-    }
-
-    /**
-     * Returns the current state of the bomb.
-     * @return the bomb's state.
-     */
-    public BombState getState() {
-        return this.state;
-    }
-
-    /**
-     * Sets the state of the bomb.
-     * @param newState the new state of the bomb.
-     */
-    public void setState(BombState newState) {
-        this.state = newState;
     }
 
     /**
@@ -116,12 +104,17 @@ public abstract class Bomb extends MapElement {
     public void onExplosion(LevelMap m, int xCord, int yCord) {
         Square sq = m.getSquare(xCord, yCord);
         if (sq != null) {
-            sq.clearMapElement();
-            m.addEffect(new Effect(
-                xCord,
-                yCord,
-                EffectType.EXPLOSION
-            ));
+//            Gdx.app.debug("Bomb", "MapElement before explosion: " + sq.getMapElement());
+            if (!(sq.getMapElement() instanceof Bonus)) {
+                sq.clearMapElement();
+                m.addEffect(new Effect(
+                    xCord,
+                    yCord,
+                    EffectType.EXPLOSION
+                ));
+            }
+//            Gdx.app.debug("Bomb", "MapElement after explosion: " + sq.getMapElement());
+//            Gdx.app.debug("Bomb", "instanceOfBonus: " + (sq.getMapElement() instanceof Bonus));
         }
     }
 
@@ -141,13 +134,12 @@ public abstract class Bomb extends MapElement {
             throw new NullPointerException("LevelMap cannot be null");
         }
 
-        // Change the state to EXPLODED when the bomb is activated
-        setState(BombState.EXPLODED);
-
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
-
-        SoundManager.getInstance().play(SoundType.EXPLOSION);
+        if (planter instanceof Player) {
+            ((Player) planter).setNbBomb(((Player) planter).getNbBomb() + 1);
+        }
+        this.playExplosionSound();
 
         // Explosion propagation in all four directions
         int[][] directions = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
@@ -168,6 +160,13 @@ public abstract class Bomb extends MapElement {
                             (character.getMapX() == newX && character.getMapY() == newY)
                             || character.getMapX() == this.x && character.getMapY() == this.y
                         ) {
+                            if (character == planter) {
+                                //Gdx.app.debug("Bomb", planter.getName() + " suicided.");
+                                character.addScore(Score.SUICIDE);
+                            } else {
+                                //Gdx.app.debug("Bomb", planter.getName() + " killed " + character);
+                                planter.addScore(Score.KILL);
+                            }
                             character.removeOneLife();
                         }
                     }
@@ -187,7 +186,7 @@ public abstract class Bomb extends MapElement {
                 // Hit breakable wall - explode it and stop further propagation
                 if (potentialSquare.getMapElement() instanceof BreakableWall) {
                     onExplosion(m, newX, newY);
-                    break;
+//                    break;
                 }
 
                 if (potentialSquare.getMapElement() instanceof Bomb) {
@@ -201,5 +200,13 @@ public abstract class Bomb extends MapElement {
                 onExplosion(m, newX, newY);
             }
         }
+    }
+
+    /**
+     * Play explosion sound.
+     * It is a distinct method so that it can be removed in tests later.
+     */
+    public void playExplosionSound() {
+        SoundManager.getInstance().play(SoundType.EXPLOSION);
     }
 }

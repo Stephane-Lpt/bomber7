@@ -2,8 +2,10 @@ package com.bomber7.core;
 
 import com.bomber7.core.model.square.TimeBomb;
 
+import com.bomber7.utils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -30,7 +32,8 @@ public class TimeBombTest extends BombTest {
         super.setUp(); // initialize the map
 
         // Instantiate a TimeBomb at position (2, 3) with a timer of 5 sec
-        timeBomb = new TimeBomb(2, 2, 3);
+        timeBomb = Mockito.spy(new TimeBomb(2, 2, 3, super.testCharacter));
+        Mockito.doNothing().when(timeBomb).playExplosionSound();
     }
 
     /**
@@ -40,10 +43,10 @@ public class TimeBombTest extends BombTest {
     @Test
     void testTimeBombCountdownAndActivation() {
         // Simulate a tick with 3 seconds passed
-        timeBomb.tick(levelMap, 3.0f);
+        timeBomb.tick(levelMap, 1.0f);
 
         // Ensure the timer is updated correctly
-        assertEquals(2.0f, timeBomb.getTimer(), 0.01f);
+        assertEquals(Constants.BOMB_TIMER - 1.0f, timeBomb.getTimer(), 0.01f);
 
         // Another tick
         timeBomb.tick(levelMap, 2.0f);

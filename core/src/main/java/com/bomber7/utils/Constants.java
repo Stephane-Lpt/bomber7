@@ -1,7 +1,5 @@
 package com.bomber7.utils;
 
-import java.util.Map;
-
 /**
  * Constant variables used in the app.
  */
@@ -18,9 +16,9 @@ public final class Constants {
      */
     public static final int MAX_PLAYER_NAME_LENGTH = 12;
     /**
-     * Maximum number of players allowed in the game.
+     * Minimum number of players allowed in the game.
      */
-    public static final int MIN_PLAYERS = 1;
+    public static final int MIN_PLAYERS = 2;
     /**
      * Maximum number of human players allowed in the game.
      */
@@ -50,7 +48,7 @@ public final class Constants {
     /**
      * The default bomb timer.
      */
-    public static final float BOMB_TIMER = 5.0f;
+    public static final float BOMB_TIMER = 2.5f;
 
     /**
      * The default bomb timer.
@@ -68,22 +66,24 @@ public final class Constants {
     public static final float VOLUME_CONVERT_RATIO = 100f;
 
     /**
-     * The chance of a bonus being dropped.
+     * The chance of a bonus being dropped once a breakable wall is destroyed.
      */
-    public final static double BONUS_RATE = 0.25; // 25% chance to drop a bonus
+    public static final double BONUS_RATE = 0.25;
 
-    public static enum BONUS_TYPE {
-        TRIGGER_BOMB,
-        LIFE,
-        SPEED
-    }
     /**
-     * A map of the probabilities of each bonus of being dropped.
-     * All probabilities add up to one.
+     * Interval (in seconds) at which alive players are awarded points for staying alive.
      */
-    public static final Map<BONUS_TYPE, Double> BONUS_PROBABILITIES = Map.of(
-        BONUS_TYPE.TRIGGER_BOMB, 0.2,
-        BONUS_TYPE.LIFE, 0.4,
-        BONUS_TYPE.SPEED, 0.4
-    );
+    public static final float ALIVE_SCORE_TIMER = 10f;
+
+    /**
+     * Minimum player score.
+     */
+    public static final int MIN_PLAYER_SCORE = 0;
+
+    /** The default life of a player. */
+    public static final int DEFAULT_LIFE = 1;
+
+    /** The default speed of a player. */
+    public static final int DEFAULT_SPEED = 1;
+
 }

@@ -1,12 +1,13 @@
 package com.bomber7.core;
-import org.junit.*;
+
+import com.bomber7.core.model.square.BonusAddBomb;
+import com.bomber7.utils.BonusType;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
 import com.bomber7.core.model.square.BonusSpeed;
 import com.bomber7.core.model.square.BonusTriggerBomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.Constants.BONUS_TYPE;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.RepeatedTest;
@@ -14,7 +15,8 @@ import org.junit.jupiter.api.RepeatedTest;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 /**
  * Unit tests for bonus dropping functionality in BreakableWall.
@@ -23,8 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BonusTest {
 
     /**
-     * Tests that BreakableWall.onDestruction() returns a valid bonus type
-     * when a bonus is dropped.
+     * Tests that onDestruction() returns a valid bonus type when a bonus is dropped.
      */
     @Test
     void testBreakableWallDropsValidBonusTypes() {
@@ -35,9 +36,10 @@ public class BonusTest {
 
             // If a bonus is dropped, it should be one of the valid types
             if (droppedBonus != null) {
-                assertTrue(droppedBonus instanceof BonusTriggerBomb ||
-                          droppedBonus instanceof BonusLife ||
-                          droppedBonus instanceof BonusSpeed,
+                assertTrue(droppedBonus instanceof BonusTriggerBomb
+                        || droppedBonus instanceof BonusLife
+                        || droppedBonus instanceof BonusSpeed
+                        || droppedBonus instanceof BonusAddBomb,
                           "Dropped bonus should be of a valid type");
             }
         }
@@ -70,7 +72,8 @@ public class BonusTest {
         // Allow for some statistical variance (10% tolerance)
         double tolerance = 0.1;
         assertTrue(Math.abs(actualDropRate - expectedDropRate) <= tolerance,
-                   String.format("Actual drop rate (%.3f) should be close to expected rate (%.3f) within tolerance (%.1f) bonusesDropped: %d, totalWalls: %d",
+                   String.format("Actual drop rate (%.3f) should be close to expected rate "
+                           + "(%.3f) within tolerance (%.1f) bonusesDropped: %d, totalWalls: %d",
                                 actualDropRate, expectedDropRate, tolerance, bonusesDropped, totalWalls));
     }
 
@@ -85,6 +88,7 @@ public class BonusTest {
         bonusCount.put(BonusTriggerBomb.class, 0);
         bonusCount.put(BonusLife.class, 0);
         bonusCount.put(BonusSpeed.class, 0);
+        bonusCount.put(BonusAddBomb.class, 0);
 
         // Collect bonus drops from many walls
         for (int i = 0; i < totalTests; i++) {
@@ -101,23 +105,26 @@ public class BonusTest {
         int totalBonuses = bonusCount.values().stream().mapToInt(Integer::intValue).sum();
 
         // Verify each bonus type appears with roughly the expected frequency
-        for (Map.Entry<Constants.BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
-            Class<? extends Bonus> bonusClass = getBonusClassFromType(entry.getKey());
-            double expectedFrequency = entry.getValue();
+        for (BonusType bonusType : BonusType.values()) {
+            Class<? extends Bonus> bonusClass = getBonusClassFromType(bonusType);
+            double expectedFrequency = bonusType.getDropRate();
             double actualFrequency = (double) bonusCount.get(bonusClass) / totalBonuses;
 
             // Allow for statistical variance (10% tolerance for distribution)
             double tolerance = 0.10;
             assertTrue(Math.abs(actualFrequency - expectedFrequency) <= tolerance,
-                       String.format("Bonus type %s: actual frequency (%.3f) should be close to expected (%.3f) within tolerance (%.1f)",
-                                    entry.getKey(), actualFrequency, expectedFrequency, tolerance));
+                       String.format("Bonus type %s: actual frequency (%.3f) should be close to expected "
+                               + "(%.3f) within tolerance (%.1f)",
+                                    bonusType, actualFrequency, expectedFrequency, tolerance));
         }
     }
 
     /**
-     * Helper method to convert BONUS_TYPE enum to corresponding Bonus class.
+     * Helper method to convert BonusType enum to corresponding Bonus class.
+     * @param bonusType the type of the bonus type
+     * @return returns the bonus class associated with the bonusType
      */
-    private Class<? extends Bonus> getBonusClassFromType(Constants.BONUS_TYPE bonusType) {
+    private Class<? extends Bonus> getBonusClassFromType(BonusType bonusType) {
         switch (bonusType) {
             case TRIGGER_BOMB:
                 return BonusTriggerBomb.class;
@@ -125,6 +132,8 @@ public class BonusTest {
                 return BonusLife.class;
             case SPEED:
                 return BonusSpeed.class;
+            case ADD_BOMB:
+                return BonusAddBomb.class;
             default:
                 throw new IllegalArgumentException("Unknown bonus type: " + bonusType);
         }

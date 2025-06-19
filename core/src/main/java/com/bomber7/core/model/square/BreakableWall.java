@@ -1,16 +1,19 @@
 package com.bomber7.core.model.square;
 
-import java.util.Map;
 import java.util.Random;
 
+import com.bomber7.utils.BonusType;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.Constants.BONUS_TYPE;
 
 /**
  * Represents a breakable wall in the game.
  */
 public class BreakableWall extends Wall {
 
+    /**
+     * Indicates whether this breakable wall has a bonus.
+     * The bonus is randomly assigned when the wall is created.
+     */
     private boolean hasBonus;
 
     /**
@@ -31,10 +34,9 @@ public class BreakableWall extends Wall {
         this.hasBonus = hasRandomBonus();
     }
 
-    /*
+    /**
      * Constructs a BreakableWall without specifying flip options.
      * This constructor uses default flip options (no flips).
-     *
      * @param textureName the texture name for this square for the breakable wall
      */
     public BreakableWall(String textureName) {
@@ -48,11 +50,10 @@ public class BreakableWall extends Wall {
      * @return the texture file path
      */
     public Bonus onDestruction() {
-        //System.out.println(this.hasBonus);
         if (this.hasBonus) {
-            return createRandomBonus();
+            BonusType randomBonusType = BonusType.getRandomBonusType();
+            return createBonus(randomBonusType);
         }
-        System.out.println("onDestruction retroune null");
         return null;
     }
 
@@ -67,30 +68,24 @@ public class BreakableWall extends Wall {
     }
 
     /**
-     * Instantiates a random bonus based on their probabilities at the same location.
+     * Creates and returns a bonus created based on the given bonusType.
+     * @param bonusType the type of the bonus to create
+     * @return the created bonus object
      */
-    private static Bonus createRandomBonus() {
-        double randomValue = new Random().nextDouble();
-        double cumulativeProbability = 0.0;
-        for (Map.Entry<BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
-            cumulativeProbability += entry.getValue();
-            if (randomValue <= cumulativeProbability) {
-                // Instantiate the bonus based on the type
-                switch (entry.getKey()) {
-                    case TRIGGER_BOMB:
-                        return new BonusTriggerBomb("bomb");
-                    case LIFE:
-                        return new BonusLife("life");
-                    case SPEED:
-                        return new BonusSpeed("speed");
-                    default:
-                        throw new IllegalArgumentException("Unknown bonus type: " + entry.getKey());
-                }
-            }
+    private Bonus createBonus(BonusType bonusType) {
+        switch (bonusType) {
+            case TRIGGER_BOMB:
+                return new BonusTriggerBomb();
+            case LIFE:
+                return new BonusLife();
+            case SPEED:
+                return new BonusSpeed();
+            case ADD_BOMB:
+                return new BonusAddBomb();
+            default:
+                throw new IllegalArgumentException("Unknown bonus type: " + bonusType.toString());
         }
-        return null; // Should never reach here if probabilities sum to 1.0
     }
-
 
     @Override
     public String toString() {

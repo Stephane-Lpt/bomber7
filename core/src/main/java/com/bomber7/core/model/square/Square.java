@@ -82,9 +82,14 @@ public class Square extends ElementTexture {
      * This method sets the map element to null.
      */
     public void clearMapElement() {
-        this.mapElement = null;
-    }
+        if (mapElement instanceof BreakableWall) {
+            Bonus potentialBonus = ((BreakableWall) mapElement).onDestruction();
 
+            this.setMapElement(potentialBonus); // either null or a bonus
+        } else {
+            mapElement = null;
+        }
+    }
 
     /**
      * Returns the map element associated with this square.

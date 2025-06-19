@@ -1,6 +1,5 @@
 package com.bomber7.core.model.entities;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.exceptions.IllegalBombOperationException;
 import com.bomber7.core.model.exceptions.IllegalPowerOperationException;
 
@@ -10,11 +9,15 @@ import java.util.List;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.BombType;
+import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.utils.GameCharacter;
 import com.bomber7.utils.Constants;
 import com.bomber7.core.model.square.TimeBomb;
+import com.bomber7.utils.Score;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 
 /**
  * Class Player.
@@ -82,6 +85,14 @@ public abstract class Player extends Character {
         return this.triggerBombsDropped.size();
     }
 
+    /**
+     * Get List<TriggerBomb>.
+     * @return the list of the dropped trigger bombs
+     */
+    public List<TriggerBomb> getTriggerBombsDropped() {
+        return this.triggerBombsDropped;
+    }
+
     /* ------[SETTERS]------------------------------------ */
 
     /**
@@ -105,8 +116,23 @@ public abstract class Player extends Character {
         this.typeBomb = bombType;
     }
 
+    /**
+     *  Sets the List of TriggerBombs dropped by the player.
+     *  @param triggerBombsDropped The new list of TriggerBombs
+     */
+    public void setTriggerBombsDropped(List<TriggerBomb> triggerBombsDropped) {
+        this.triggerBombsDropped.clear();
+        this.triggerBombsDropped.addAll(triggerBombsDropped);
+    }
+
     /* ------[OTHER]------------------------------------ */
 
+    /**
+     * Play song.
+     */
+    public void playSong() {
+        SoundManager.getInstance().play(SoundType.BOMB_CHARGE);
+    }
     /**
      * Allow the Player to drop a bomb.
      * @return true if the bomb was successfully dropped, false otherwise
@@ -114,25 +140,32 @@ public abstract class Player extends Character {
     public boolean dropBomb() {
         if (!this.isAlive()) {
             return false;
-        };
+        }
+
+        if (this.map.getSquare(this.getMapX(), this.getMapY()).hasMapElement()) {
+            return false;
+        }
 
         if (nbBomb >= 1) {
-            Gdx.app.debug("Player", this.getName() + " dropped a bomb");
+            addScore(Score.DROP_BOMB);
+
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
-                    bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY());
+                    playSong();
+                    bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY(), this);
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
                 case TIME:
-                    bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY());
+                    playSong();
+                    bombToDrop = new TimeBomb(power, this.getMapX(), this.getMapY(), this);
                     break;
                 default:
                     bombToDrop = null;
             }
             Square currentSquare = this.map.getSquare(this.getMapX(), this.getMapY());
             currentSquare.setMapElement(bombToDrop);
-//            this.nbBomb--; // Decrease the number of bombs availables
+            this.nbBomb--;  // Decrease the number of bombs available
             this.setStandingStill();
             return true;
         } else {
@@ -177,6 +210,69 @@ public abstract class Player extends Character {
      */
     public void addPower() {
         this.power++;
+    }
+
+    /**
+     * Moves the character to the right with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveRight() {
+        super.moveRight();
+        collectBonus();
+    }
+
+    /**
+     * Moves the character to the left with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveLeft() {
+        super.moveLeft();
+        collectBonus();
+    }
+
+    /**
+     * Moves the character down with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveDown() {
+        super.moveDown();
+        collectBonus();
+
+    }
+
+    /**
+     * Moves the character up with the super method
+     * and then collects a bonus if there is any.
+     */
+    @Override
+    public void moveUp() {
+        super.moveUp();
+        collectBonus();
+    }
+
+    /**
+     * Checks whether the square where the player is situated has a bonus or not,
+     * and if it does, collects it and applies it to the player.
+     */
+    public void collectBonus() {
+        Square currentSquare = map.getSquare(this.getMapX(), this.getMapY());
+        if (currentSquare.hasMapElement() && currentSquare.getMapElement() instanceof Bonus) {
+            ((Bonus) currentSquare.getMapElement()).applyBonusEffect(this);
+            currentSquare.clearMapElement();
+        }
+    }
+
+    /**
+     * Reset method to add bomb type & bomb number resetting to the super method reset.
+     */
+    @Override
+    public void reset() {
+        super.reset();
+        this.nbBomb = 1;
+        this.typeBomb = BombType.TIME;
     }
 
 }

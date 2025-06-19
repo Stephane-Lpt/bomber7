@@ -1,5 +1,9 @@
 package com.bomber7.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bomber7.core.model.entities.Character;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.core.model.map.LevelMap;
 import com.bomber7.core.model.map.LevelMapFactory;
@@ -13,6 +17,7 @@ import com.bomber7.utils.GameCharacter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,6 +26,18 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class PlayerTest {
+
+    public class SilentTestBomb extends TriggerBomb {
+        SilentTestBomb(int power, int x, int y, Character c) {
+            super(power, x, y, c);
+        }
+
+        @Override
+        public void playExplosionSound() {
+            System.out.println("SilentTestBomb explosion sound played");
+        }
+    }
+
 
     /**
      * Instance of Player used for testing (reset before each test).
@@ -39,8 +56,8 @@ class PlayerTest {
         this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
-        player = new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter) {
-        };
+        player = Mockito.spy(new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter) { });
+        Mockito.doNothing().when(player).playSong();
         player.setTypeBomb(BombType.TIME);
         player.setNbBomb(1);
     }
@@ -92,19 +109,45 @@ class PlayerTest {
         // Drop 2 trigger bombs
         assertEquals(23, player.getMapY(), "Player should be at (1,23) after moving down");
         assertEquals(1, player.getMapX(), "Player should be at (1,23) after moving down");
+
+        player.moveRight();
+        assertEquals(23, player.getMapY(), "Player should be at (1,22) after moving up");
+        assertEquals(2, player.getMapX(), "Player should be at (1,22) after moving up");
+
         player.dropBomb(); // Drop at (1,23)
+        player.moveLeft(); // Going back to (1,22)
         player.moveDown(); // Going back to (1,22)
         assertEquals(22, player.getMapY(), "Player should be at (1,22) after moving down");
         assertEquals(1, player.getMapX(), "Player should be at (1,22) after moving down");
         player.dropBomb(); // Drop at (1,22)
+
         System.out.println(player.getPower());
+
+        List<TriggerBomb> triggerBombs = player.getTriggerBombsDropped();
+        List<TriggerBomb> silentBombs = new ArrayList<>();
+
+        for (TriggerBomb triggerBomb : triggerBombs) {
+            TriggerBomb silentBomb = new SilentTestBomb(
+                triggerBomb.getPower(),
+                triggerBomb.getX(),
+                triggerBomb.getY(),
+                player
+            );
+            silentBombs.add(silentBomb);
+        }
+
+        player.setTriggerBombsDropped(silentBombs);
+
+        for (TriggerBomb b : player.getTriggerBombsDropped()) {
+            System.out.println(b.getClass().getName());
+        }
+
 
         assertEquals(2, player.getNbTriggeredBombDropped(), "Should have 2 TriggerBombs before activation");
 
-
         // Check squares before activation
         Square square1 = this.foyLevelMap.getSquare(1, 22);
-        Square square2 = this.foyLevelMap.getSquare(1, 23);
+        Square square2 = this.foyLevelMap.getSquare(2, 23);
         Square square3 = this.foyLevelMap.getSquare(2, 24);
         Square square4 = this.foyLevelMap.getSquare(1, 21);
         assertInstanceOf(TriggerBomb.class, square2.getMapElement(), "Expected TriggerBomb on (1,23)");

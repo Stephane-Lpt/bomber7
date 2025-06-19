@@ -7,6 +7,7 @@ import com.bomber7.core.ResourceManager;
 import com.bomber7.core.model.map.LevelMap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.bomber7.core.model.square.Bomb;
+import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
 import com.bomber7.core.model.square.Wall;
@@ -80,8 +81,13 @@ public class ViewMap extends Actor {
         drawEffects(batch);
     }
 
+    /**
+     * Draws the characters.
+     * @param batch the Batch used for drawing
+     * @param parentAlpha the alpha value of the parent actor
+     */
     private void drawCharacters(Batch batch, float parentAlpha) {
-        for(ViewCharacter character : characterViews) {
+        for (ViewCharacter character : characterViews) {
             character.draw(batch, parentAlpha);
         }
     }
@@ -103,20 +109,22 @@ public class ViewMap extends Actor {
                 if (square.hasMapElement()) {
                     TextureRegion mapElementTextureRegion = null;
 
-                    // Wall
                     if (square.getMapElement() instanceof Wall) {
-                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    }
-
-                    // Bomb
-                    else if (square.getMapElement() instanceof Bomb) {
+                        mapElementTextureRegion =
+                            resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    } else if (square.getMapElement() instanceof Bonus) {
+                        mapElementTextureRegion =
+                            resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    } else if (square.getMapElement() instanceof Bomb) {
                         // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(levelMap, Gdx.graphics.getDeltaTime());
                         }
 
                         if (square.hasMapElement()) {
-                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                            Gdx.app.debug("ViewMap", "Drawing bomb + " + (square.getMapElement().getTextureName()));
+                            mapElementTextureRegion =
+                                resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                         }
                     }
 
@@ -130,14 +138,13 @@ public class ViewMap extends Actor {
     }
 
     /**
-     * Draws / updates all the queued effects
+     * Draws / updates all the queued effects.
      * @param batch the Batch used for drawing
      */
     private void drawEffects(Batch batch) {
         float delta = Gdx.graphics.getDeltaTime();
 
         while (!levelMap.getEffectsQueue().empty()) {
-            Gdx.app.debug("ViewMap", "Adding an effect to the effectViews");
             effectViews.add(new ViewEffect(levelMap.getEffectsQueue().pop()));
         }
 
@@ -157,10 +164,7 @@ public class ViewMap extends Actor {
                 .getAtlas()
                 .findRegion(effect.getCurrentTextureName());
 
-            Gdx.app.debug("ViewMap", "Drawing texture " + effect.getCurrentTextureName());
-
             if (effectTexture != null) {
-                Gdx.app.debug("ViewMap", "Drawing effect");
                 drawTextureRegion(batch, effectTexture, (int) effect.getX(), (int) effect.getY(), 0f, 2f);
             }
         }

@@ -1,11 +1,14 @@
 package com.bomber7.core;
 
+import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.TriggerBomb;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 
 /**
@@ -30,7 +33,8 @@ public class TriggerBombTest extends BombTest {
         super.setUp(); // Call BombTest's setup to initialize the map
 
         // Instantiate a TriggerBomb at postion (2,2)
-        triggerBomb = new TriggerBomb(2, 2, 2);
+        triggerBomb = Mockito.spy(new TriggerBomb(2, 2, 2, super.testCharacter));
+        Mockito.doNothing().when(triggerBomb).playExplosionSound();
     }
 
     /**
@@ -40,9 +44,9 @@ public class TriggerBombTest extends BombTest {
     void testTriggerBombActivation() {
         triggerBomb.trigger(levelMap);
         // Check that the affected squares match the expectations
-        assertNull(levelMap.getSquare(2, 2).getMapElement());
-        assertNull(levelMap.getSquare(3, 2).getMapElement());
-        assertNull(levelMap.getSquare(2, 1).getMapElement());
+        assertFalse(levelMap.getSquare(2, 2).getMapElement() instanceof BreakableWall);
+        assertFalse(levelMap.getSquare(3, 2).getMapElement() instanceof BreakableWall);
+        assertFalse(levelMap.getSquare(2, 1).getMapElement() instanceof BreakableWall);
         assertNotNull(levelMap.getSquare(0, 2)); // Stopped by unbreakable walls
     }
 
