@@ -104,16 +104,13 @@ public class ViewMap extends Actor {
                 if (square.hasMapElement()) {
                     TextureRegion mapElementTextureRegion = null;
 
-                    // Wall
                     if (square.getMapElement() instanceof Wall) {
-                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    }
-                    // Bonus
-                    else if (square.getMapElement() instanceof Bonus) {
-                        mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
-                    }
-                    // Bomb
-                    else if (square.getMapElement() instanceof Bomb) {
+                        mapElementTextureRegion =
+                            resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    } else if (square.getMapElement() instanceof Bonus) {
+                        mapElementTextureRegion =
+                            resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                    } else if (square.getMapElement() instanceof Bomb) {
                         // Bomb tick
                         if (square.getMapElement() instanceof TimeBomb) {
                             ((TimeBomb) square.getMapElement()).tick(levelMap, Gdx.graphics.getDeltaTime());
@@ -121,7 +118,8 @@ public class ViewMap extends Actor {
 
                         if (square.hasMapElement()) {
                             Gdx.app.debug("ViewMap", "Drawing bomb + " + (square.getMapElement().getTextureName()));
-                            mapElementTextureRegion = resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
+                            mapElementTextureRegion =
+                                resources.getMapSkin().getAtlas().findRegion(square.getMapElement().getTextureName());
                         }
                     }
 

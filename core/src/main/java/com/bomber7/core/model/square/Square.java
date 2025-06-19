@@ -1,6 +1,5 @@
 package com.bomber7.core.model.square;
 
-import com.badlogic.gdx.Gdx;
 import com.bomber7.core.model.texture.ElementTexture;
 
 /**

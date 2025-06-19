@@ -37,12 +37,12 @@ public class CharacterTest {
     /**
      * A character with 100 hp.
      */
-    ConcreteCharacter invincibleCharacter;
+    private ConcreteCharacter invincibleCharacter;
 
     /**
      * A default character with 1 life.
      */
-    ConcreteCharacter defaultCharacter;
+    private ConcreteCharacter defaultCharacter;
 
     /**
      * Test setup.
@@ -245,6 +245,9 @@ public class CharacterTest {
         assertEquals(initialMapY + 1, character.getMapY());
     }
 
+    /**
+     * Tests that the player resets correctly.
+     */
     @Test
     public void testCharacterReset() {
         int initialMapX = defaultCharacter.getMapX();

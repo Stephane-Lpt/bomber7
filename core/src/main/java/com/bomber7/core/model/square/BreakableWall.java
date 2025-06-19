@@ -51,8 +51,8 @@ public class BreakableWall extends Wall {
      */
     public Bonus onDestruction() {
         if (this.hasBonus) {
-            BonusType bonusType = BonusType.getRandomBonusType();
-            return createRandomBonus(bonusType);
+            BonusType randomBonusType = BonusType.getRandomBonusType();
+            return createBonus(randomBonusType);
         }
         return null;
     }
@@ -69,9 +69,10 @@ public class BreakableWall extends Wall {
 
     /**
      * Creates and returns a bonus created based on the given bonusType.
+     * @param bonusType the type of the bonus to create
      * @return the created bonus object
      */
-    private Bonus createRandomBonus(BonusType bonusType) {
+    private Bonus createBonus(BonusType bonusType) {
         switch (bonusType) {
             case TRIGGER_BOMB:
                 return new BonusTriggerBomb();

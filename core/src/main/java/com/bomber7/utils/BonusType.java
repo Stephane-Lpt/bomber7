@@ -25,12 +25,12 @@ public enum BonusType {
     ADD_BOMB("bonus_add_bomb", 0.4f);
 
     /**
-     * The asset name for the sprite of the bonus;
+     * The asset name for the sprite of the bonus.
      */
     private final String assetName;
 
     /**
-     * The drop rate of the bonus;
+     * The drop rate of the bonus.
      */
     private final float dropRate;
 

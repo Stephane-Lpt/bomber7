@@ -11,7 +11,6 @@ import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.BombType;
 import com.bomber7.core.model.square.Square;
 import com.bomber7.core.model.square.TimeBomb;
-import com.bomber7.core.model.square.Bomb;
 import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.utils.GameCharacter;
@@ -29,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class PlayerTest {
 
     public class SilentTestBomb extends TriggerBomb {
-        public SilentTestBomb(int power, int x, int y, Character c) {
+        SilentTestBomb(int power, int x, int y, Character c) {
             super(power, x, y, c);
         }
 
@@ -57,7 +56,7 @@ class PlayerTest {
         this.foyLevelMap = LevelMapFactory.createLevelMap("foy", 800, 600);
 
         // Create a concrete subclass of Player for testing
-        player = Mockito.spy(new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter){});
+        player = Mockito.spy(new Player("TestPlayer", this.foyLevelMap, 1, 23, 3, 20, gameCharacter) { });
         Mockito.doNothing().when(player).playSong();
         player.setTypeBomb(BombType.TIME);
         player.setNbBomb(1);

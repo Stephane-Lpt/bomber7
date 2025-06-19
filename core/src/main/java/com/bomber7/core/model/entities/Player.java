@@ -87,7 +87,7 @@ public abstract class Player extends Character {
 
     /**
      * Get List<TriggerBomb>.
-     *
+     * @return the list of the dropped trigger bombs
      */
     public List<TriggerBomb> getTriggerBombsDropped() {
         return this.triggerBombsDropped;
