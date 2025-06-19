@@ -126,7 +126,7 @@ public abstract class Player extends Character {
     }
 
     /* ------[OTHER]------------------------------------ */
-    
+
     /**
      * Play song.
      */
@@ -142,12 +142,17 @@ public abstract class Player extends Character {
             return false;
         }
 
+        if (this.map.getSquare(this.getMapX(), this.getMapY()).hasMapElement()) {
+            return false;
+        }
+
         if (nbBomb >= 1) {
             addScore(Score.DROP_BOMB);
 
             Bomb bombToDrop;
             switch (this.typeBomb) {
                 case TRIGGER:
+                    playSong();
                     bombToDrop = new TriggerBomb(power, this.getMapX(), this.getMapY(), this);
                     this.triggerBombsDropped.add((TriggerBomb) bombToDrop); // Add it to the trigger bombs dropped list
                     break;
@@ -160,7 +165,7 @@ public abstract class Player extends Character {
             }
             Square currentSquare = this.map.getSquare(this.getMapX(), this.getMapY());
             currentSquare.setMapElement(bombToDrop);
-            this.nbBomb--;  // Decrease the number of bombs availables
+            this.nbBomb--;  // Decrease the number of bombs available
             this.setStandingStill();
             return true;
         } else {
@@ -258,6 +263,16 @@ public abstract class Player extends Character {
             ((Bonus) currentSquare.getMapElement()).applyBonusEffect(this);
             currentSquare.clearMapElement();
         }
+    }
+
+    /**
+     * Reset method to add bomb type & bomb number resetting to the super method reset.
+     */
+    @Override
+    public void reset() {
+        super.reset();
+        this.nbBomb = 1;
+        this.typeBomb = BombType.TIME;
     }
 
 }

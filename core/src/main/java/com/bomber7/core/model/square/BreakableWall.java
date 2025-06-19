@@ -75,11 +75,13 @@ public class BreakableWall extends Wall {
     private Bonus createRandomBonus(BonusType bonusType) {
         switch (bonusType) {
             case TRIGGER_BOMB:
-                return new BonusTriggerBomb(bonusType.getAssetName());
+                return new BonusTriggerBomb();
             case LIFE:
-                return new BonusLife(bonusType.getAssetName());
+                return new BonusLife();
             case SPEED:
-                return new BonusSpeed(bonusType.getAssetName());
+                return new BonusSpeed();
+            case ADD_BOMB:
+                return new BonusAddBomb();
             default:
                 throw new IllegalArgumentException("Unknown bonus type: " + bonusType.toString());
         }

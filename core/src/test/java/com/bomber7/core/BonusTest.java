@@ -1,5 +1,6 @@
 package com.bomber7.core;
 
+import com.bomber7.core.model.square.BonusAddBomb;
 import com.bomber7.utils.BonusType;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
@@ -37,7 +38,7 @@ public class BonusTest {
             if (droppedBonus != null) {
                 assertTrue(droppedBonus instanceof BonusTriggerBomb ||
                           droppedBonus instanceof BonusLife ||
-                          droppedBonus instanceof BonusSpeed,
+                          droppedBonus instanceof BonusSpeed || droppedBonus instanceof BonusAddBomb,
                           "Dropped bonus should be of a valid type");
             }
         }
@@ -85,6 +86,7 @@ public class BonusTest {
         bonusCount.put(BonusTriggerBomb.class, 0);
         bonusCount.put(BonusLife.class, 0);
         bonusCount.put(BonusSpeed.class, 0);
+        bonusCount.put(BonusAddBomb.class, 0);
 
         // Collect bonus drops from many walls
         for (int i = 0; i < totalTests; i++) {
@@ -125,6 +127,8 @@ public class BonusTest {
                 return BonusLife.class;
             case SPEED:
                 return BonusSpeed.class;
+            case ADD_BOMB:
+                return BonusAddBomb.class;
             default:
                 throw new IllegalArgumentException("Unknown bonus type: " + bonusType);
         }

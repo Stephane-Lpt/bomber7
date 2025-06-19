@@ -1,23 +1,22 @@
 package com.bomber7.core.model.square;
 
 import com.bomber7.core.model.entities.Player;
+import com.bomber7.utils.BonusType;
 
 public abstract class Bonus extends MapElement {
 
     /**
-     * Constructs a new Bonus with the specified texture file path and texture ID.
-     * @param textureName the name of the texture image for this bonus
-     * @param verticalFlip whether to flip the texture vertically
-     * @param horizontalFlip whether to flip the texture horizontally
-     * @param diagonalFlip whether to flip the texture diagonally
+     * The type of the bonus.
      */
-    public Bonus(
-        String textureName,
-        boolean verticalFlip,
-        boolean horizontalFlip,
-        boolean diagonalFlip
-    ) {
-        super(textureName, verticalFlip, horizontalFlip, diagonalFlip);
+    private BonusType bonusType;
+
+    /**
+     * Constructs a new Bonus with the specified bonus type.
+     * @param bonusType the type of the bonus
+     */
+    public Bonus(BonusType bonusType) {
+        super(bonusType.getAssetName(), false, false, false);
+        this.bonusType = bonusType;
     }
 
     /**

@@ -1,11 +1,5 @@
 package com.bomber7.utils;
 
-import com.bomber7.core.model.square.Bonus;
-import com.bomber7.core.model.square.BonusLife;
-import com.bomber7.core.model.square.BonusSpeed;
-import com.bomber7.core.model.square.BonusTriggerBomb;
-
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -16,15 +10,19 @@ public enum BonusType {
     /**
      * A trigger bomb.
      */
-    TRIGGER_BOMB("trigger_bomb", 0.2f),
+    TRIGGER_BOMB("bonus_trigger_bomb", 0.1f),
     /**
      * A supplementary life.
      */
-    LIFE("bonus_heart", 0.4f),
+    LIFE("bonus_heart", 0.3f),
     /**
      * Speed bonus.
      */
-    SPEED("bonus_speed", 0.4f);
+    SPEED("bonus_speed", 0.2f),
+    /**
+     * Add a supplementary bomb bonus.
+     */
+    ADD_BOMB("bonus_add_bomb", 0.4f);
 
     /**
      * The asset name for the sprite of the bonus;
