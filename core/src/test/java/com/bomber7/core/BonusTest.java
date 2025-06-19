@@ -1,4 +1,5 @@
 package com.bomber7.core;
+import com.bomber7.utils.BonusType;
 import org.junit.*;
 import com.bomber7.core.model.square.Bonus;
 import com.bomber7.core.model.square.BonusLife;
@@ -6,7 +7,6 @@ import com.bomber7.core.model.square.BonusSpeed;
 import com.bomber7.core.model.square.BonusTriggerBomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.utils.Constants;
-import com.bomber7.utils.Constants.BONUS_TYPE;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.RepeatedTest;
@@ -101,9 +101,9 @@ public class BonusTest {
         int totalBonuses = bonusCount.values().stream().mapToInt(Integer::intValue).sum();
 
         // Verify each bonus type appears with roughly the expected frequency
-        for (Map.Entry<Constants.BONUS_TYPE, Double> entry : Constants.BONUS_PROBABILITIES.entrySet()) {
-            Class<? extends Bonus> bonusClass = getBonusClassFromType(entry.getKey());
-            double expectedFrequency = entry.getValue();
+        for (BonusType bonusType : BonusType.values()) {
+            Class<? extends Bonus> bonusClass = getBonusClassFromType(bonusType);
+            double expectedFrequency = bonusType.getDropRate();
             double actualFrequency = (double) bonusCount.get(bonusClass) / totalBonuses;
 
             // Allow for statistical variance (10% tolerance for distribution)
@@ -117,7 +117,7 @@ public class BonusTest {
     /**
      * Helper method to convert BONUS_TYPE enum to corresponding Bonus class.
      */
-    private Class<? extends Bonus> getBonusClassFromType(Constants.BONUS_TYPE bonusType) {
+    private Class<? extends Bonus> getBonusClassFromType(BonusType bonusType) {
         switch (bonusType) {
             case TRIGGER_BOMB:
                 return BonusTriggerBomb.class;

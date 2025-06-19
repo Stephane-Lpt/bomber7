@@ -1,9 +1,14 @@
 package com.bomber7.core.model.map;
 
+import com.bomber7.core.model.square.BonusLife;
+import com.bomber7.core.model.square.BonusSpeed;
+import com.bomber7.core.model.square.BonusTriggerBomb;
 import com.bomber7.core.model.square.BreakableWall;
 import com.bomber7.core.model.square.Square;
+import com.bomber7.core.model.square.TriggerBomb;
 import com.bomber7.core.model.square.UnbreakableWall;
 import com.bomber7.core.model.texture.ElementTexture;
+import com.bomber7.utils.BonusType;
 import com.bomber7.utils.ProjectPaths;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

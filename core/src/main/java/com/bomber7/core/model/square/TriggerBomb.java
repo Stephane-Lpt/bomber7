@@ -10,7 +10,7 @@ public class TriggerBomb extends Bomb {
     /**
      * The texture name prefix associated with the TriggerBomb.
      */
-    public static final String TEXTURE_PREFIX = "trigger-bomb";
+    public static final String TEXTURE_PREFIX = "trigger_bomb";
 
     /**
      * Constructs a TriggerBomb with the specified explosion, power, sprite file path and owner.
@@ -21,7 +21,7 @@ public class TriggerBomb extends Bomb {
      */
 
     public TriggerBomb(int power, int x, int y, Character c) {
-        super(power, x, y, TriggerBomb.TEXTURE_PREFIX + "-1", c);
+        super(power, x, y, TriggerBomb.TEXTURE_PREFIX, c);
     }
 
     /**

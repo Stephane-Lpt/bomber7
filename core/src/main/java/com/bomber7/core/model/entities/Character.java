@@ -10,6 +10,8 @@ import com.bomber7.core.model.exceptions.IllegalPositionOperationException;
 import com.bomber7.core.model.exceptions.IllegalScoreOperationException;
 import com.bomber7.core.model.exceptions.IllegalSpeedOperationException;
 import com.bomber7.utils.Score;
+import com.bomber7.utils.SoundManager;
+import com.bomber7.utils.SoundType;
 
 /**
  * Classe Character.
@@ -240,6 +242,7 @@ public abstract class Character implements Comparable<Character> {
             throw new IllegalStateException("Character cannot have negative life.");
         }
         if (this.life == 0) {
+            SoundManager.getInstance().play(SoundType.DEATH);
             this.isAlive = false;
             addScore(Score.DEAD);
             this.movingStatus = CharacterState.DEAD;

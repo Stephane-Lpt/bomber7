@@ -50,7 +50,7 @@ public final class DefaultConfig {
         put(Controls.LEFT, Input.Keys.LEFT);
         put(Controls.RIGHT, Input.Keys.RIGHT);
         put(Controls.DROP_BOMB, Input.Keys.ENTER);
-        put(Controls.ACTIVATE_BOMB, Input.Keys.CONTROL_LEFT);
+        put(Controls.ACTIVATE_BOMB, Input.Keys.CONTROL_RIGHT);
     }};
 
     /**

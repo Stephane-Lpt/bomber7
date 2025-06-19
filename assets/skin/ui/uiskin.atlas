@@ -5,7 +5,7 @@ filter: Linear,Linear
 repeat: none
 a.slider.9
   rotate: false
-  xy: 176, 0
+  xy: 154, 0
   size: 500, 35
   orig: 500, 35
   offset: 0, 0
@@ -24,9 +24,17 @@ a.slider.knob.9
   orig: 35, 35
   offset: 0, 0
   index: -1
+bomb
+  rotate: false
+  xy: 6, 0
+  size: 22, 22
+  split: 0, 22, 0, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
 coin
   rotate: false
-  xy: 50, 0
+  xy: 28, 0
   size: 30, 30
   split: 0, 30, 0, 30
   orig: 30, 30
@@ -90,7 +98,7 @@ halle_aux_grains.9
   index: -1
 heart_full.9
   rotate: false
-  xy: 80, 0
+  xy: 58, 0
   size: 32, 32
   split: 8, 8, 8, 8
   orig: 32, 32
@@ -98,7 +106,7 @@ heart_full.9
   index: -1
 heart_none.9
   rotate: false
-  xy: 112, 0
+  xy: 90, 0
   size: 32, 32
   split: 8, 8, 8, 8
   orig: 32, 32
@@ -176,14 +184,6 @@ sprite.student
   orig: 271, 409
   offset: 0, 0
   index: -1
-time_bomb
-  rotate: false
-  xy: 6, 0
-  size: 22, 22
-  split: 0, 22, 0, 22
-  orig: 22, 22
-  offset: 0, 0
-  index: -1
 transparent
   rotate: false
   xy: 0, 0
@@ -192,17 +192,9 @@ transparent
   orig: 6, 6
   offset: 0, 0
   index: -1
-trigger_bomb
-  rotate: false
-  xy: 28, 0
-  size: 22, 22
-  split: 0, 22, 0, 22
-  orig: 22, 22
-  offset: 0, 0
-  index: -1
 white.9
   rotate: false
-  xy: 144, 0
+  xy: 122, 0
   size: 32, 32
   split: 8, 8, 8, 8
   orig: 32, 32
