@@ -11,9 +11,9 @@ No need to install Gradle manually — the project uses the **Gradle wrapper (./
 
 ## Download the project
 
-Via the release
+1. Via the release
 
-By cloning the project :
+2. By cloning the project :
 ```
 git clone https://github.com/Stephane-Lpt/bomber7
 cd bomber7
