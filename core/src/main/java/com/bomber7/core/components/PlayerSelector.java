@@ -178,9 +178,9 @@ public class PlayerSelector extends Table implements MVCComponent, Observer {
             .expandX()
             .fillX();
 
-        this.add(strategyTable)
-            .colspan(cols)
-            .fillX();
+//        this.add(strategyTable)
+//            .colspan(cols)
+//            .fillX();
 
         this.row();
     }

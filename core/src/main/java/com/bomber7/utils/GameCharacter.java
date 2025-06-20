@@ -39,7 +39,10 @@ public enum GameCharacter {
      * Array of all {@code GameCharacter} values for navigation methods
      * {@link #next()} and {@link #previous()}.
      */
-    private static final GameCharacter[] CHARACTERS = values();
+//    private static final GameCharacter[] CHARACTERS = values();
+    private static final GameCharacter[] CHARACTERS = {
+        STUDENT, BDE, GRADUATE
+    };
 
     /**
      * Constructs a {@code GameCharacter} with a drawable name and a point threshold required to unlock it.
