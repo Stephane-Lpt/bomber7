@@ -1,32 +1,32 @@
 # bomber7
 
-## Javadoc: 
+## Javadoc:
+
 https://stephane-lpt.github.io/bomber7/
 
-## Prérequis
+## Prerequisites
 
-- [Java JDK 17+](https://adoptium.net/fr/) (obligatoire pour Gradle 8.14)
-- Aucun besoin d’installer Gradle manuellement — le projet utilise le **wrapper Gradle (`./gradlew`)**
+Java JDK 17+ (required for Gradle 8.14)  
+No need to install Gradle manually — the project uses the **Gradle wrapper (./gradlew)**
 
-## Télécharger le projet
+## Download the project
 
-1. Via la release
-2. En clonant le projet :
+Via the release
+
+By cloning the project :
 ```
 git clone https://github.com/Stephane-Lpt/bomber7
 cd bomber7
 ```
 
-## Compilation du projet
+## Build the project
 
 ```
-./gradlew build    # Linux / macOS
-gradlew.bat build  # Windows
+./gradlew build # Linux / macOS
+gradlew.bat build # Windows
 ```
 
-## Exécution du projet
-
+## Run the project
 ```
 ./gradlew run
 ```
-
