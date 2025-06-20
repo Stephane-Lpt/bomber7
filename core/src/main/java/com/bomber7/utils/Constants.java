@@ -73,7 +73,7 @@ public final class Constants {
     /**
      * The chance of a bonus being dropped once a breakable wall is destroyed.
      */
-    public static final double BONUS_RATE = 0.25;
+    public static final double BONUS_RATE = 0.1;
 
     /**
      * Interval (in seconds) at which alive players are awarded points for staying alive.
