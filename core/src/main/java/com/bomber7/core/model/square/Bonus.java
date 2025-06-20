@@ -3,6 +3,9 @@ package com.bomber7.core.model.square;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.utils.BonusType;
 
+/**
+ * Abstract class representing a bonus in the game.
+ */
 public abstract class Bonus extends MapElement {
 
     /**

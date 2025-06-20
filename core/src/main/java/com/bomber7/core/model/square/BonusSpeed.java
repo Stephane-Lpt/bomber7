@@ -3,6 +3,10 @@ package com.bomber7.core.model.square;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.utils.BonusType;
 
+/**
+ * Represents a bonus that increases the player's speed.
+ * This bonus allows the player to move faster on the map.
+ */
 public class BonusSpeed extends Bonus {
 
     /**

@@ -140,7 +140,9 @@ public abstract class Bomb extends MapElement {
             throw new NullPointerException("LevelMap cannot be null");
         }
 
-        if (exploded) return;
+        if (exploded) {
+            return;
+        }
         exploded = true;
 
         // Explosion at the bomb's position
