@@ -184,14 +184,10 @@ public abstract class Character implements Comparable<Character> {
     /**
      * Character speed setter.
      * @param newSpeed The new speed value of character
-     * @throws IllegalSpeedOperationException If new speed value not valid
-     *                                        (negative or zero)
      */
     public void setSpeed(int newSpeed) {
-        if (newSpeed > 0) {
+        if (newSpeed > 0 && newSpeed <= Constants.MAX_SPEED) {
             this.speed = newSpeed;
-        } else {
-            throw new IllegalSpeedOperationException("Speed value must be positive.");
         }
     }
 
