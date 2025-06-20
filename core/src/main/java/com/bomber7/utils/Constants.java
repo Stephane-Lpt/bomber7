@@ -43,7 +43,7 @@ public final class Constants {
     /**
      * Height of the hitbox of character.
      */
-    public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
+    public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.8f);
 
     /**
      * The max speed of a player.
