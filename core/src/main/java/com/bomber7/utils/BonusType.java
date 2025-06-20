@@ -14,11 +14,11 @@ public enum BonusType {
     /**
      * A supplementary life.
      */
-    LIFE("bonus_heart", 0.3f),
+    LIFE("bonus_life", 0.1f),
     /**
      * Speed bonus.
      */
-    SPEED("bonus_speed", 0.2f),
+    SPEED("bonus_speed", 0.4f),
     /**
      * Add a supplementary bomb bonus.
      */
