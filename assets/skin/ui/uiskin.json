@@ -54,9 +54,9 @@
     }
   },
   "com.badlogic.gdx.graphics.g2d.BitmapFont": {
-    "pixelify-sm": { "file": "../../fonts/pixelify-sm.fnt" },
-    "pixelify-md": { "file": "../../fonts/pixelify-md.fnt" },
-    "pixelify-lg": { "file": "../../fonts/pixelify-lg.fnt" }
+    "pixelify-sm": { "file": "fonts/pixelify-sm.fnt" },
+    "pixelify-md": { "file": "fonts/pixelify-md.fnt" },
+    "pixelify-lg": { "file": "fonts/pixelify-lg.fnt" }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {
