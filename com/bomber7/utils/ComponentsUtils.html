@@ -95,8 +95,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static com.badlogic.gdx.scenes.scene2d.utils.ClickListener</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#addSoundEffect(com.badlogic.gdx.scenes.scene2d.utils.ClickListener,com.bomber7.core.ResourceManager)" class="member-name-link">addSoundEffect</a><wbr>(com.badlogic.gdx.scenes.scene2d.utils.ClickListener&nbsp;original,
- <a href="../core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a>&nbsp;resources)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#addSoundEffect(com.badlogic.gdx.scenes.scene2d.utils.ClickListener)" class="member-name-link">addSoundEffect</a><wbr>(com.badlogic.gdx.scenes.scene2d.utils.ClickListener&nbsp;original)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Wraps an existing <code>ClickListener</code> to add a click sound effect when the user presses down on a component.</div>
 </div>
@@ -124,10 +123,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="addSoundEffect(com.badlogic.gdx.scenes.scene2d.utils.ClickListener,com.bomber7.core.ResourceManager)">
+<section class="detail" id="addSoundEffect(com.badlogic.gdx.scenes.scene2d.utils.ClickListener)">
 <h3>addSoundEffect</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">com.badlogic.gdx.scenes.scene2d.utils.ClickListener</span>&nbsp;<span class="element-name">addSoundEffect</span><wbr><span class="parameters">(com.badlogic.gdx.scenes.scene2d.utils.ClickListener&nbsp;original,
- <a href="../core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a>&nbsp;resources)</span></div>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">com.badlogic.gdx.scenes.scene2d.utils.ClickListener</span>&nbsp;<span class="element-name">addSoundEffect</span><wbr><span class="parameters">(com.badlogic.gdx.scenes.scene2d.utils.ClickListener&nbsp;original)</span></div>
 <div class="block">Wraps an existing <code>ClickListener</code> to add a click sound effect when the user presses down on a component.
  <p>
  The original listener's behavior is preserved, and the sound is played via the provided <a href="../core/ResourceManager.html" title="class in com.bomber7.core"><code>ResourceManager</code></a>
@@ -135,7 +133,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>original</code> - the original <code>ClickListener</code> to wrap.</dd>
-<dd><code>resources</code> - the <code>ResourceManager</code> used to play the sound.</dd>
 <dt>Returns:</dt>
 <dd>a new <code>ClickListener</code> that adds a sound effect to the <code>touchDown</code> event,
          while delegating all events to the original listener.</dd>

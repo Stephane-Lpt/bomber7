@@ -64,9 +64,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Activates the bomb, causing it to explode and affect surrounding squares.</div>
 </dd>
+<dt><a href="com/bomber7/utils/BonusType.html#ADD_BOMB" class="member-name-link">ADD_BOMB</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Add a supplementary bomb bonus.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/map/LevelMap.html#addCharacter(com.bomber7.core.model.entities.Character)" class="member-name-link">addCharacter(Character)</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
 <dd>
 <div class="block">Adds a character to the Map.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#addEffect(com.bomber7.utils.Effect)" class="member-name-link">addEffect(Effect)</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Adds an effect to the queue of effects that the view should process.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/GameCandidate.html#addMap(com.bomber7.utils.GameMap)" class="member-name-link">addMap(GameMap)</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></dt>
 <dd>
@@ -84,9 +92,39 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Increases the player's bomb power by 1.</div>
 </dd>
-<dt><a href="com/bomber7/utils/ComponentsUtils.html#addSoundEffect(com.badlogic.gdx.scenes.scene2d.utils.ClickListener,com.bomber7.core.ResourceManager)" class="member-name-link">addSoundEffect(ClickListener, ResourceManager)</a> - Static method in class com.bomber7.utils.<a href="com/bomber7/utils/ComponentsUtils.html" title="class in com.bomber7.utils">ComponentsUtils</a></dt>
+<dt><a href="com/bomber7/core/model/entities/Character.html#addScore(int)" class="member-name-link">addScore(int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
+<dd>
+<div class="block">Add a given score to the character.</div>
+</dd>
+<dt><a href="com/bomber7/utils/ComponentsUtils.html#addSoundEffect(com.badlogic.gdx.scenes.scene2d.utils.ClickListener)" class="member-name-link">addSoundEffect(ClickListener)</a> - Static method in class com.bomber7.utils.<a href="com/bomber7/utils/ComponentsUtils.html" title="class in com.bomber7.utils">ComponentsUtils</a></dt>
 <dd>
 <div class="block">Wraps an existing <code>ClickListener</code> to add a click sound effect when the user presses down on a component.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Score.html#ALIVE" class="member-name-link">ALIVE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></dt>
+<dd>
+<div class="block">Points awarded to the player at each interval defined by <code>Constants.ALIVE_SCORE_TIMER</code>.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#ALIVE_SCORE_TIMER" class="member-name-link">ALIVE_SCORE_TIMER</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">Interval (in seconds) at which alive players are awarded points for staying alive.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bonus.html#applyBonusEffect(com.bomber7.core.model.entities.Player)" class="member-name-link">applyBonusEffect(Player)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bonus.html" title="class in com.bomber7.core.model.square">Bonus</a></dt>
+<dd>
+<div class="block">Applies the bonus effect to the player or game state.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusAddBomb.html#applyBonusEffect(com.bomber7.core.model.entities.Player)" class="member-name-link">applyBonusEffect(Player)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusAddBomb.html" title="class in com.bomber7.core.model.square">BonusAddBomb</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/BonusLife.html#applyBonusEffect(com.bomber7.core.model.entities.Player)" class="member-name-link">applyBonusEffect(Player)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusLife.html" title="class in com.bomber7.core.model.square">BonusLife</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/BonusSpeed.html#applyBonusEffect(com.bomber7.core.model.entities.Player)" class="member-name-link">applyBonusEffect(Player)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusSpeed.html" title="class in com.bomber7.core.model.square">BonusSpeed</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/BonusTriggerBomb.html#applyBonusEffect(com.bomber7.core.model.entities.Player)" class="member-name-link">applyBonusEffect(Player)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusTriggerBomb.html" title="class in com.bomber7.core.model.square">BonusTriggerBomb</a></dt>
+<dd>
+<div class="block">Applies the bonus effect to the player by changing their bomb type to TRIGGER if they currently use TIME bombs.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#ARCADE" class="member-name-link">ARCADE</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Arcade fight music.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:B">B</h2>
@@ -94,6 +132,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/GameCharacter.html#BDE" class="member-name-link">BDE</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameCharacter.html" title="enum class in com.bomber7.utils">GameCharacter</a></dt>
 <dd>
 <div class="block">Character represeting a member of the school's BDE.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#BEAST_MODE" class="member-name-link">BEAST_MODE</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Beast mode fight music.</div>
 </dd>
 <dt><a href="com/bomber7/utils/PlayerStrategy.html#BEGINNER" class="member-name-link">BEGINNER</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/PlayerStrategy.html" title="enum class in com.bomber7.utils">PlayerStrategy</a></dt>
 <dd>
@@ -103,9 +145,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents a bomb in the game, which can explode and affect surrounding squares.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/square/Bomb.html#%3Cinit%3E(int,int,int,java.lang.String)" class="member-name-link">Bomb(int, int, int, String)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#%3Cinit%3E(int,int,int,java.lang.String,com.bomber7.core.model.entities.Character)" class="member-name-link">Bomb(int, int, int, String, Character)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
 <dd>
 <div class="block">Constructs a Bomb with a specified explosion power and texture file path.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#BOMB_CHARGE" class="member-name-link">BOMB_CHARGE</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Charging bomb sound effect.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#BOMB_TIMER" class="member-name-link">BOMB_TIMER</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">The default bomb timer.</div>
 </dd>
 <dt><a href="com/bomber7/core/components/BomberDialog.html" class="type-name-link" title="class in com.bomber7.core.components">BomberDialog</a> - Class in <a href="com/bomber7/core/components/package-summary.html">com.bomber7.core.components</a></dt>
 <dd>
@@ -135,10 +185,62 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/bomber7/core/components/BomberTable.html#%3Cinit%3E()" class="member-name-link">BomberTable()</a> - Constructor for class com.bomber7.core.components.<a href="com/bomber7/core/components/BomberTable.html" title="class in com.bomber7.core.components">BomberTable</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/square/BombState.html" class="type-name-link" title="enum class in com.bomber7.core.model.square">BombState</a> - Enum Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents the state of a bomb in the game.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/square/BombType.html" class="type-name-link" title="enum class in com.bomber7.core.model.square">BombType</a> - Enum Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
 <dd>
 <div class="block">The <code>BombType</code> enum represents the different types of bombs that can be
  used in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bonus.html" class="type-name-link" title="class in com.bomber7.core.model.square">Bonus</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Abstract class representing a bonus in the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bonus.html#%3Cinit%3E(com.bomber7.utils.BonusType)" class="member-name-link">Bonus(BonusType)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bonus.html" title="class in com.bomber7.core.model.square">Bonus</a></dt>
+<dd>
+<div class="block">Constructs a new Bonus with the specified bonus type.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#BONUS_RATE" class="member-name-link">BONUS_RATE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">The chance of a bonus being dropped once a breakable wall is destroyed.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusAddBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusAddBomb</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents a bonus that adds an additional bomb to the player's inventory.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusAddBomb.html#%3Cinit%3E()" class="member-name-link">BonusAddBomb()</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusAddBomb.html" title="class in com.bomber7.core.model.square">BonusAddBomb</a></dt>
+<dd>
+<div class="block">Constructs a BonusAddBomb.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusLife.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusLife</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents a bonus that grants an additional life to the player.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusLife.html#%3Cinit%3E()" class="member-name-link">BonusLife()</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusLife.html" title="class in com.bomber7.core.model.square">BonusLife</a></dt>
+<dd>
+<div class="block">Constructs a BonusLife.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusSpeed.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusSpeed</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Represents a bonus that increases the player's speed.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusSpeed.html#%3Cinit%3E()" class="member-name-link">BonusSpeed()</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusSpeed.html" title="class in com.bomber7.core.model.square">BonusSpeed</a></dt>
+<dd>
+<div class="block">Constructs a BonusSpeed.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusTriggerBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusTriggerBomb</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
+<dd>
+<div class="block">Change the bomb type of the player to TRIGGER.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BonusTriggerBomb.html#%3Cinit%3E()" class="member-name-link">BonusTriggerBomb()</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusTriggerBomb.html" title="class in com.bomber7.core.model.square">BonusTriggerBomb</a></dt>
+<dd>
+<div class="block">Constructs a BonusTriggerBomb.</div>
+</dd>
+<dt><a href="com/bomber7/utils/BonusType.html" class="type-name-link" title="enum class in com.bomber7.utils">BonusType</a> - Enum Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
+<dd>
+<div class="block">An enum representing the different bonuses present in the game.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Dimensions.html#BORDER_SIZE" class="member-name-link">BORDER_SIZE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
 <dd>
@@ -183,9 +285,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Character Constructor.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html" class="type-name-link" title="enum class in com.bomber7.core.model.entities">CharacterState</a> - Enum Class in <a href="com/bomber7/core/model/entities/package-summary.html">com.bomber7.core.model.entities</a></dt>
+<dd>
+<div class="block">Enum representing different animation states of a character.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#checkMove(int,int)" class="member-name-link">checkMove(int, int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
 <div class="block">Check if the move is possible or not.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#CLASSIC_BOMB" class="member-name-link">CLASSIC_BOMB</a> - Static variable in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Constants representing different types of bombs.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/square/Square.html#clearMapElement()" class="member-name-link">clearMapElement()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
 <dd>
@@ -194,6 +304,11 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/SoundType.html#CLICK" class="member-name-link">CLICK</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
 <dd>
 <div class="block">Sound played when clicking on a UI element.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#collectBonus()" class="member-name-link">collectBonus()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Checks whether the square where the player is situated has a bonus or not,
+ and if it does, collects it and applies it to the player.</div>
 </dd>
 <dt><a href="com/bomber7/core/package-summary.html">com.bomber7.core</a> - package com.bomber7.core</dt>
 <dd>&nbsp;</dd>
@@ -219,6 +334,10 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a> - package com.bomber7.utils</dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/model/entities/Character.html#compareTo(com.bomber7.core.model.entities.Character)" class="member-name-link">compareTo(Character)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
+<dd>
+<div class="block">Compares this character to another character based on their score.</div>
+</dd>
 <dt><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING" class="member-name-link">COMPONENT_SPACING</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
 <dd>
 <div class="block">Spacing between UI components (buttons, etc...).</div>
@@ -231,9 +350,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Small spacing between UI components (buttons, etc...).</div>
 </dd>
+<dt><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XL" class="member-name-link">COMPONENT_SPACING_XL</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
+<dd>
+<div class="block">XL spacing between UI components (buttons, etc...).</div>
+</dd>
 <dt><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XS" class="member-name-link">COMPONENT_SPACING_XS</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
 <dd>
 <div class="block">XS spacing between UI components (buttons, etc...).</div>
+</dd>
+<dt><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XXS" class="member-name-link">COMPONENT_SPACING_XXS</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
+<dd>
+<div class="block">XXS spacing between UI components (buttons, etc...).</div>
 </dd>
 <dt><a href="com/bomber7/utils/ComponentsUtils.html" class="type-name-link" title="class in com.bomber7.utils">ComponentsUtils</a> - Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
 <dd>
@@ -242,6 +369,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/model/texture/ElementTexture.html#computeRotation()" class="member-name-link">computeRotation()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
 <dd>
 <div class="block">Calculate the rotation base on this elements flip flags.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html" class="type-name-link" title="class in com.bomber7.core.controller">Config</a> - Class in <a href="com/bomber7/core/controller/package-summary.html">com.bomber7.core.controller</a></dt>
+<dd>
+<div class="block">Config class is used to manage the configuration settings for the game.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Config.html" class="type-name-link" title="class in com.bomber7.utils">Config</a> - Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
 <dd>
@@ -255,6 +386,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/Config.html#%3Cinit%3E(com.bomber7.utils.Config)" class="member-name-link">Config(Config)</a> - Constructor for class com.bomber7.utils.<a href="com/bomber7/utils/Config.html" title="class in com.bomber7.utils">Config</a></dt>
 <dd>
 <div class="block">Constructs a new <code>Config</code> by copying another instance.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#%3Cinit%3E(java.lang.String,int,int,int,int,int,int)" class="member-name-link">Config(String, int, int, int, int, int, int)</a> - Constructor for class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Constructor for the Config class.</div>
 </dd>
 <dt><a href="com/bomber7/core/ConfigManager.html" class="type-name-link" title="class in com.bomber7.core">ConfigManager</a> - Class in <a href="com/bomber7/core/package-summary.html">com.bomber7.core</a></dt>
 <dd>
@@ -283,6 +418,30 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#DEAD" class="member-name-link">DEAD</a> - Enum constant in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">The character has died.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Score.html#DEAD" class="member-name-link">DEAD</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></dt>
+<dd>
+<div class="block">Points deducted when the player dies.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#DEATH" class="member-name-link">DEATH</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Death sound.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#DEFAULT_BOMB_POWER" class="member-name-link">DEFAULT_BOMB_POWER</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">The default bomb timer.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#DEFAULT_LIFE" class="member-name-link">DEFAULT_LIFE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">The default life of a player.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#DEFAULT_SPEED" class="member-name-link">DEFAULT_SPEED</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">The default speed of a player.</div>
+</dd>
 <dt><a href="com/bomber7/utils/DefaultConfig.html" class="type-name-link" title="class in com.bomber7.utils">DefaultConfig</a> - Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
 <dd>
 <div class="block">A utility class that holds the default configuration values for the game.</div>
@@ -329,6 +488,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Move downwards action.</div>
 </dd>
+<dt><a href="com/bomber7/core/views/ViewCharacter.html#draw(com.badlogic.gdx.graphics.g2d.Batch,float)" class="member-name-link">draw(Batch, float)</a> - Method in class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewCharacter.html" title="class in com.bomber7.core.views">ViewCharacter</a></dt>
+<dd>
+<div class="block">Method called by libGDX to draw the character.</div>
+</dd>
 <dt><a href="com/bomber7/core/views/ViewMap.html#draw(com.badlogic.gdx.graphics.g2d.Batch,float)" class="member-name-link">draw(Batch, float)</a> - Method in class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewMap.html" title="class in com.bomber7.core.views">ViewMap</a></dt>
 <dd>
 <div class="block">Method called by libGDX to draw the map.</div>
@@ -337,6 +500,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Drop/place a bomb action.</div>
 </dd>
+<dt><a href="com/bomber7/utils/Score.html#DROP_BOMB" class="member-name-link">DROP_BOMB</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></dt>
+<dd>
+<div class="block">Points awarded when the player places a bomb.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/entities/Player.html#dropBomb()" class="member-name-link">dropBomb()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
 <dd>
 <div class="block">Allow the Player to drop a bomb.</div>
@@ -344,6 +511,18 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:E">E</h2>
 <dl class="index">
+<dt><a href="com/bomber7/utils/Effect.html" class="type-name-link" title="class in com.bomber7.utils">Effect</a> - Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
+<dd>
+<div class="block">Represents a visual effect at a specific position with an associated sprite animation.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Effect.html#%3Cinit%3E(int,int,com.bomber7.utils.EffectType)" class="member-name-link">Effect(int, int, EffectType)</a> - Constructor for class com.bomber7.utils.<a href="com/bomber7/utils/Effect.html" title="class in com.bomber7.utils">Effect</a></dt>
+<dd>
+<div class="block">Constructs a new Effect.</div>
+</dd>
+<dt><a href="com/bomber7/utils/EffectType.html" class="type-name-link" title="enum class in com.bomber7.utils">EffectType</a> - Enum Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
+<dd>
+<div class="block">Enum listing different effects in the game.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/texture/ElementTexture.html" class="type-name-link" title="class in com.bomber7.core.model.texture">ElementTexture</a> - Class in <a href="com/bomber7/core/model/texture/package-summary.html">com.bomber7.core.model.texture</a></dt>
 <dd>
 <div class="block">Abstract class representing a texture for an element in the game.</div>
@@ -351,6 +530,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/model/texture/ElementTexture.html#%3Cinit%3E(java.lang.String,boolean,boolean,boolean)" class="member-name-link">ElementTexture(String, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
 <dd>
 <div class="block">Constructs a new Square with the specified sprite file path and texture ID.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#ELEVATOR" class="member-name-link">ELEVATOR</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Elevator music.</div>
 </dd>
 <dt><a href="com/bomber7/core/components/DisableableTextButton.html#enable()" class="member-name-link">enable()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/DisableableTextButton.html" title="class in com.bomber7.core.components">DisableableTextButton</a></dt>
 <dd>
@@ -364,6 +547,18 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">ENSEEIHT's schoolyard map.</div>
 </dd>
+<dt><a href="com/bomber7/utils/SoundType.html#EPIC_FIGHT_1" class="member-name-link">EPIC_FIGHT_1</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Epic fight music.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#EPIC_FIGHT_2" class="member-name-link">EPIC_FIGHT_2</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Epic fight music.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#EPIC_FIGHT_3" class="member-name-link">EPIC_FIGHT_3</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Epic fight music.</div>
+</dd>
 <dt><a href="com/bomber7/core/controller/PlayerConfig.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/PlayerConfig.html" title="class in com.bomber7.core.controller">PlayerConfig</a></dt>
 <dd>
 <div class="block">Compares this <code>PlayerConfig</code> to another object for equality.</div>
@@ -371,6 +566,18 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/Config.html#equals(java.lang.Object)" class="member-name-link">equals(Object)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Config.html" title="class in com.bomber7.utils">Config</a></dt>
 <dd>
 <div class="block">Compares this <code>Config</code> to another object for equality.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BombState.html#EXPLODED" class="member-name-link">EXPLODED</a> - Enum constant in enum class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombState.html" title="enum class in com.bomber7.core.model.square">BombState</a></dt>
+<dd>
+<div class="block">The bomb has exploded.</div>
+</dd>
+<dt><a href="com/bomber7/utils/EffectType.html#EXPLOSION" class="member-name-link">EXPLOSION</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/EffectType.html" title="enum class in com.bomber7.utils">EffectType</a></dt>
+<dd>
+<div class="block">Explosion effect.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#EXPLOSION" class="member-name-link">EXPLOSION</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Sound played when a bomb explodes.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
@@ -387,9 +594,25 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">FLIP_V - Flip Mask vertically.</div>
 </dd>
+<dt><a href="com/bomber7/utils/SoundType.html#FOOTSTEP_1" class="member-name-link">FOOTSTEP_1</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Footstep sound effect.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#FOOTSTEP_2" class="member-name-link">FOOTSTEP_2</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Footstep sound effect.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#FOOTSTEP_3" class="member-name-link">FOOTSTEP_3</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Footstep sound effect.</div>
+</dd>
 <dt><a href="com/bomber7/utils/GameMap.html#FOY" class="member-name-link">FOY</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameMap.html" title="enum class in com.bomber7.utils">GameMap</a></dt>
 <dd>
 <div class="block">Student's foyer map.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#FRAME_DURATION" class="member-name-link">FRAME_DURATION</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">Animation frame duration.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Language.html#FRENCH" class="member-name-link">FRENCH</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/Language.html" title="enum class in com.bomber7.utils">Language</a></dt>
 <dd>
@@ -409,6 +632,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/ScreenType.html#GAME" class="member-name-link">GAME</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/ScreenType.html" title="enum class in com.bomber7.utils">ScreenType</a></dt>
 <dd>
 <div class="block">The main game screen where gameplay takes place.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#GAME_OVER" class="member-name-link">GAME_OVER</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Game over sound.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/GameCandidate.html" class="type-name-link" title="class in com.bomber7.core.model">GameCandidate</a> - Class in <a href="com/bomber7/core/model/package-summary.html">com.bomber7.core.model</a></dt>
 <dd>
@@ -439,6 +666,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the checkerboard of squares.</div>
 </dd>
+<dt><a href="com/bomber7/core/controller/Config.html#getActivateBomb()" class="member-name-link">getActivateBomb()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Get the key for activating a bomb.</div>
+</dd>
+<dt><a href="com/bomber7/utils/BonusType.html#getAssetName()" class="member-name-link">getAssetName()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Returns the asset name of the bonus.</div>
+</dd>
 <dt><a href="com/bomber7/utils/GameMap.html#getAssetName()" class="member-name-link">getAssetName()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameMap.html" title="enum class in com.bomber7.utils">GameMap</a></dt>
 <dd>
 <div class="block">Getter of assetName.</div>
@@ -446,10 +681,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/ProjectPaths.html#getAssetsPath()" class="member-name-link">getAssetsPath()</a> - Static method in class com.bomber7.utils.<a href="com/bomber7/utils/ProjectPaths.html" title="class in com.bomber7.utils">ProjectPaths</a></dt>
 <dd>
 <div class="block">Returns the path to the assets directory.</div>
-</dd>
-<dt><a href="com/bomber7/core/BomberGame.html#getBomberResources()" class="member-name-link">getBomberResources()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
-<dd>
-<div class="block">Returns the <a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core"><code>ResourceManager</code></a> instance used by this game.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Player.html#getBombType()" class="member-name-link">getBombType()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
 <dd>
@@ -483,9 +714,41 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the default key binding map for a given player.</div>
 </dd>
+<dt><a href="com/bomber7/core/BomberGame.html#getCurrentMap()" class="member-name-link">getCurrentMap()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
+<dd>
+<div class="block">Returns the current map.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#getDown()" class="member-name-link">getDown()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Get the key for moving down.</div>
+</dd>
 <dt><a href="com/bomber7/utils/GameCharacter.html#getDrawableName()" class="member-name-link">getDrawableName()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameCharacter.html" title="enum class in com.bomber7.utils">GameCharacter</a></dt>
 <dd>
 <div class="block">Getter of drawableName.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#getDropBomb()" class="member-name-link">getDropBomb()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Get the key for dropping a bomb.</div>
+</dd>
+<dt><a href="com/bomber7/utils/BonusType.html#getDropRate()" class="member-name-link">getDropRate()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Returns the drop rate of the bonus.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#getEffectsQueue()" class="member-name-link">getEffectsQueue()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Returns the queue of effects that have not been processed yet.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SpawnPoint.html#getForPlayer(int)" class="member-name-link">getForPlayer(int)</a> - Static method in class com.bomber7.utils.<a href="com/bomber7/utils/SpawnPoint.html" title="class in com.bomber7.utils">SpawnPoint</a></dt>
+<dd>
+<div class="block">Returns the spawn point for the given player index.</div>
+</dd>
+<dt><a href="com/bomber7/utils/EffectType.html#getFrames()" class="member-name-link">getFrames()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/EffectType.html" title="enum class in com.bomber7.utils">EffectType</a></dt>
+<dd>
+<div class="block">Array containing all animated sprites in order.</div>
+</dd>
+<dt><a href="com/bomber7/utils/EffectType.html#getFramesCount()" class="member-name-link">getFramesCount()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/EffectType.html" title="enum class in com.bomber7.utils">EffectType</a></dt>
+<dd>
+<div class="block">Getter of framesCount.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#getGameCharacter()" class="member-name-link">getGameCharacter()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
@@ -499,13 +762,25 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the height of the checkerboard (number of rows).</div>
 </dd>
+<dt><a href="com/bomber7/core/BomberGame.html#getHumanControllers()" class="member-name-link">getHumanControllers()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
+<dd>
+<div class="block">Returns the human player controllers.</div>
+</dd>
 <dt><a href="com/bomber7/core/ConfigManager.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class com.bomber7.core.<a href="com/bomber7/core/ConfigManager.html" title="class in com.bomber7.core">ConfigManager</a></dt>
+<dd>
+<div class="block">Retrieves the singleton instance of the <code>ConfigManager</code>.</div>
+</dd>
+<dt><a href="com/bomber7/core/ResourceManager.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
 <dd>
 <div class="block">Retrieves the singleton instance of the <code>ConfigManager</code>.</div>
 </dd>
 <dt><a href="com/bomber7/core/ScreenManager.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class com.bomber7.core.<a href="com/bomber7/core/ScreenManager.html" title="class in com.bomber7.core">ScreenManager</a></dt>
 <dd>
 <div class="block">Retrieves the singleton instance of the <code>ScreenManager</code>.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Retrieves the singleton instance of the <code>SoundManager</code>.</div>
 </dd>
 <dt><a href="com/bomber7/core/controller/PlayerConfig.html#getKeyBinding(com.bomber7.utils.Controls)" class="member-name-link">getKeyBinding(Controls)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/PlayerConfig.html" title="class in com.bomber7.core.controller">PlayerConfig</a></dt>
 <dd>
@@ -514,6 +789,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/Config.html#getLanguage()" class="member-name-link">getLanguage()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Config.html" title="class in com.bomber7.utils">Config</a></dt>
 <dd>
 <div class="block">Returns the current language setting.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#getLeft()" class="member-name-link">getLeft()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Get the key for moving left.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#getLife()" class="member-name-link">getLife()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
@@ -535,6 +814,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the map element associated with this square.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#getMapName()" class="member-name-link">getMapName()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Returns the name of the map.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/GameCandidate.html#getMaps()" class="member-name-link">getMaps()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></dt>
 <dd>
 <div class="block">Returns the selected maps as a list of <code>GameMap</code>.</div>
@@ -542,6 +825,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/ResourceManager.html#getMapSkin()" class="member-name-link">getMapSkin()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
 <dd>
 <div class="block">Returns the map skin used throughout the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#getMapType()" class="member-name-link">getMapType()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dd>
+<div class="block">Returns the type of the map.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#getMapX()" class="member-name-link">getMapX()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
@@ -591,6 +878,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the playerBlueprint held by this observable.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/GameCandidate.html#getPlayerBlueprints()" class="member-name-link">getPlayerBlueprints()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></dt>
+<dd>
+<div class="block">Returns the player blueprints as an array of <code>PlayerBlueprint</code>.</div>
+</dd>
 <dt><a href="com/bomber7/utils/Config.html#getPlayerConfig(int)" class="member-name-link">getPlayerConfig(int)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Config.html" title="class in com.bomber7.utils">Config</a></dt>
 <dd>
 <div class="block">Returns the config of the specified player.</div>
@@ -618,6 +909,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/model/square/Bomb.html#getPower()" class="member-name-link">getPower()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
 <dd>
 <div class="block">Returns the power of the bomb.</div>
+</dd>
+<dt><a href="com/bomber7/utils/BonusType.html#getRandomBonusType()" class="member-name-link">getRandomBonusType()</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Returns a randomly chosen bonus type based on bonuses' probability.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#getRight()" class="member-name-link">getRight()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Get the key for moving right.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/GameCandidate.html#getRounds()" class="member-name-link">getRounds()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></dt>
 <dd>
@@ -647,19 +946,21 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/PlayerSelectionScreen.html#getScreenType()" class="member-name-link">getScreenType()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/PlayerSelectionScreen.html" title="class in com.bomber7.core.screens">PlayerSelectionScreen</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/ScoreBoardScreen.html#getScreenType()" class="member-name-link">getScreenType()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/ScoreBoardScreen.html" title="class in com.bomber7.core.screens">ScoreBoardScreen</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/SettingsScreen.html#getScreenType()" class="member-name-link">getScreenType()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/ResourceManager.html#getSkin()" class="member-name-link">getSkin()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
 <dd>
 <div class="block">Returns the UI skin used throughout the game.</div>
 </dd>
-<dt><a href="com/bomber7/core/ResourceManager.html#getSound()" class="member-name-link">getSound()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
-<dd>
-<div class="block">Returns the sound manager.</div>
-</dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#getSpeed()" class="member-name-link">getSpeed()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
 <div class="block">Character current speed getter.</div>
+</dd>
+<dt><a href="com/bomber7/core/ResourceManager.html#getSpriteTextureRegion(java.lang.String)" class="member-name-link">getSpriteTextureRegion(String)</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
+<dd>
+<div class="block">Returns the texture region of a sprite based on given sprite texture name.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/map/LevelMap.html#getSquare(int,int)" class="member-name-link">getSquare(int, int)</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
 <dd>
@@ -702,9 +1003,37 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a new drawable tinted with the specified color from the skin.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#getTriggerBombsDropped()" class="member-name-link">getTriggerBombsDropped()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Get the List of current TriggerBomb dropped.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Effect.html#getType()" class="member-name-link">getType()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Effect.html" title="class in com.bomber7.utils">Effect</a></dt>
+<dd>
+<div class="block">Getter for effect type.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#getUp()" class="member-name-link">getUp()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Get the key for moving up.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/map/LevelMap.html#getWidth()" class="member-name-link">getWidth()</a> - Method in class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
 <dd>
 <div class="block">Returns the width of the checkerboard (number of columns).</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#getX()" class="member-name-link">getX()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Returns the X-coordinate of the bomb.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Effect.html#getX()" class="member-name-link">getX()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Effect.html" title="class in com.bomber7.utils">Effect</a></dt>
+<dd>
+<div class="block">Getter for X-coordinate.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#getY()" class="member-name-link">getY()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Returns the Y-coordinate of the bomb.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Effect.html#getY()" class="member-name-link">getY()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Effect.html" title="class in com.bomber7.utils">Effect</a></dt>
+<dd>
+<div class="block">Getter for Y-coordinate.</div>
 </dd>
 <dt><a href="com/bomber7/utils/DefaultConfig.html#GLOBAL_VOLUME" class="member-name-link">GLOBAL_VOLUME</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/DefaultConfig.html" title="class in com.bomber7.utils">DefaultConfig</a></dt>
 <dd>
@@ -713,6 +1042,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/GameCharacter.html#GRADUATE" class="member-name-link">GRADUATE</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameCharacter.html" title="enum class in com.bomber7.utils">GameCharacter</a></dt>
 <dd>
 <div class="block">Graduate character.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundType.html#GUITAR" class="member-name-link">GUITAR</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dd>
+<div class="block">Guitar music.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
@@ -731,9 +1064,13 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#hide()" class="member-name-link">hide()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="com/bomber7/utils/SoundType.html#HOVER" class="member-name-link">HOVER</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/SoundType.html" title="enum class in com.bomber7.utils">SoundType</a></dt>
+<dt><a href="com/bomber7/utils/Constants.html#HITBOX_HEIGHT" class="member-name-link">HITBOX_HEIGHT</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
 <dd>
-<div class="block">Sound played when hovering over a UI element.</div>
+<div class="block">Height of the hitbox of character.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#HITBOX_WIDTH" class="member-name-link">HITBOX_WIDTH</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">Width of the hitbox of character.</div>
 </dd>
 <dt><a href="com/bomber7/utils/PlayerStrategy.html#HUMAN" class="member-name-link">HUMAN</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/PlayerStrategy.html" title="enum class in com.bomber7.utils">PlayerStrategy</a></dt>
 <dd>
@@ -813,6 +1150,8 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/bomber7/core/components/MapCheckBox.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/MapCheckBox.html" title="class in com.bomber7.core.components">MapCheckBox</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/components/PlayerScoreBoard.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerScoreBoard.html" title="class in com.bomber7.core.components">PlayerScoreBoard</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/components/PlayerSelector.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerSelector.html" title="class in com.bomber7.core.components">PlayerSelector</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/GameScreen.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/GameScreen.html" title="class in com.bomber7.core.screens">GameScreen</a></dt>
@@ -829,6 +1168,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/PlayerSelectionScreen.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/PlayerSelectionScreen.html" title="class in com.bomber7.core.screens">PlayerSelectionScreen</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/ScoreBoardScreen.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/ScoreBoardScreen.html" title="class in com.bomber7.core.screens">ScoreBoardScreen</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/SettingsScreen.html#initController()" class="member-name-link">initController()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/utils/MVCComponent.html#initController()" class="member-name-link">initController()</a> - Method in interface com.bomber7.utils.<a href="com/bomber7/utils/MVCComponent.html" title="interface in com.bomber7.utils">MVCComponent</a></dt>
@@ -839,6 +1180,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Initializes the ConfigManager manager.</div>
 </dd>
+<dt><a href="com/bomber7/core/ResourceManager.html#initialize()" class="member-name-link">initialize()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
+<dd>
+<div class="block">Initializes the ResourceManager manager.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#initialize()" class="member-name-link">initialize()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Initializes the SoundManager manager.</div>
+</dd>
 <dt><a href="com/bomber7/core/ScreenManager.html#initialize(com.bomber7.core.BomberGame)" class="member-name-link">initialize(BomberGame)</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ScreenManager.html" title="class in com.bomber7.core">ScreenManager</a></dt>
 <dd>
 <div class="block">Initializes the screen manager with the main <a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core"><code>BomberGame</code></a> instance.</div>
@@ -848,6 +1197,8 @@ loadScripts(document, 'script');</script>
 <div class="block">Used to create a valid instance of PlayerBlueprint with a given name.</div>
 </dd>
 <dt><a href="com/bomber7/core/components/MapCheckBox.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/MapCheckBox.html" title="class in com.bomber7.core.components">MapCheckBox</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/components/PlayerScoreBoard.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerScoreBoard.html" title="class in com.bomber7.core.components">PlayerScoreBoard</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/components/PlayerSelector.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerSelector.html" title="class in com.bomber7.core.components">PlayerSelector</a></dt>
 <dd>&nbsp;</dd>
@@ -864,6 +1215,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/screens/PauseScreen.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/PauseScreen.html" title="class in com.bomber7.core.screens">PauseScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/PlayerSelectionScreen.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/PlayerSelectionScreen.html" title="class in com.bomber7.core.screens">PlayerSelectionScreen</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/ScoreBoardScreen.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/ScoreBoardScreen.html" title="class in com.bomber7.core.screens">ScoreBoardScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/SettingsScreen.html#initView()" class="member-name-link">initView()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></dt>
 <dd>&nbsp;</dd>
@@ -898,6 +1251,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/model/texture/ElementTexture.html#isHorizontalFlip()" class="member-name-link">isHorizontalFlip()</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
 <dd>
 <div class="block">Checks if the texture should be flipped horizontally.</div>
+</dd>
+<dt><a href="com/bomber7/core/BomberGame.html#isLastRound()" class="member-name-link">isLastRound()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
+<dd>
+<div class="block">Indicates whether the current round is the last one.</div>
 </dd>
 <dt><a href="com/bomber7/core/ConfigManager.html#isUnsaved()" class="member-name-link">isUnsaved()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ConfigManager.html" title="class in com.bomber7.core">ConfigManager</a></dt>
 <dd>
@@ -934,6 +1291,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new KeyBindingScreen associated with the given game.</div>
 </dd>
+<dt><a href="com/bomber7/utils/Score.html#KILL" class="member-name-link">KILL</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></dt>
+<dd>
+<div class="block">Points awarded when the player kills another player.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
@@ -957,13 +1318,29 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents a level with a map in the game.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/map/LevelMap.html#%3Cinit%3E(java.util.List,int,int)" class="member-name-link">LevelMap(List&lt;List&lt;Square&gt;&gt;, int, int)</a> - Constructor for class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
+<dt><a href="com/bomber7/core/model/map/LevelMap.html#%3Cinit%3E(java.lang.String,java.util.List,int,int)" class="member-name-link">LevelMap(String, List&lt;List&lt;Square&gt;&gt;, int, int)</a> - Constructor for class com.bomber7.core.model.map.<a href="com/bomber7/core/model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></dt>
 <dd>
 <div class="block">Constructs a LevelMap with the specified checkerboard.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/map/LevelMapFactory.html" class="type-name-link" title="class in com.bomber7.core.model.map">LevelMapFactory</a> - Class in <a href="com/bomber7/core/model/map/package-summary.html">com.bomber7.core.model.map</a></dt>
 <dd>
 <div class="block">Factory class for creating LevelMap instances.</div>
+</dd>
+<dt><a href="com/bomber7/utils/BonusType.html#LIFE" class="member-name-link">LIFE</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">A supplementary life.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#loadConfig(java.lang.String)" class="member-name-link">loadConfig(String)</a> - Static method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Class method to load the configuration from a file.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Dimensions.html#LOGO_HEIGHT" class="member-name-link">LOGO_HEIGHT</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
+<dd>
+<div class="block">Menu logo height.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Dimensions.html#LOGO_WIDTH" class="member-name-link">LOGO_WIDTH</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" title="class in com.bomber7.utils">Dimensions</a></dt>
+<dd>
+<div class="block">Menu logo width.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:M">M</h2>
@@ -1034,9 +1411,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Maximum number of rounds allowed in a game.</div>
 </dd>
+<dt><a href="com/bomber7/utils/Constants.html#MAX_SPEED" class="member-name-link">MAX_SPEED</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">The max speed of a player.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#MIN_PLAYER_SCORE" class="member-name-link">MIN_PLAYER_SCORE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">Minimum player score.</div>
+</dd>
 <dt><a href="com/bomber7/utils/Constants.html#MIN_PLAYERS" class="member-name-link">MIN_PLAYERS</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
 <dd>
-<div class="block">Maximum number of players allowed in the game.</div>
+<div class="block">Minimum number of players allowed in the game.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Constants.html#MIN_ROUNDS" class="member-name-link">MIN_ROUNDS</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
 <dd>
@@ -1046,17 +1431,53 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Move character Down.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#moveDown()" class="member-name-link">moveDown()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Moves the character down with the super method
+ and then collects a bonus if there is any.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#moveLeft()" class="member-name-link">moveLeft()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
 <div class="block">Move character to the left.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#moveLeft()" class="member-name-link">moveLeft()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Moves the character to the left with the super method
+ and then collects a bonus if there is any.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#moveRight()" class="member-name-link">moveRight()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
 <div class="block">Move character to the right.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#moveRight()" class="member-name-link">moveRight()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Moves the character to the right with the super method
+ and then collects a bonus if there is any.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#moveUp()" class="member-name-link">moveUp()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
 <div class="block">Move character Up.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#moveUp()" class="member-name-link">moveUp()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Moves the character up with the super method
+ and then collects a bonus if there is any.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#MOVING_DOWN" class="member-name-link">MOVING_DOWN</a> - Enum constant in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">The character is moving downwards.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#MOVING_LEFT" class="member-name-link">MOVING_LEFT</a> - Enum constant in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">The character is moving to the left.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#MOVING_RIGHT" class="member-name-link">MOVING_RIGHT</a> - Enum constant in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">The character is moving to the right.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#MOVING_UP" class="member-name-link">MOVING_UP</a> - Enum constant in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">The character is moving upwards.</div>
 </dd>
 <dt><a href="com/bomber7/utils/DefaultConfig.html#MUSIC_VOLUME" class="member-name-link">MUSIC_VOLUME</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/DefaultConfig.html" title="class in com.bomber7.utils">DefaultConfig</a></dt>
 <dd>
@@ -1081,6 +1502,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the next strategy in the list, looping to the first if necessary.</div>
 </dd>
+<dt><a href="com/bomber7/core/BomberGame.html#nextRound()" class="member-name-link">nextRound()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
+<dd>
+<div class="block">Starts a new round by setting the currentMap to the nextMap and by resetting all the characters.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/texture/ElementTexture.html#NO_ROTATION" class="member-name-link">NO_ROTATION</a> - Static variable in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
 <dd>
 <div class="block">No rotation constant.</div>
@@ -1099,6 +1524,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/core/model/Observer.html" class="type-name-link" title="interface in com.bomber7.core.model">Observer</a> - Interface in <a href="com/bomber7/core/model/package-summary.html">com.bomber7.core.model</a></dt>
 <dd>
 <div class="block">Observer in the Observer design pattern.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BreakableWall.html#onDestruction()" class="member-name-link">onDestruction()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BreakableWall.html" title="class in com.bomber7.core.model.square">BreakableWall</a></dt>
+<dd>
+<div class="block">Returns the texture file path for the breakable wall.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/square/Bomb.html#onExplosion(com.bomber7.core.model.map.LevelMap,int,int)" class="member-name-link">onExplosion(LevelMap, int, int)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
 <dd>
@@ -1125,6 +1554,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">The pause screen that appears when the game is paused.</div>
 </dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#pauseFightMusic()" class="member-name-link">pauseFightMusic()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Pauses fight music.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/PauseScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">PauseScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
 <dd>
 <div class="block">Pause screen.</div>
@@ -1137,9 +1570,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Passive AI that does not attack others.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/BombState.html#PLACED" class="member-name-link">PLACED</a> - Enum constant in enum class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombState.html" title="enum class in com.bomber7.core.model.square">BombState</a></dt>
+<dd>
+<div class="block">The bomb is currently active and ticking down.</div>
+</dd>
 <dt><a href="com/bomber7/utils/SoundManager.html#play(com.bomber7.utils.SoundType)" class="member-name-link">play(SoundType)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
 <dd>
 <div class="block">Play a sound.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Character.html#playDeadSound()" class="member-name-link">playDeadSound()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
+<dd>
+<div class="block">Play death sound.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Player.html" class="type-name-link" title="class in com.bomber7.core.model.entities">Player</a> - Class in <a href="com/bomber7/core/model/entities/package-summary.html">com.bomber7.core.model.entities</a></dt>
 <dd>
@@ -1194,6 +1635,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new PlayerConfig with given keyBinding map.</div>
 </dd>
+<dt><a href="com/bomber7/core/components/PlayerScoreBoard.html" class="type-name-link" title="class in com.bomber7.core.components">PlayerScoreBoard</a> - Class in <a href="com/bomber7/core/components/package-summary.html">com.bomber7.core.components</a></dt>
+<dd>
+<div class="block">Represents a scoreboard for a player in the Bomber7 game.</div>
+</dd>
+<dt><a href="com/bomber7/core/components/PlayerScoreBoard.html#%3Cinit%3E(com.bomber7.core.model.entities.Player)" class="member-name-link">PlayerScoreBoard(Player)</a> - Constructor for class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerScoreBoard.html" title="class in com.bomber7.core.components">PlayerScoreBoard</a></dt>
+<dd>
+<div class="block">The player's scoreboard.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/PlayerSelectionScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">PlayerSelectionScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
 <dd>
 <div class="block">Screen where the user adds or removes players to the game he is creating.</div>
@@ -1215,6 +1664,22 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents the different strategies that a BomberGame player's can use.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#playExplosionSound()" class="member-name-link">playExplosionSound()</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">Play explosion sound.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#playFightMusic()" class="member-name-link">playFightMusic()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Play or resume fight music from saved position.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#playMenuMusic(com.bomber7.utils.SoundType)" class="member-name-link">playMenuMusic(SoundType)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Play menu or general music.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#playSong()" class="member-name-link">playSong()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Play song.</div>
+</dd>
 <dt><a href="com/bomber7/utils/GameCharacter.html#previous()" class="member-name-link">previous()</a> - Method in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameCharacter.html" title="enum class in com.bomber7.utils">GameCharacter</a></dt>
 <dd>
 <div class="block">Returns the previous character in the enum order, looping to the last if necessary.</div>
@@ -1231,6 +1696,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Advanced AI (TBD).</div>
 </dd>
+<dt><a href="com/bomber7/core/screens/GameScreen.html#processInput()" class="member-name-link">processInput()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/GameScreen.html" title="class in com.bomber7.core.screens">GameScreen</a></dt>
+<dd>
+<div class="block">Processes the Escape key in order to pause the game.</div>
+</dd>
 <dt><a href="com/bomber7/core/controller/HumanController.html#processKeys()" class="member-name-link">processKeys()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/HumanController.html" title="class in com.bomber7.core.controller">HumanController</a></dt>
 <dd>
 <div class="block">Processes input keys to control the player's movement.</div>
@@ -1242,6 +1711,10 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/components/PlayerScoreBoard.html#refresh()" class="member-name-link">refresh()</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerScoreBoard.html" title="class in com.bomber7.core.components">PlayerScoreBoard</a></dt>
+<dd>
+<div class="block">Update view accordingly to current player state.</div>
+</dd>
 <dt><a href="com/bomber7/core/components/PlayerSelector.html#refresh(com.bomber7.core.model.Subject)" class="member-name-link">refresh(Subject)</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerSelector.html" title="class in com.bomber7.core.components">PlayerSelector</a></dt>
 <dd>
 <div class="block">Refreshes the view of this <a href="com/bomber7/core/components/PlayerSelector.html" title="class in com.bomber7.core.components"><code>PlayerSelector</code></a> when the Subject its subscribed to is modified.</div>
@@ -1268,9 +1741,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Update the game screen for each frame.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/Character.html#reset()" class="member-name-link">reset()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
+<dd>
+<div class="block">Resets a character to its initial state (lives, position, etc...).</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#reset()" class="member-name-link">reset()</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Reset method to add bomb type and bomb number resetting to the super method reset.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/GameCandidate.html#reset()" class="member-name-link">reset()</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></dt>
 <dd>
 <div class="block">Resets the game candidate to its "empty" state.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#resetFightMusic()" class="member-name-link">resetFightMusic()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Resets the fight music.</div>
 </dd>
 <dt><a href="com/bomber7/core/ConfigManager.html#resetModifications()" class="member-name-link">resetModifications()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ConfigManager.html" title="class in com.bomber7.core">ConfigManager</a></dt>
 <dd>
@@ -1280,18 +1765,18 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/ResourceManager.html" class="type-name-link" title="class in com.bomber7.core">ResourceManager</a> - Class in <a href="com/bomber7/core/package-summary.html">com.bomber7.core</a></dt>
 <dd>
-<div class="block">ResourceManager contains all the resources used by the game.</div>
-</dd>
-<dt><a href="com/bomber7/core/ResourceManager.html#%3Cinit%3E()" class="member-name-link">ResourceManager()</a> - Constructor for class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
-<dd>
-<div class="block">Initializes all resources.</div>
+<div class="block">A singleton manager responsible for loading, saving, and managing the resources used in the game (textures, skin, bundles).</div>
 </dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#resources" class="member-name-link">resources</a> - Variable in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>
-<div class="block">Game resources.</div>
+<div class="block">Reference to the ResourceManager instance for easier resources access.</div>
 </dd>
 <dt><a href="com/bomber7/core/components/BomberDialog.html#result(java.lang.Object)" class="member-name-link">result(Object)</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/BomberDialog.html" title="class in com.bomber7.core.components">BomberDialog</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/BomberGame.html#resume()" class="member-name-link">resume()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
+<dd>
+<div class="block">Resumes the game after being paused.</div>
+</dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#resume()" class="member-name-link">resume()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/utils/Controls.html#RIGHT" class="member-name-link">RIGHT</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/Controls.html" title="enum class in com.bomber7.utils">Controls</a></dt>
@@ -1317,13 +1802,34 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Saves the current config into CONFIG_FILE.</div>
 </dd>
+<dt><a href="com/bomber7/core/controller/Config.html#saveConfig()" class="member-name-link">saveConfig()</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Saves the current configuration to a file.</div>
+</dd>
 <dt><a href="com/bomber7/core/ConfigManager.html#saveModifications()" class="member-name-link">saveModifications()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ConfigManager.html" title="class in com.bomber7.core">ConfigManager</a></dt>
 <dd>
 <div class="block">Saves the modifications made to <code>modifiableConfig</code> into <code>config</code>.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Constants.html#SCALE" class="member-name-link">SCALE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
 <dd>
-<div class="block">The size in pixels of the player sprite.</div>
+<div class="block">Scale factor for batch elements (map, characters, etc...).</div>
+</dd>
+<dt><a href="com/bomber7/utils/Score.html" class="type-name-link" title="class in com.bomber7.utils">Score</a> - Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
+<dd>
+<div class="block">A utility class representing the score points to credit or debit
+ to the player when specific game events occur.</div>
+</dd>
+<dt><a href="com/bomber7/utils/ScreenType.html#SCOREBOARD" class="member-name-link">SCOREBOARD</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/ScreenType.html" title="enum class in com.bomber7.utils">ScreenType</a></dt>
+<dd>
+<div class="block">The scoreboard screen shown after each round.</div>
+</dd>
+<dt><a href="com/bomber7/core/screens/ScoreBoardScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">ScoreBoardScreen</a> - Class in <a href="com/bomber7/core/screens/package-summary.html">com.bomber7.core.screens</a></dt>
+<dd>
+<div class="block">Represents the scoreboard screen in the Bomber7 game.</div>
+</dd>
+<dt><a href="com/bomber7/core/screens/ScoreBoardScreen.html#%3Cinit%3E(com.badlogic.gdx.Game)" class="member-name-link">ScoreBoardScreen(Game)</a> - Constructor for class com.bomber7.core.screens.<a href="com/bomber7/core/screens/ScoreBoardScreen.html" title="class in com.bomber7.core.screens">ScoreBoardScreen</a></dt>
+<dd>
+<div class="block">Initializes the screen.</div>
 </dd>
 <dt><a href="com/bomber7/core/ScreenManager.html" class="type-name-link" title="class in com.bomber7.core">ScreenManager</a> - Class in <a href="com/bomber7/core/package-summary.html">com.bomber7.core</a></dt>
 <dd>
@@ -1337,6 +1843,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Searches for a subdirectory inside "assets/maps" that contains a file with the specified name.</div>
 </dd>
+<dt><a href="com/bomber7/core/controller/Config.html#setActivateBomb(int)" class="member-name-link">setActivateBomb(int)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Set the key for activating a bomb.</div>
+</dd>
 <dt><a href="com/bomber7/utils/PlayerBlueprint.html#setCharacter(com.bomber7.utils.GameCharacter)" class="member-name-link">setCharacter(GameCharacter)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/PlayerBlueprint.html" title="class in com.bomber7.utils">PlayerBlueprint</a></dt>
 <dd>
 <div class="block">Skin (character) setter.</div>
@@ -1344,6 +1854,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/PlayerBlueprintObservable.html#setCharacter(com.bomber7.utils.GameCharacter)" class="member-name-link">setCharacter(GameCharacter)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/PlayerBlueprintObservable.html" title="class in com.bomber7.utils">PlayerBlueprintObservable</a></dt>
 <dd>
 <div class="block">Wrapper of <a href="com/bomber7/utils/PlayerBlueprint.html#setCharacter(com.bomber7.utils.GameCharacter)"><code>PlayerBlueprint.setCharacter(GameCharacter)</code></a>.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#setDown(int)" class="member-name-link">setDown(int)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Set the key for moving down.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#setDropBomb(int)" class="member-name-link">setDropBomb(int)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Set the key for dropping a bomb.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Config.html#setGlobalVolume(int)" class="member-name-link">setGlobalVolume(int)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Config.html" title="class in com.bomber7.utils">Config</a></dt>
 <dd>
@@ -1356,6 +1874,14 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/Config.html#setLanguage(com.bomber7.utils.Language)" class="member-name-link">setLanguage(Language)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/Config.html" title="class in com.bomber7.utils">Config</a></dt>
 <dd>
 <div class="block">Sets the language preference.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#setLeft(int)" class="member-name-link">setLeft(int)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Set the key for moving left.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/entities/Character.html#setMap(com.bomber7.core.model.map.LevelMap)" class="member-name-link">setMap(LevelMap)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
+<dd>
+<div class="block">Sets the character's map to a new one.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/square/Square.html#setMapElement(com.bomber7.core.model.square.MapElement)" class="member-name-link">setMapElement(MapElement)</a> - Method in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Square.html" title="class in com.bomber7.core.model.square">Square</a></dt>
 <dd>
@@ -1389,25 +1915,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Rebinds the action <code>control</code> to the given <code>keycode</code> for player <code>playerIndex</code>.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/entities/Character.html#setPositionX(int)" class="member-name-link">setPositionX(int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
-<dd>
-<div class="block">Character current X-Axis position setter.</div>
-</dd>
-<dt><a href="com/bomber7/core/model/entities/Character.html#setPositionY(int)" class="member-name-link">setPositionY(int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
-<dd>
-<div class="block">Character current Y-Axis position setter.</div>
-</dd>
 <dt><a href="com/bomber7/core/model/entities/Player.html#setPower(int)" class="member-name-link">setPower(int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
 <dd>
 <div class="block">Sets the power of the player's bombs.</div>
 </dd>
+<dt><a href="com/bomber7/core/controller/Config.html#setRight(int)" class="member-name-link">setRight(int)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Set the key for moving right.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/GameCandidate.html#setRounds(int)" class="member-name-link">setRounds(int)</a> - Method in class com.bomber7.core.model.<a href="com/bomber7/core/model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></dt>
 <dd>
 <div class="block">Setter for rounds.</div>
-</dd>
-<dt><a href="com/bomber7/core/model/entities/Character.html#setScore(int)" class="member-name-link">setScore(int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
-<dd>
-<div class="block">Character score setter.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/entities/Character.html#setSpeed(int)" class="member-name-link">setSpeed(int)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a></dt>
 <dd>
@@ -1424,6 +1942,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="com/bomber7/utils/PlayerBlueprintObservable.html#setStrategy(com.bomber7.utils.PlayerStrategy)" class="member-name-link">setStrategy(PlayerStrategy)</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/PlayerBlueprintObservable.html" title="class in com.bomber7.utils">PlayerBlueprintObservable</a></dt>
 <dd>
 <div class="block">Wrapper of <a href="com/bomber7/utils/PlayerBlueprint.html#setStrategy(com.bomber7.utils.PlayerStrategy)"><code>PlayerBlueprint.setStrategy(PlayerStrategy)</code></a>.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/texture/ElementTexture.html#setTextureName(java.lang.String)" class="member-name-link">setTextureName(String)</a> - Method in class com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" title="class in com.bomber7.core.model.texture">ElementTexture</a></dt>
+<dd>
+<div class="block">Sets the name of the texture for this element.</div>
 </dd>
 <dt><a href="com/bomber7/utils/ScreenType.html#SETTINGS" class="member-name-link">SETTINGS</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/ScreenType.html" title="enum class in com.bomber7.utils">ScreenType</a></dt>
 <dd>
@@ -1442,9 +1964,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Adds a title label to this table.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/Player.html#setTriggerBombsDropped(java.util.List)" class="member-name-link">setTriggerBombsDropped(List&lt;TriggerBomb&gt;)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
+<dd>
+<div class="block">Sets the List of TriggerBombs dropped by the player.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/entities/Player.html#setTypeBomb(com.bomber7.core.model.square.BombType)" class="member-name-link">setTypeBomb(BombType)</a> - Method in class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" title="class in com.bomber7.core.model.entities">Player</a></dt>
 <dd>
 <div class="block">Player type of bomb playable setter.</div>
+</dd>
+<dt><a href="com/bomber7/core/controller/Config.html#setUp(int)" class="member-name-link">setUp(int)</a> - Method in class com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" title="class in com.bomber7.core.controller">Config</a></dt>
+<dd>
+<div class="block">Sets the key for moving up.</div>
 </dd>
 <dt><a href="com/bomber7/core/components/BomberTable.html#setupDoubleButtons(com.badlogic.gdx.scenes.scene2d.ui.Button,com.badlogic.gdx.scenes.scene2d.ui.Button,int)" class="member-name-link">setupDoubleButtons(Button, Button, int)</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/BomberTable.html" title="class in com.bomber7.core.components">BomberTable</a></dt>
 <dd>
@@ -1452,7 +1982,15 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="com/bomber7/core/screens/BomberScreen.html#show()" class="member-name-link">show()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/BomberScreen.html" title="class in com.bomber7.core.screens">BomberScreen</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/GameScreen.html#show()" class="member-name-link">show()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/GameScreen.html" title="class in com.bomber7.core.screens">GameScreen</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/screens/KeyBindingScreen.html#show()" class="member-name-link">show()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/KeyBindingScreen.html" title="class in com.bomber7.core.screens">KeyBindingScreen</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/MainMenuScreen.html#show()" class="member-name-link">show()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/MainMenuScreen.html" title="class in com.bomber7.core.screens">MainMenuScreen</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/PauseScreen.html#show()" class="member-name-link">show()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/PauseScreen.html" title="class in com.bomber7.core.screens">PauseScreen</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="com/bomber7/core/screens/SettingsScreen.html#show()" class="member-name-link">show()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="com/bomber7/core/components/BomberDialog.html#show(com.badlogic.gdx.scenes.scene2d.Stage)" class="member-name-link">show(Stage)</a> - Method in class com.bomber7.core.components.<a href="com/bomber7/core/components/BomberDialog.html" title="class in com.bomber7.core.components">BomberDialog</a></dt>
 <dd>&nbsp;</dd>
@@ -1473,13 +2011,17 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">SoundManager manages sound effects used in the game.</div>
 </dd>
-<dt><a href="com/bomber7/utils/SoundManager.html#%3Cinit%3E()" class="member-name-link">SoundManager()</a> - Constructor for class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
-<dd>
-<div class="block">Loads all sounds into the sound map.</div>
-</dd>
 <dt><a href="com/bomber7/utils/SoundType.html" class="type-name-link" title="enum class in com.bomber7.utils">SoundType</a> - Enum Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
 <dd>
 <div class="block">Enum representing different types of sounds used in the game.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SpawnPoint.html" class="type-name-link" title="class in com.bomber7.utils">SpawnPoint</a> - Class in <a href="com/bomber7/utils/package-summary.html">com.bomber7.utils</a></dt>
+<dd>
+<div class="block">List of spawnpoint for each player.</div>
+</dd>
+<dt><a href="com/bomber7/utils/BonusType.html#SPEED" class="member-name-link">SPEED</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Speed bonus.</div>
 </dd>
 <dt><a href="com/bomber7/core/model/square/Square.html" class="type-name-link" title="class in com.bomber7.core.model.square">Square</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
 <dd>
@@ -1501,6 +2043,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a new Square with the specified texture file path and map element.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#STANDING_STILL" class="member-name-link">STANDING_STILL</a> - Enum constant in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">The character is not moving.</div>
+</dd>
 <dt><a href="com/bomber7/core/BomberGame.html#start()" class="member-name-link">start()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
 <dd>
 <div class="block">Launches the game.</div>
@@ -1517,12 +2063,24 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Subject in the Observer design pattern.</div>
 </dd>
+<dt><a href="com/bomber7/utils/Score.html#SUICIDE" class="member-name-link">SUICIDE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></dt>
+<dd>
+<div class="block">Points deducted when the player suicides.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="com/bomber7/core/model/square/TimeBomb.html#TEXTURE_NAME" class="member-name-link">TEXTURE_NAME</a> - Static variable in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
+<dt><a href="com/bomber7/utils/GameCharacter.html#TEST" class="member-name-link">TEST</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/GameCharacter.html" title="enum class in com.bomber7.utils">GameCharacter</a></dt>
 <dd>
-<div class="block">The texture name associated with the TimeBomb.</div>
+<div class="block">Default character.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TimeBomb.html#TEXTURE_PREFIX" class="member-name-link">TEXTURE_PREFIX</a> - Static variable in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
+<dd>
+<div class="block">The texture name prefix associated with the TimeBomb.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/TriggerBomb.html#TEXTURE_PREFIX" class="member-name-link">TEXTURE_PREFIX</a> - Static variable in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></dt>
+<dd>
+<div class="block">The texture name prefix associated with the TriggerBomb.</div>
 </dd>
 <dt><a href="com/bomber7/utils/Constants.html#TEXTURE_SIZE" class="member-name-link">TEXTURE_SIZE</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
 <dd>
@@ -1545,7 +2103,7 @@ loadScripts(document, 'script');</script>
 <div class="block">The Timebomb class is a special type of Bomb that has a countdown
  timer.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/square/TimeBomb.html#%3Cinit%3E(int,int,int)" class="member-name-link">TimeBomb(int, int, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
+<dt><a href="com/bomber7/core/model/square/TimeBomb.html#%3Cinit%3E(int,int,int,com.bomber7.core.model.entities.Character)" class="member-name-link">TimeBomb(int, int, int, Character)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></dt>
 <dd>
 <div class="block">Constructs a TimeBomb with the specified explosion power, sprite file path and timer.</div>
 </dd>
@@ -1575,11 +2133,19 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Trigger-based bomb.</div>
 </dd>
+<dt><a href="com/bomber7/utils/BonusType.html#TRIGGER_BOMB" class="member-name-link">TRIGGER_BOMB</a> - Enum constant in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">A trigger bomb.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/Bomb.html#TRIGGER_BOMB" class="member-name-link">TRIGGER_BOMB</a> - Static variable in class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></dt>
+<dd>
+<div class="block">TRIGGER_BOMB is a bomb that can be manually triggered by the player.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/square/TriggerBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">TriggerBomb</a> - Class in <a href="com/bomber7/core/model/square/package-summary.html">com.bomber7.core.model.square</a></dt>
 <dd>
 <div class="block">TriggerBomb is a type of bomb that can be manually activated by the player.</div>
 </dd>
-<dt><a href="com/bomber7/core/model/square/TriggerBomb.html#%3Cinit%3E(int,int,int)" class="member-name-link">TriggerBomb(int, int, int)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></dt>
+<dt><a href="com/bomber7/core/model/square/TriggerBomb.html#%3Cinit%3E(int,int,int,com.bomber7.core.model.entities.Character)" class="member-name-link">TriggerBomb(int, int, int, Character)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></dt>
 <dd>
 <div class="block">Constructs a TriggerBomb with the specified explosion, power, sprite file path and owner.</div>
 </dd>
@@ -1606,9 +2172,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Move upwards action.</div>
 </dd>
+<dt><a href="com/bomber7/core/BomberGame.html#update()" class="member-name-link">update()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/BomberGame.html" title="class in com.bomber7.core">BomberGame</a></dt>
+<dd>
+<div class="block">Function that is being called every render() of GameScreen to update the game.</div>
+</dd>
+<dt><a href="com/bomber7/core/views/ViewEffect.html#update(float)" class="member-name-link">update(float)</a> - Method in class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewEffect.html" title="class in com.bomber7.core.views">ViewEffect</a></dt>
+<dd>
+<div class="block">Returns the effect associated with this ViewEffect.</div>
+</dd>
 <dt><a href="com/bomber7/core/ResourceManager.html#updateLanguage()" class="member-name-link">updateLanguage()</a> - Method in class com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></dt>
 <dd>
 <div class="block">Updates the I18N bundle object accordingly to Config Manager's language.</div>
+</dd>
+<dt><a href="com/bomber7/utils/SoundManager.html#updateMusicVolume()" class="member-name-link">updateMusicVolume()</a> - Method in class com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" title="class in com.bomber7.utils">SoundManager</a></dt>
+<dd>
+<div class="block">Updates music volume.</div>
 </dd>
 <dt><a href="com/bomber7/core/screens/SettingsScreen.html#updateSaveButtonState()" class="member-name-link">updateSaveButtonState()</a> - Method in class com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" title="class in com.bomber7.core.screens">SettingsScreen</a></dt>
 <dd>
@@ -1617,11 +2195,27 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:V">V</h2>
 <dl class="index">
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BombState.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombState.html" title="enum class in com.bomber7.core.model.square">BombState</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/square/BombType.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
+<dt><a href="com/bomber7/utils/BonusType.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
 <dt><a href="com/bomber7/utils/Controls.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/Controls.html" title="enum class in com.bomber7.utils">Controls</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
+<dt><a href="com/bomber7/utils/EffectType.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/EffectType.html" title="enum class in com.bomber7.utils">EffectType</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
@@ -1649,12 +2243,32 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
+<dt><a href="com/bomber7/core/model/entities/CharacterState.html#values()" class="member-name-link">values()</a> - Static method in enum class com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="com/bomber7/core/model/square/BombState.html#values()" class="member-name-link">values()</a> - Static method in enum class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombState.html" title="enum class in com.bomber7.core.model.square">BombState</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
 <dt><a href="com/bomber7/core/model/square/BombType.html#values()" class="member-name-link">values()</a> - Static method in enum class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </dd>
+<dt><a href="com/bomber7/utils/BonusType.html#values()" class="member-name-link">values()</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" title="enum class in com.bomber7.utils">BonusType</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
 <dt><a href="com/bomber7/utils/Controls.html#values()" class="member-name-link">values()</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/Controls.html" title="enum class in com.bomber7.utils">Controls</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="com/bomber7/utils/EffectType.html#values()" class="member-name-link">values()</a> - Static method in enum class com.bomber7.utils.<a href="com/bomber7/utils/EffectType.html" title="enum class in com.bomber7.utils">EffectType</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
@@ -1689,13 +2303,33 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </dd>
+<dt><a href="com/bomber7/core/views/ViewCharacter.html" class="type-name-link" title="class in com.bomber7.core.views">ViewCharacter</a> - Class in <a href="com/bomber7/core/views/package-summary.html">com.bomber7.core.views</a></dt>
+<dd>
+<div class="block">A view component for displaying a character in our game.</div>
+</dd>
+<dt><a href="com/bomber7/core/views/ViewCharacter.html#%3Cinit%3E(com.bomber7.core.model.entities.Character,com.bomber7.core.ResourceManager)" class="member-name-link">ViewCharacter(Character, ResourceManager)</a> - Constructor for class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewCharacter.html" title="class in com.bomber7.core.views">ViewCharacter</a></dt>
+<dd>
+<div class="block">Constructs a new ViewCharacter instance.</div>
+</dd>
+<dt><a href="com/bomber7/core/views/ViewEffect.html" class="type-name-link" title="class in com.bomber7.core.views">ViewEffect</a> - Class in <a href="com/bomber7/core/views/package-summary.html">com.bomber7.core.views</a></dt>
+<dd>
+<div class="block">An actor used in <a href="com/bomber7/core/views/ViewMap.html" title="class in com.bomber7.core.views"><code>ViewMap</code></a> to draw animated game effects.</div>
+</dd>
+<dt><a href="com/bomber7/core/views/ViewEffect.html#%3Cinit%3E(com.bomber7.utils.Effect)" class="member-name-link">ViewEffect(Effect)</a> - Constructor for class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewEffect.html" title="class in com.bomber7.core.views">ViewEffect</a></dt>
+<dd>
+<div class="block">Constructs a ViewEffect with the specified effect.</div>
+</dd>
 <dt><a href="com/bomber7/core/views/ViewMap.html" class="type-name-link" title="class in com.bomber7.core.views">ViewMap</a> - Class in <a href="com/bomber7/core/views/package-summary.html">com.bomber7.core.views</a></dt>
 <dd>
 <div class="block">The view that shows the game map in GameScreen.</div>
 </dd>
-<dt><a href="com/bomber7/core/views/ViewMap.html#%3Cinit%3E(com.bomber7.core.model.map.LevelMap,com.bomber7.core.ResourceManager)" class="member-name-link">ViewMap(LevelMap, ResourceManager)</a> - Constructor for class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewMap.html" title="class in com.bomber7.core.views">ViewMap</a></dt>
+<dt><a href="com/bomber7/core/views/ViewMap.html#%3Cinit%3E(com.bomber7.core.model.map.LevelMap,java.util.List,com.bomber7.core.ResourceManager)" class="member-name-link">ViewMap(LevelMap, List&lt;ViewCharacter&gt;, ResourceManager)</a> - Constructor for class com.bomber7.core.views.<a href="com/bomber7/core/views/ViewMap.html" title="class in com.bomber7.core.views">ViewMap</a></dt>
 <dd>
 <div class="block">Constructs a new ViewMap with the specified map grid and resource manager.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Constants.html#VOLUME_CONVERT_RATIO" class="member-name-link">VOLUME_CONVERT_RATIO</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" title="class in com.bomber7.utils">Constants</a></dt>
+<dd>
+<div class="block">Sound convert ratio to convert slider value to libgdx volume value.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:W">W</h2>
@@ -1711,6 +2345,10 @@ the order they are declared.</div>
 <dt><a href="com/bomber7/core/model/square/Wall.html#%3Cinit%3E(java.lang.String,boolean,boolean,boolean)" class="member-name-link">Wall(String, boolean, boolean, boolean)</a> - Constructor for class com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Wall.html" title="class in com.bomber7.core.model.square">Wall</a></dt>
 <dd>
 <div class="block">Constructs a Wall with the specified texture file path.</div>
+</dd>
+<dt><a href="com/bomber7/utils/Score.html#WIN" class="member-name-link">WIN</a> - Static variable in class com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></dt>
+<dd>
+<div class="block">Points awarded when the player wins.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a><span class="vertical-separator">|</span><a href="serialized-form.html">Serialized&nbsp;Form</a></main>

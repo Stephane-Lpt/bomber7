@@ -75,12 +75,17 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a>&gt;</code></dd>
+</dl>
+<dl class="notes">
 <dt>Direct Known Subclasses:</dt>
 <dd><code><a href="Player.html" title="class in com.bomber7.core.model.entities">Player</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">Character</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
+implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a>&gt;</span></div>
 <div class="block">Classe Character.</div>
 </section>
 <section class="summary">
@@ -139,11 +144,21 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Increases the character's life by one.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkMove(int,int)" class="member-name-link">checkMove</a><wbr>(int&nbsp;futureX,
- int&nbsp;futureY)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addScore(int)" class="member-name-link">addScore</a><wbr>(int&nbsp;scoreToAdd)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Add a given score to the character.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkMove(int,int)" class="member-name-link">checkMove</a><wbr>(int&nbsp;futureX,
+ int&nbsp;futureY)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Check if the move is possible or not.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#compareTo(com.bomber7.core.model.entities.Character)" class="member-name-link">compareTo</a><wbr>(<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a>&nbsp;other)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Compares this character to another character based on their score.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../utils/GameCharacter.html" title="enum class in com.bomber7.utils">GameCharacter</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getGameCharacter()" class="member-name-link">getGameCharacter</a>()</code></div>
@@ -170,7 +185,7 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Character current Y-Axis position getter.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMovingStatus()" class="member-name-link">getMovingStatus</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Character moving status getter.</div>
@@ -226,24 +241,24 @@ loadScripts(document, 'script');</script>
 <div class="block">Move character Up.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeOneLife()" class="member-name-link">removeOneLife</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playDeadSound()" class="member-name-link">playDeadSound</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Play death sound.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removeOneLife()" class="member-name-link">removeOneLife</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Decreases the character's life by one.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPositionX(int)" class="member-name-link">setPositionX</a><wbr>(int&nbsp;newX)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Character current X-Axis position setter.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPositionY(int)" class="member-name-link">setPositionY</a><wbr>(int&nbsp;newY)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Character current Y-Axis position setter.</div>
+<div class="block">Resets a character to its initial state (lives, position, etc...).</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setScore(int)" class="member-name-link">setScore</a><wbr>(int&nbsp;newScore)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMap(com.bomber7.core.model.map.LevelMap)" class="member-name-link">setMap</a><wbr>(<a href="../map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a>&nbsp;newMap)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Character score setter.</div>
+<div class="block">Sets the character's map to a new one.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSpeed(int)" class="member-name-link">setSpeed</a><wbr>(int&nbsp;newSpeed)</code></div>
@@ -323,7 +338,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="getMovingStatus()">
 <h3>getMovingStatus</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getMovingStatus</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="CharacterState.html" title="enum class in com.bomber7.core.model.entities">CharacterState</a></span>&nbsp;<span class="element-name">getMovingStatus</span>()</div>
 <div class="block">Character moving status getter.</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -449,23 +464,28 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>newSpeed</code> - The new speed value of character</dd>
-<dt>Throws:</dt>
-<dd><code><a href="../exceptions/IllegalSpeedOperationException.html" title="class in com.bomber7.core.model.exceptions">IllegalSpeedOperationException</a></code> - If new speed value not valid
-                                        (negative or zero)</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="setScore(int)">
-<h3>setScore</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setScore</span><wbr><span class="parameters">(int&nbsp;newScore)</span></div>
-<div class="block">Character score setter.</div>
+<section class="detail" id="addScore(int)">
+<h3>addScore</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addScore</span><wbr><span class="parameters">(int&nbsp;scoreToAdd)</span></div>
+<div class="block">Add a given score to the character.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>newScore</code> - The new score value of character</dd>
-<dt>Throws:</dt>
-<dd><code><a href="../exceptions/IllegalScoreOperationException.html" title="class in com.bomber7.core.model.exceptions">IllegalScoreOperationException</a></code> - If new score value not valid
-                                        (negative)</dd>
+<dd><code>scoreToAdd</code> - The score points to add to the character</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setMap(com.bomber7.core.model.map.LevelMap)">
+<h3>setMap</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMap</span><wbr><span class="parameters">(<a href="../map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a>&nbsp;newMap)</span></div>
+<div class="block">Sets the character's map to a new one.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>newMap</code> - The new LevelMap to set for the character</dd>
 </dl>
 </section>
 </li>
@@ -480,33 +500,16 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="removeOneLife()">
 <h3>removeOneLife</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removeOneLife</span>()</div>
-<div class="block">Decreases the character's life by one. If the life count reaches zero, the
- character is marked as not alive (dead).</div>
+<div class="block">Decreases the character's life by one. If the life count reaches zero.
+ The character is marked as not alive (dead).</div>
 </section>
 </li>
 <li>
-<section class="detail" id="setPositionX(int)">
-<h3>setPositionX</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPositionX</span><wbr><span class="parameters">(int&nbsp;newX)</span></div>
-<div class="block">Character current X-Axis position setter.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>newX</code> - The new x-position to set</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="setPositionY(int)">
-<h3>setPositionY</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPositionY</span><wbr><span class="parameters">(int&nbsp;newY)</span></div>
-<div class="block">Character current Y-Axis position setter.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>newY</code> - The new y-position to set</dd>
-<dt>Throws:</dt>
-<dd><code><a href="../exceptions/IllegalPositionOperationException.html" title="class in com.bomber7.core.model.exceptions">IllegalPositionOperationException</a></code> - If character is moving of more than
-                                           1 square</dd>
-</dl>
+<section class="detail" id="reset()">
+<h3>reset</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+<div class="block">Resets a character to its initial state (lives, position, etc...).
+ Does not reset the score because it should keep it between rounds.</div>
 </section>
 </li>
 <li>
@@ -568,6 +571,31 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>boolean</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="compareTo(com.bomber7.core.model.entities.Character)">
+<h3>compareTo</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">compareTo</span><wbr><span class="parameters">(<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a>&nbsp;other)</span></div>
+<div class="block">Compares this character to another character based on their score.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html#compareTo(T)" title="class or interface in java.lang" class="external-link">compareTo</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>other</code> - the character to compare to</dd>
+<dt>Returns:</dt>
+<dd>a negative integer if this character has a higher score than the other;
+         zero if their scores are equal;
+         a positive integer if this character has a lower score than the other</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playDeadSound()">
+<h3>playDeadSound</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">playDeadSound</span>()</div>
+<div class="block">Play death sound.
+ It is a distinct method so that it can be removed in tests later.</div>
 </section>
 </li>
 </ul>

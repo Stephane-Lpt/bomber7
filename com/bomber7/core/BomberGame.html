@@ -133,20 +133,40 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Called when the application is closed.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBomberResources()" class="member-name-link">getBomberResources</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCandidate()" class="member-name-link">getCandidate</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the <a href="ResourceManager.html" title="class in com.bomber7.core"><code>ResourceManager</code></a> instance used by this game.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCandidate()" class="member-name-link">getCandidate</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the gameCandidate used to create the game.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCurrentMap()" class="member-name-link">getCurrentMap</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the current map.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="controller/HumanController.html" title="class in com.bomber7.core.controller">HumanController</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHumanControllers()" class="member-name-link">getHumanControllers</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the human player controllers.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isLastRound()" class="member-name-link">isLastRound</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Indicates whether the current round is the last one.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#nextRound()" class="member-name-link">nextRound</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Starts a new round by setting the currentMap to the nextMap and by resetting all the characters.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#pause()" class="member-name-link">pause</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Pauses the game.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resume()" class="member-name-link">resume</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Resumes the game after being paused.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#start()" class="member-name-link">start</a>()</code></div>
@@ -158,12 +178,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Stops the game.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Function that is being called every render() of GameScreen to update the game.</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.badlogic.gdx.Game">Methods inherited from class&nbsp;com.badlogic.gdx.Game</h3>
-<code>getScreen, render, resize, resume, setScreen</code></div>
+<code>getScreen, render, resize, setScreen</code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -201,46 +226,24 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="dispose()">
-<h3>dispose</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dispose</span>()</div>
-<div class="block">Called when the application is closed.
- Disposes of game resources to free up memory.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code>dispose</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ApplicationListener</code></dd>
-<dt>Overrides:</dt>
-<dd><code>dispose</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.Game</code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getBomberResources()">
-<h3>getBomberResources</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="ResourceManager.html" title="class in com.bomber7.core">ResourceManager</a></span>&nbsp;<span class="element-name">getBomberResources</span>()</div>
-<div class="block">Returns the <a href="ResourceManager.html" title="class in com.bomber7.core"><code>ResourceManager</code></a> instance used by this game.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the resource manager for game assets</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getCandidate()">
-<h3>getCandidate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></span>&nbsp;<span class="element-name">getCandidate</span>()</div>
-<div class="block">Returns the gameCandidate used to create the game.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the game candidate instance</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="start()">
 <h3>start</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">start</span>()</div>
-<div class="block">Launches the game.</div>
+<div class="block">Launches the game.
+ Precondition : the gameCandidate must be initialized with players and maps.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="resume()">
+<h3>resume</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resume</span>()</div>
+<div class="block">Resumes the game after being paused.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code>resume</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ApplicationListener</code></dd>
+<dt>Overrides:</dt>
+<dd><code>resume</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.Game</code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -261,6 +264,81 @@ loadScripts(document, 'script');</script>
 <h3>stop</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">stop</span>()</div>
 <div class="block">Stops the game.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="update()">
+<h3>update</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
+<div class="block">Function that is being called every render() of GameScreen to update the game.
+ Not entirely respecting the MVC pattern but we had to do it this way because it's the only
+ way we can get the game updating constantly on every tick of gameScreen</div>
+</section>
+</li>
+<li>
+<section class="detail" id="nextRound()">
+<h3>nextRound</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">nextRound</span>()</div>
+<div class="block">Starts a new round by setting the currentMap to the nextMap and by resetting all the characters.
+ Precondition: the game is not finished</div>
+</section>
+</li>
+<li>
+<section class="detail" id="isLastRound()">
+<h3>isLastRound</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isLastRound</span>()</div>
+<div class="block">Indicates whether the current round is the last one.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if it is, false otherwise</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCurrentMap()">
+<h3>getCurrentMap</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="model/map/LevelMap.html" title="class in com.bomber7.core.model.map">LevelMap</a></span>&nbsp;<span class="element-name">getCurrentMap</span>()</div>
+<div class="block">Returns the current map.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current levelMap</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getHumanControllers()">
+<h3>getHumanControllers</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="controller/HumanController.html" title="class in com.bomber7.core.controller">HumanController</a>&gt;</span>&nbsp;<span class="element-name">getHumanControllers</span>()</div>
+<div class="block">Returns the human player controllers.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the list of humanControllers.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCandidate()">
+<h3>getCandidate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="model/GameCandidate.html" title="class in com.bomber7.core.model">GameCandidate</a></span>&nbsp;<span class="element-name">getCandidate</span>()</div>
+<div class="block">Returns the gameCandidate used to create the game.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the game candidate instance</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="dispose()">
+<h3>dispose</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">dispose</span>()</div>
+<div class="block">Called when the application is closed.
+ Disposes of game resources to free up memory.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code>dispose</code>&nbsp;in interface&nbsp;<code>com.badlogic.gdx.ApplicationListener</code></dd>
+<dt>Overrides:</dt>
+<dd><code>dispose</code>&nbsp;in class&nbsp;<code>com.badlogic.gdx.Game</code></dd>
+</dl>
 </section>
 </li>
 </ul>

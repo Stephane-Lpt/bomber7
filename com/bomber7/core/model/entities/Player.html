@@ -77,6 +77,10 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a>&gt;</code></dd>
+</dl>
+<dl class="notes">
 <dt>Direct Known Subclasses:</dt>
 <dd><code><a href="HumanPlayer.html" title="class in com.bomber7.core.model.entities">HumanPlayer</a></code></dd>
 </dl>
@@ -138,30 +142,75 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Increases the player's bomb power by 1.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dropBomb()" class="member-name-link">dropBomb</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#collectBonus()" class="member-name-link">collectBonus</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks whether the square where the player is situated has a bonus or not,
+ and if it does, collects it and applies it to the player.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#dropBomb()" class="member-name-link">dropBomb</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Allow the Player to drop a bomb.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../square/BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBombType()" class="member-name-link">getBombType</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Player number of bomb playable getter.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNbBomb()" class="member-name-link">getNbBomb</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../square/BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBombType()" class="member-name-link">getBombType</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Player number of bomb playable getter.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNbTriggeredBombDropped()" class="member-name-link">getNbTriggeredBombDropped</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNbBomb()" class="member-name-link">getNbBomb</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Player list of dropped bombs getter.</div>
+<div class="block">Player number of bomb playable getter.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPower()" class="member-name-link">getPower</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNbTriggeredBombDropped()" class="member-name-link">getNbTriggeredBombDropped</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Player list of dropped bombs getter.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPower()" class="member-name-link">getPower</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the power of the player's bombs.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTriggerBombsDropped()" class="member-name-link">getTriggerBombsDropped</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the List of current TriggerBomb dropped.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveDown()" class="member-name-link">moveDown</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the character down with the super method
+ and then collects a bonus if there is any.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveLeft()" class="member-name-link">moveLeft</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the character to the left with the super method
+ and then collects a bonus if there is any.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveRight()" class="member-name-link">moveRight</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the character to the right with the super method
+ and then collects a bonus if there is any.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveUp()" class="member-name-link">moveUp</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the character up with the super method
+ and then collects a bonus if there is any.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#playSong()" class="member-name-link">playSong</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Play song.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Reset method to add bomb type and bomb number resetting to the super method reset.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setNbBomb(int)" class="member-name-link">setNbBomb</a><wbr>(int&nbsp;newNbBomb)</code></div>
@@ -174,8 +223,13 @@ loadScripts(document, 'script');</script>
 <div class="block">Sets the power of the player's bombs.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTypeBomb(com.bomber7.core.model.square.BombType)" class="member-name-link">setTypeBomb</a><wbr>(<a href="../square/BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a>&nbsp;bombType)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTriggerBombsDropped(java.util.List)" class="member-name-link">setTriggerBombsDropped</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a>&gt;&nbsp;triggerBombsDropped)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the List of TriggerBombs dropped by the player.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTypeBomb(com.bomber7.core.model.square.BombType)" class="member-name-link">setTypeBomb</a><wbr>(<a href="../square/BombType.html" title="enum class in com.bomber7.core.model.square">BombType</a>&nbsp;bombType)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Player type of bomb playable setter.</div>
 </div>
 </div>
@@ -183,7 +237,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-com.bomber7.core.model.entities.Character">Methods inherited from class&nbsp;com.bomber7.core.model.entities.<a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a></h3>
-<code><a href="Character.html#addOneLife()">addOneLife</a>, <a href="Character.html#checkMove(int,int)">checkMove</a>, <a href="Character.html#getGameCharacter()">getGameCharacter</a>, <a href="Character.html#getLife()">getLife</a>, <a href="Character.html#getMap()">getMap</a>, <a href="Character.html#getMapX()">getMapX</a>, <a href="Character.html#getMapY()">getMapY</a>, <a href="Character.html#getMovingStatus()">getMovingStatus</a>, <a href="Character.html#getName()">getName</a>, <a href="Character.html#getPositionX()">getPositionX</a>, <a href="Character.html#getPositionY()">getPositionY</a>, <a href="Character.html#getScore()">getScore</a>, <a href="Character.html#getSpeed()">getSpeed</a>, <a href="Character.html#isAlive()">isAlive</a>, <a href="Character.html#moveDown()">moveDown</a>, <a href="Character.html#moveLeft()">moveLeft</a>, <a href="Character.html#moveRight()">moveRight</a>, <a href="Character.html#moveUp()">moveUp</a>, <a href="Character.html#removeOneLife()">removeOneLife</a>, <a href="Character.html#setPositionX(int)">setPositionX</a>, <a href="Character.html#setPositionY(int)">setPositionY</a>, <a href="Character.html#setScore(int)">setScore</a>, <a href="Character.html#setSpeed(int)">setSpeed</a>, <a href="Character.html#setStandingStill()">setStandingStill</a></code></div>
+<code><a href="Character.html#addOneLife()">addOneLife</a>, <a href="Character.html#addScore(int)">addScore</a>, <a href="Character.html#checkMove(int,int)">checkMove</a>, <a href="Character.html#compareTo(com.bomber7.core.model.entities.Character)">compareTo</a>, <a href="Character.html#getGameCharacter()">getGameCharacter</a>, <a href="Character.html#getLife()">getLife</a>, <a href="Character.html#getMap()">getMap</a>, <a href="Character.html#getMapX()">getMapX</a>, <a href="Character.html#getMapY()">getMapY</a>, <a href="Character.html#getMovingStatus()">getMovingStatus</a>, <a href="Character.html#getName()">getName</a>, <a href="Character.html#getPositionX()">getPositionX</a>, <a href="Character.html#getPositionY()">getPositionY</a>, <a href="Character.html#getScore()">getScore</a>, <a href="Character.html#getSpeed()">getSpeed</a>, <a href="Character.html#isAlive()">isAlive</a>, <a href="Character.html#playDeadSound()">playDeadSound</a>, <a href="Character.html#removeOneLife()">removeOneLife</a>, <a href="Character.html#setMap(com.bomber7.core.model.map.LevelMap)">setMap</a>, <a href="Character.html#setSpeed(int)">setSpeed</a>, <a href="Character.html#setStandingStill()">setStandingStill</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -263,6 +317,17 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getTriggerBombsDropped()">
+<h3>getTriggerBombsDropped</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a>&gt;</span>&nbsp;<span class="element-name">getTriggerBombsDropped</span>()</div>
+<div class="block">Get the List of current TriggerBomb dropped.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the list of the dropped trigger bombs</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="setNbBomb(int)">
 <h3>setNbBomb</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setNbBomb</span><wbr><span class="parameters">(int&nbsp;newNbBomb)</span></div>
@@ -284,6 +349,24 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>bombType</code> - The new type of bomb</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setTriggerBombsDropped(java.util.List)">
+<h3>setTriggerBombsDropped</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTriggerBombsDropped</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a>&gt;&nbsp;triggerBombsDropped)</span></div>
+<div class="block">Sets the List of TriggerBombs dropped by the player.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>triggerBombsDropped</code> - The new list of TriggerBombs</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="playSong()">
+<h3>playSong</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">playSong</span>()</div>
+<div class="block">Play song.</div>
 </section>
 </li>
 <li>
@@ -335,6 +418,73 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addPower</span>()</div>
 <div class="block">Increases the player's bomb power by 1.
  This method is used to enhance the explosion radius of the bombs dropped by the player.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="moveRight()">
+<h3>moveRight</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveRight</span>()</div>
+<div class="block">Moves the character to the right with the super method
+ and then collects a bonus if there is any.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="Character.html#moveRight()">moveRight</a></code>&nbsp;in class&nbsp;<code><a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="moveLeft()">
+<h3>moveLeft</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveLeft</span>()</div>
+<div class="block">Moves the character to the left with the super method
+ and then collects a bonus if there is any.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="Character.html#moveLeft()">moveLeft</a></code>&nbsp;in class&nbsp;<code><a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="moveDown()">
+<h3>moveDown</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveDown</span>()</div>
+<div class="block">Moves the character down with the super method
+ and then collects a bonus if there is any.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="Character.html#moveDown()">moveDown</a></code>&nbsp;in class&nbsp;<code><a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="moveUp()">
+<h3>moveUp</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveUp</span>()</div>
+<div class="block">Moves the character up with the super method
+ and then collects a bonus if there is any.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="Character.html#moveUp()">moveUp</a></code>&nbsp;in class&nbsp;<code><a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="collectBonus()">
+<h3>collectBonus</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">collectBonus</span>()</div>
+<div class="block">Checks whether the square where the player is situated has a bonus or not,
+ and if it does, collects it and applies it to the player.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="reset()">
+<h3>reset</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">reset</span>()</div>
+<div class="block">Reset method to add bomb type and bomb number resetting to the super method reset.</div>
+<dl class="notes">
+<dt>Overrides:</dt>
+<dd><code><a href="Character.html#reset()">reset</a></code>&nbsp;in class&nbsp;<code><a href="Character.html" title="class in com.bomber7.core.model.entities">Character</a></code></dd>
+</dl>
 </section>
 </li>
 </ul>

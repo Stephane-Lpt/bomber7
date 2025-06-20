@@ -90,7 +90,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.List,int,int)" class="member-name-link">LevelMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/Square.html" title="class in com.bomber7.core.model.square">Square</a>&gt;&gt;&nbsp;checkerboard,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.util.List,int,int)" class="member-name-link">LevelMap</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;mapName,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/Square.html" title="class in com.bomber7.core.model.square">Square</a>&gt;&gt;&nbsp;checkerboard,
  int&nbsp;windowWidth,
  int&nbsp;windowHeight)</code></div>
 <div class="col-last even-row-color">
@@ -115,21 +116,41 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Adds a character to the Map.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.commons.lang3.tuple.Pair&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAbsoluteCoordinates(int,int)" class="member-name-link">getAbsoluteCoordinates</a><wbr>(int&nbsp;x,
- int&nbsp;y)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addEffect(com.bomber7.utils.Effect)" class="member-name-link">addEffect</a><wbr>(<a href="../../../utils/Effect.html" title="class in com.bomber7.utils">Effect</a>&nbsp;effect)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds an effect to the queue of effects that the view should process.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.apache.commons.lang3.tuple.Pair&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAbsoluteCoordinates(int,int)" class="member-name-link">getAbsoluteCoordinates</a><wbr>(int&nbsp;x,
+ int&nbsp;y)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the checkerboard of squares.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCharacters()" class="member-name-link">getCharacters</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCharacters()" class="member-name-link">getCharacters</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the current list of characters on the map.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Stack.html" title="class or interface in java.util" class="external-link">Stack</a>&lt;<a href="../../../utils/Effect.html" title="class in com.bomber7.utils">Effect</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEffectsQueue()" class="member-name-link">getEffectsQueue</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the queue of effects that have not been processed yet.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getHeight()" class="member-name-link">getHeight</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the height of the checkerboard (number of rows).</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMapName()" class="member-name-link">getMapName</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the name of the map.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../../utils/GameMap.html" title="enum class in com.bomber7.utils">GameMap</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMapType()" class="member-name-link">getMapType</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the type of the map.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../square/Square.html" title="class in com.bomber7.core.model.square">Square</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSquare(int,int)" class="member-name-link">getSquare</a><wbr>(int&nbsp;x,
@@ -169,14 +190,16 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(java.util.List,int,int)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.util.List,int,int)">
 <h3>LevelMap</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">LevelMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/Square.html" title="class in com.bomber7.core.model.square">Square</a>&gt;&gt;&nbsp;checkerboard,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">LevelMap</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;mapName,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../square/Square.html" title="class in com.bomber7.core.model.square">Square</a>&gt;&gt;&nbsp;checkerboard,
  int&nbsp;windowWidth,
  int&nbsp;windowHeight)</span></div>
 <div class="block">Constructs a LevelMap with the specified checkerboard.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
+<dd><code>mapName</code> - the name of the map</dd>
 <dd><code>checkerboard</code> - a 2D list representing the checkerboard of squares</dd>
 <dd><code>windowWidth</code> - the width of the window in pixels</dd>
 <dd><code>windowHeight</code> - the height of the window in pixels</dd>
@@ -243,6 +266,28 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getMapName()">
+<h3>getMapName</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getMapName</span>()</div>
+<div class="block">Returns the name of the map.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the name of the map</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getMapType()">
+<h3>getMapType</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../../utils/GameMap.html" title="enum class in com.bomber7.utils">GameMap</a></span>&nbsp;<span class="element-name">getMapType</span>()</div>
+<div class="block">Returns the type of the map.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the type of the map</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="addCharacter(com.bomber7.core.model.entities.Character)">
 <h3>addCharacter</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addCharacter</span><wbr><span class="parameters">(<a href="../entities/Character.html" title="class in com.bomber7.core.model.entities">Character</a>&nbsp;character)</span></div>
@@ -292,6 +337,28 @@ loadScripts(document, 'script');</script>
 <dd><code>y</code> - the y-coordinate of the square</dd>
 <dt>Returns:</dt>
 <dd>a Pair containing the absolute x and y coordinates</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="addEffect(com.bomber7.utils.Effect)">
+<h3>addEffect</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addEffect</span><wbr><span class="parameters">(<a href="../../../utils/Effect.html" title="class in com.bomber7.utils">Effect</a>&nbsp;effect)</span></div>
+<div class="block">Adds an effect to the queue of effects that the view should process.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>effect</code> - the effect to add</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getEffectsQueue()">
+<h3>getEffectsQueue</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Stack.html" title="class or interface in java.util" class="external-link">Stack</a>&lt;<a href="../../../utils/Effect.html" title="class in com.bomber7.utils">Effect</a>&gt;</span>&nbsp;<span class="element-name">getEffectsQueue</span>()</div>
+<div class="block">Returns the queue of effects that have not been processed yet.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>stack of effects</dd>
 </dl>
 </section>
 </li>

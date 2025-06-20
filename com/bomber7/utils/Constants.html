@@ -86,40 +86,100 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#MAX_PLAYER_NAME_LENGTH" class="member-name-link">MAX_PLAYER_NAME_LENGTH</a></code></div>
+<div class="col-first even-row-color"><code>static final float</code></div>
+<div class="col-second even-row-color"><code><a href="#ALIVE_SCORE_TIMER" class="member-name-link">ALIVE_SCORE_TIMER</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The maximum length for a player name.</div>
-</div>
-<div class="col-first odd-row-color"><code>static final int</code></div>
-<div class="col-second odd-row-color"><code><a href="#MAX_PLAYERS" class="member-name-link">MAX_PLAYERS</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Maximum number of human players allowed in the game.</div>
-</div>
-<div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#MAX_ROUNDS" class="member-name-link">MAX_ROUNDS</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Maximum number of rounds allowed in a game.</div>
-</div>
-<div class="col-first odd-row-color"><code>static final int</code></div>
-<div class="col-second odd-row-color"><code><a href="#MIN_PLAYERS" class="member-name-link">MIN_PLAYERS</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Maximum number of players allowed in the game.</div>
-</div>
-<div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#MIN_ROUNDS" class="member-name-link">MIN_ROUNDS</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Maximum number of rounds allowed in a game.</div>
+<div class="block">Interval (in seconds) at which alive players are awarded points for staying alive.</div>
 </div>
 <div class="col-first odd-row-color"><code>static final float</code></div>
-<div class="col-second odd-row-color"><code><a href="#SCALE" class="member-name-link">SCALE</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#BOMB_TIMER" class="member-name-link">BOMB_TIMER</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The size in pixels of the player sprite.</div>
+<div class="block">The default bomb timer.</div>
+</div>
+<div class="col-first even-row-color"><code>static final double</code></div>
+<div class="col-second even-row-color"><code><a href="#BONUS_RATE" class="member-name-link">BONUS_RATE</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The chance of a bonus being dropped once a breakable wall is destroyed.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#DEFAULT_BOMB_POWER" class="member-name-link">DEFAULT_BOMB_POWER</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The default bomb timer.</div>
 </div>
 <div class="col-first even-row-color"><code>static final int</code></div>
-<div class="col-second even-row-color"><code><a href="#TEXTURE_SIZE" class="member-name-link">TEXTURE_SIZE</a></code></div>
+<div class="col-second even-row-color"><code><a href="#DEFAULT_LIFE" class="member-name-link">DEFAULT_LIFE</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">The default life of a player.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#DEFAULT_SPEED" class="member-name-link">DEFAULT_SPEED</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The default speed of a player.</div>
+</div>
+<div class="col-first even-row-color"><code>static final float</code></div>
+<div class="col-second even-row-color"><code><a href="#FRAME_DURATION" class="member-name-link">FRAME_DURATION</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Animation frame duration.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#HITBOX_HEIGHT" class="member-name-link">HITBOX_HEIGHT</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Height of the hitbox of character.</div>
+</div>
+<div class="col-first even-row-color"><code>static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#HITBOX_WIDTH" class="member-name-link">HITBOX_WIDTH</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Width of the hitbox of character.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#MAX_PLAYER_NAME_LENGTH" class="member-name-link">MAX_PLAYER_NAME_LENGTH</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">The maximum length for a player name.</div>
+</div>
+<div class="col-first even-row-color"><code>static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#MAX_PLAYERS" class="member-name-link">MAX_PLAYERS</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Maximum number of human players allowed in the game.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#MAX_ROUNDS" class="member-name-link">MAX_ROUNDS</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Maximum number of rounds allowed in a game.</div>
+</div>
+<div class="col-first even-row-color"><code>static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#MAX_SPEED" class="member-name-link">MAX_SPEED</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">The max speed of a player.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#MIN_PLAYER_SCORE" class="member-name-link">MIN_PLAYER_SCORE</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Minimum player score.</div>
+</div>
+<div class="col-first even-row-color"><code>static final int</code></div>
+<div class="col-second even-row-color"><code><a href="#MIN_PLAYERS" class="member-name-link">MIN_PLAYERS</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Minimum number of players allowed in the game.</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#MIN_ROUNDS" class="member-name-link">MIN_ROUNDS</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Maximum number of rounds allowed in a game.</div>
+</div>
+<div class="col-first even-row-color"><code>static final float</code></div>
+<div class="col-second even-row-color"><code><a href="#SCALE" class="member-name-link">SCALE</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Scale factor for batch elements (map, characters, etc...).</div>
+</div>
+<div class="col-first odd-row-color"><code>static final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#TEXTURE_SIZE" class="member-name-link">TEXTURE_SIZE</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The size in pixels of map textures.</div>
+</div>
+<div class="col-first even-row-color"><code>static final float</code></div>
+<div class="col-second even-row-color"><code><a href="#VOLUME_CONVERT_RATIO" class="member-name-link">VOLUME_CONVERT_RATIO</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Sound convert ratio to convert slider value to libgdx volume value.</div>
 </div>
 </div>
 </section>
@@ -143,6 +203,21 @@ loadScripts(document, 'script');</script>
 <h2>Field Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="SCALE">
+<h3>SCALE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">SCALE</span></div>
+<div class="block">Scale factor for batch elements (map, characters, etc...).</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.SCALE">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="MAX_PLAYER_NAME_LENGTH">
 <h3>MAX_PLAYER_NAME_LENGTH</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">MAX_PLAYER_NAME_LENGTH</span></div>
@@ -161,7 +236,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="MIN_PLAYERS">
 <h3>MIN_PLAYERS</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">MIN_PLAYERS</span></div>
-<div class="block">Maximum number of players allowed in the game.</div>
+<div class="block">Minimum number of players allowed in the game.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -233,15 +308,164 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="SCALE">
-<h3>SCALE</h3>
-<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">SCALE</span></div>
-<div class="block">The size in pixels of the player sprite.</div>
+<section class="detail" id="HITBOX_WIDTH">
+<h3>HITBOX_WIDTH</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">HITBOX_WIDTH</span></div>
+<div class="block">Width of the hitbox of character.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="HITBOX_HEIGHT">
+<h3>HITBOX_HEIGHT</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">HITBOX_HEIGHT</span></div>
+<div class="block">Height of the hitbox of character.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="MAX_SPEED">
+<h3>MAX_SPEED</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">MAX_SPEED</span></div>
+<div class="block">The max speed of a player.</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
 <ul class="see-list">
-<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.SCALE">Constant Field Values</a></li>
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.MAX_SPEED">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="BOMB_TIMER">
+<h3>BOMB_TIMER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">BOMB_TIMER</span></div>
+<div class="block">The default bomb timer.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.BOMB_TIMER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_BOMB_POWER">
+<h3>DEFAULT_BOMB_POWER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">DEFAULT_BOMB_POWER</span></div>
+<div class="block">The default bomb timer.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.DEFAULT_BOMB_POWER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="FRAME_DURATION">
+<h3>FRAME_DURATION</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">FRAME_DURATION</span></div>
+<div class="block">Animation frame duration.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.FRAME_DURATION">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="VOLUME_CONVERT_RATIO">
+<h3>VOLUME_CONVERT_RATIO</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">VOLUME_CONVERT_RATIO</span></div>
+<div class="block">Sound convert ratio to convert slider value to libgdx volume value.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.VOLUME_CONVERT_RATIO">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="BONUS_RATE">
+<h3>BONUS_RATE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">BONUS_RATE</span></div>
+<div class="block">The chance of a bonus being dropped once a breakable wall is destroyed.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.BONUS_RATE">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="ALIVE_SCORE_TIMER">
+<h3>ALIVE_SCORE_TIMER</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">float</span>&nbsp;<span class="element-name">ALIVE_SCORE_TIMER</span></div>
+<div class="block">Interval (in seconds) at which alive players are awarded points for staying alive.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.ALIVE_SCORE_TIMER">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="MIN_PLAYER_SCORE">
+<h3>MIN_PLAYER_SCORE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">MIN_PLAYER_SCORE</span></div>
+<div class="block">Minimum player score.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.MIN_PLAYER_SCORE">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_LIFE">
+<h3>DEFAULT_LIFE</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">DEFAULT_LIFE</span></div>
+<div class="block">The default life of a player.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.DEFAULT_LIFE">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="DEFAULT_SPEED">
+<h3>DEFAULT_SPEED</h3>
+<div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">DEFAULT_SPEED</span></div>
+<div class="block">The default speed of a player.</div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../constant-values.html#com.bomber7.utils.Constants.DEFAULT_SPEED">Constant Field Values</a></li>
 </ul>
 </dd>
 </dl>

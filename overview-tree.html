@@ -91,6 +91,7 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+<li class="circle">com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerScoreBoard.html" class="type-name-link" title="class in com.bomber7.core.components">PlayerScoreBoard</a> (implements com.bomber7.utils.<a href="com/bomber7/utils/MVCComponent.html" title="interface in com.bomber7.utils">MVCComponent</a>)</li>
 <li class="circle">com.bomber7.core.components.<a href="com/bomber7/core/components/PlayerSelector.html" class="type-name-link" title="class in com.bomber7.core.components">PlayerSelector</a> (implements com.bomber7.utils.<a href="com/bomber7/utils/MVCComponent.html" title="interface in com.bomber7.utils">MVCComponent</a>, com.bomber7.core.model.<a href="com/bomber7/core/model/Observer.html" title="interface in com.bomber7.core.model">Observer</a>)</li>
 <li class="circle">com.badlogic.gdx.scenes.scene2d.ui.Window
 <ul>
@@ -108,10 +109,12 @@ loadScripts(document, 'script');</script>
 </li>
 </ul>
 </li>
+<li class="circle">com.bomber7.core.views.<a href="com/bomber7/core/views/ViewCharacter.html" class="type-name-link" title="class in com.bomber7.core.views">ViewCharacter</a></li>
+<li class="circle">com.bomber7.core.views.<a href="com/bomber7/core/views/ViewEffect.html" class="type-name-link" title="class in com.bomber7.core.views">ViewEffect</a></li>
 <li class="circle">com.bomber7.core.views.<a href="com/bomber7/core/views/ViewMap.html" class="type-name-link" title="class in com.bomber7.core.views">ViewMap</a></li>
 </ul>
 </li>
-<li class="circle">com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" class="type-name-link" title="class in com.bomber7.core.model.entities">Character</a>
+<li class="circle">com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Character.html" class="type-name-link" title="class in com.bomber7.core.model.entities">Character</a> (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;)
 <ul>
 <li class="circle">com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/Player.html" class="type-name-link" title="class in com.bomber7.core.model.entities">Player</a>
 <ul>
@@ -121,11 +124,13 @@ loadScripts(document, 'script');</script>
 </ul>
 </li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/ComponentsUtils.html" class="type-name-link" title="class in com.bomber7.utils">ComponentsUtils</a></li>
+<li class="circle">com.bomber7.core.controller.<a href="com/bomber7/core/controller/Config.html" class="type-name-link" title="class in com.bomber7.core.controller">Config</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)</li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Config.html" class="type-name-link" title="class in com.bomber7.utils">Config</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)</li>
 <li class="circle">com.bomber7.core.<a href="com/bomber7/core/ConfigManager.html" class="type-name-link" title="class in com.bomber7.core">ConfigManager</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Constants.html" class="type-name-link" title="class in com.bomber7.utils">Constants</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/DefaultConfig.html" class="type-name-link" title="class in com.bomber7.utils">DefaultConfig</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Dimensions.html" class="type-name-link" title="class in com.bomber7.utils">Dimensions</a></li>
+<li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Effect.html" class="type-name-link" title="class in com.bomber7.utils">Effect</a></li>
 <li class="circle">com.bomber7.core.model.texture.<a href="com/bomber7/core/model/texture/ElementTexture.html" class="type-name-link" title="class in com.bomber7.core.model.texture">ElementTexture</a>
 <ul>
 <li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/MapElement.html" class="type-name-link" title="class in com.bomber7.core.model.square">MapElement</a>
@@ -134,6 +139,14 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">TimeBomb</a></li>
 <li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">TriggerBomb</a></li>
+</ul>
+</li>
+<li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bonus.html" class="type-name-link" title="class in com.bomber7.core.model.square">Bonus</a>
+<ul>
+<li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusAddBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusAddBomb</a></li>
+<li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusLife.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusLife</a></li>
+<li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusSpeed.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusSpeed</a></li>
+<li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BonusTriggerBomb.html" class="type-name-link" title="class in com.bomber7.core.model.square">BonusTriggerBomb</a></li>
 </ul>
 </li>
 <li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Wall.html" class="type-name-link" title="class in com.bomber7.core.model.square">Wall</a>
@@ -167,6 +180,7 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.bomber7.core.screens.<a href="com/bomber7/core/screens/MapSelectionScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">MapSelectionScreen</a> (implements com.bomber7.core.model.<a href="com/bomber7/core/model/Observer.html" title="interface in com.bomber7.core.model">Observer</a>)</li>
 <li class="circle">com.bomber7.core.screens.<a href="com/bomber7/core/screens/PauseScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">PauseScreen</a></li>
 <li class="circle">com.bomber7.core.screens.<a href="com/bomber7/core/screens/PlayerSelectionScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">PlayerSelectionScreen</a> (implements com.bomber7.core.model.<a href="com/bomber7/core/model/Observer.html" title="interface in com.bomber7.core.model">Observer</a>)</li>
+<li class="circle">com.bomber7.core.screens.<a href="com/bomber7/core/screens/ScoreBoardScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">ScoreBoardScreen</a></li>
 <li class="circle">com.bomber7.core.screens.<a href="com/bomber7/core/screens/SettingsScreen.html" class="type-name-link" title="class in com.bomber7.core.screens">SettingsScreen</a></li>
 </ul>
 </li>
@@ -181,8 +195,10 @@ loadScripts(document, 'script');</script>
 <li class="circle">com.bomber7.core.controller.<a href="com/bomber7/core/controller/PlayerConfig.html" class="type-name-link" title="class in com.bomber7.core.controller">PlayerConfig</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)</li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/ProjectPaths.html" class="type-name-link" title="class in com.bomber7.utils">ProjectPaths</a></li>
 <li class="circle">com.bomber7.core.<a href="com/bomber7/core/ResourceManager.html" class="type-name-link" title="class in com.bomber7.core">ResourceManager</a></li>
+<li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Score.html" class="type-name-link" title="class in com.bomber7.utils">Score</a></li>
 <li class="circle">com.bomber7.core.<a href="com/bomber7/core/ScreenManager.html" class="type-name-link" title="class in com.bomber7.core">ScreenManager</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/SoundManager.html" class="type-name-link" title="class in com.bomber7.utils">SoundManager</a></li>
+<li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/SpawnPoint.html" class="type-name-link" title="class in com.bomber7.utils">SpawnPoint</a></li>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Throwable.html" class="type-name-link external-link" title="class or interface in java.lang">Throwable</a> (implements java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Exception.html" class="type-name-link external-link" title="class or interface in java.lang">Exception</a>
@@ -220,8 +236,12 @@ loadScripts(document, 'script');</script>
 <ul>
 <li class="circle">java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Enum.html" class="type-name-link external-link" title="class or interface in java.lang">Enum</a>&lt;E&gt; (implements java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Comparable.html" title="class or interface in java.lang" class="external-link">Comparable</a>&lt;T&gt;, java.lang.constant.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/constant/Constable.html" title="class or interface in java.lang.constant" class="external-link">Constable</a>, java.io.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a>)
 <ul>
+<li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombState.html" class="type-name-link" title="enum class in com.bomber7.core.model.square">BombState</a></li>
 <li class="circle">com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/BombType.html" class="type-name-link" title="enum class in com.bomber7.core.model.square">BombType</a></li>
+<li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/BonusType.html" class="type-name-link" title="enum class in com.bomber7.utils">BonusType</a></li>
+<li class="circle">com.bomber7.core.model.entities.<a href="com/bomber7/core/model/entities/CharacterState.html" class="type-name-link" title="enum class in com.bomber7.core.model.entities">CharacterState</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Controls.html" class="type-name-link" title="enum class in com.bomber7.utils">Controls</a></li>
+<li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/EffectType.html" class="type-name-link" title="enum class in com.bomber7.utils">EffectType</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/GameCharacter.html" class="type-name-link" title="enum class in com.bomber7.utils">GameCharacter</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/GameMap.html" class="type-name-link" title="enum class in com.bomber7.utils">GameMap</a></li>
 <li class="circle">com.bomber7.utils.<a href="com/bomber7/utils/Language.html" class="type-name-link" title="enum class in com.bomber7.utils">Language</a></li>

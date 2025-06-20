@@ -59,14 +59,39 @@ loadScripts(document, 'script');</script>
 <h2 title="com.bomber7">com.bomber7.*</h2>
 <ul class="block-list">
 <li>
+<div class="caption"><span>com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/Bomb.html" title="class in com.bomber7.core.model.square">Bomb</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Constant Field</div>
+<div class="table-header col-last">Value</div>
+<div class="col-first even-row-color"><code id="com.bomber7.core.model.square.Bomb.CLASSIC_BOMB">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/core/model/square/Bomb.html#CLASSIC_BOMB">CLASSIC_BOMB</a></code></div>
+<div class="col-last even-row-color"><code>0</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.core.model.square.Bomb.TRIGGER_BOMB">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/core/model/square/Bomb.html#TRIGGER_BOMB">TRIGGER_BOMB</a></code></div>
+<div class="col-last odd-row-color"><code>1</code></div>
+</div>
+</li>
+<li>
 <div class="caption"><span>com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TimeBomb.html" title="class in com.bomber7.core.model.square">TimeBomb</a></span></div>
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Constant Field</div>
 <div class="table-header col-last">Value</div>
-<div class="col-first even-row-color"><code id="com.bomber7.core.model.square.TimeBomb.TEXTURE_NAME">public&nbsp;static&nbsp;final&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="com/bomber7/core/model/square/TimeBomb.html#TEXTURE_NAME">TEXTURE_NAME</a></code></div>
-<div class="col-last even-row-color"><code>"time_bomb"</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.core.model.square.TimeBomb.TEXTURE_PREFIX">public&nbsp;static&nbsp;final&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/core/model/square/TimeBomb.html#TEXTURE_PREFIX">TEXTURE_PREFIX</a></code></div>
+<div class="col-last even-row-color"><code>"time-bomb"</code></div>
+</div>
+</li>
+<li>
+<div class="caption"><span>com.bomber7.core.model.square.<a href="com/bomber7/core/model/square/TriggerBomb.html" title="class in com.bomber7.core.model.square">TriggerBomb</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Constant Field</div>
+<div class="table-header col-last">Value</div>
+<div class="col-first even-row-color"><code id="com.bomber7.core.model.square.TriggerBomb.TEXTURE_PREFIX">public&nbsp;static&nbsp;final&nbsp;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/core/model/square/TriggerBomb.html#TEXTURE_PREFIX">TEXTURE_PREFIX</a></code></div>
+<div class="col-last even-row-color"><code>"trigger_bomb"</code></div>
 </div>
 </li>
 </ul>
@@ -111,27 +136,57 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Constant Field</div>
 <div class="table-header col-last">Value</div>
-<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.MAX_PLAYER_NAME_LENGTH">public&nbsp;static&nbsp;final&nbsp;int</code></div>
-<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_PLAYER_NAME_LENGTH">MAX_PLAYER_NAME_LENGTH</a></code></div>
-<div class="col-last even-row-color"><code>12</code></div>
-<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.MAX_PLAYERS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
-<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_PLAYERS">MAX_PLAYERS</a></code></div>
-<div class="col-last odd-row-color"><code>4</code></div>
-<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.MAX_ROUNDS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
-<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_ROUNDS">MAX_ROUNDS</a></code></div>
-<div class="col-last even-row-color"><code>10</code></div>
-<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.MIN_PLAYERS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
-<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#MIN_PLAYERS">MIN_PLAYERS</a></code></div>
-<div class="col-last odd-row-color"><code>1</code></div>
-<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.MIN_ROUNDS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
-<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#MIN_ROUNDS">MIN_ROUNDS</a></code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.ALIVE_SCORE_TIMER">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#ALIVE_SCORE_TIMER">ALIVE_SCORE_TIMER</a></code></div>
+<div class="col-last even-row-color"><code>10.0f</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.BOMB_TIMER">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#BOMB_TIMER">BOMB_TIMER</a></code></div>
+<div class="col-last odd-row-color"><code>2.5f</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.BONUS_RATE">public&nbsp;static&nbsp;final&nbsp;double</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#BONUS_RATE">BONUS_RATE</a></code></div>
+<div class="col-last even-row-color"><code>0.25</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.DEFAULT_BOMB_POWER">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#DEFAULT_BOMB_POWER">DEFAULT_BOMB_POWER</a></code></div>
+<div class="col-last odd-row-color"><code>3</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.DEFAULT_LIFE">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#DEFAULT_LIFE">DEFAULT_LIFE</a></code></div>
 <div class="col-last even-row-color"><code>1</code></div>
-<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.SCALE">public&nbsp;static&nbsp;final&nbsp;float</code></div>
-<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#SCALE">SCALE</a></code></div>
-<div class="col-last odd-row-color"><code>0.699999988079071f</code></div>
-<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.TEXTURE_SIZE">public&nbsp;static&nbsp;final&nbsp;int</code></div>
-<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#TEXTURE_SIZE">TEXTURE_SIZE</a></code></div>
-<div class="col-last even-row-color"><code>32</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.DEFAULT_SPEED">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#DEFAULT_SPEED">DEFAULT_SPEED</a></code></div>
+<div class="col-last odd-row-color"><code>1</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.FRAME_DURATION">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#FRAME_DURATION">FRAME_DURATION</a></code></div>
+<div class="col-last even-row-color"><code>0.10000000149011612f</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.MAX_PLAYER_NAME_LENGTH">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_PLAYER_NAME_LENGTH">MAX_PLAYER_NAME_LENGTH</a></code></div>
+<div class="col-last odd-row-color"><code>12</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.MAX_PLAYERS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_PLAYERS">MAX_PLAYERS</a></code></div>
+<div class="col-last even-row-color"><code>4</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.MAX_ROUNDS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_ROUNDS">MAX_ROUNDS</a></code></div>
+<div class="col-last odd-row-color"><code>10</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.MAX_SPEED">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#MAX_SPEED">MAX_SPEED</a></code></div>
+<div class="col-last even-row-color"><code>3</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.MIN_PLAYER_SCORE">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#MIN_PLAYER_SCORE">MIN_PLAYER_SCORE</a></code></div>
+<div class="col-last odd-row-color"><code>0</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.MIN_PLAYERS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#MIN_PLAYERS">MIN_PLAYERS</a></code></div>
+<div class="col-last even-row-color"><code>2</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.MIN_ROUNDS">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#MIN_ROUNDS">MIN_ROUNDS</a></code></div>
+<div class="col-last odd-row-color"><code>1</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.SCALE">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#SCALE">SCALE</a></code></div>
+<div class="col-last even-row-color"><code>0.8500000238418579f</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Constants.TEXTURE_SIZE">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Constants.html#TEXTURE_SIZE">TEXTURE_SIZE</a></code></div>
+<div class="col-last odd-row-color"><code>32</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Constants.VOLUME_CONVERT_RATIO">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Constants.html#VOLUME_CONVERT_RATIO">VOLUME_CONVERT_RATIO</a></code></div>
+<div class="col-last even-row-color"><code>100.0f</code></div>
 </div>
 </li>
 <li>
@@ -178,12 +233,24 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code id="com.bomber7.utils.Dimensions.COMPONENT_SPACING_SM">public&nbsp;static&nbsp;final&nbsp;float</code></div>
 <div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_SM">COMPONENT_SPACING_SM</a></code></div>
 <div class="col-last odd-row-color"><code>25.0f</code></div>
-<div class="col-first even-row-color"><code id="com.bomber7.utils.Dimensions.COMPONENT_SPACING_XS">public&nbsp;static&nbsp;final&nbsp;float</code></div>
-<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XS">COMPONENT_SPACING_XS</a></code></div>
-<div class="col-last even-row-color"><code>6.25f</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Dimensions.COMPONENT_SPACING_XL">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XL">COMPONENT_SPACING_XL</a></code></div>
+<div class="col-last even-row-color"><code>200.0f</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Dimensions.COMPONENT_SPACING_XS">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XS">COMPONENT_SPACING_XS</a></code></div>
+<div class="col-last odd-row-color"><code>6.25f</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Dimensions.COMPONENT_SPACING_XXS">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Dimensions.html#COMPONENT_SPACING_XXS">COMPONENT_SPACING_XXS</a></code></div>
+<div class="col-last even-row-color"><code>3.125f</code></div>
 <div class="col-first odd-row-color"><code id="com.bomber7.utils.Dimensions.LABEL_PADDING">public&nbsp;static&nbsp;final&nbsp;float</code></div>
 <div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Dimensions.html#LABEL_PADDING">LABEL_PADDING</a></code></div>
 <div class="col-last odd-row-color"><code>10.0f</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Dimensions.LOGO_HEIGHT">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Dimensions.html#LOGO_HEIGHT">LOGO_HEIGHT</a></code></div>
+<div class="col-last even-row-color"><code>180.0f</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Dimensions.LOGO_WIDTH">public&nbsp;static&nbsp;final&nbsp;float</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Dimensions.html#LOGO_WIDTH">LOGO_WIDTH</a></code></div>
+<div class="col-last odd-row-color"><code>300.0f</code></div>
 <div class="col-first even-row-color"><code id="com.bomber7.utils.Dimensions.MAP_CHECK_BOX_SIZE">public&nbsp;static&nbsp;final&nbsp;float</code></div>
 <div class="col-second even-row-color"><code><a href="com/bomber7/utils/Dimensions.html#MAP_CHECK_BOX_SIZE">MAP_CHECK_BOX_SIZE</a></code></div>
 <div class="col-last even-row-color"><code>250.0f</code></div>
@@ -193,6 +260,32 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code id="com.bomber7.utils.Dimensions.PLAYER_SELECTOR_WIDTH">public&nbsp;static&nbsp;final&nbsp;float</code></div>
 <div class="col-second even-row-color"><code><a href="com/bomber7/utils/Dimensions.html#PLAYER_SELECTOR_WIDTH">PLAYER_SELECTOR_WIDTH</a></code></div>
 <div class="col-last even-row-color"><code>175.0f</code></div>
+</div>
+</li>
+<li>
+<div class="caption"><span>com.bomber7.utils.<a href="com/bomber7/utils/Score.html" title="class in com.bomber7.utils">Score</a></span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Constant Field</div>
+<div class="table-header col-last">Value</div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Score.ALIVE">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Score.html#ALIVE">ALIVE</a></code></div>
+<div class="col-last even-row-color"><code>1</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Score.DEAD">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Score.html#DEAD">DEAD</a></code></div>
+<div class="col-last odd-row-color"><code>-2</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Score.DROP_BOMB">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Score.html#DROP_BOMB">DROP_BOMB</a></code></div>
+<div class="col-last even-row-color"><code>1</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Score.KILL">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Score.html#KILL">KILL</a></code></div>
+<div class="col-last odd-row-color"><code>5</code></div>
+<div class="col-first even-row-color"><code id="com.bomber7.utils.Score.SUICIDE">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second even-row-color"><code><a href="com/bomber7/utils/Score.html#SUICIDE">SUICIDE</a></code></div>
+<div class="col-last even-row-color"><code>-2</code></div>
+<div class="col-first odd-row-color"><code id="com.bomber7.utils.Score.WIN">public&nbsp;static&nbsp;final&nbsp;int</code></div>
+<div class="col-second odd-row-color"><code><a href="com/bomber7/utils/Score.html#WIN">WIN</a></code></div>
+<div class="col-last odd-row-color"><code>10</code></div>
 </div>
 </li>
 </ul>
