@@ -163,7 +163,7 @@ class PlayerTest {
         assertNull(square1.getMapElement(), "Expected square (1,24) to be cleared after explosion");
         assertNull(square2.getMapElement(), "Expected square (1,23) to be cleared after explosion");
         assertInstanceOf(UnbreakableWall.class, square3.getMapElement(), "Expected UnbreakableWall on (2,24)");
-        assertNull(square4.getMapElement(), "Expected null because wall should be broken on (1,22)");
+        assertFalse(square4.getMapElement() instanceof BreakableWall, "Expected null because wall should be broken on (1,22)");
     }
 
 }

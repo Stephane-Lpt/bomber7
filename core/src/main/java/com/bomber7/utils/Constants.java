@@ -37,13 +37,18 @@ public final class Constants {
     public static final int TEXTURE_SIZE = 32;
 
     /**
+     * Max speed of a character.
+     */
+    public static final int MAX_SPEED = 3;
+
+    /**
      * Width of the hitbox of character.
      */
     public static final int HITBOX_WIDTH = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.75f);
     /**
      * Height of the hitbox of character.
      */
-    public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
+    public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 0.8f);
 
     /**
      * The default bomb timer.
