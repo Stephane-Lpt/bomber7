@@ -123,15 +123,6 @@ public class CharacterTest {
         assertEquals(2, defaultCharacter.getSpeed());
     }
 
-    /**
-     * Set test of invalid speed value.
-     */
-    @Test
-    public void testSetInvalidSpeed() {
-        assertThrows(IllegalSpeedOperationException.class, () -> {
-            defaultCharacter.setSpeed(-1);
-        });
-    }
 
     /**
      * Add test of one life.

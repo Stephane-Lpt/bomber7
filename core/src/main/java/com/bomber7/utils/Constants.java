@@ -46,6 +46,11 @@ public final class Constants {
     public static final int HITBOX_HEIGHT = Math.round(Constants.TEXTURE_SIZE * Constants.SCALE * 1.0f);
 
     /**
+     * The max speed of a player.
+     */
+    public static final int MAX_SPEED = 3;
+
+    /**
      * The default bomb timer.
      */
     public static final float BOMB_TIMER = 2.5f;
