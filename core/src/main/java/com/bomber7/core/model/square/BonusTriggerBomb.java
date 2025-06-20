@@ -3,6 +3,10 @@ package com.bomber7.core.model.square;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.utils.BonusType;
 
+/**
+ * Change the bomb type of the player to TRIGGER.
+ * All the new bombs placed by the player will be TRIGGER bombs.
+ */
 public class BonusTriggerBomb extends Bonus {
     /**
      * Constructs a BonusTriggerBomb.

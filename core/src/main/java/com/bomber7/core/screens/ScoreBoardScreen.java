@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents the scoreboard screen in the Bomber7 game.
+ * This screen displays the scores of all players after a round ends.
+ */
 public class ScoreBoardScreen extends BomberScreen {
 
     /**

@@ -9,6 +9,10 @@ import com.bomber7.core.model.entities.Player;
 import com.bomber7.utils.Dimensions;
 import com.bomber7.utils.MVCComponent;
 
+/**
+ * Represents a scoreboard for a player in the Bomber7 game.
+ * This scoreboard displays the player's score, health, and number of bombs.
+ */
 public class PlayerScoreBoard extends Table implements MVCComponent {
 
     /** The player associated with this scoreboard. */
@@ -26,7 +30,7 @@ public class PlayerScoreBoard extends Table implements MVCComponent {
 
     /**
      * The player's scoreboard.
-     * @param player
+     * @param player the player to which this scoreboard belongs
      */
     public PlayerScoreBoard(Player player) {
         this.player = player;

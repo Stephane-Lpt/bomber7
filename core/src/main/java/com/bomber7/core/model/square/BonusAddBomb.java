@@ -3,6 +3,10 @@ package com.bomber7.core.model.square;
 import com.bomber7.core.model.entities.Player;
 import com.bomber7.utils.BonusType;
 
+/**
+ * Represents a bonus that adds an additional bomb to the player's inventory.
+ * This bonus increases the number of bombs a player can place on the map.
+ */
 public class BonusAddBomb extends Bonus {
 
     /**

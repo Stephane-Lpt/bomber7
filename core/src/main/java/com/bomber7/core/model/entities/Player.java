@@ -86,7 +86,7 @@ public abstract class Player extends Character {
     }
 
     /**
-     * Get List<TriggerBomb>.
+     * Get the List of current TriggerBomb dropped.
      * @return the list of the dropped trigger bombs
      */
     public List<TriggerBomb> getTriggerBombsDropped() {
@@ -266,7 +266,7 @@ public abstract class Player extends Character {
     }
 
     /**
-     * Reset method to add bomb type & bomb number resetting to the super method reset.
+     * Reset method to add bomb type and bomb number resetting to the super method reset.
      */
     @Override
     public void reset() {
