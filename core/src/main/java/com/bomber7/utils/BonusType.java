@@ -18,11 +18,11 @@ public enum BonusType {
     /**
      * Speed bonus.
      */
-    SPEED("bonus_speed", 0.2f),
+    SPEED("bonus_speed", 0.3f),
     /**
      * Add a supplementary bomb bonus.
      */
-    ADD_BOMB("bonus_add_bomb", 0.4f);
+    ADD_BOMB("bonus_add_bomb", 0.3f);
 
     /**
      * The asset name for the sprite of the bonus.
