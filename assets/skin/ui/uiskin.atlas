@@ -172,7 +172,6 @@ sprite.graduate.9
   rotate: false
   xy: 271, 544
   size: 274, 412
-  split: 69, 68, 103, 103
   orig: 274, 412
   offset: 0, 0
   index: -1
