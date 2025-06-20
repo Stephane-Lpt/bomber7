@@ -28,6 +28,12 @@ public abstract class Bomb extends MapElement {
      * TRIGGER_BOMB is a bomb that can be manually triggered by the player.
      */
     public static final int TRIGGER_BOMB = 1;
+
+    /**
+     * boolean indicating whether the bomb has already exploded.
+     */
+    private boolean exploded = false;
+
     /**
      * The power of the bomb, which determines the range of its explosion.
      */
@@ -133,6 +139,9 @@ public abstract class Bomb extends MapElement {
         if (m == null) {
             throw new NullPointerException("LevelMap cannot be null");
         }
+
+        if (exploded) return;
+        exploded = true;
 
         // Explosion at the bomb's position
         onExplosion(m, this.x, this.y);
