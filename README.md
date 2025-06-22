@@ -21,7 +21,14 @@ https://stephane-lpt.github.io/bomber7/
 Java JDK 17+ (required for Gradle 8.14)  
 No need to install Gradle manually — the project uses the **Gradle wrapper (./gradlew)**
 
-## Download the project
+## Run easily the project with a .jar file
+- Download the **zip** of the v1.0 release [here](https://github.com/Stephane-Lpt/bomber7/releases/tag/v1.0)
+- Open the zip and get in the **"lib"** folder
+- Run the following command: **`java -jar bomber7-1.0.0.jar`**
+
+## Run the project with Gradle
+
+### Download the project
 
 1. Via the release
 
@@ -31,14 +38,14 @@ git clone https://github.com/Stephane-Lpt/bomber7
 cd bomber7
 ```
 
-## Build the project
+### Build the project
 
 ```
 ./gradlew build # Linux / macOS
 gradlew.bat build # Windows
 ```
 
-## Run the project
+### Run the project
 ```
 ./gradlew run
 ```
