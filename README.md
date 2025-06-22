@@ -12,7 +12,7 @@ Le répertoire de projet GitHub contient donc l'intégralité des ressources à 
  - [Livrable n°4 : Manuel Utilisateur](https://github.com/Stephane-Lpt/bomber7/blob/main/livrables/utilisateur.pdf)
  - [Livrable n°5 : Compte-rendu final du projet](https://github.com/Stephane-Lpt/bomber7/blob/main/livrables/rapport.pdf)
 
-## Javadoc:
+## Javadoc
 
 https://stephane-lpt.github.io/bomber7/
 
@@ -42,3 +42,13 @@ gradlew.bat build # Windows
 ```
 ./gradlew run
 ```
+
+## Sources
+
+Textures des maps : https://www.curseforge.com/minecraft/texture-packs/primes-hd-textures
+Bibliothèque de sons et musiques : https://pixabay.com/fr/
+Sprites : https://www.spriters-resource.com/mobile/bomberman08/sheet/138813/ 
+Images et logos : Générés par ChatGPT ([OpenAI](https://chatgpt.com/)) et LeChat ([MistralAI](https://chat.mistral.ai/chat))
+
+
+
