@@ -48,7 +48,7 @@ gradlew.bat build # Windows
 Textures des maps : https://www.curseforge.com/minecraft/texture-packs/primes-hd-textures
 Bibliothèque de sons et musiques : https://pixabay.com/fr/
 Sprites : https://www.spriters-resource.com/mobile/bomberman08/sheet/138813/ 
-Images et logos : Générés par ChatGPT ([OpenAI](https://chat.mistral.ai/chat))  et LeChat ([MistalAI](https://chatgpt.com/))
+Images et logos : Générés par ChatGPT ([OpenAI](https://chatgpt.com/)) et LeChat ([MistralAI](https://chat.mistral.ai/chat))
 
 
 
