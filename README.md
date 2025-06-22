@@ -22,9 +22,9 @@ Java JDK 17+ (required for Gradle 8.14)
 No need to install Gradle manually — the project uses the **Gradle wrapper (./gradlew)**
 
 ## Run easily the project with a .jar file
-- Download the zip of the v1.0 release [here](https://github.com/Stephane-Lpt/bomber7/releases/tag/v1.0)
-- Get in the "lib" folder
-- Run the following command: `java -jar bomber7-1.0.0.jar`
+- Download the **zip** of the v1.0 release [here](https://github.com/Stephane-Lpt/bomber7/releases/tag/v1.0)
+- Get in the **"lib"** folder
+- Run the following command: **`java -jar bomber7-1.0.0.jar`**
 
 ## Run the project with Gradle
 
